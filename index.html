@@ -23,7 +23,6 @@
             min-height: 100vh;
         }
 
-        /* CONTENEDOR PRINCIPAL ADAPTADO */
         .main-container {
             width: 100%;
             max-width: 470px;
@@ -86,7 +85,6 @@
         .logo-box img {
             width: 135px;
             height: auto;
-            image-rendering: -webkit-optimize-contrast;
         }
 
         .status-msg {
@@ -139,11 +137,6 @@
             color: var(--primary);
         }
 
-        .casino-selection-zone {
-            width: 100%;
-            margin-top: auto;
-        }
-
         .casino-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -167,7 +160,7 @@
         }
         .casino-btn img { width: 100%; height: 100%; object-fit: contain; }
         .casino-btn.selected {
-            border-color: #000000;
+            border-color: #000;
             background: #b184f5;
             transform: scale(1.05);
             border-width: 3px;
@@ -203,7 +196,6 @@
             border-top: 1px solid #eee;
         }
 
-        /* LOGIN SCREEN */
         #login-screen {
             position: fixed;
             top: 0; left: 0;
@@ -224,13 +216,12 @@
             text-align: center;
             box-shadow: 0 20px 50px rgba(0,0,0,0.7);
         }
-        .login-box h2 { color: var(--primary); margin: 0 0 20px 0; font-size: 22px; }
         .login-input {
             width: 100%;
             padding: 12px;
             margin-bottom: 15px;
             border-radius: 10px;
-            border: 2px solid #ddd;
+            border: 2px solid var(--primary);
             font-size: 16px;
         }
         .login-btn {
@@ -241,11 +232,8 @@
             border: none;
             border-radius: 12px;
             font-weight: 740;
-            font-size: 16px;
             cursor: pointer;
-            text-transform: uppercase;
         }
-        #login-msg { color: red; font-size: 12px; margin-top: 10px; min-height: 15px;}
     </style>
 </head>
 <body>
@@ -256,16 +244,16 @@
 <div id="login-screen">
     <div class="login-box">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" style="width:150px; margin-bottom:15px;">
-        <h2>Aviator Predictor</h2>
+        <h2 style="color:var(--primary)">Aviator Predictor</h2>
         <input id="user" type="text" placeholder="Correo Electrónico" class="login-input">
         <input id="pass" type="password" placeholder="Contraseña" class="login-input">
         <button onclick="login()" class="login-btn">INGRESAR</button>
-        <p id="login-msg"></p>
+        <p id="login-msg" style="color:red; font-size:12px; margin-top:10px;"></p>
     </div>
 </div>
 
 <div class="main-container">
-    <div class="app-header">PREDIC 1 WIN</div>
+    <div class="app-header">PREDIC 1 WIN - PREMIUM</div>
     <div class="history-bar" id="historyBar"></div>
 
     <div class="content">
@@ -285,7 +273,7 @@
         </div>
 
         <div class="casino-selection-zone">
-            <div style="font-size: 10px; font-weight: 800; text-align: center; color: #333;">SELECCIONAR TU CASINO PARA PREDECIR</div>
+            <div style="font-size: 10px; font-weight: 800; text-align: center; color: #333; margin-bottom: 5px;">SELECCIONAR TU CASINO PARA PREDECIR</div>
             <div class="casino-grid">
                 <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
                 <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156718063-9d7f327c-3f38-4c54-a4af-8b6902096337.png"></div>
@@ -311,6 +299,8 @@
 <script>
     const USER_CORRECTO = "predic1win@gmail.com";
     const PASS_CORRECTA = "12345678";
+    const misSeñales = [1.93, 3.00, 2.00, 2.91, 1.51];
+    let step = 0;
 
     function login(){
         const user = document.getElementById("user").value;
@@ -324,10 +314,6 @@
         }
     }
 
-    
-    const misSeñales = [1.00, 1.53, 2.56, 1.56, 4.70, 8.10, 9.17, 1.01 ];
-    let step = 1;
-
     function selCas(el) {
         document.querySelectorAll('.casino-btn').forEach(b => b.classList.remove('selected'));
         el.classList.add('selected');
@@ -337,8 +323,7 @@
 
     function playBeep() {
         const audio = document.getElementById('count-sound');
-        audio.volume = 0.2; 
-        audio.currentTime = 0; 
+        audio.volume = 0.2; audio.currentTime = 0;
         audio.play().catch(e => {});
     }
 
@@ -346,16 +331,14 @@
         const display = document.getElementById('result-display');
         const btn = document.getElementById('btn');
         const status = document.getElementById('status');
-        const alertImg = document.getElementById('alert-icon');
         const progBar = document.getElementById('prog-bar');
-
+        
         btn.disabled = true;
-        alertImg.style.display = "none";
-        progBar.style.strokeDashoffset = 502;
+        document.getElementById('alert-icon').style.display = "none";
+        progBar.style.strokeDashoffset = 440;
         
         let count = 3;
-        status.innerText = "𝘐𝘕𝘐𝘊𝘐𝘈𝘕𝘋𝘖 𝘗𝘙𝘌𝘋𝘐𝘊𝘛𝘖𝘙...";
-        
+        status.innerText = "INICIANDO PREDICTOR...";
         display.innerText = count;
         playBeep();
 
@@ -366,8 +349,6 @@
                 playBeep();
             } else {
                 clearInterval(timer);
-                const audio = document.getElementById('count-sound');
-                audio.pause();
                 startAnalysis();
             }
         }, 1000);
@@ -393,18 +374,15 @@
             display.innerText = val.toFixed(2) + "x";
             
             let p = (val - 1) / (target - 1);
-            progBar.style.strokeDashoffset = 502 - (p * 502);
+            progBar.style.strokeDashoffset = 440 - (p * 440);
 
             if (val >= target) {
                 clearInterval(loop);
                 display.innerText = target.toFixed(2) + "x";
-                
-                winAudio.volume = 0.3;
-                winAudio.currentTime = 0;
+                winAudio.volume = 0.3; winAudio.currentTime = 0;
                 winAudio.play().catch(() => {}); 
-                
                 alertImg.style.display = "block";
-                status.innerText = "¡ＰＲＥＤＩＣＣＩＯＮ ＣＯＭＰＬＥＴＡＤＡ!";
+                status.innerText = "¡PREDICCIÓN COMPLETADA!";
                 btn.disabled = false;
 
                 const log = document.createElement('div');
@@ -412,76 +390,8 @@
                 log.innerText = target.toFixed(2) + "x";
                 history.prepend(log);
             }
-        }, 50);
+        }, 30); // Un poco más rápido para fluidez
     }
-</script>
-<!-- LOGIN PAGE -->
-<div id="login-screen" style="
-position:fixed;
-width:100%;
-height:100%;
-background:linear-gradient(160deg,#000,#1a1a1a);
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:9999;
-font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-">
-
-    <div style="
-    width:320px;
-    background:white;
-    padding:35px 25px;
-    border-radius:30px;
-    text-align:center;
-    box-shadow:0 25px 60px rgba(0,0,0,0.5);
-    ">
-
-        <!-- ICONO -->
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s"
-        style="width:180px; margin-bottom:15px;">
-
-        <h2 style="color:#E7180B;bottom:150px;">𝙰𝚟𝚒𝚊𝚝𝚘𝚛 𝙿𝚛𝚎𝚍𝚒𝚌𝚝𝚘𝚛</h2>
-        <input id="user" type="text" placeholder="𝘾𝙤𝙧𝙧𝙚𝙤 𝙀𝙡𝙚𝙘𝙩𝙧𝙤𝙣𝙞𝙘𝙤"
-        style="width:80%; padding:7px; margin-bottom:8px; border-radius:10px; border:3px solid #E7180B; font-size:15px;">
-
-      <input id="pass" type="password" placeholder="ｃｏｎｔｒａｓｅñａ"
-style="width:80%; padding:8px; margin-bottom:8px; border-radius:10px; border:3px solid #E7180B; font-size:15px;">
-
-        <button onclick="login()" style="
-        width:100%;
-        padding:14px;
-        background:#E7180B;
-        color:white;
-        border:none;
-        border-radius:15px;
-        font-weight:900;
-        cursor:pointer;
-        ">
-        I N G R E S A R
-        </button>
-
-        <p id="login-msg" style="color:red; font-size:10px; margin-top:10px;"></p>
-
-    </div>
-</div>
-
-<script>
-const USER_CORRECTO = "predic1win@gmail.com";
-const PASS_CORRECTA = "12345678";
-
-function login(){
-const user=document.getElementById("user").value;
-const pass=document.getElementById("pass").value;
-const msg=document.getElementById("login-msg");
-
-if(user===USER_CORRECTO && pass===PASS_CORRECTA){
-document.getElementById("login-screen").style.display="none";
-}else{
-msg.innerText="Usuario o contraseña incorrectos";
-}
-}
 </script>
 </body>
 </html>
-
