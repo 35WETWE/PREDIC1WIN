@@ -251,7 +251,7 @@
 <body>
 
 
-<audio id="win-sound" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3" preload="auto"></audio>
+
 
 <div id="login-screen">
     <div class="login-box">
@@ -392,7 +392,7 @@
             if (val >= target) {
                 clearInterval(loop);
                 display.innerText = target.toFixed(2) + "x";
-                winAudio.volume = 0.0; winAudio.currentTime = 0; winAudio.play().catch(() => {});
+                
                 alertImg.style.display = "block";
                 status.innerText = "¡PREDICCIÓN COMPLETADA!";
                 btn.disabled = false;
@@ -407,4 +407,5 @@
 </script>
 </body>
 </html>
+
 
