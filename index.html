@@ -354,62 +354,48 @@
         }, 1000);
     }
 
-  function startAnalysis() {
-    const display = document.getElementById('result-display');
-    const status = document.getElementById('status');
-    const alertImg = document.getElementById('alert-icon');
-    const history = document.getElementById('historyBar');
-    const btn = document.getElementById('btn');
-    const progBar = document.getElementById('prog-bar');
-    const winAudio = document.getElementById('win-sound');
+ function startAnalysis() {
+        const display = document.getElementById('result-display');
+        const status = document.getElementById('status');
+        const alertImg = document.getElementById('alert-icon');
+        const history = document.getElementById('historyBar');
+        const btn = document.getElementById('btn');
+        const progBar = document.getElementById('prog-bar');
+        const winAudio = document.getElementById('win-sound');
 
-    const target = misSeñales[step];
-    step = (step + 1) % misSeñales.length; 
+        const target = misSeñales[step];
+        step = (step + 1) % misSeñales.length;
 
-    let val = 1.00;
-    status.innerText = "PREDICCIÓN EN TIEMPO REAL!";
-    
-    let loop = setInterval(() => {
-        val += 0.01;
-        display.innerText = val.toFixed(2) + "x";
-        
-        // CORRECCIÓN AQUÍ: Evitamos división por cero si target es 1
-        let divisor = (target - 1) <= 0 ? 0.01 : (target - 1);
-        let p = (val - 1) / divisor;
-        
-        // Limitamos 'p' entre 0 y 1 para que el círculo no haga cosas raras
-        p = Math.min(Math.max(p, 0), 1);
-        progBar.style.strokeDashoffset = 440 - (p * 440);
+        let val = 1.00;
+        status.innerText = "PREDICCIÓN EN TIEMPO REAL!";
 
-        if (val >= target) {
-            clearInterval(loop);
-            display.innerText = target.toFixed(2) + "x";
-            
-            winAudio.volume = 0.3; 
-            winAudio.currentTime = 0;
-            winAudio.play().catch(() => {}); 
-            
-            alertImg.style.display = "block";
-            status.innerText = "¡PREDICCIÓN COMPLETADA!";
-            btn.disabled = false;
+        let loop = setInterval(() => {
+            val += 0.01;
+            display.innerText = val.toFixed(2) + "x";
 
-       const log = document.createElement('div');
+            let p = (val - 1) / (target - 1);
+            // Ajustado para stroke-dasharray: 440
+            progBar.style.strokeDashoffset = 440 - (p * 440); 
 
-            log.className = 'payout-tag';
+            if (val >= target) {
+                clearInterval(loop);
+                display.innerText = target.toFixed(2) + "x";
 
-            log.innerText = target.toFixed(2) + "x";
+                winAudio.volume = 0.3;
+                winAudio.currentTime = 0;
+                winAudio.play().catch(() => {});
 
-            history.prepend(log);
+                alertImg.style.display = "block";
+                status.innerText = "¡PREDlCClON COMPLETED!";
+                btn.disabled = false;
 
-        }
-
-    }, 40); // Bajé a 40ms para que se vea más fluido el movimiento
-
-}
-
+                const log = document.createElement('div');
+                log.className = 'payout-tag';
+                log.innerText = target.toFixed(2) + "x";
+                history.prepend(log);
+            }
+        }, 50);
+    }
 </script>
-
 </body>
-
 </html>
-
