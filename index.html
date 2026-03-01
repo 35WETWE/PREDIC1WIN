@@ -237,6 +237,7 @@
     </style>
 </head>
 <body>
+
 <audio id="count-sound" src="https://assets.mixkit.co/active_storage/sfx/916/916-preview.mp3" preload="auto"></audio>
 <audio id="win-sound" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3" preload="auto"></audio>
 
@@ -319,12 +320,13 @@
         document.getElementById('btn').disabled = false;
         document.getElementById('status').innerText = "VINCULACIÓN EXITOSA";
     }
-function playBeep() {
+
+    function playBeep() {
         const audio = document.getElementById('count-sound');
-        if (audio) { // Solo intenta sonar si el elemento existe
+        if (audio) {
             audio.volume = 0.2; 
             audio.currentTime = 0;
-            audio.play().catch(e => console.log("Audio de conteo bloqueado o no encontrado"));
+            audio.play().catch(e => console.log("Audio de conteo esperando interacción"));
         }
     }
 
@@ -350,13 +352,13 @@ function playBeep() {
                 playBeep();
             } else {
                 clearInterval(timer);
-                // Si llegamos a cero, forzamos el inicio del análisis
+                // Inicia la animación del multiplicador
                 startAnalysis();
             }
-        }, 1000);
+        }, 1000); // 1 segundo exacto entre números
     }
-    
- function startAnalysis() {
+
+    function startAnalysis() {
         const display = document.getElementById('result-display');
         const status = document.getElementById('status');
         const alertImg = document.getElementById('alert-icon');
@@ -376,19 +378,20 @@ function playBeep() {
             display.innerText = val.toFixed(2) + "x";
 
             let p = (val - 1) / (target - 1);
-            // Ajustado para stroke-dasharray: 440
             progBar.style.strokeDashoffset = 440 - (p * 440); 
 
             if (val >= target) {
                 clearInterval(loop);
                 display.innerText = target.toFixed(2) + "x";
 
-                winAudio.volume = 0.3;
-                winAudio.currentTime = 0;
-                winAudio.play().catch(() => {});
+                if (winAudio) {
+                    winAudio.volume = 0.3;
+                    winAudio.currentTime = 0;
+                    winAudio.play().catch(() => {});
+                }
 
                 alertImg.style.display = "block";
-                status.innerText = "¡PREDlCClON COMPLETED!";
+                status.innerText = "¡PREDICCIÓN COMPLETADA!";
                 btn.disabled = false;
 
                 const log = document.createElement('div');
@@ -396,9 +399,8 @@ function playBeep() {
                 log.innerText = target.toFixed(2) + "x";
                 history.prepend(log);
             }
-        }, 50);
+        }, 60); // Velocidad fluida y realista
     }
 </script>
 </body>
 </html>
-
