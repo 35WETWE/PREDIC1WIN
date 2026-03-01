@@ -367,7 +367,7 @@
         }, 1000);
     }
 
-   function startAnalysis() {
+  function startAnalysis() {
         const display = document.getElementById('result-display');
         const status = document.getElementById('status');
         const alertImg = document.getElementById('alert-icon');
@@ -375,6 +375,10 @@
         const btn = document.getElementById('btn');
         const progBar = document.getElementById('prog-bar');
         const winAudio = document.getElementById('win-sound');
+
+        // Resetear audio por si aún estaba sonando de la ronda anterior
+        winAudio.pause();
+        winAudio.currentTime = 0;
 
         const target = misSeñales[step];
         step = (step + 1) % misSeñales.length;
@@ -394,14 +398,21 @@
                 display.innerText = target.toFixed(2) + "x";
 
                 // --- LÓGICA DEL SONIDO POR 3 SEGUNDOS ---
-                winAudio.volume = 0.3; // Volumen audible
-                winAudio.currentTime = 0;
+                winAudio.volume = 0.4; // Ajustado un poco más alto
                 winAudio.play().catch(() => {});
 
-                // Detener el sonido tras 3000ms (3 segundos)
+                // Detener exactamente a los 3 segundos
                 setTimeout(() => {
-                    winAudio.pause();
-                    winAudio.currentTime = 0;
+                    // Efecto de bajada suave de volumen (opcional, pero suena mejor)
+                    let fadeOut = setInterval(() => {
+                        if (winAudio.volume > 0.05) {
+                            winAudio.volume -= 0.05;
+                        } else {
+                            clearInterval(fadeOut);
+                            winAudio.pause();
+                            winAudio.currentTime = 0;
+                        }
+                    }, 50);
                 }, 3000);
                 // ---------------------------------------
 
@@ -419,6 +430,7 @@
 </script>
 </body>
 </html>
+
 
 
 
