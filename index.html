@@ -7,276 +7,400 @@
     <style>
         :root {
             --primary: #E7180B;
-            --bg-dark: #0f0f0f;
-            --card-bg: #ffffff;
+            --bg-body: #1a1a1a;
+            --app-bg: #ffffff;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        body, html {
-            margin: 0; padding: 0;
-            width: 100%; height: 100%;
-            background: var(--bg-dark);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            overflow: hidden; /* Evita scrolls raros en la raíz */
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg-body);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
         }
 
-        /* DISEÑO ADAPTATIVO: 100% en móvil, centrado en pantallas grandes */
-        .app-shell {
+        /* CONTENEDOR PRINCIPAL ADAPTADO */
+        .main-container {
             width: 100%;
-            max-width: 500px; /* Ancho máximo para PC */
+            max-width: 500px;
             height: 100vh;
-            margin: 0 auto;
-            background: var(--card-bg);
+            background: var(--app-bg);
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            position: relative;
-            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
-        .header {
+        .app-header {
             background: var(--primary);
-            padding: 15px;
+            padding: 20px 10px;
+            font-size: 18px;
+            font-weight: 900;
             text-align: center;
             color: white;
-            font-weight: 900;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
+            letter-spacing: 1.2px;
             text-transform: uppercase;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            z-index: 10;
         }
 
-        .history {
+        .history-bar {
             background: #000;
-            padding: 10px;
+            padding: 8px;
             display: flex;
-            gap: 8px;
+            gap: 5px;
             overflow-x: auto;
-            min-height: 45px;
+            min-height: 40px;
+            border-bottom: 1px solid #000;
             align-items: center;
         }
-        .history::-webkit-scrollbar { display: none; }
+        .history-bar::-webkit-scrollbar { display: none; }
 
-        .tag {
-            font-size: 12px; font-weight: 900; padding: 4px 10px;
-            border-radius: 6px; background: white; border: 2px solid #000;
-            color: var(--primary); white-space: nowrap;
-            animation: pop 0.3s ease-out;
+        .payout-tag {
+            font-size: 11px;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: white;
+            border: 2px solid #000;
+            color: var(--primary);
+            white-space: nowrap;
+            animation: slideIn 0.3s ease-out;
         }
-        @keyframes pop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes slideIn { from { transform: translateX(-20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-        .main-content {
+        .content {
             flex: 1;
-            padding: 20px;
+            padding: 15px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-around; /* Distribuye el espacio entre logo, círculo y botones */
+            justify-content: space-between;
+            gap: 10px;
             overflow-y: auto;
         }
 
-        .logo-box img { width: 140px; height: auto; }
+        .logo-box img {
+            width: 150px;
+            height: auto;
+            image-rendering: -webkit-optimize-contrast;
+        }
 
-        /* ÁREA DE PREDICCIÓN */
-        .prediction-wrapper {
+        .status-msg {
+            font-size: 11px;
+            color: var(--primary);
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        .prediction-area {
             position: relative;
-            width: 200px; height: 200px;
-            display: flex; justify-content: center; align-items: center;
+            width: 160px;
+            height: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
         }
 
-        #alert-money {
-            position: absolute; width: 60px; top: -10px;
-            display: none; z-index: 5;
-            animation: pulse 0.5s infinite alternate;
+        #alert-icon {
+            position: absolute;
+            width: 50px;
+            top: -15px;
+            display: none;
+            z-index: 50;
+            filter: drop-shadow(0 0 15px rgba(231, 24, 11, 0.9));
+            animation: warningPulse 0.4s infinite alternate;
         }
-        @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.15); } }
+        @keyframes warningPulse { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        .ring-svg { transform: rotate(-90deg); width: 200px; height: 200px; }
-        .ring-bg { stroke: #f0f0f0; stroke-width: 12; fill: transparent; r: 85; cx: 100; cy: 100; }
-        #ring-fill {
-            stroke: var(--primary); stroke-width: 12; stroke-linecap: round;
-            fill: transparent; r: 85; cx: 100; cy: 100;
-            stroke-dasharray: 534; stroke-dashoffset: 534;
+        .progress-ring { transform: rotate(-90deg); width: 160px; height: 160px; }
+        .progress-ring__bg { stroke: #f0f0f0; stroke-width: 10; fill: transparent; r: 70; cx: 80; cy: 80; }
+        #prog-bar {
+            stroke: var(--primary);
+            stroke-width: 10;
+            stroke-linecap: round;
+            fill: transparent;
+            r: 70; cx: 80; cy: 80;
+            stroke-dasharray: 440;
+            stroke-dashoffset: 440;
             transition: stroke-dashoffset 0.1s linear;
         }
 
-        #payout-text { position: absolute; font-size: 42px; font-weight: 900; color: var(--primary); }
-
-        /* CASINOS Y BOTÓN */
-        .controls { width: 100%; }
-        .grid {
-            display: grid; grid-template-columns: repeat(5, 1fr);
-            gap: 8px; margin: 15px 0;
-        }
-        .c-btn {
-            aspect-ratio: 1/1; border: 2px solid #eee; border-radius: 12px;
-            background: #DAB2FF; cursor: pointer; display: flex;
-            align-items: center; justify-content: center; padding: 5px; transition: 0.2s;
-        }
-        .c-btn img { width: 100%; height: 100%; object-fit: contain; }
-        .c-btn.active { border-color: #000; background: #b184f5; transform: scale(1.08); border-width: 3px; }
-
-        .action-btn {
-            width: 100%; padding: 18px; background: var(--primary);
-            color: white; border: none; border-radius: 18px;
-            font-size: 18px; font-weight: 900; text-transform: uppercase;
-            box-shadow: 0 6px 0 #b30000; cursor: pointer; transition: 0.1s;
-        }
-        .action-btn:active { transform: translateY(3px); box-shadow: 0 3px 0 #b30000; }
-        .action-btn:disabled { background: #555; box-shadow: none; color: #999; cursor: not-allowed; }
-
-        .footer {
-            padding: 15px; text-align: center; background: #f9f9f9;
-            border-top: 1px solid #eee; font-size: 12px; font-weight: 800;
-            color: var(--primary); display: flex; justify-content: center; align-items: center; gap: 8px;
+        #result-display {
+            position: absolute;
+            font-size: 34px;
+            font-weight: 900;
+            color: var(--primary);
         }
 
-        /* LOGIN COMPLETO */
-        #login-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.95);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 1000; padding: 20px;
+        .casino-selection-zone {
+            width: 100%;
+            margin-top: auto;
         }
-        .login-card {
-            width: 100%; max-width: 360px; background: white;
-            padding: 40px 25px; border-radius: 30px; text-align: center;
+
+        .casino-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            width: 100%;
+            margin: 8px 0;
         }
+
+        .casino-btn {
+            aspect-ratio: 1 / 1;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #DAB2FF;
+            transition: 0.2s;
+            overflow: hidden;
+            padding: 4px;
+        }
+        .casino-btn img { width: 100%; height: 100%; object-fit: contain; }
+        .casino-btn.selected {
+            border-color: #000000;
+            background: #b184f5;
+            transform: scale(1.05);
+            border-width: 3px;
+        }
+
+        .next-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 0;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 900;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #b30000;
+            transition: 0.1s;
+            text-transform: uppercase;
+        }
+        .next-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #b30000; }
+        .next-btn:disabled { background: #555; box-shadow: none; color: #ccc; cursor: not-allowed; }
+
+        .security-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding: 10px 0;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--primary);
+            background: #f9f9f9;
+            border-top: 1px solid #eee;
+        }
+
+        /* LOGIN SCREEN */
+        #login-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(160deg,#000,#1a1a1a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+        .login-box {
+            width: 100%;
+            max-width: 350px;
+            background: white;
+            padding: 40px 30px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+        }
+        .login-box h2 { color: var(--primary); margin: 0 0 20px 0; font-size: 22px; }
         .login-input {
-            width: 100%; padding: 15px; margin-bottom: 15px;
-            border-radius: 12px; border: 2px solid #ddd; font-size: 16px;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            font-size: 16px;
         }
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 16px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        #login-msg { color: red; font-size: 12px; margin-top: 10px; min-height: 15px;}
     </style>
 </head>
 <body>
 
-<div id="login-overlay">
-    <div class="login-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" style="width:120px; margin-bottom:20px;">
-        <h2 style="color:var(--primary); margin-top:0;">LOGIN PREMIUM</h2>
-        <input id="u" type="text" placeholder="Correo" class="login-input">
-        <input id="p" type="password" placeholder="Password" class="login-input">
-        <button onclick="checkLogin()" class="action-btn" style="box-shadow:none;">INGRESAR</button>
-        <p id="error" style="color:red; font-size:12px; margin-top:10px;"></p>
+<audio id="count-sound" src="https://assets.mixkit.co/active_storage/sfx/916/916-preview.mp3" preload="auto"></audio>
+<audio id="win-sound" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3" preload="auto"></audio>
+
+<div id="login-screen">
+    <div class="login-box">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" style="width:150px; margin-bottom:15px;">
+        <h2>Aviator Predictor</h2>
+        <input id="user" type="text" placeholder="Correo Electrónico" class="login-input">
+        <input id="pass" type="password" placeholder="Contraseña" class="login-input">
+        <button onclick="login()" class="login-btn">INGRESAR</button>
+        <p id="login-msg"></p>
     </div>
 </div>
 
-<div class="app-shell">
-    <div class="header">PREDIC 1 WIN</div>
-    <div class="history" id="h-bar"></div>
+<div class="main-container">
+    <div class="app-header">PREDIC 1 WIN</div>
+    <div class="history-bar" id="historyBar"></div>
 
-    <div class="main-content">
+    <div class="content">
         <div class="logo-box">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s">
         </div>
 
-        <div id="msg" style="font-size:11px; font-weight:900; color:var(--primary); text-transform:uppercase;">¡ELIGE TU CASINO!</div>
+        <div class="status-msg" id="status">¡OPRIME TU CASINO!</div>
 
-        <div class="prediction-wrapper">
-            <img id="alert-money" src="https://images.icon-icons.com/461/PNG/96/money_43847.png">
-            <svg class="ring-svg" viewBox="0 0 200 200">
-                <circle class="ring-bg"/>
-                <circle id="ring-fill"/>
+        <div class="prediction-area">
+            <img id="alert-icon" src="https://images.icon-icons.com/461/PNG/96/money_43847.png">
+            <svg class="progress-ring" viewBox="0 0 160 160">
+                <circle class="progress-ring__bg"/>
+                <circle id="prog-bar"/>
             </svg>
-            <div id="payout-text">1.00x</div>
+            <div id="result-display">1.00x</div>
         </div>
 
-        <div class="controls">
-            <div style="font-size: 10px; font-weight: 800; text-align: center; color: #444;">VINCULAR SERVIDOR</div>
-            <div class="grid">
-                <div class="c-btn" onclick="setCasino(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
-                <div class="c-btn" onclick="setCasino(this)"><img src="https://image2url.com/r2/default/images/1772156718063-9d7f327c-3f38-4c54-a4af-8b6902096337.png"></div>
-                <div class="c-btn" onclick="setCasino(this)"><img src="https://image2url.com/r2/default/images/1772156777400-140ec198-b410-4c90-963e-b6a7b3b8ffe5.png"></div>
-                <div class="c-btn" onclick="setCasino(this)"><img src="https://image2url.com/r2/default/images/1772156881655-81bb1ea5-ffc0-4f39-9b03-e596eb0da86e.png"></div>
-                <div class="c-btn" onclick="setCasino(this)"><img src="https://image2url.com/r2/default/images/1772156926302-a55f9d48-c419-40a3-bdbc-2a320d061d87.png"></div>
-                <div class="c-btn" onclick="setCasino(this)"><img src="https://image2url.com/r2/default/images/1772157099303-685401df-2dba-48d6-ad22-89115f5dfb1b.png"></div>
-                <div class="c-btn" onclick="setCasino(this)"><img src="https://image2url.com/r2/default/images/1772157139259-9ff0140d-73a3-4141-b928-661681cb29a0.png"></div>
-                <div class="c-btn" onclick="setCasino(this)"><img src="https://image2url.com/r2/default/images/1772157235100-e2589491-3023-4dd7-a3bf-f05fef4c349d.png"></div>
-                <div class="c-btn" onclick="setCasino(this)"><img src="https://image2url.com/r2/default/images/1772157291495-d6069e42-b827-4bc1-add5-4e7fb9a90656.jpg"></div>
-                <div class="c-btn" onclick="setCasino(this)"><img src="https://image2url.com/r2/default/images/1772157380024-78169a5a-68bd-4a96-b234-d773ddd3cff5.png"></div>
+        <div class="casino-selection-zone">
+            <div style="font-size: 10px; font-weight: 800; text-align: center; color: #333;">SELECCIONAR TU CASINO PARA PREDECIR</div>
+            <div class="casino-grid">
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156718063-9d7f327c-3f38-4c54-a4af-8b6902096337.png"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156777400-140ec198-b410-4c90-963e-b6a7b3b8ffe5.png"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156881655-81bb1ea5-ffc0-4f39-9b03-e596eb0da86e.png"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156926302-a55f9d48-c419-40a3-bdbc-2a320d061d87.png"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157099303-685401df-2dba-48d6-ad22-89115f5dfb1b.png"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157139259-9ff0140d-73a3-4141-b928-661681cb29a0.png"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157235100-e2589491-3023-4dd7-a3bf-f05fef4c349d.png"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157291495-d6069e42-b827-4bc1-add5-4e7fb9a90656.jpg"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157380024-78169a5a-68bd-4a96-b234-d773ddd3cff5.png"></div>
             </div>
-            <button id="go-btn" class="action-btn" onclick="start()" disabled>Siguiente Ronda</button>
+            <button class="next-btn" id="btn" onclick="runSequence()" disabled>Siguiente Ronda</button>
         </div>
     </div>
 
-    <div class="footer">
-        <img src="https://images.icon-icons.com/2232/PNG/96/telegram_logo_icon_134592.png" style="width:16px;">
-        PREDIC 1 WIN - PREMIUM
+    <div class="security-footer">
+        <img src="https://images.icon-icons.com/2232/PNG/96/telegram_logo_icon_134592.png" style="width: 16px;">
+        <span>PREDIC 1 WIN - PREMIUM</span>
     </div>
 </div>
 
 <script>
-    const CONFIG = { user: "predic1win@gmail.com", pass: "12345678" };
-    // Las señales que me pediste mantener
-    const SEÑALES = [1.93, 3.00, 2.00, 2.91, 1.51, 4.20, 1.85, 9.50];
-    let signalPos = 0;
+    const USER_CORRECTO = "predic1win@gmail.com";
+    const PASS_CORRECTA = "12345678";
 
-    function checkLogin() {
-        if(document.getElementById('u').value === CONFIG.user && document.getElementById('p').value === CONFIG.pass) {
-            document.getElementById('login-overlay').style.display = "none";
+    function login(){
+        const user = document.getElementById("user").value;
+        const pass = document.getElementById("pass").value;
+        const msg = document.getElementById("login-msg");
+        if(user === USER_CORRECTO && pass === PASS_CORRECTA){
+            document.getElementById("login-screen").style.display = "none";
         } else {
-            document.getElementById('error').innerText = "ERROR DE ACCESO";
+            msg.innerText = "Usuario o contraseña incorrectos";
+            document.getElementById("pass").value = "";
         }
     }
 
-    function setCasino(el) {
-        document.querySelectorAll('.c-btn').forEach(b => b.classList.remove('active'));
-        el.classList.add('active');
-        document.getElementById('go-btn').disabled = false;
-        document.getElementById('msg').innerText = "SISTEMA VINCULADO";
+    const misSeñales = [1.93, 3.00, 2.00, 2.91, 1.51, 4.00, 1.80, 2.50];
+    let step = 0;
+
+    function selCas(el) {
+        document.querySelectorAll('.casino-btn').forEach(b => b.classList.remove('selected'));
+        el.classList.add('selected');
+        document.getElementById('btn').disabled = false;
+        document.getElementById('status').innerText = "VINCULACIÓN EXITOSA";
     }
 
-    function start() {
-        const btn = document.getElementById('go-btn');
-        const text = document.getElementById('payout-text');
-        const fill = document.getElementById('ring-fill');
-        const alert = document.getElementById('alert-money');
-        
+    function playBeep() {
+        const audio = document.getElementById('count-sound');
+        audio.volume = 0.2; audio.currentTime = 0; audio.play().catch(e => {});
+    }
+
+    function runSequence() {
+        const display = document.getElementById('result-display');
+        const btn = document.getElementById('btn');
+        const status = document.getElementById('status');
+        const alertImg = document.getElementById('alert-icon');
+        const progBar = document.getElementById('prog-bar');
+
         btn.disabled = true;
-        alert.style.display = "none";
-        fill.style.strokeDashoffset = 534;
-        
-        let countdown = 3;
-        text.innerText = countdown;
-        
+        alertImg.style.display = "none";
+        progBar.style.strokeDashoffset = 440; 
+
+        let count = 3;
+        status.innerText = "INICIANDO PREDICTOR...";
+        display.innerText = count;
+        playBeep();
+
         let timer = setInterval(() => {
-            countdown--;
-            if(countdown > 0) text.innerText = countdown;
-            else {
+            count--;
+            if (count >= 1) {
+                display.innerText = count;
+                playBeep();
+            } else {
                 clearInterval(timer);
-                runPrediction();
+                startAnalysis();
             }
         }, 1000);
     }
 
-    function runPrediction() {
-        const text = document.getElementById('payout-text');
-        const fill = document.getElementById('ring-fill');
-        const alert = document.getElementById('alert-money');
-        const target = SEÑALES[signalPos];
-        signalPos = (signalPos + 1) % SEÑALES.length;
+    function startAnalysis() {
+        const display = document.getElementById('result-display');
+        const status = document.getElementById('status');
+        const alertImg = document.getElementById('alert-icon');
+        const history = document.getElementById('historyBar');
+        const btn = document.getElementById('btn');
+        const progBar = document.getElementById('prog-bar');
+        const winAudio = document.getElementById('win-sound');
 
-        let current = 1.00;
-        document.getElementById('msg').innerText = "PREDICCIÓN EN CURSO...";
+        const target = misSeñales[step];
+        step = (step + 1) % misSeñales.length;
 
-        let anim = setInterval(() => {
-            current += 0.01;
-            text.innerText = current.toFixed(2) + "x";
-            
-            let p = (current - 1) / (target - 1);
-            fill.style.strokeDashoffset = 534 - (p * 534);
+        let val = 1.00;
+        status.innerText = "PREDICCIÓN EN TIEMPO REAL!";
 
-            if(current >= target) {
-                clearInterval(anim);
-                text.innerText = target.toFixed(2) + "x";
-                alert.style.display = "block";
-                document.getElementById('msg').innerText = "¡PREDICCIÓN EXITOSA!";
-                document.getElementById('go-btn').disabled = false;
-                
+        let loop = setInterval(() => {
+            val += 0.01;
+            display.innerText = val.toFixed(2) + "x";
+
+            let p = (val - 1) / (target - 1);
+            progBar.style.strokeDashoffset = 440 - (p * 440); 
+
+            if (val >= target) {
+                clearInterval(loop);
+                display.innerText = target.toFixed(2) + "x";
+                winAudio.volume = 0.3; winAudio.currentTime = 0; winAudio.play().catch(() => {});
+                alertImg.style.display = "block";
+                status.innerText = "¡PREDICCIÓN COMPLETADA!";
+                btn.disabled = false;
+
                 const log = document.createElement('div');
-                log.className = 'tag';
+                log.className = 'payout-tag';
                 log.innerText = target.toFixed(2) + "x";
-                document.getElementById('h-bar').prepend(log);
+                history.prepend(log);
             }
         }, 40);
     }
