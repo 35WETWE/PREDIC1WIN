@@ -393,13 +393,23 @@
             status.innerText = "¡PREDICCIÓN COMPLETADA!";
             btn.disabled = false;
 
-         const log = document.createElement('div');
+       const log = document.createElement('div');
+
             log.className = 'payout-tag';
+
             log.innerText = target.toFixed(2) + "x";
+
             history.prepend(log);
+
         }
-    }, 60); // <--- VELOCIDAD AJUSTADA A 60ms (MÁS LENTO Y REALISTA)
+
+    }, 40); // Bajé a 40ms para que se vea más fluido el movimiento
+
 }
+
 </script>
+
 </body>
+
 </html>
+
