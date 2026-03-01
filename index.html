@@ -21,6 +21,24 @@
             position: relative; overflow: hidden; 
             box-shadow: 0 40px 100px rgba(0,0,0,0.25); display: flex; flex-direction: column;
         }
+
+        /* --- SISTEMA DE LOGIN --- */
+        #auth-overlay {
+            position: absolute; inset: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 500; display: flex; align-items: center; justify-content: center;
+            padding: 20px; backdrop-filter: blur(5px); transition: 0.5s;
+        }
+        .auth-card {
+            background: white; width: 100%; padding: 30px; border-radius: 30px; text-align: center;
+        }
+        .auth-card h2 { color: var(--primary); font-weight: 900; margin-bottom: 20px; }
+        .auth-input {
+            width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 12px;
+            border: 2px solid #eee; outline: none; box-sizing: border-box; font-weight: 600;
+        }
+        
+        /* --- ELEMENTOS DEL TELÉFONO --- */
         .status-bar {
             position: absolute; top: 0; width: 100%; height: 45px;
             display: flex; justify-content: space-between; align-items: center;
@@ -33,27 +51,23 @@
         .notch { width: 150px; height: 30px; background: #1c1c1c; position: absolute; top: 0; left: 50%; transform: translateX(-50%); border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; z-index: 100; }
         
         .app-header { background: var(--primary); padding: 50px 10px 12px; font-size: 17px; font-weight: 900; text-align: center; color: white; letter-spacing: 1.2px; }
-        
         .history-bar { background: #f8f9fa; padding: 10px; display: flex; gap: 10px; overflow: hidden; min-height: 35px; border-bottom: 1px solid #000; align-items: center; }
-        .payout-tag { 
-            font-size: 11px; font-weight: 900; padding: 3px 8px; border-radius: 6px; 
-            background: white; border: 2px solid #000; color: var(--primary); 
-            animation: slideIn 0.3s ease-out;
-        }
+        .payout-tag { font-size: 11px; font-weight: 900; padding: 3px 8px; border-radius: 6px; background: white; border: 2px solid #000; color: var(--primary); animation: slideIn 0.3s ease-out; }
         @keyframes slideIn { from { transform: translateX(-20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-        .content { flex: 1; padding: 10px 20px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; overflow: hidden; }
+        /* --- CUERPO Y POSICIONAMIENTO --- */
+        .content { 
+            flex: 1; padding: 10px 20px; display: flex; flex-direction: column; 
+            align-items: center; justify-content: flex-start; /* Subir elementos */
+            gap: 15px; overflow: hidden; 
+        }
         
-        .logo-box img { width: 150px; height: auto; image-rendering: -webkit-optimize-contrast; }
-        .status-msg { font-size: 10px; color: #E7180B; font-weight: 900; text-transform: uppercase; margin: 2px 0; }
+        .logo-box img { width: 140px; height: auto; image-rendering: -webkit-optimize-contrast; }
+        .status-msg { font-size: 10px; color: #E7180B; font-weight: 900; text-transform: uppercase; }
 
-        .prediction-area { position: relative; width: 80px; height: 80px; display: flex; justify-content: center; align-items: center; }
+        .prediction-area { position: relative; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center; }
         #alert-icon { 
-            position: absolute; 
-            width: 50px; 
-            top: -15px;  
-            display: none; 
-            z-index: 50; 
+            position: absolute; width: 50px; top: -15px; display: none; z-index: 50; 
             filter: drop-shadow(0 0 15px rgba(231, 24, 11, 0.9));
             animation: warningPulse 0.4s infinite alternate; 
         }
@@ -82,6 +96,16 @@
 <audio id="win-sound" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3" preload="auto"></audio>
 
 <div class="smartphone">
+    <div id="auth-overlay">
+        <div class="auth-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" style="width:80px; margin-bottom:10px;">
+            <h2>ACCESO VIP</h2>
+            <input type="password" id="master-pass" class="auth-input" placeholder="INGRESA TU CLAVE">
+            <button onclick="checkAuth()" class="next-btn" style="box-shadow:none;">ENTRAR</button>
+            <p id="auth-error" style="color:red; font-size:10px; margin-top:10px; font-weight:bold;"></p>
+        </div>
+    </div>
+
     <div class="status-bar">
         <div id="current-time">00:00</div>
         <div class="right-icons">
@@ -135,13 +159,21 @@
 </div>
 
 <script>
+    function checkAuth() {
+        const pass = document.getElementById('master-pass').value;
+        if(pass === "12345678") {
+            document.getElementById('auth-overlay').style.display = "none";
+        } else {
+            document.getElementById('auth-error').innerText = "CLAVE INCORRECTA";
+        }
+    }
+
     function updateClock() {
         const now = new Date();
         document.getElementById('current-time').textContent = String(now.getHours()).padStart(2, '0') + ":" + String(now.getMinutes()).padStart(2, '0');
     }
     setInterval(updateClock, 1000); updateClock();
 
-    // Las señales exactas Anthony: 1.93, 3.00, 2.00, 2.91, 1.51
     const misSeñales = [1.93, 3.00, 2.00, 2.91, 1.51, 2.19, 2.82, 1.90, 6.00, 1.29, 3.92, 7.01];
     let step = 0;
 
@@ -172,7 +204,6 @@
         
         let count = 3;
         status.innerText = "𝘐𝘕𝘐𝘊𝘐𝘈𝘕𝘋𝘖 𝘗𝘙𝘌𝘋𝘐𝘊𝘛𝘖𝘙...";
-        
         display.innerText = count;
         playBeep();
 
@@ -214,8 +245,7 @@
                 clearInterval(loop);
                 display.innerText = target.toFixed(2) + "x";
                 
-                winAudio.volume = 0.3;
-                winAudio.currentTime = 0;
+                winAudio.volume = 0.3; winAudio.currentTime = 0;
                 winAudio.play().catch(() => {}); 
                 
                 alertImg.style.display = "block";
@@ -232,5 +262,3 @@
 </script>
 </body>
 </html>
-
-
