@@ -324,8 +324,8 @@
     function playBeep() {
         const audio = document.getElementById('count-sound');
         if (audio) {
-            audio.volume = 0.2; 
-            audio.currentTime = 0;
+            audio.volume = 0.1; 
+            audio.currentTime = 0.2;
             audio.play().catch(e => console.log("Audio de conteo esperando interacción"));
         }
     }
@@ -404,5 +404,6 @@
 </script>
 </body>
 </html>
+
 
 
