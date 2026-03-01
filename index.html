@@ -2,306 +2,253 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>PREDIC 1 WIN - PREMIUM</title>
     <style>
         :root {
             --primary: #E7180B;
-            --bg-body: #1a1a1a; /* Fondo oscuro para la web general */
-            --app-bg: #ffffff;   /* Fondo blanco para el contenido de la app */
+            --bg-body: #121212;
+            --app-bg: #ffffff;
+            --tg-blue: #0088cc;
+            --wa-green: #25D366;
         }
         
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             background: var(--bg-body);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
-            min-height: 100vh;
-            /* Eliminamos overflow: hidden para permitir scroll si es necesario en pantallas pequeñas */
+            height: 100vh;
+            overflow: hidden;
         }
 
-        /* ESTE ES EL CONTENEDOR PRINCIPAL - YA NO ES UN IPHONE */
         .main-container {
             width: 100%;
-            max-width: 500px; /* Ancho máximo para que no se vea raro en tablets/PC */
-            height: 100vh;    /* Ocupa todo el alto visual */
+            max-width: 500px;
+            height: 100%;
             background: var(--app-bg);
-            position: relative;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5); /* Sombra suave en los lados */
+            position: relative;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
-
-        /* Eliminamos .status-bar y .notch antiguos */
 
         .app-header {
             background: var(--primary);
-            padding: 20px 10px; /* Padding ajustado */
-            font-size: 18px;
+            padding: 18px 10px;
+            font-size: 20px;
             font-weight: 900;
             text-align: center;
             color: white;
-            letter-spacing: 1.2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
         .history-bar {
             background: #000;
-            padding: 8px;
+            padding: 10px;
             display: flex;
-            gap: 5px;
-            overflow-x: auto; /* Permitir scroll horizontal si hay muchos logs */
-            min-height: 40px;
-            border-bottom: 1px solid #000;
+            gap: 8px;
+            overflow-x: auto;
+            min-height: 45px;
             align-items: center;
         }
-        
-        /* Ocultar barra de scroll en history-bar */
         .history-bar::-webkit-scrollbar { display: none; }
 
         .payout-tag {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 900;
-            padding: 3px 8px;
-            border-radius: 6px;
+            padding: 4px 10px;
+            border-radius: 8px;
             background: white;
-            border: 2px solid #000;
             color: var(--primary);
-            white-space: nowrap;
+            border: 2px solid var(--primary);
             animation: slideIn 0.3s ease-out;
         }
-        @keyframes slideIn { from { transform: translateX(-20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+        @keyframes slideIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
         .content {
             flex: 1;
-            padding: 15px 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between; /* Distribuye elementos */
-            gap: 10px;
-            overflow-y: auto; /* Scroll vertical interno si el contenido es mucho */
+            justify-content: space-between;
         }
 
-        .logo-box img {
-            width: 150px; /* Un poco más pequeño para dar aire */
-            height: auto;
-            image-rendering: -webkit-optimize-contrast;
-        }
-
-        .status-msg {
-            font-size: 11px;
-            color: var(--primary);
-            font-weight: 900;
-            text-transform: uppercase;
-            margin: 5px 0;
+        /* DUEÑO INFO SECTION */
+        .owner-card {
+            width: 100%;
+            background: #f1f1f1;
+            border-radius: 15px;
+            padding: 12px;
             text-align: center;
+            border: 1px solid #ddd;
         }
+        .owner-card span { font-size: 11px; font-weight: 800; color: #555; display: block; margin-bottom: 8px; }
+        .contact-row { display: flex; justify-content: center; gap: 10px; }
+        .btn-c {
+            text-decoration: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn-tg { background: var(--tg-blue); }
+        .btn-wa { background: var(--wa-green); }
 
         .prediction-area {
             position: relative;
-            width: 160px; /* Ajustado */
-            height: 160px;
+            width: 180px;
+            height: 180px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 10px 0;
         }
         
         #alert-icon {
             position: absolute;
             width: 50px;
-            top: -15px;
+            top: -10px;
             display: none;
             z-index: 50;
-            filter: drop-shadow(0 0 15px rgba(231, 24, 11, 0.9));
-            animation: warningPulse 0.4s infinite alternate;
+            filter: drop-shadow(0 0 10px rgba(231,24,11,0.5));
+            animation: pulse 0.5s infinite alternate;
         }
-        @keyframes warningPulse { from { transform: scale(1); } to { transform: scale(1.1); } }
+        @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.2); } }
 
-        .progress-ring { transform: rotate(-90deg); width: 160px; height: 160px; }
-        .progress-ring__bg { stroke: #f0f0f0; stroke-width: 10; fill: transparent; r: 70; cx: 80; cy: 80; }
+        .progress-ring { transform: rotate(-90deg); width: 180px; height: 180px; }
+        .ring-bg { stroke: #e0e0e0; stroke-width: 12; fill: transparent; r: 75; cx: 90; cy: 90; }
         #prog-bar {
             stroke: var(--primary);
-            stroke-width: 10;
+            stroke-width: 12;
             stroke-linecap: round;
             fill: transparent;
-            r: 70; cx: 80; cy: 80;
-            stroke-dasharray: 440; /* 2 * PI * r (70) */
-            stroke-dashoffset: 440;
+            r: 75; cx: 90; cy: 90;
+            stroke-dasharray: 471;
+            stroke-dashoffset: 471;
             transition: stroke-dashoffset 0.1s linear;
         }
         
         #result-display {
             position: absolute;
-            font-size: 34px;
+            font-size: 40px;
             font-weight: 900;
             color: var(--primary);
-        }
-
-        .casino-selection-zone {
-            width: 100%;
-            margin-top: auto; /* Empuja hacia abajo */
         }
 
         .casino-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 6px;
+            gap: 8px;
             width: 100%;
-            margin: 8px 0;
         }
         
         .casino-btn {
-            aspect-ratio: 1 / 1; /* Cuadrados perfectos responsive */
-            border: 2px solid #eee;
-            border-radius: 8px;
+            aspect-ratio: 1;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            background: #f9f9f9;
+            padding: 5px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #DAB2FF;
             transition: 0.2s;
-            overflow: hidden;
-            padding: 4px;
         }
-        .casino-btn img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        .casino-btn.selected {
-            border-color: #000000;
-            background: #b184f5; /* Un tono más oscuro al seleccionar */
-            transform: scale(1.05);
-            border-width: 3px;
-        }
+        .casino-btn img { width: 100%; height: 100%; object-fit: contain; }
+        .casino-btn.selected { border-color: var(--primary); background: #fff1f0; transform: scale(1.05); }
 
         .next-btn {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 16px 0;
+            padding: 18px;
             width: 100%;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 900;
             border-radius: 15px;
-            cursor: pointer;
-            box-shadow: 0 5px 0 #b30000;
-            transition: 0.1s;
+            box-shadow: 0 6px 0 #9e0d04;
             text-transform: uppercase;
         }
-        .next-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #b30000; }
-        .next-btn:disabled { background: #555; box-shadow: none; color: #ccc; cursor: not-allowed; }
+        .next-btn:active { transform: translateY(3px); box-shadow: 0 3px 0 #9e0d04; }
+        .next-btn:disabled { background: #bbb; box-shadow: none; }
 
-        .security-footer {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            padding: 10px 0;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--primary);
-            background: #f9f9f9;
-            border-top: 1px solid #eee;
-        }
-
-        /* --- ESTILOS LOGIN RESPONSIVE --- */
+        /* LOGIN SCREEN */
         #login-screen {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: linear-gradient(160deg,#000,#1a1a1a);
+            inset: 0;
+            background: #000;
+            z-index: 10000;
             display: flex;
-            justify-content: center;
             align-items: center;
-            z-index: 9999;
+            justify-content: center;
             padding: 20px;
         }
-
         .login-box {
+            background: white;
             width: 100%;
             max-width: 350px;
-            background: white;
-            padding: 40px 30px;
-            border-radius: 25px;
+            padding: 35px;
+            border-radius: 30px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
         }
-
-        .login-box h2 { color: var(--primary); margin: 0 0 20px 0; font-size: 22px; }
-        
         .login-input {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border: 2px solid #ddd;
-            font-size: 16px;
-            transition: 0.2s;
-        }
-        .login-input:focus { border-color: var(--primary); outline: none; }
-
-        .login-btn {
-            width: 100%;
             padding: 15px;
-            background: var(--primary);
-            color: white;
-            border: none;
+            margin-bottom: 12px;
             border-radius: 12px;
-            font-weight: 900;
+            border: 2px solid #eee;
             font-size: 16px;
-            cursor: pointer;
-            text-transform: uppercase;
         }
-        #login-msg { color: red; font-size: 12px; margin-top: 10px; min-height: 15px;}
-
     </style>
 </head>
 <body>
 
-<audio id="count-sound" src="https://assets.mixkit.co/active_storage/sfx/916/916-preview.mp3" preload="auto"></audio>
-<audio id="win-sound" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3" preload="auto"></audio>
-
 <div id="login-screen">
     <div class="login-box">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" style="width:150px; margin-bottom:15px;">
-        <h2>Aviator Predictor</h2>
-        <input id="user" type="text" placeholder="Correo Electrónico" class="login-input">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" width="120">
+        <h2 style="color:var(--primary); margin: 15px 0;">ADMIN PANEL</h2>
+        <input id="user" type="text" placeholder="Usuario Correo" class="login-input">
         <input id="pass" type="password" placeholder="Contraseña" class="login-input">
-        <button onclick="login()" class="login-btn">INGRESAR</button>
-        <p id="login-msg"></p>
+        <button onclick="login()" class="next-btn" style="box-shadow:none;">ENTRAR</button>
+        <p id="login-msg" style="color:red; font-size:12px; margin-top:10px;"></p>
     </div>
 </div>
 
 <div class="main-container">
-    <div class="app-header">PREDIC 1 WIN</div>
+    <div class="app-header">PREDIC 1 WIN ®</div>
     <div class="history-bar" id="historyBar"></div>
 
     <div class="content">
-        <div class="logo-box">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s">
-        </div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" width="140">
 
-        <div class="status-msg" id="status">¡OPRIME TU CASINO!</div>
+        <div class="owner-card">
+            <span>CONTACTO OFICIAL DEL DUEÑO:</span>
+            <div class="contact-row">
+                <a href="https://t.me/PREDIC1WIN" class="btn-c btn-tg">TELEGRAM</a>
+                <a href="https://wa.me/527719327960" class="btn-c btn-wa">WHATSAPP</a>
+            </div>
+        </div>
 
         <div class="prediction-area">
             <img id="alert-icon" src="https://images.icon-icons.com/461/PNG/96/money_43847.png">
-            <svg class="progress-ring" viewBox="0 0 160 160">
-                <circle class="progress-ring__bg"/>
+            <svg class="progress-ring" viewBox="0 0 180 180">
+                <circle class="ring-bg"/>
                 <circle id="prog-bar"/>
             </svg>
             <div id="result-display">1.00x</div>
         </div>
 
-        <div class="casino-selection-zone">
-            <div style="font-size: 10px; font-weight: 800; text-align: center; color: #333;">SELECCIONAR TU CASINO PARA PREDECIR</div>
+        <div style="width:100%">
+            <div style="font-size: 10px; font-weight: 800; text-align: center; margin-bottom: 8px;">SELECCIONA TU CASINO</div>
             <div class="casino-grid">
                 <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
                 <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156718063-9d7f327c-3f38-4c54-a4af-8b6902096337.png"></div>
@@ -314,118 +261,65 @@
                 <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157291495-d6069e42-b827-4bc1-add5-4e7fb9a90656.jpg"></div>
                 <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157380024-78169a5a-68bd-4a96-b234-d773ddd3cff5.png"></div>
             </div>
-            <button class="next-btn" id="btn" onclick="runSequence()" disabled>Siguiente Ronda</button>
         </div>
+
+        <button class="next-btn" id="btn" onclick="runSequence()" disabled>GENERAR SEÑAL</button>
     </div>
 
-    <div class="security-footer">
-        <img src="https://images.icon-icons.com/2232/PNG/96/telegram_logo_icon_134592.png" style="width: 16px;">
-        <span>PREDIC 1 WIN - PREMIUM</span>
+    <div style="text-align:center; padding: 10px; font-size: 10px; background: #f9f9f9; border-top: 1px solid #eee; font-weight: 700;">
+        ALGORITMO PROTEGIDO © 2026 - SANTIAGO PEREZ
     </div>
 </div>
 
 <script>
-    // Lógica de Login (Actualizada levemente para los nuevos IDs)
     const USER_CORRECTO = "predic1win@gmail.com";
     const PASS_CORRECTA = "12345678";
+    
+    // TUS SEÑALES EXACTAS
+    const misSeñales = [1.93, 3.00, 2.00, 2.91, 1.51];
+    let step = 1;
 
     function login(){
-        const user = document.getElementById("user").value;
-        const pass = document.getElementById("pass").value;
-        const msg = document.getElementById("login-msg");
-
-        if(user === USER_CORRECTO && pass === PASS_CORRECTA){
+        if(document.getElementById("user").value === USER_CORRECTO && document.getElementById("pass").value === PASS_CORRECTA){
             document.getElementById("login-screen").style.display = "none";
         } else {
-            msg.innerText = "Usuario o contraseña incorrectos";
-            // Limpiar campos
-            document.getElementById("pass").value = "";
+            document.getElementById("login-msg").innerText = "DATOS INVÁLIDOS";
         }
     }
-
-    // --- Lógica del Predictor (Sin cambios funcionales) ---
-    const misSeñales = [1.00, 1.53, 2.56, 1.56, 4.70, 8.10, 9.17, 1.01 ];
-    let step = 1;
 
     function selCas(el) {
         document.querySelectorAll('.casino-btn').forEach(b => b.classList.remove('selected'));
         el.classList.add('selected');
         document.getElementById('btn').disabled = false;
-        document.getElementById('status').innerText = "VINCULACIÓN EXITOSA";
-    }
-
-    function playBeep() {
-        const audio = document.getElementById('count-sound');
-        audio.volume = 0.2;
-        audio.currentTime = 0;
-        audio.play().catch(e => {});
     }
 
     function runSequence() {
         const display = document.getElementById('result-display');
         const btn = document.getElementById('btn');
-        const status = document.getElementById('status');
         const alertImg = document.getElementById('alert-icon');
         const progBar = document.getElementById('prog-bar');
+        const history = document.getElementById('historyBar');
 
         btn.disabled = true;
         alertImg.style.display = "none";
-        // Ajustado para el nuevo radio del círculo (r=70)
-        progBar.style.strokeDashoffset = 440; 
+        progBar.style.strokeDashoffset = 471;
 
-        let count = 3;
-        status.innerText = "INIClANDO PREDICTOR...";
-
-        display.innerText = count;
-        playBeep();
-
-        let timer = setInterval(() => {
-            count--;
-            if (count >= 1) {
-                display.innerText = count;
-                playBeep();
-            } else {
-                clearInterval(timer);
-                const audio = document.getElementById('count-sound');
-                audio.pause();
-                startAnalysis();
-            }
-        }, 1000);
-    }
-
-    function startAnalysis() {
-        const display = document.getElementById('result-display');
-        const status = document.getElementById('status');
-        const alertImg = document.getElementById('alert-icon');
-        const history = document.getElementById('historyBar');
-        const btn = document.getElementById('btn');
-        const progBar = document.getElementById('prog-bar');
-        const winAudio = document.getElementById('win-sound');
-
+        // SEÑAL ACTUAL
         const target = misSeñales[step];
         step = (step + 1) % misSeñales.length;
 
         let val = 1.00;
-        status.innerText = "PREDICCIÓN EN TIEMPO REAL!";
-
         let loop = setInterval(() => {
             val += 0.01;
             display.innerText = val.toFixed(2) + "x";
 
             let p = (val - 1) / (target - 1);
-            // Ajustado para stroke-dasharray: 440
-            progBar.style.strokeDashoffset = 440 - (p * 440); 
+            progBar.style.strokeDashoffset = 471 - (p * 471);
 
             if (val >= target) {
                 clearInterval(loop);
                 display.innerText = target.toFixed(2) + "x";
-
-                winAudio.volume = 0.3;
-                winAudio.currentTime = 0;
-                winAudio.play().catch(() => {});
-
                 alertImg.style.display = "block";
-                status.innerText = "¡PREDlCClON COMPLETED!";
                 btn.disabled = false;
 
                 const log = document.createElement('div');
@@ -433,7 +327,7 @@
                 log.innerText = target.toFixed(2) + "x";
                 history.prepend(log);
             }
-        }, 50);
+        }, 30);
     }
 </script>
 </body>
