@@ -243,7 +243,7 @@
 
 <div id="login-screen">
     <div class="login-box">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" style="width:150px; margin-bottom:15px;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" style="width:140px; margin-bottom:15px;">
         <h2 style="color:var(--primary)">Aviator Predictor</h2>
         <input id="user" type="text" placeholder="Correo Electrónico" class="login-input">
         <input id="pass" type="password" placeholder="Contraseña" class="login-input">
@@ -354,44 +354,52 @@
         }, 1000);
     }
 
-    function startAnalysis() {
-        const display = document.getElementById('result-display');
-        const status = document.getElementById('status');
-        const alertImg = document.getElementById('alert-icon');
-        const history = document.getElementById('historyBar');
-        const btn = document.getElementById('btn');
-        const progBar = document.getElementById('prog-bar');
-        const winAudio = document.getElementById('win-sound');
+  function startAnalysis() {
+    const display = document.getElementById('result-display');
+    const status = document.getElementById('status');
+    const alertImg = document.getElementById('alert-icon');
+    const history = document.getElementById('historyBar');
+    const btn = document.getElementById('btn');
+    const progBar = document.getElementById('prog-bar');
+    const winAudio = document.getElementById('win-sound');
 
-        const target = misSeñales[step];
-        step = (step + 1) % misSeñales.length; 
+    const target = misSeñales[step];
+    step = (step + 1) % misSeñales.length; 
 
-        let val = 1.00;
-        status.innerText = "PREDICCIÓN EN TIEMPO REAL!";
+    let val = 1.00;
+    status.innerText = "PREDICCIÓN EN TIEMPO REAL!";
+    
+    let loop = setInterval(() => {
+        val += 0.01;
+        display.innerText = val.toFixed(2) + "x";
         
-        let loop = setInterval(() => {
-            val += 0.01;
-            display.innerText = val.toFixed(2) + "x";
+        // CORRECCIÓN AQUÍ: Evitamos división por cero si target es 1
+        let divisor = (target - 1) <= 0 ? 0.01 : (target - 1);
+        let p = (val - 1) / divisor;
+        
+        // Limitamos 'p' entre 0 y 1 para que el círculo no haga cosas raras
+        p = Math.min(Math.max(p, 0), 1);
+        progBar.style.strokeDashoffset = 440 - (p * 440);
+
+        if (val >= target) {
+            clearInterval(loop);
+            display.innerText = target.toFixed(2) + "x";
             
-            let p = (val - 1) / (target - 1);
-            progBar.style.strokeDashoffset = 440 - (p * 440);
+            winAudio.volume = 0.3; 
+            winAudio.currentTime = 0;
+            winAudio.play().catch(() => {}); 
+            
+            alertImg.style.display = "block";
+            status.innerText = "¡PREDICCIÓN COMPLETADA!";
+            btn.disabled = false;
 
-            if (val >= target) {
-                clearInterval(loop);
-                display.innerText = target.toFixed(2) + "x";
-                winAudio.volume = 0.3; winAudio.currentTime = 0;
-                winAudio.play().catch(() => {}); 
-                alertImg.style.display = "block";
-                status.innerText = "¡PREDICCIÓN COMPLETADA!";
-                btn.disabled = false;
-
-                const log = document.createElement('div');
-                log.className = 'payout-tag';
-                log.innerText = target.toFixed(2) + "x";
-                history.prepend(log);
-            }
-        }, 30); // Un poco más rápido para fluidez
-    }
+            const log = document.createElement('div');
+            log.className = 'payout-tag';
+            log.innerText = target.toFixed(2) + "x";
+            history.prepend(log);
+        }
+    }, 20); // Bajé a 20ms para que se vea más fluido el movimiento
+}
 </script>
 </body>
 </html>
