@@ -237,8 +237,7 @@
     </style>
 </head>
 <body>
-
-
+<audio id="count-sound" src="https://assets.mixkit.co/active_storage/sfx/916/916-preview.mp3" preload="auto"></audio>
 <audio id="win-sound" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3" preload="auto"></audio>
 
 <div id="login-screen">
@@ -320,11 +319,13 @@
         document.getElementById('btn').disabled = false;
         document.getElementById('status').innerText = "VINCULACIÓN EXITOSA";
     }
-
-    function playBeep() {
+function playBeep() {
         const audio = document.getElementById('count-sound');
-        audio.volume = 0.2; audio.currentTime = 0;
-        audio.play().catch(e => {});
+        if (audio) { // Solo intenta sonar si el elemento existe
+            audio.volume = 0.2; 
+            audio.currentTime = 0;
+            audio.play().catch(e => console.log("Audio de conteo bloqueado o no encontrado"));
+        }
     }
 
     function runSequence() {
@@ -349,11 +350,12 @@
                 playBeep();
             } else {
                 clearInterval(timer);
+                // Si llegamos a cero, forzamos el inicio del análisis
                 startAnalysis();
             }
         }, 1000);
     }
-
+    
  function startAnalysis() {
         const display = document.getElementById('result-display');
         const status = document.getElementById('status');
@@ -399,3 +401,4 @@
 </script>
 </body>
 </html>
+
