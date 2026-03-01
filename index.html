@@ -327,7 +327,7 @@
     const misSeñales = [1.93, 3.00, 2.00, 2.91, 1.51, 4.00, 1.80, 2.50];
     let step = 0;
 
-    function selCas(el) {
+      function selCas(el) {
         document.querySelectorAll('.casino-btn').forEach(b => b.classList.remove('selected'));
         el.classList.add('selected');
         document.getElementById('btn').disabled = false;
@@ -367,7 +367,7 @@
         }, 1000);
     }
 
- function startAnalysis() {
+    function startAnalysis() {
         const display = document.getElementById('result-display');
         const status = document.getElementById('status');
         const alertImg = document.getElementById('alert-icon');
@@ -375,10 +375,6 @@
         const btn = document.getElementById('btn');
         const progBar = document.getElementById('prog-bar');
         const winAudio = document.getElementById('win-sound');
-
-        // Asegurarnos de que el audio esté detenido al iniciar una nueva ronda
-        winAudio.pause();
-        winAudio.currentTime = 0;
 
         const target = misSeñales[step];
         step = (step + 1) % misSeñales.length;
@@ -396,20 +392,7 @@
             if (val >= target) {
                 clearInterval(loop);
                 display.innerText = target.toFixed(2) + "x";
-
-                // --- SISTEMA DE AUDIO FORZADO ---
-                winAudio.volume = 0.5; 
-                winAudio.currentTime = 0;
-                winAudio.play();
-
-                // Usamos un temporizador simple pero agresivo para cortar el audio
-                setTimeout(() => {
-                    winAudio.pause();      // Pausa el audio
-                    winAudio.currentTime = 0; // Lo regresa al inicio
-                    winAudio.load();       // Recarga el elemento para forzar el stop en móviles
-                }, 3000); // 3000ms = 3 segundos exactos
-                // --------------------------------
-
+                winAudio.volume = 0.0; winAudio.currentTime = 0; winAudio.play().catch(() => {});
                 alertImg.style.display = "block";
                 status.innerText = "¡PREDICCIÓN COMPLETADA!";
                 btn.disabled = false;
@@ -424,10 +407,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
