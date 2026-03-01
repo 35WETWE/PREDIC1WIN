@@ -4,366 +4,193 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="author" content="William Robert">
     <title>PREDIC 1 WIN - PREMIUM V2.0</title>
 
     <style>
         :root {
             --primary: #E7180B;
-            --primary-dark: #9e0d04;
             --bg-dark: #0a0a0a;
-            --app-white: #ffffff;
-            --tg-blue: #0088cc;
-            --wa-green: #25D366;
         }
 
-        /* RESET TOTAL - CERO SCROLL */
-        * { 
-            box-sizing: border-box; 
-            -webkit-tap-highlight-color: transparent; 
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
 
         body {
             background: var(--bg-dark);
-            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, sans-serif;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden; /* BLOQUEO DE SCROLL TOTAL */
-        }
-
-        /* PANTALLA DE LOGUEO */
-        #auth-overlay {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 25px;
-        }
-
-        .auth-card {
-            background: white;
-            width: 100%;
-            max-width: 400px;
-            padding: 40px 30px;
-            border-radius: 35px;
-            text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
-        }
-
-        .auth-input {
-            width: 100%;
-            padding: 16px;
-            margin-bottom: 15px;
-            border-radius: 12px;
-            border: 2px solid #eee;
-            font-size: 16px;
-        }
-
-        /* CONTENEDOR PRINCIPAL AJUSTADO A LA PANTALLA */
-        .main-wrapper {
-            width: 100%;
-            max-width: 480px;
-            height: 100vh; /* Altura total del dispositivo */
-            background: var(--app-white);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .premium-header {
-            background: var(--primary);
-            padding: 15px 0;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        .premium-header h1 {
-            color: white;
-            font-size: 20px;
-            font-weight: 900;
-            letter-spacing: 3px;
-        }
-
-        .history-container {
-            background: #000;
-            padding: 10px;
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            min-height: 50px;
-            align-items: center;
-            border-bottom: 2px solid var(--primary);
-        }
-        .history-container::-webkit-scrollbar { display: none; }
-
-        .signal-pill {
-            background: white;
-            color: var(--primary);
-            font-size: 12px;
-            font-weight: 900;
-            padding: 4px 10px;
-            border-radius: 8px;
-            border: 1px solid var(--primary);
-        }
-
-        /* CONTENIDO DINÁMICO SIN SCROLL */
-        .app-content {
-            flex: 1; /* Ocupa todo el espacio sobrante */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly; /* Distribuye los elementos equitativamente */
-            align-items: center;
-            padding: 10px 20px;
+            height: 100dvh;
             overflow: hidden;
         }
 
-        .brand-zone img {
-            width: 120px;
-            margin-bottom: 10px;
+        /* LOGIN */
+        #auth-overlay {
+            position: fixed; inset: 0; background: #000; z-index: 10000;
+            display: flex; align-items: center; justify-content: center; padding: 20px;
+        }
+        .auth-card { background: white; width: 100%; max-width: 350px; padding: 25px; border-radius: 30px; text-align: center; }
+        .auth-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #ddd; font-size: 16px; }
+
+        /* CONTENEDOR PRINCIPAL */
+        .main-wrapper {
+            width: 100%; max-width: 480px; height: 100%;
+            background: white; display: flex; flex-direction: column;
         }
 
-        .admin-card {
-            background: #f8f9fa;
-            border-radius: 20px;
-            padding: 12px;
-            width: 100%;
-            border: 1px solid #eee;
-            text-align: center;
+        .header { background: var(--primary); color: white; padding: 10px; text-align: center; font-weight: 900; flex-shrink: 0; }
+
+        /* HISTORIAL */
+        .history-container {
+            background: #000; padding: 8px; display: flex; gap: 8px; overflow-x: auto; min-height: 45px;
+            border-bottom: 3px solid var(--primary); flex-shrink: 0;
         }
+        .signal-pill { background: white; color: var(--primary); padding: 4px 10px; border-radius: 8px; font-weight: 900; font-size: 12px; }
 
-        .social-row {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 8px;
-        }
-
-        .social-link {
-            text-decoration: none;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 800;
-        }
-        .social-link.tg { background: var(--tg-blue); }
-        .social-link.wa { background: var(--wa-green); }
-
-        /* EL ARO (AJUSTADO PARA QUE QUEPA TODO) */
-        .engine-zone {
-            position: relative;
-            width: 180px;
-            height: 180px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .ring-canvas {
-            transform: rotate(-90deg);
-            width: 180px;
-            height: 180px;
-        }
-
-        .track-layer {
-            stroke: #edf2f7;
-            stroke-width: 12;
-            fill: none;
-            r: 75; cx: 90; cy: 90;
-        }
-
-        #progress-layer {
-            stroke: var(--primary);
-            stroke-width: 12;
-            stroke-linecap: round;
-            fill: none;
-            r: 75; cx: 90; cy: 90;
-            stroke-dasharray: 471; /* 2 * PI * 75 */
-            stroke-dashoffset: 471;
-            transition: stroke-dashoffset 0.1s linear;
-        }
-
-        .value-display {
-            position: absolute;
-            font-size: 42px;
-            font-weight: 900;
-            color: var(--primary);
-        }
-
-        /* CASINO GRID SIN FONDO BLANCO */
-        .casino-selection { width: 100%; }
-        .grid-header { font-size: 10px; font-weight: 900; text-align: center; margin-bottom: 8px; color: #888; }
-
-        .casino-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
-        }
-
-        .casino-slot {
-            aspect-ratio: 1;
-            background: transparent; /* TRANSPARENTE COMO PEDISTE */
-            border: 2px solid #f0f0f0;
-            border-radius: 12px;
-            padding: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .casino-slot img { width: 100%; height: 100%; object-fit: contain; }
-        .casino-slot.active {
-            border-color: var(--primary);
-            background: rgba(231,24,11,0.05);
-            transform: scale(1.05);
-        }
-
-        .action-button {
-            width: 100%;
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 18px;
-            border-radius: 15px;
-            font-size: 18px;
-            font-weight: 900;
-            text-transform: uppercase;
-            box-shadow: 0 6px 0 var(--primary-dark);
-            cursor: pointer;
-        }
-
-        .action-button:active { transform: translateY(3px); box-shadow: 0 3px 0 var(--primary-dark); }
-        .action-button:disabled { background: #ccc; box-shadow: none; }
-
-        .system-footer {
-            text-align: center;
+        /* AREA DE CONTENIDO DINAMICO */
+        .app-content {
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: space-between; 
             padding: 10px;
-            font-size: 9px;
-            font-weight: 800;
-            color: #bbb;
-            background: #fafafa;
+            overflow: hidden; /* Evita que los elementos empujen el botón afuera */
         }
+
+        .brand-zone { flex-shrink: 1; text-align: center; }
+        .brand-zone img { max-width: 60px; height: auto; }
+
+        /* MOTOR REDUCIBLE */
+        .engine-zone { 
+            position: relative; 
+            width: 140px; 
+            height: 140px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            flex-shrink: 1; /* Esto es la clave: se encoge si no hay espacio */
+        }
+        .ring-canvas { transform: rotate(-90deg); width: 100%; height: 100%; }
+        .track { stroke: #eee; stroke-width: 10; fill: none; r: 50; cx: 65; cy: 65; }
+        #progress { stroke: var(--primary); stroke-width: 10; fill: none; r: 50; cx: 65; cy: 65; stroke-dasharray: 314; stroke-dashoffset: 314; transition: 0.1s linear; stroke-linecap: round; }
+        .value { position: absolute; font-size: 28px; font-weight: 900; color: var(--primary); }
+
+        /* CASINOS AJUSTABLES */
+        .casino-grid { 
+            display: grid; 
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 5px; 
+            width: 100%; 
+            flex-shrink: 0; 
+        }
+        .casino-slot { aspect-ratio: 1; border: 1.5px solid #eee; border-radius: 8px; padding: 3px; display: flex; align-items: center; justify-content: center; }
+        .casino-slot img { width: 100%; height: 100%; object-fit: contain; }
+        .casino-slot.active { border-color: var(--primary); background: #fff5f5; }
+
+        .btn-box { width: 100%; padding-top: 5px; flex-shrink: 0; }
+        .action-btn {
+            width: 100%; background: var(--primary); color: white; border: none; padding: 15px;
+            border-radius: 12px; font-size: 16px; font-weight: 900; box-shadow: 0 4px 0 #9e0d04;
+        }
+        .action-btn:disabled { background: #ccc; box-shadow: none; }
+
+        .footer { text-align: center; padding: 8px; font-size: 8px; color: #bbb; font-weight: 800; flex-shrink: 0; }
     </style>
 </head>
 <body>
 
 <div id="auth-overlay">
     <div class="auth-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" width="100">
-        <h2 style="color:var(--primary); margin:15px 0;">LOGIN ALUMNOS</h2>
-        <input type="email" id="u_mail" class="auth-input" placeholder="Usuario">
-        <input type="password" id="u_pass" class="auth-input" placeholder="Contraseña">
-        <button onclick="validateAccess()" class="action-button" style="box-shadow:none;">ENTRAR</button>
-        <p id="auth-err" style="color:red; font-size:12px; margin-top:10px; font-weight:700;"></p>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" width="60">
+        <h2 style="color:var(--primary); margin:10px 0;">SISTEMA PRIVADO</h2>
+        <input type="password" id="u_pass" class="auth-input" placeholder="Clave Maestra">
+        <button onclick="login()" class="action-btn" style="box-shadow:none;">ENTRAR</button>
     </div>
 </div>
 
 <div class="main-wrapper">
-    <header class="premium-header">
-        <h1>PREDIC 1 WIN ®</h1>
-    </header>
-
-    <div class="history-container" id="historyLog"></div>
+    <div class="header">PREDIC 1 WIN ®</div>
+    <div id="history" class="history-container"></div>
 
     <div class="app-content">
-        <div class="brand-zone" style="text-align:center;">
+        <div class="brand-zone">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s">
-            <div class="admin-card">
-                <span style="font-size:10px; font-weight:900; color:#999;">ADMIN: @PREDIC1WIN</span>
-                <div class="social-row">
-                    <a href="https://t.me/PREDIC1WIN" class="social-link tg">TELEGRAM</a>
-                    <a href="https://wa.me/527719327960" class="social-link wa">WHATSAPP</a>
-                </div>
+            <div style="display:flex; gap:5px; margin-top:5px;">
+                <a href="https://t.me/PREDIC1WIN" style="background:#0088cc; color:white; padding:5px 10px; border-radius:10px; font-size:10px; text-decoration:none; font-weight:800;">TELEGRAM</a>
+                <a href="https://wa.me/527719327960" style="background:#25D366; color:white; padding:5px 10px; border-radius:10px; font-size:10px; text-decoration:none; font-weight:800;">WHATSAPP</a>
             </div>
         </div>
 
         <div class="engine-zone">
-            <svg class="ring-canvas">
-                <circle class="track-layer"/>
-                <circle id="progress-layer"/>
-            </svg>
-            <div id="multiplier" class="value-display">1.00x</div>
+            <svg class="ring-canvas"><circle class="track"/><circle id="progress"/></svg>
+            <div id="number" class="value">1.00x</div>
         </div>
 
-        <div class="casino-selection">
-            <div class="grid-header">SINCRONIZAR CASINO</div>
+        <div style="width:100%;">
+            <p style="text-align:center; font-size:9px; font-weight:800; color:#999; margin-bottom:4px;">SINCRONIZAR SERVIDOR</p>
             <div class="casino-grid">
-                <div class="casino-slot" onclick="syncCasino(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
-                <div class="casino-slot" onclick="syncCasino(this)"><img src="https://image2url.com/r2/default/images/1772156718063-9d7f327c-3f38-4c54-a4af-8b6902096337.png"></div>
-                <div class="casino-slot" onclick="syncCasino(this)"><img src="https://image2url.com/r2/default/images/1772156777400-140ec198-b410-4c90-963e-b6a7b3b8ffe5.png"></div>
-                <div class="casino-slot" onclick="syncCasino(this)"><img src="https://image2url.com/r2/default/images/1772156881655-81bb1ea5-ffc0-4f39-9b03-e596eb0da86e.png"></div>
-                <div class="casino-slot" onclick="syncCasino(this)"><img src="https://image2url.com/r2/default/images/1772156926302-a55f9d48-c419-40a3-bdbc-2a320d061d87.png"></div>
-                <div class="casino-slot" onclick="syncCasino(this)"><img src="https://image2url.com/r2/default/images/1772157099303-685401df-2dba-48d6-ad22-89115f5dfb1b.png"></div>
-                <div class="casino-slot" onclick="syncCasino(this)"><img src="https://image2url.com/r2/default/images/1772157139259-9ff0140d-73a3-4141-b928-661681cb29a0.png"></div>
-                <div class="casino-slot" onclick="syncCasino(this)"><img src="https://image2url.com/r2/default/images/1772157235100-e2589491-3023-4dd7-a3bf-f05fef4c349d.png"></div>
-                <div class="casino-slot" onclick="syncCasino(this)"><img src="https://image2url.com/r2/default/images/1772157291495-d6069e42-b827-4bc1-add5-4e7fb9a90656.jpg"></div>
-                <div class="casino-slot" onclick="syncCasino(this)"><img src="https://image2url.com/r2/default/images/1772157380024-78169a5a-68bd-4a96-b234-d773ddd3cff5.png"></div>
+                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
+                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772156718063-9d7f327c-3f38-4c54-a4af-8b6902096337.png"></div>
+                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772156777400-140ec198-b410-4c90-963e-b6a7b3b8ffe5.png"></div>
+                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772156881655-81bb1ea5-ffc0-4f39-9b03-e596eb0da86e.png"></div>
+                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772156926302-a55f9d48-c419-40a3-bdbc-2a320d061d87.png"></div>
+                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772157099303-685401df-2dba-48d6-ad22-89115f5dfb1b.png"></div>
+                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772157139259-9ff0140d-73a3-4141-b928-661681cb29a0.png"></div>
+                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772157235100-e2589491-3023-4dd7-a3bf-f05fef4c349d.png"></div>
+                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772157291495-d6069e42-b827-4bc1-add5-4e7fb9a90656.jpg"></div>
+                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772157380024-78169a5a-68bd-4a96-b234-d773ddd3cff5.png"></div>
             </div>
         </div>
 
-        <button class="action-button" id="predictBtn" onclick="executeAlgorithm()" disabled>GENERAR SEÑAL</button>
+        <div class="btn-box">
+            <button class="action-btn" id="go" onclick="run()" disabled>GENERAR SEÑAL V.2</button>
+        </div>
     </div>
 
-    <footer class="system-footer">
-        DESARROLLADO POR WILLIAM ROBERT © 2026
-    </footer>
+    <div class="footer">SOFTWARE DESARROLLADO POR WILLIAM ROBERT © 2026</div>
 </div>
 
 <script>
-    const ADMIN_USER = "predic1win@gmail.com";
-    const ADMIN_PASS = "12345678";
-    const SIGNALS = [1.93, 3.00, 2.00, 2.91, 1.51];
+    const signals = [1.93, 3.00, 2.00, 2.91, 1.51]; //
     let step = 0;
 
-    function validateAccess() {
-        if(document.getElementById('u_mail').value === ADMIN_USER && document.getElementById('u_pass').value === ADMIN_PASS) {
+    function login() {
+        if(document.getElementById('u_pass').value === "12345678") {
             document.getElementById('auth-overlay').style.display = 'none';
-        } else {
-            document.getElementById('auth-err').innerText = "DATOS INCORRECTOS";
         }
     }
 
-    function syncCasino(el) {
+    function sel(el) {
         document.querySelectorAll('.casino-slot').forEach(s => s.classList.remove('active'));
         el.classList.add('active');
-        document.getElementById('predictBtn').disabled = false;
+        document.getElementById('go').disabled = false;
     }
 
-    function executeAlgorithm() {
-        const btn = document.getElementById('predictBtn');
-        const display = document.getElementById('multiplier');
-        const ring = document.getElementById('progress-layer');
-        const history = document.getElementById('historyLog');
-
+    function run() {
+        const btn = document.getElementById('go');
+        const num = document.getElementById('number');
+        const bar = document.getElementById('progress');
         btn.disabled = true;
-        let target = SIGNALS[step];
-        step = (step + 1) % SIGNALS.length;
         
+        let target = signals[step];
+        step = (step + 1) % signals.length;
+
         let val = 1.00;
-        let timer = setInterval(() => {
+        let int = setInterval(() => {
             val += 0.01;
-            display.innerText = val.toFixed(2) + "x";
-            let offset = 471 - (((val - 1) / (target - 1)) * 471);
-            ring.style.strokeDashoffset = offset;
+            num.innerText = val.toFixed(2) + "x";
+            let p = (val - 1) / (target - 1);
+            bar.style.strokeDashoffset = 314 - (p * 314);
 
             if(val >= target) {
-                clearInterval(timer);
-                display.innerText = target.toFixed(2) + "x";
+                clearInterval(int);
+                num.innerText = target.toFixed(2) + "x";
                 btn.disabled = false;
-                const p = document.createElement('div');
-                p.className = 'signal-pill';
-                p.innerText = target.toFixed(2) + "x";
-                history.prepend(p);
+                const pill = document.createElement('div');
+                pill.className = 'signal-pill';
+                pill.innerText = target.toFixed(2) + "x";
+                document.getElementById('history').prepend(pill);
             }
         }, 30);
     }
