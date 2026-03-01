@@ -4,196 +4,380 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="author" content="William Robert">
-    <title>PREDIC 1 WIN - PREMIUM V2.0</title>
+    <title>PREDIC 1 WIN - PREMIUM V2.0 FINAL</title>
 
     <style>
         :root {
-            --primary: #E7180B;
-            --bg-dark: #0a0a0a;
+            --primary-red: #E7180B;
+            --primary-dark: #9e0d04;
+            --bg-canvas: #0a0a0a;
+            --white: #ffffff;
+            --tg-color: #0088cc;
+            --wa-color: #25D366;
+            --glass: rgba(255, 255, 255, 0.9);
         }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+        * { 
+            box-sizing: border-box; 
+            -webkit-tap-highlight-color: transparent; 
+            margin: 0; 
+            padding: 0; 
+        }
 
         body {
-            background: var(--bg-dark);
-            font-family: -apple-system, sans-serif;
+            background-color: var(--bg-canvas);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
+            align-items: center;
+            height: 100vh;
             height: 100dvh;
             overflow: hidden;
         }
 
-        /* LOGIN */
+        /* --- SISTEMA DE LOGIN COMPLETO --- */
         #auth-overlay {
-            position: fixed; inset: 0; background: #000; z-index: 10000;
-            display: flex; align-items: center; justify-content: center; padding: 20px;
-        }
-        .auth-card { background: white; width: 100%; max-width: 350px; padding: 25px; border-radius: 30px; text-align: center; }
-        .auth-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #ddd; font-size: 16px; }
-
-        /* CONTENEDOR PRINCIPAL */
-        .main-wrapper {
-            width: 100%; max-width: 480px; height: 100%;
-            background: white; display: flex; flex-direction: column;
-        }
-
-        .header { background: var(--primary); color: white; padding: 10px; text-align: center; font-weight: 900; flex-shrink: 0; }
-
-        /* HISTORIAL */
-        .history-container {
-            background: #000; padding: 8px; display: flex; gap: 8px; overflow-x: auto; min-height: 45px;
-            border-bottom: 3px solid var(--primary); flex-shrink: 0;
-        }
-        .signal-pill { background: white; color: var(--primary); padding: 4px 10px; border-radius: 8px; font-weight: 900; font-size: 12px; }
-
-        /* AREA DE CONTENIDO DINAMICO */
-        .app-content {
-            flex: 1; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: space-between; 
-            padding: 10px;
-            overflow: hidden; /* Evita que los elementos empujen el botón afuera */
-        }
-
-        .brand-zone { flex-shrink: 1; text-align: center; }
-        .brand-zone img { max-width: 60px; height: auto; }
-
-        /* MOTOR REDUCIBLE */
-        .engine-zone { 
-            position: relative; 
-            width: 140px; 
-            height: 140px; 
-            display: flex; 
-            justify-content: center; 
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            z-index: 10000;
+            display: flex;
             align-items: center;
-            flex-shrink: 1; /* Esto es la clave: se encoge si no hay espacio */
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(10px);
         }
-        .ring-canvas { transform: rotate(-90deg); width: 100%; height: 100%; }
-        .track { stroke: #eee; stroke-width: 10; fill: none; r: 50; cx: 65; cy: 65; }
-        #progress { stroke: var(--primary); stroke-width: 10; fill: none; r: 50; cx: 65; cy: 65; stroke-dasharray: 314; stroke-dashoffset: 314; transition: 0.1s linear; stroke-linecap: round; }
-        .value { position: absolute; font-size: 28px; font-weight: 900; color: var(--primary); }
 
-        /* CASINOS AJUSTABLES */
-        .casino-grid { 
-            display: grid; 
-            grid-template-columns: repeat(5, 1fr); 
-            gap: 5px; 
-            width: 100%; 
-            flex-shrink: 0; 
+        .auth-card {
+            background: var(--white);
+            width: 100%;
+            max-width: 380px;
+            padding: 35px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
         }
-        .casino-slot { aspect-ratio: 1; border: 1.5px solid #eee; border-radius: 8px; padding: 3px; display: flex; align-items: center; justify-content: center; }
-        .casino-slot img { width: 100%; height: 100%; object-fit: contain; }
-        .casino-slot.active { border-color: var(--primary); background: #fff5f5; }
 
-        .btn-box { width: 100%; padding-top: 5px; flex-shrink: 0; }
-        .action-btn {
-            width: 100%; background: var(--primary); color: white; border: none; padding: 15px;
-            border-radius: 12px; font-size: 16px; font-weight: 900; box-shadow: 0 4px 0 #9e0d04;
+        .auth-card img { width: 80px; margin-bottom: 15px; }
+        .auth-card h2 { color: var(--primary-red); font-weight: 900; margin-bottom: 20px; font-size: 22px; }
+
+        .auth-input {
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            border: 2px solid #eee;
+            font-size: 16px;
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.3s;
         }
-        .action-btn:disabled { background: #ccc; box-shadow: none; }
 
-        .footer { text-align: center; padding: 8px; font-size: 8px; color: #bbb; font-weight: 800; flex-shrink: 0; }
+        .auth-input:focus { border-color: var(--primary-red); }
+
+        /* --- CONTENEDOR DE LA APLICACIÓN --- */
+        .main-app {
+            width: 100%;
+            max-width: 450px;
+            height: 100%;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 30px rgba(0,0,0,0.2);
+        }
+
+        .app-header {
+            background: var(--primary-red);
+            padding: 15px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .app-header h1 {
+            color: white;
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* --- BARRA DE HISTORIAL --- */
+        .history-bar {
+            background: #000;
+            padding: 10px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            min-height: 50px;
+            align-items: center;
+            border-bottom: 3px solid var(--primary-red);
+            flex-shrink: 0;
+        }
+
+        .history-bar::-webkit-scrollbar { display: none; }
+
+        .signal-item {
+            background: white;
+            color: var(--primary-red);
+            font-size: 13px;
+            font-weight: 900;
+            padding: 5px 12px;
+            border-radius: 10px;
+            border: 2px solid var(--primary-red);
+            white-space: nowrap;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn { from { transform: translateX(-20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+        /* --- CUERPO PRINCIPAL --- */
+        .app-body {
+            flex: 1;
+            padding: 15px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .identity-area { text-align: center; }
+        .identity-area img { width: 70px; margin-bottom: 8px; }
+
+        .contact-box {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #e9ecef;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-social {
+            flex: 1;
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        /* --- MOTOR DE SEÑALES --- */
+        .motor-display {
+            position: relative;
+            width: 170px;
+            height: 170px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .gauge-svg { transform: rotate(-90deg); width: 170px; height: 170px; }
+        .gauge-bg { stroke: #edf2f7; stroke-width: 12; fill: none; r: 70; cx: 85; cy: 85; }
+        #gauge-fill {
+            stroke: var(--primary-red);
+            stroke-width: 12;
+            stroke-linecap: round;
+            fill: none;
+            r: 70; cx: 85; cy: 85;
+            stroke-dasharray: 440; 
+            stroke-dashoffset: 440;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        .multiplier-text {
+            position: absolute;
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--primary-red);
+            text-shadow: 0 2px 10px rgba(231,24,11,0.1);
+        }
+
+        /* --- GRILLA DE 10 CASINOS --- */
+        .casino-sync-area { width: 100%; }
+        .sync-label { font-size: 10px; text-align: center; font-weight: 900; color: #888; margin-bottom: 8px; text-transform: uppercase; }
+
+        .casino-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .casino-item {
+            aspect-ratio: 1;
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .casino-item img { width: 100%; height: 100%; object-fit: contain; }
+        .casino-item.active { border-color: var(--primary-red); background: #fff5f5; transform: scale(1.05); }
+
+        /* --- ACCIÓN PRINCIPAL --- */
+        .main-btn-area { width: 100%; padding-top: 10px; }
+        .btn-generate {
+            width: 100%;
+            background: var(--primary-red);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            box-shadow: 0 5px 0 var(--primary-dark);
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+
+        .btn-generate:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--primary-dark); }
+        .btn-generate:disabled { background: #ccc; box-shadow: none; color: #777; cursor: not-allowed; }
+
+        .app-footer {
+            text-align: center;
+            padding: 12px;
+            background: #f8f9fa;
+            font-size: 9px;
+            font-weight: 800;
+            color: #bbb;
+            border-top: 1px solid #eee;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body>
 
-<div id="auth-overlay">
-    <div class="auth-card">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" width="60">
-        <h2 style="color:var(--primary); margin:10px 0;">SISTEMA PRIVADO</h2>
-        <input type="password" id="u_pass" class="auth-input" placeholder="Clave Maestra">
-        <button onclick="login()" class="action-btn" style="box-shadow:none;">ENTRAR</button>
-    </div>
-</div>
-
-<div class="main-wrapper">
-    <div class="header">PREDIC 1 WIN ®</div>
-    <div id="history" class="history-container"></div>
-
-    <div class="app-content">
-        <div class="brand-zone">
+    <div id="auth-overlay">
+        <div class="auth-card">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s">
-            <div style="display:flex; gap:5px; margin-top:5px;">
-                <a href="https://t.me/PREDIC1WIN" style="background:#0088cc; color:white; padding:5px 10px; border-radius:10px; font-size:10px; text-decoration:none; font-weight:800;">TELEGRAM</a>
-                <a href="https://wa.me/527719327960" style="background:#25D366; color:white; padding:5px 10px; border-radius:10px; font-size:10px; text-decoration:none; font-weight:800;">WHATSAPP</a>
-            </div>
-        </div>
-
-        <div class="engine-zone">
-            <svg class="ring-canvas"><circle class="track"/><circle id="progress"/></svg>
-            <div id="number" class="value">1.00x</div>
-        </div>
-
-        <div style="width:100%;">
-            <p style="text-align:center; font-size:9px; font-weight:800; color:#999; margin-bottom:4px;">SINCRONIZAR SERVIDOR</p>
-            <div class="casino-grid">
-                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
-                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772156718063-9d7f327c-3f38-4c54-a4af-8b6902096337.png"></div>
-                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772156777400-140ec198-b410-4c90-963e-b6a7b3b8ffe5.png"></div>
-                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772156881655-81bb1ea5-ffc0-4f39-9b03-e596eb0da86e.png"></div>
-                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772156926302-a55f9d48-c419-40a3-bdbc-2a320d061d87.png"></div>
-                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772157099303-685401df-2dba-48d6-ad22-89115f5dfb1b.png"></div>
-                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772157139259-9ff0140d-73a3-4141-b928-661681cb29a0.png"></div>
-                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772157235100-e2589491-3023-4dd7-a3bf-f05fef4c349d.png"></div>
-                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772157291495-d6069e42-b827-4bc1-add5-4e7fb9a90656.jpg"></div>
-                <div class="casino-slot" onclick="sel(this)"><img src="https://image2url.com/r2/default/images/1772157380024-78169a5a-68bd-4a96-b234-d773ddd3cff5.png"></div>
-            </div>
-        </div>
-
-        <div class="btn-box">
-            <button class="action-btn" id="go" onclick="run()" disabled>GENERAR SEÑAL V.2</button>
+            <h2>LOGIN DE ALUMNO</h2>
+            <input type="email" id="email-access" class="auth-input" placeholder="ID de Usuario">
+            <input type="password" id="pass-access" class="auth-input" placeholder="Clave Maestra">
+            <button onclick="handleAuth()" class="btn-generate" style="box-shadow:none;">INICIAR SESIÓN</button>
+            <p id="error-msg" style="color:red; font-size:11px; margin-top:10px; font-weight:700;"></p>
         </div>
     </div>
 
-    <div class="footer">SOFTWARE DESARROLLADO POR WILLIAM ROBERT © 2026</div>
-</div>
+    <div class="main-app">
+        <header class="app-header">
+            <h1>PREDIC 1 WIN ®</h1>
+        </header>
 
-<script>
-    const signals = [1.93, 3.00, 2.00, 2.91, 1.51]; //
-    let step = 0;
+        <div class="history-bar" id="history-container"></div>
 
-    function login() {
-        if(document.getElementById('u_pass').value === "12345678") {
-            document.getElementById('auth-overlay').style.display = 'none';
-        }
-    }
+        <div class="app-body">
+            <div class="identity-area">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s">
+                <div class="contact-box">
+                    <a href="https://t.me/PREDIC1WIN" class="btn-social" style="background:var(--tg-color)">TELEGRAM</a>
+                    <a href="https://wa.me/527719327960" class="btn-social" style="background:var(--wa-color)">WHATSAPP</a>
+                </div>
+            </div>
 
-    function sel(el) {
-        document.querySelectorAll('.casino-slot').forEach(s => s.classList.remove('active'));
-        el.classList.add('active');
-        document.getElementById('go').disabled = false;
-    }
+            <div class="motor-display">
+                <svg class="gauge-svg">
+                    <circle class="gauge-bg"/>
+                    <circle id="gauge-fill"/>
+                </svg>
+                <div id="multiplier-val" class="multiplier-text">1.00x</div>
+            </div>
 
-    function run() {
-        const btn = document.getElementById('go');
-        const num = document.getElementById('number');
-        const bar = document.getElementById('progress');
-        btn.disabled = true;
-        
-        let target = signals[step];
-        step = (step + 1) % signals.length;
+            <div class="casino-sync-area">
+                <p class="sync-label">Sincronización con Casino</p>
+                <div class="casino-grid">
+                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
+                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772156718063-9d7f327c-3f38-4c54-a4af-8b6902096337.png"></div>
+                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772156777400-140ec198-b410-4c90-963e-b6a7b3b8ffe5.png"></div>
+                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772156881655-81bb1ea5-ffc0-4f39-9b03-e596eb0da86e.png"></div>
+                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772156926302-a55f9d48-c419-40a3-bdbc-2a320d061d87.png"></div>
+                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772157099303-685401df-2dba-48d6-ad22-89115f5dfb1b.png"></div>
+                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772157139259-9ff0140d-73a3-4141-b928-661681cb29a0.png"></div>
+                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772157235100-e2589491-3023-4dd7-a3bf-f05fef4c349d.png"></div>
+                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772157291495-d6069e42-b827-4bc1-add5-4e7fb9a90656.jpg"></div>
+                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772157380024-78169a5a-68bd-4a96-b234-d773ddd3cff5.png"></div>
+                </div>
+            </div>
 
-        let val = 1.00;
-        let int = setInterval(() => {
-            val += 0.01;
-            num.innerText = val.toFixed(2) + "x";
-            let p = (val - 1) / (target - 1);
-            bar.style.strokeDashoffset = 314 - (p * 314);
+            <div class="main-btn-area">
+                <button class="btn-generate" id="gen-btn" onclick="startEngine()" disabled>GENERAR SEÑAL V.2</button>
+            </div>
+        </div>
 
-            if(val >= target) {
-                clearInterval(int);
-                num.innerText = target.toFixed(2) + "x";
-                btn.disabled = false;
-                const pill = document.createElement('div');
-                pill.className = 'signal-pill';
-                pill.innerText = target.toFixed(2) + "x";
-                document.getElementById('history').prepend(pill);
+        <footer class="app-footer">
+            SOFTWARE DESARROLLADO POR WILLIAM ROBERT © 2026
+        </footer>
+    </div>
+
+    <script>
+        // CONFIGURACIÓN DE SEÑALES REQUERIDAS
+        const SIGNAL_LIST = [1.93, 3.00, 2.00, 2.91, 1.51]; 
+        let currentIdx = 0;
+        const CIRCUMFERENCE = 440;
+
+        // MANEJO DE AUTENTICACIÓN
+        function handleAuth() {
+            const pass = document.getElementById('pass-access').value;
+            if(pass === "12345678") {
+                const overlay = document.getElementById('auth-overlay');
+                overlay.style.opacity = '0';
+                setTimeout(() => overlay.style.display = 'none', 400);
+            } else {
+                document.getElementById('error-msg').innerText = "CLAVE MAESTRA INCORRECTA";
             }
-        }, 30);
-    }
-</script>
+        }
+
+        // SELECCIÓN DE CASINO
+        function selectCasino(element) {
+            document.querySelectorAll('.casino-item').forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('gen-btn').disabled = false;
+        }
+
+        // MOTOR DE PREDICCIÓN
+        function startEngine() {
+            const btn = document.getElementById('gen-btn');
+            const display = document.getElementById('multiplier-val');
+            const fill = document.getElementById('gauge-fill');
+            const history = document.getElementById('history-container');
+
+            btn.disabled = true;
+            fill.style.strokeDashoffset = CIRCUMFERENCE;
+
+            let target = SIGNAL_LIST[currentIdx];
+            currentIdx = (currentIdx + 1) % SIGNAL_LIST.length;
+
+            let count = 1.00;
+            let timer = setInterval(() => {
+                count += 0.01;
+                display.innerText = count.toFixed(2) + "x";
+                
+                let ratio = (count - 1) / (target - 1);
+                fill.style.strokeDashoffset = CIRCUMFERENCE - (ratio * CIRCUMFERENCE);
+
+                if (count >= target) {
+                    clearInterval(timer);
+                    display.innerText = target.toFixed(2) + "x";
+                    btn.disabled = false;
+
+                    // AGREGAR AL HISTORIAL
+                    const pill = document.createElement('div');
+                    pill.className = 'signal-item';
+                    pill.innerText = target.toFixed(2) + "x";
+                    history.prepend(pill);
+                }
+            }, 30);
+        }
+    </script>
 </body>
 </html>
