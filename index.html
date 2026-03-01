@@ -367,7 +367,7 @@
         }, 1000);
     }
 
-  function startAnalysis() {
+ function startAnalysis() {
         const display = document.getElementById('result-display');
         const status = document.getElementById('status');
         const alertImg = document.getElementById('alert-icon');
@@ -376,7 +376,7 @@
         const progBar = document.getElementById('prog-bar');
         const winAudio = document.getElementById('win-sound');
 
-        // Resetear audio por si aún estaba sonando de la ronda anterior
+        // Asegurarnos de que el audio esté detenido al iniciar una nueva ronda
         winAudio.pause();
         winAudio.currentTime = 0;
 
@@ -397,24 +397,18 @@
                 clearInterval(loop);
                 display.innerText = target.toFixed(2) + "x";
 
-                // --- LÓGICA DEL SONIDO POR 3 SEGUNDOS ---
-                winAudio.volume = 0.4; // Ajustado un poco más alto
-                winAudio.play().catch(() => {});
+                // --- SISTEMA DE AUDIO FORZADO ---
+                winAudio.volume = 0.5; 
+                winAudio.currentTime = 0;
+                winAudio.play();
 
-                // Detener exactamente a los 3 segundos
+                // Usamos un temporizador simple pero agresivo para cortar el audio
                 setTimeout(() => {
-                    // Efecto de bajada suave de volumen (opcional, pero suena mejor)
-                    let fadeOut = setInterval(() => {
-                        if (winAudio.volume > 0.05) {
-                            winAudio.volume -= 0.05;
-                        } else {
-                            clearInterval(fadeOut);
-                            winAudio.pause();
-                            winAudio.currentTime = 0;
-                        }
-                    }, 50);
-                }, 3000);
-                // ---------------------------------------
+                    winAudio.pause();      // Pausa el audio
+                    winAudio.currentTime = 0; // Lo regresa al inicio
+                    winAudio.load();       // Recarga el elemento para forzar el stop en móviles
+                }, 3000); // 3000ms = 3 segundos exactos
+                // --------------------------------
 
                 alertImg.style.display = "block";
                 status.innerText = "¡PREDICCIÓN COMPLETADA!";
@@ -430,6 +424,7 @@
 </script>
 </body>
 </html>
+
 
 
 
