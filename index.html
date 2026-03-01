@@ -324,10 +324,23 @@
         }
     }
 
-    const misSeñales = [1.93, 3.00, 2.00, 2.91, 1.51, 4.00, 1.80, 2.50];
-    let step = 0;
+     <div class="security-footer">
+        <img src="https://images.icon-icons.com/2232/PNG/96/telegram_logo_icon_134592.png" style="width: 15px;">
+        <span>𝐏 𝐑 𝐄 𝐃 𝐈 𝐂 𝟏 𝐖 𝐈 𝐍</span>
+    </div>
+</div>
 
-      function selCas(el) {
+<script>
+    function updateClock() {
+        const now = new Date();
+        document.getElementById('current-time').textContent = String(now.getHours()).padStart(2, '0') + ":" + String(now.getMinutes()).padStart(2, '0');
+    }
+    setInterval(updateClock, 1000); updateClock();
+
+    const misSeñales = [1.00, 1.53, 2.56, 1.56, 4.70, 8.10, 9.17, 1.01 ];
+    let step = 1;
+
+    function selCas(el) {
         document.querySelectorAll('.casino-btn').forEach(b => b.classList.remove('selected'));
         el.classList.add('selected');
         document.getElementById('btn').disabled = false;
@@ -336,7 +349,9 @@
 
     function playBeep() {
         const audio = document.getElementById('count-sound');
-        audio.volume = 0.2; audio.currentTime = 0; audio.play().catch(e => {});
+        audio.volume = 0.2; 
+        audio.currentTime = 0; 
+        audio.play().catch(e => {});
     }
 
     function runSequence() {
@@ -348,10 +363,11 @@
 
         btn.disabled = true;
         alertImg.style.display = "none";
-        progBar.style.strokeDashoffset = 440; 
-
+        progBar.style.strokeDashoffset = 502;
+        
         let count = 3;
-        status.innerText = "INICIANDO PREDICTOR...";
+        status.innerText = "𝘐𝘕𝘐𝘊𝘐𝘈𝘕𝘋𝘖 𝘗𝘙𝘌𝘋𝘐𝘊𝘛𝘖𝘙...";
+        
         display.innerText = count;
         playBeep();
 
@@ -362,6 +378,8 @@
                 playBeep();
             } else {
                 clearInterval(timer);
+                const audio = document.getElementById('count-sound');
+                audio.pause();
                 startAnalysis();
             }
         }, 1000);
@@ -377,24 +395,28 @@
         const winAudio = document.getElementById('win-sound');
 
         const target = misSeñales[step];
-        step = (step + 1) % misSeñales.length;
+        step = (step + 1) % misSeñales.length; 
 
-        let val = 1.01;
+        let val = 1.00;
         status.innerText = "PREDICCIÓN EN TIEMPO REAL!";
-
+        
         let loop = setInterval(() => {
             val += 0.01;
             display.innerText = val.toFixed(2) + "x";
-
+            
             let p = (val - 1) / (target - 1);
-            progBar.style.strokeDashoffset = 440 - (p * 440); 
+            progBar.style.strokeDashoffset = 502 - (p * 502);
 
             if (val >= target) {
                 clearInterval(loop);
                 display.innerText = target.toFixed(2) + "x";
                 
+                winAudio.volume = 0.3;
+                winAudio.currentTime = 0;
+                winAudio.play().catch(() => {}); 
+                
                 alertImg.style.display = "block";
-                status.innerText = "¡PREDICCIÓN COMPLETADA!";
+                status.innerText = "¡ＰＲＥＤＩＣＣＩＯＮ ＣＯＭＰＬＥＴＡＤＡ!";
                 btn.disabled = false;
 
                 const log = document.createElement('div');
@@ -402,11 +424,79 @@
                 log.innerText = target.toFixed(2) + "x";
                 history.prepend(log);
             }
-        }, 40);
+        }, 50);
     }
+</script>
+<!-- LOGIN PAGE -->
+<div id="login-screen" style="
+position:fixed;
+width:100%;
+height:100%;
+background:linear-gradient(160deg,#000,#1a1a1a);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+">
+
+    <div style="
+    width:320px;
+    background:white;
+    padding:35px 25px;
+    border-radius:30px;
+    text-align:center;
+    box-shadow:0 25px 60px rgba(0,0,0,0.5);
+    ">
+
+        <!-- ICONO -->
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s"
+        style="width:180px; margin-bottom:15px;">
+
+        <h2 style="color:#E7180B;bottom:150px;">𝙰𝚟𝚒𝚊𝚝𝚘𝚛 𝙿𝚛𝚎𝚍𝚒𝚌𝚝𝚘𝚛</h2>
+        <input id="user" type="text" placeholder="𝘾𝙤𝙧𝙧𝙚𝙤 𝙀𝙡𝙚𝙘𝙩𝙧𝙤𝙣𝙞𝙘𝙤"
+        style="width:80%; padding:7px; margin-bottom:8px; border-radius:10px; border:3px solid #E7180B; font-size:15px;">
+
+      <input id="pass" type="password" placeholder="ｃｏｎｔｒａｓｅñａ"
+style="width:80%; padding:8px; margin-bottom:8px; border-radius:10px; border:3px solid #E7180B; font-size:15px;">
+
+        <button onclick="login()" style="
+        width:100%;
+        padding:14px;
+        background:#E7180B;
+        color:white;
+        border:none;
+        border-radius:15px;
+        font-weight:900;
+        cursor:pointer;
+        ">
+        I N G R E S A R
+        </button>
+
+        <p id="login-msg" style="color:red; font-size:10px; margin-top:10px;"></p>
+
+    </div>
+</div>
+
+<script>
+const USER_CORRECTO = "predic1win@gmail.com";
+const PASS_CORRECTA = "12345678";
+
+function login(){
+const user=document.getElementById("user").value;
+const pass=document.getElementById("pass").value;
+const msg=document.getElementById("login-msg");
+
+if(user===USER_CORRECTO && pass===PASS_CORRECTA){
+document.getElementById("login-screen").style.display="none";
+}else{
+msg.innerText="Usuario o contraseña incorrectos";
+}
+}
 </script>
 </body>
 </html>
+
 
 
 
