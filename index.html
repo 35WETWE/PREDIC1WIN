@@ -367,7 +367,7 @@
         }, 1000);
     }
 
-    function startAnalysis() {
+   function startAnalysis() {
         const display = document.getElementById('result-display');
         const status = document.getElementById('status');
         const alertImg = document.getElementById('alert-icon');
@@ -392,7 +392,19 @@
             if (val >= target) {
                 clearInterval(loop);
                 display.innerText = target.toFixed(2) + "x";
-                winAudio.volume = 0.0; winAudio.currentTime = 0; winAudio.play().catch(() => {});
+
+                // --- LÓGICA DEL SONIDO POR 3 SEGUNDOS ---
+                winAudio.volume = 0.3; // Volumen audible
+                winAudio.currentTime = 0;
+                winAudio.play().catch(() => {});
+
+                // Detener el sonido tras 3000ms (3 segundos)
+                setTimeout(() => {
+                    winAudio.pause();
+                    winAudio.currentTime = 0;
+                }, 3000);
+                // ---------------------------------------
+
                 alertImg.style.display = "block";
                 status.innerText = "¡PREDICCIÓN COMPLETADA!";
                 btn.disabled = false;
@@ -407,6 +419,7 @@
 </script>
 </body>
 </html>
+
 
 
 
