@@ -2,382 +2,233 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="author" content="William Robert">
-    <title>PREDIC 1 WIN - PREMIUM V2.0 FINAL</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PREDIC 1 WIN - PREMIUM</title> 
     <style>
         :root {
-            --primary-red: #E7180B;
-            --primary-dark: #9e0d04;
-            --bg-canvas: #0a0a0a;
-            --white: #ffffff;
-            --tg-color: #0088cc;
-            --wa-color: #25D366;
-            --glass: rgba(255, 255, 255, 0.9);
+            --primary: #E7180B;
+            --bg-body: #E7180B;
         }
-
-        * { 
-            box-sizing: border-box; 
-            -webkit-tap-highlight-color: transparent; 
-            margin: 0; 
-            padding: 0; 
+        body { 
+            margin: 0; background: var(--bg-body); 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; justify-content: center; align-items: center; 
+            height: 100vh; overflow: hidden;
         }
-
-        body {
-            background-color: var(--bg-canvas);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            height: 100dvh;
-            overflow: hidden;
+        .smartphone { 
+            width: 350px; height: 740px; background: #ffffff; 
+            border: 14px solid #1c1c1c; border-radius: 50px; 
+            position: relative; overflow: hidden; 
+            box-shadow: 0 40px 100px rgba(0,0,0,0.25); display: flex; flex-direction: column;
         }
-
-        /* --- SISTEMA DE LOGIN COMPLETO --- */
-        #auth-overlay {
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            backdrop-filter: blur(10px);
+        .status-bar {
+            position: absolute; top: 0; width: 100%; height: 45px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 35px; box-sizing: border-box; z-index: 110; font-size: 14px; font-weight: 700;
         }
-
-        .auth-card {
-            background: var(--white);
-            width: 100%;
-            max-width: 380px;
-            padding: 35px;
-            border-radius: 30px;
-            text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-        }
-
-        .auth-card img { width: 80px; margin-bottom: 15px; }
-        .auth-card h2 { color: var(--primary-red); font-weight: 900; margin-bottom: 20px; font-size: 22px; }
-
-        .auth-input {
-            width: 100%;
-            padding: 16px;
-            margin-bottom: 12px;
-            border-radius: 12px;
-            border: 2px solid #eee;
-            font-size: 16px;
-            font-weight: 600;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .auth-input:focus { border-color: var(--primary-red); }
-
-        /* --- CONTENEDOR DE LA APLICACIÓN --- */
-        .main-app {
-            width: 100%;
-            max-width: 450px;
-            height: 100%;
-            background: var(--white);
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 0 30px rgba(0,0,0,0.2);
-        }
-
-        .app-header {
-            background: var(--primary-red);
-            padding: 15px;
-            text-align: center;
-            flex-shrink: 0;
-        }
-
-        .app-header h1 {
-            color: white;
-            font-size: 20px;
-            font-weight: 900;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        /* --- BARRA DE HISTORIAL --- */
-        .history-bar {
-            background: #000;
-            padding: 10px;
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            min-height: 50px;
-            align-items: center;
-            border-bottom: 3px solid var(--primary-red);
-            flex-shrink: 0;
-        }
-
-        .history-bar::-webkit-scrollbar { display: none; }
-
-        .signal-item {
-            background: white;
-            color: var(--primary-red);
-            font-size: 13px;
-            font-weight: 900;
-            padding: 5px 12px;
-            border-radius: 10px;
-            border: 2px solid var(--primary-red);
-            white-space: nowrap;
+        .right-icons { display: flex; gap: 6px; align-items: center; }
+        .battery-icon { width: 22px; height: 11px; border: 1px solid #000; border-radius: 3px; position: relative; padding: 1px; }
+        .battery-icon::after { content: ''; position: absolute; right: -4px; top: 3px; width: 3px; height: 4px; background: #000; border-radius: 0 2px 2px 0; }
+        .battery-level { height: 100%; background: #000; width: 85%; border-radius: 1px; }
+        .notch { width: 150px; height: 30px; background: #1c1c1c; position: absolute; top: 0; left: 50%; transform: translateX(-50%); border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; z-index: 100; }
+        
+        .app-header { background: var(--primary); padding: 50px 10px 12px; font-size: 17px; font-weight: 900; text-align: center; color: white; letter-spacing: 1.2px; }
+        
+        .history-bar { background: #f8f9fa; padding: 10px; display: flex; gap: 10px; overflow: hidden; min-height: 35px; border-bottom: 1px solid #000; align-items: center; }
+        .payout-tag { 
+            font-size: 11px; font-weight: 900; padding: 3px 8px; border-radius: 6px; 
+            background: white; border: 2px solid #000; color: var(--primary); 
             animation: slideIn 0.3s ease-out;
         }
-
         @keyframes slideIn { from { transform: translateX(-20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-        /* --- CUERPO PRINCIPAL --- */
-        .app-body {
-            flex: 1;
-            padding: 15px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            overflow: hidden;
+        .content { flex: 1; padding: 10px 20px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; overflow: hidden; }
+        
+        .logo-box img { width: 180px; height: auto; image-rendering: -webkit-optimize-contrast; }
+        .status-msg { font-size: 10px; color: #E7180B; font-weight: 900; text-transform: uppercase; margin: 2px 0; }
+
+        .prediction-area { position: relative; width: 180px; height: 180px; display: flex; justify-content: center; align-items: center; }
+        #alert-icon { 
+            position: absolute; 
+            width: 50px; 
+            top: -15px;  
+            display: none; 
+            z-index: 50; 
+            filter: drop-shadow(0 0 15px rgba(231, 24, 11, 0.9));
+            animation: warningPulse 0.4s infinite alternate; 
         }
+        @keyframes warningPulse { from { transform: scale(1); } to { transform: scale(1.1); } }
+        
+        .progress-ring { transform: rotate(-90deg); width: 180px; height: 180px; }
+        .progress-ring__bg { stroke: #f0f0f0; stroke-width: 12; fill: transparent; r: 80; cx: 90; cy: 90; }
+        #prog-bar { stroke: var(--primary); stroke-width: 12; stroke-linecap: round; fill: transparent; r: 80; cx: 90; cy: 90; stroke-dasharray: 502; stroke-dashoffset: 502; transition: stroke-dashoffset 0.1s linear; }
+        #result-display { position: absolute; font-size: 38px; font-weight: 900; color: var(--primary); }
 
-        .identity-area { text-align: center; }
-        .identity-area img { width: 70px; margin-bottom: 8px; }
+        .casino-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; width: 100%; margin: 5px 0; }
+        .casino-btn { height: 38px; border: 2px solid #eee; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; background: #DAB2FF; transition: 0.2s; overflow: hidden; }
+        .casino-btn img { width: 80%; height: 80%; object-fit: contain; }
+        .casino-btn.selected { border-color: #000000; background: #000C; transform: scale(1.08); border-width: 3px; }
 
-        .contact-box {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 10px;
-            width: 100%;
-            border: 1px solid #e9ecef;
-            display: flex;
-            gap: 10px;
-        }
+        .next-btn { background: var(--primary); color: white; border: none; padding: 14px 0; width: 100%; font-size: 16px; font-weight: 900; border-radius: 15px; cursor: pointer; box-shadow: 0 5px 0 #b30000; transition: 0.1s; }
+        .next-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #b30000; }
+        .next-btn:disabled { background: #000; box-shadow: none; color: #E7180B; cursor: not-allowed; }
 
-        .btn-social {
-            flex: 1;
-            text-decoration: none;
-            color: white;
-            padding: 10px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 800;
-            text-align: center;
-        }
-
-        /* --- MOTOR DE SEÑALES --- */
-        .motor-display {
-            position: relative;
-            width: 170px;
-            height: 170px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 10px 0;
-        }
-
-        .gauge-svg { transform: rotate(-90deg); width: 170px; height: 170px; }
-        .gauge-bg { stroke: #edf2f7; stroke-width: 12; fill: none; r: 70; cx: 85; cy: 85; }
-        #gauge-fill {
-            stroke: var(--primary-red);
-            stroke-width: 12;
-            stroke-linecap: round;
-            fill: none;
-            r: 70; cx: 85; cy: 85;
-            stroke-dasharray: 440; 
-            stroke-dashoffset: 440;
-            transition: stroke-dashoffset 0.1s linear;
-        }
-
-        .multiplier-text {
-            position: absolute;
-            font-size: 42px;
-            font-weight: 900;
-            color: var(--primary-red);
-            text-shadow: 0 2px 10px rgba(231,24,11,0.1);
-        }
-
-        /* --- GRILLA DE 10 CASINOS --- */
-        .casino-sync-area { width: 100%; }
-        .sync-label { font-size: 10px; text-align: center; font-weight: 900; color: #888; margin-bottom: 8px; text-transform: uppercase; }
-
-        .casino-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
-        }
-
-        .casino-item {
-            aspect-ratio: 1;
-            background: white;
-            border: 2px solid #eee;
-            border-radius: 12px;
-            padding: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        .casino-item img { width: 100%; height: 100%; object-fit: contain; }
-        .casino-item.active { border-color: var(--primary-red); background: #fff5f5; transform: scale(1.05); }
-
-        /* --- ACCIÓN PRINCIPAL --- */
-        .main-btn-area { width: 100%; padding-top: 10px; }
-        .btn-generate {
-            width: 100%;
-            background: var(--primary-red);
-            color: white;
-            border: none;
-            padding: 18px;
-            border-radius: 15px;
-            font-size: 18px;
-            font-weight: 900;
-            text-transform: uppercase;
-            box-shadow: 0 5px 0 var(--primary-dark);
-            cursor: pointer;
-            transition: all 0.1s;
-        }
-
-        .btn-generate:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--primary-dark); }
-        .btn-generate:disabled { background: #ccc; box-shadow: none; color: #777; cursor: not-allowed; }
-
-        .app-footer {
-            text-align: center;
-            padding: 12px;
-            background: #f8f9fa;
-            font-size: 9px;
-            font-weight: 800;
-            color: #bbb;
-            border-top: 1px solid #eee;
-            flex-shrink: 0;
-        }
+        .security-footer { display: flex; align-items: center; justify-content: center; gap: 1px; padding: 5px 0 7px; font-size: 12px; font-weight: 1000; color: #E7180B; }
     </style>
 </head>
 <body>
 
-    <div id="auth-overlay">
-        <div class="auth-card">
+<audio id="count-sound" src="https://assets.mixkit.co/active_storage/sfx/916/916-preview.mp3" preload="auto"></audio>
+<audio id="win-sound" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3" preload="auto"></audio>
+
+<div class="smartphone">
+    <div class="status-bar">
+        <div id="current-time">00:00</div>
+        <div class="right-icons">
+            <svg width="18" height="18" viewBox="0 0 24 23"><path d="M12.01 21.49L23.64 7c-.45-.34-4.93-4-11.64-4C5.28 3 .81 6.66.36 7l11.63 14.49.01.01.01-.01z" fill="black"/></svg>
+            <div class="battery-icon"><div class="battery-level"></div></div>
+        </div>
+    </div>
+    <div class="notch"></div>
+
+    <div class="app-header">Ｐ Ｒ Ｅ Ｄ Ｉ Ｃ １ Ｗ Ｉ Ｎ</div>
+    <div class="history-bar" id="historyBar"></div>
+
+    <div class="content">
+        <div class="logo-box">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s">
-            <h2>LOGIN DE ALUMNO</h2>
-            <input type="email" id="email-access" class="auth-input" placeholder="ID de Usuario">
-            <input type="password" id="pass-access" class="auth-input" placeholder="Clave Maestra">
-            <button onclick="handleAuth()" class="btn-generate" style="box-shadow:none;">INICIAR SESIÓN</button>
-            <p id="error-msg" style="color:red; font-size:11px; margin-top:10px; font-weight:700;"></p>
+        </div>
+        
+        <div class="status-msg" id="status">ＯＰＲＩＭＥ ＴＵ ＣＡＳＩＮＯ !</div>
+
+        <div class="prediction-area">
+            <img id="alert-icon" src="https://images.icon-icons.com/461/PNG/96/money_43847.png">
+            <svg class="progress-ring">
+                <circle class="progress-ring__bg"/>
+                <circle id="prog-bar"/>
+            </svg>
+            <div id="result-display">1.00x</div>
+        </div>
+
+        <div style="width: 100%;">
+            <div style="font-size: 9px; font-weight: 800; text-align: center; margin-bottom: 4px;">𝙎𝙀𝙇𝙀𝘾𝘾𝙄𝙊𝙉𝘼𝙍 𝙏𝙐 𝘾𝘼𝙎𝙄𝙉𝙊 𝙋𝘼𝙍𝘼 𝙋𝙍𝙀𝘿𝙀𝘾𝙄𝙍</div>
+            <div class="casino-grid">
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156718063-9d7f327c-3f38-4c54-a4af-8b6902096337.png"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156777400-140ec198-b410-4c90-963e-b6a7b3b8ffe5.png"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156881655-81bb1ea5-ffc0-4f39-9b03-e596eb0da86e.png"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156926302-a55f9d48-c419-40a3-bdbc-2a320d061d87.png"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157099303-685401df-2dba-48d6-ad22-89115f5dfb1b.png"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157139259-9ff0140d-73a3-4141-b928-661681cb29a0.png"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157235100-e2589491-3023-4dd7-a3bf-f05fef4c349d.png"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157291495-d6069e42-b827-4bc1-add5-4e7fb9a90656.jpg"></div>
+                <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157380024-78169a5a-68bd-4a96-b234-d773ddd3cff5.png"></div>
+            </div>
+            <button class="next-btn" id="btn" onclick="runSequence()" disabled>𝐆𝐄𝐍𝐄𝐑𝐀𝐑 𝐒𝐄Ñ𝐀𝐋</button>
         </div>
     </div>
 
-    <div class="main-app">
-        <header class="app-header">
-            <h1>PREDIC 1 WIN ®</h1>
-        </header>
-
-        <div class="history-bar" id="history-container"></div>
-
-        <div class="app-body">
-            <div class="identity-area">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s">
-                <div class="contact-box">
-                    <a href="https://t.me/PREDIC1WIN" class="btn-social" style="background:var(--tg-color)">TELEGRAM</a>
-                    <a href="https://wa.me/527719327960" class="btn-social" style="background:var(--wa-color)">WHATSAPP</a>
-                </div>
-            </div>
-
-            <div class="motor-display">
-                <svg class="gauge-svg">
-                    <circle class="gauge-bg"/>
-                    <circle id="gauge-fill"/>
-                </svg>
-                <div id="multiplier-val" class="multiplier-text">1.00x</div>
-            </div>
-
-            <div class="casino-sync-area">
-                <p class="sync-label">Sincronización con Casino</p>
-                <div class="casino-grid">
-                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
-                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772156718063-9d7f327c-3f38-4c54-a4af-8b6902096337.png"></div>
-                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772156777400-140ec198-b410-4c90-963e-b6a7b3b8ffe5.png"></div>
-                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772156881655-81bb1ea5-ffc0-4f39-9b03-e596eb0da86e.png"></div>
-                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772156926302-a55f9d48-c419-40a3-bdbc-2a320d061d87.png"></div>
-                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772157099303-685401df-2dba-48d6-ad22-89115f5dfb1b.png"></div>
-                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772157139259-9ff0140d-73a3-4141-b928-661681cb29a0.png"></div>
-                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772157235100-e2589491-3023-4dd7-a3bf-f05fef4c349d.png"></div>
-                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772157291495-d6069e42-b827-4bc1-add5-4e7fb9a90656.jpg"></div>
-                    <div class="casino-item" onclick="selectCasino(this)"><img src="https://image2url.com/r2/default/images/1772157380024-78169a5a-68bd-4a96-b234-d773ddd3cff5.png"></div>
-                </div>
-            </div>
-
-            <div class="main-btn-area">
-                <button class="btn-generate" id="gen-btn" onclick="startEngine()" disabled>GENERAR SEÑAL V.2</button>
-            </div>
-        </div>
-
-        <footer class="app-footer">
-            SOFTWARE DESARROLLADO POR WILLIAM ROBERT © 2026
-        </footer>
+    <div class="security-footer">
+        <img src="https://images.icon-icons.com/2232/PNG/96/telegram_logo_icon_134592.png" style="width: 15px;">
+        <span>𝐏 𝐑 𝐄 𝐃 Ｉ Ｃ １ 𝐖 Ｉ Ｎ</span>
     </div>
+</div>
 
-    <script>
-        // CONFIGURACIÓN DE SEÑALES REQUERIDAS
-        const SIGNAL_LIST = [1.93, 3.00, 2.00, 2.91, 1.51]; 
-        let currentIdx = 0;
-        const CIRCUMFERENCE = 440;
+<script>
+    function updateClock() {
+        const now = new Date();
+        document.getElementById('current-time').textContent = String(now.getHours()).padStart(2, '0') + ":" + String(now.getMinutes()).padStart(2, '0');
+    }
+    setInterval(updateClock, 1000); updateClock();
 
-        // MANEJO DE AUTENTICACIÓN
-        function handleAuth() {
-            const pass = document.getElementById('pass-access').value;
-            if(pass === "12345678") {
-                const overlay = document.getElementById('auth-overlay');
-                overlay.style.opacity = '0';
-                setTimeout(() => overlay.style.display = 'none', 400);
+    // Las señales exactas Anthony: 1.93, 3.00, 2.00, 2.91, 1.51
+    const misSeñales = [1.93, 3.00, 2.00, 2.91, 1.51, 2.19, 2.82, 1.90, 6.00, 1.29, 3.92, 7.01];
+    let step = 0;
+
+    function selCas(el) {
+        document.querySelectorAll('.casino-btn').forEach(b => b.classList.remove('selected'));
+        el.classList.add('selected');
+        document.getElementById('btn').disabled = false;
+        document.getElementById('status').innerText = "VINCULACIÓN EXITOSA";
+    }
+
+    function playBeep() {
+        const audio = document.getElementById('count-sound');
+        audio.volume = 0.2; 
+        audio.currentTime = 0; 
+        audio.play().catch(e => {});
+    }
+
+    function runSequence() {
+        const display = document.getElementById('result-display');
+        const btn = document.getElementById('btn');
+        const status = document.getElementById('status');
+        const alertImg = document.getElementById('alert-icon');
+        const progBar = document.getElementById('prog-bar');
+
+        btn.disabled = true;
+        alertImg.style.display = "none";
+        progBar.style.strokeDashoffset = 502;
+        
+        let count = 3;
+        status.innerText = "𝘐𝘕𝘐𝘊𝘐𝘈𝘕𝘋𝘖 𝘗𝘙𝘌𝘋𝘐𝘊𝘛𝘖𝘙...";
+        
+        display.innerText = count;
+        playBeep();
+
+        let timer = setInterval(() => {
+            count--;
+            if (count >= 1) {
+                display.innerText = count;
+                playBeep();
             } else {
-                document.getElementById('error-msg').innerText = "CLAVE MAESTRA INCORRECTA";
+                clearInterval(timer);
+                startAnalysis();
             }
-        }
+        }, 1000);
+    }
 
-        // SELECCIÓN DE CASINO
-        function selectCasino(element) {
-            document.querySelectorAll('.casino-item').forEach(item => item.classList.remove('active'));
-            element.classList.add('active');
-            document.getElementById('gen-btn').disabled = false;
-        }
+    function startAnalysis() {
+        const display = document.getElementById('result-display');
+        const status = document.getElementById('status');
+        const alertImg = document.getElementById('alert-icon');
+        const history = document.getElementById('historyBar');
+        const btn = document.getElementById('btn');
+        const progBar = document.getElementById('prog-bar');
+        const winAudio = document.getElementById('win-sound');
 
-        // MOTOR DE PREDICCIÓN
-        function startEngine() {
-            const btn = document.getElementById('gen-btn');
-            const display = document.getElementById('multiplier-val');
-            const fill = document.getElementById('gauge-fill');
-            const history = document.getElementById('history-container');
+        const target = misSeñales[step];
+        step = (step + 1) % misSeñales.length; 
 
-            btn.disabled = true;
-            fill.style.strokeDashoffset = CIRCUMFERENCE;
+        let val = 1.00;
+        status.innerText = "PREDICCIÓN EN TIEMPO REAL!";
+        
+        let loop = setInterval(() => {
+            val += 0.01;
+            display.innerText = val.toFixed(2) + "x";
+            
+            let p = (val - 1) / (target - 1);
+            progBar.style.strokeDashoffset = 502 - (p * 502);
 
-            let target = SIGNAL_LIST[currentIdx];
-            currentIdx = (currentIdx + 1) % SIGNAL_LIST.length;
-
-            let count = 1.00;
-            let timer = setInterval(() => {
-                count += 0.01;
-                display.innerText = count.toFixed(2) + "x";
+            if (val >= target) {
+                clearInterval(loop);
+                display.innerText = target.toFixed(2) + "x";
                 
-                let ratio = (count - 1) / (target - 1);
-                fill.style.strokeDashoffset = CIRCUMFERENCE - (ratio * CIRCUMFERENCE);
+                winAudio.volume = 0.3;
+                winAudio.currentTime = 0;
+                winAudio.play().catch(() => {}); 
+                
+                alertImg.style.display = "block";
+                status.innerText = "¡ＰＲＥＤＩＣＣＩＯＮ ＣＯＭＰＬＥＴＡＤＡ!";
+                btn.disabled = false;
 
-                if (count >= target) {
-                    clearInterval(timer);
-                    display.innerText = target.toFixed(2) + "x";
-                    btn.disabled = false;
-
-                    // AGREGAR AL HISTORIAL
-                    const pill = document.createElement('div');
-                    pill.className = 'signal-item';
-                    pill.innerText = target.toFixed(2) + "x";
-                    history.prepend(pill);
-                }
-            }, 30);
-        }
-    </script>
+                const log = document.createElement('div');
+                log.className = 'payout-tag';
+                log.innerText = target.toFixed(2) + "x";
+                history.prepend(log);
+            }
+        }, 50);
+    }
+</script>
 </body>
 </html>
