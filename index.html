@@ -21,25 +21,23 @@
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            overflow: hidden;
         }
 
-        /* PANTALLA DE CARGA OBLIGATORIA */
+        /* PANTALLA DE CARGA */
         #loader-screen {
             position: fixed;
             inset: 0;
             background: #000;
-            display: none; /* Se activa con JS */
+            display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 10001;
         }
         .loader-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            animation: spin 2s linear infinite;
+            width: 100px;
+            height: 100px;
+            animation: spin 1.5s linear infinite;
         }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         
@@ -49,7 +47,7 @@
             font-weight: 740;
             letter-spacing: 2px;
             text-transform: uppercase;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .main-container {
@@ -59,7 +57,7 @@
             background: var(--app-bg);
             position: relative;
             overflow: hidden;
-            display: none; /* OCULTO HASTA QUE TERMINE LA CARGA */
+            display: none; /* Se activa tras login */
             flex-direction: column;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
@@ -96,7 +94,7 @@
             border: 2px solid #000;
             color: var(--primary);
             white-space: nowrap;
-            animation: slideIn 0.5s ease-out;
+            animation: slideIn 1.0s ease-out;
         }
         @keyframes slideIn { from { transform: translateX(-20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
@@ -111,7 +109,10 @@
             overflow-y: auto;
         }
 
-        .logo-box img { width: 135px; height: auto; }
+        .logo-box img {
+            width: 135px;
+            height: auto;
+        }
 
         .status-msg {
             font-size: 11px;
@@ -176,12 +177,21 @@
             border: 2px solid #eee;
             border-radius: 8px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: #DAB2FF;
-            transition: 0.3s;
+            transition: 0.5s;
+            overflow: hidden;
             padding: 4px;
         }
         .casino-btn img { width: 100%; height: 100%; object-fit: contain; }
-        .casino-btn.selected { border-color: #000; background: #b184f5; transform: scale(1.05); border-width: 3px; }
+        .casino-btn.selected {
+            border-color: #000;
+            background: #b184f5;
+            transform: scale(1.05);
+            border-width: 3px;
+        }
 
         .next-btn {
             background: var(--primary);
@@ -194,6 +204,7 @@
             border-radius: 15px;
             cursor: pointer;
             box-shadow: 0 5px 0 #b30000;
+            transition: 0.1s;
             text-transform: uppercase;
         }
         .next-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #b30000; }
@@ -209,51 +220,67 @@
             font-weight: 740;
             color: var(--primary);
             background: #f9f9f9;
+            border-top: 1px solid #eee;
         }
 
         #login-screen {
             position: fixed;
-            inset: 0;
-            background: #000;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(160deg,#000,#1a1a1a);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 10000;
+            z-index: 9999;
+            padding: 20px;
         }
         .login-box {
-            width: 90%;
+            width: 100%;
             max-width: 350px;
             background: white;
-            padding: 30px;
+            padding: 40px 30px;
             border-radius: 25px;
             text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
         }
         .login-input {
             width: 100%;
             padding: 12px;
-            margin-bottom: 10px;
-            border: 2px solid var(--primary);
+            margin-bottom: 15px;
             border-radius: 10px;
+            border: 2px solid var(--primary);
+            font-size: 16px;
+        }
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 740;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
+<audio id="count-sound" src="https://assets.mixkit.co/active_storage/sfx/916/916-preview.mp3" preload="auto"></audio>
 <audio id="win-sound" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3" preload="auto"></audio>
 
 <div id="loader-screen">
-    <img class="loader-img" src="https://media.istockphoto.com/id/1842732901/vector/loading-icon.jpg?b=1&s=170x170&k=20&c=nzH0ZjZJIXBdB0lLu6s3nxAX6E88BxUzzsd6s_Tz1hI=">
-    <div class="loader-text">ESTABLECIENDO CONEXIÓN SEGURA...</div>
+    <img class="loader-img" src="https://images.icon-icons.com/2792/PNG/96/spinner_loading_icon_177671.png">
+    <div class="loader-text">SINCRONIZANDO SISTEMA...</div>
 </div>
 
 <div id="login-screen">
     <div class="login-box">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" style="width:140px; margin-bottom:15px;">
-        <h2 style="color:var(--primary)">ＰＲＥＤＩＣＴＯＲ</h2>
+        <h2 style="color:var(--primary)">ＰＲＥＤＩＣＴＯＲ </h2>
         <input id="user" type="text" placeholder="Correo Electrónico" class="login-input">
         <input id="pass" type="password" placeholder="Contraseña" class="login-input">
-        <button onclick="iniciarLogin()" class="next-btn" style="padding:10px;">INGRESAR</button>
-        <p id="login-msg" style="color:red; font-size:12px;"></p>
+        <button onclick="login()" class="login-btn">INGRESAR</button>
+        <p id="login-msg" style="color:red; font-size:12px; margin-top:10px;"></p>
     </div>
 </div>
 
@@ -277,7 +304,7 @@
             <div id="result-display">1.00x</div>
         </div>
 
-        <div style="width:100%">
+        <div class="casino-selection-zone">
             <div style="font-size: 10px; font-weight: 800; text-align: center; color: #333; margin-bottom: 5px;">SELECCIONAR TU CASINO PARA PREDECIR</div>
             <div class="casino-grid">
                 <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
@@ -307,27 +334,25 @@
     const misSeñales = [2.00, 1.51, 1.33, 4.41, 2.90, 1.05];
     let step = 0;
 
-    function iniciarLogin(){
+    function login(){
         const user = document.getElementById("user").value;
         const pass = document.getElementById("pass").value;
+        const msg = document.getElementById("login-msg");
         const loginScreen = document.getElementById("login-screen");
         const loader = document.getElementById("loader-screen");
         const app = document.getElementById("app");
 
         if(user === USER_CORRECTO && pass === PASS_CORRECTA){
-            // 1. Ocultar Login
             loginScreen.style.display = "none";
-            // 2. Mostrar Loader
             loader.style.display = "flex";
             
-            // 3. ESPERAR 3 SEGUNDOS OBLIGATORIOS
             setTimeout(() => {
                 loader.style.display = "none";
                 app.style.display = "flex";
             }, 3000);
-            
         } else {
-            document.getElementById("login-msg").innerText = "Usuario o contraseña incorrectos";
+            msg.innerText = "Usuario o contraseña incorrectos";
+            document.getElementById("pass").value = "";
         }
     }
 
@@ -336,6 +361,15 @@
         el.classList.add('selected');
         document.getElementById('btn').disabled = false;
         document.getElementById('status').innerText = "VINCULACIÓN EXITOSA";
+    }
+
+    function playBeep() {
+        const audio = document.getElementById('count-sound');
+        if (audio) {
+            audio.volume = 0.5; 
+            audio.currentTime = 0;
+            audio.play().catch(e => console.log("Error audio"));
+        }
     }
 
     function runSequence() {
@@ -349,16 +383,20 @@
         progBar.style.strokeDashoffset = 440;
         
         let count = 3;
-        status.innerText = "ANALIZANDO ALGORITMO...";
-        
+        status.innerText = "INICIANDO PREDICTOR...";
+        display.innerText = count;
+        playBeep();
+
         let timer = setInterval(() => {
-            display.innerText = count;
-            if (count <= 1) {
+            count--;
+            if (count >= 1) {
+                display.innerText = count;
+                playBeep();
+            } else {
                 clearInterval(timer);
                 startAnalysis();
             }
-            count--;
-        }, 300); 
+        }, 1000);
     }
 
     function startAnalysis() {
@@ -377,7 +415,7 @@
         status.innerText = "PREDICCIÓN EN TIEMPO REAL!";
 
         let loop = setInterval(() => {
-            val += 0.08; 
+            val += 0.08;
             display.innerText = val.toFixed(2) + "x";
 
             let p = (val - 1) / (target - 1);
@@ -387,19 +425,23 @@
             if (val >= target) {
                 clearInterval(loop);
                 display.innerText = target.toFixed(2) + "x";
-                status.innerText = "¡PREDICCIÓN COMPLETADA!";
-                alertImg.style.display = "block";
-                btn.disabled = false;
 
-                winAudio.currentTime = 0;
-                winAudio.play().catch(() => {});
+                if (winAudio) {
+                    winAudio.volume = 0.5;
+                    winAudio.currentTime = 0;
+                    winAudio.play().catch(() => {});
+                }
+
+                alertImg.style.display = "block";
+                status.innerText = "¡PREDICCIÓN COMPLETADA!";
+                btn.disabled = false;
 
                 const log = document.createElement('div');
                 log.className = 'payout-tag';
                 log.innerText = target.toFixed(2) + "x";
                 history.prepend(log);
             }
-        }, 20); 
+        }, 30); 
     }
 </script>
 </body>
