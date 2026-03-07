@@ -23,7 +23,7 @@
             min-height: 100vh;
         }
 
-        /* PANTALLA DE CARGA */
+        /* PANTALLA DE CARGA - SOLO TU IMAGEN NUEVA */
         #loader-screen {
             position: fixed;
             inset: 0;
@@ -57,7 +57,7 @@
             background: var(--app-bg);
             position: relative;
             overflow: hidden;
-            display: none; /* Se activa tras login */
+            display: none; /* Se activa tras login y carga */
             flex-direction: column;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
@@ -324,7 +324,7 @@
 
     <div class="security-footer">
         <img src="https://images.icon-icons.com/2232/PNG/96/telegram_logo_icon_134592.png" style="width: 16px;">
-        <span>ＰＲＥＤＩＣ１ＷＩＮ</span>
+        <span>ＰＲＥＤＩＣＴＯＲ</span>
     </div>
 </div>
 
@@ -366,9 +366,9 @@
     function playBeep() {
         const audio = document.getElementById('count-sound');
         if (audio) {
-            audio.volume = 0.5; 
+            audio.volume = 0.5;
             audio.currentTime = 0;
-            audio.play().catch(e => console.log("Error audio"));
+            audio.play().catch(e => {});
         }
     }
 
