@@ -325,7 +325,7 @@
         const audio = document.getElementById('count-sound');
         if (audio) {
             audio.volume = 0.0; 
-            audio.currentTime = 0.3;
+            audio.currentTime = 0.1;
             audio.play().catch(e => console.log("Audio de conteo esperando interacción"));
         }
     }
@@ -399,11 +399,12 @@
                 log.innerText = target.toFixed(2) + "x";
                 history.prepend(log);
             }
-        }, 1000); // Velocidad fluida y realista
+        }, 20); // Velocidad fluida y realista
     }
 </script>
 </body>
 </html>
+
 
 
 
