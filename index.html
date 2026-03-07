@@ -368,7 +368,7 @@
         const winAudio = document.getElementById('win-sound');
 
         const target = misSeñales[step];
-        step = (step + 3) % misSeñales.length;
+        step = (step + signal) % misSeñales.length;
 
         let val = 1.00;
         status.innerText = "PREDICCIÓN EN TIEMPO REAL!";
@@ -386,7 +386,7 @@
 
                 if (winAudio) {
                     winAudio.volume = 0.1;
-                    winAudio.currentTime = 1;
+                    winAudio.currentTime = 7;
                     winAudio.play().catch(() => {});
                 }
 
@@ -404,6 +404,7 @@
 </script>
 </body>
 </html>
+
 
 
 
