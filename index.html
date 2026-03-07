@@ -340,14 +340,14 @@
         document.getElementById('alert-icon').style.display = "none";
         progBar.style.strokeDashoffset = 440;
         
-        let count = 1;
+        let count = 3;
         status.innerText = "INICIANDO PREDICTOR...";
         display.innerText = count;
         playBeep();
 
         let timer = setInterval(() => {
             count--;
-            if (count >= 1) {
+            if (count >= 3) {
                 display.innerText = count;
                 playBeep();
             } else {
@@ -404,6 +404,7 @@
 </script>
 </body>
 </html>
+
 
 
 
