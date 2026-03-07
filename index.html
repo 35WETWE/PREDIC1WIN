@@ -69,7 +69,7 @@
             white-space: nowrap;
             animation: slideIn 0.3s ease-out;
         }
-        @keyframes slideIn { from { transform: translateX(-10px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideIn { from { transform: translateX(-20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
         .content {
             flex: 1;
@@ -214,7 +214,7 @@
 <div id="login-screen">
     <div class="login-box">
         <h2 style="color:var(--primary)">ＰＲＥＤＩＣＴＯＲ</h2>
-        <input id="user" type="text" placeholder="Usuario" class="login-input">
+        <input id="user" type="text" placeholder="Correo Electrónico" class="login-input">
         <input id="pass" type="password" placeholder="Contraseña" class="login-input">
         <button onclick="login()" class="next-btn" style="padding:10px;">INGRESAR</button>
         <p id="login-msg" style="color:red; font-size:12px;"></p>
@@ -230,7 +230,7 @@
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s">
         </div>
 
-        <div class="status-msg" id="status">OPRIME TU CASINO</div>
+        <div class="status-msg" id="status">¡ＯＰＲＩＭＥ ＴＵ ＣＡＳＩＮＯ！</div>
 
         <div class="prediction-area">
             <img id="alert-icon" src="https://images.icon-icons.com/461/PNG/96/money_43847.png">
@@ -242,7 +242,7 @@
         </div>
 
         <div style="width:100%">
-            <div style="font-size: 9px; font-weight: 800; text-align: center; color: #333; margin-bottom: 5px;">SELECCIONA TU CASINO</div>
+            <div style="font-size: 10px; font-weight: 800; text-align: center; color: #333; margin-bottom: 5px;">SELECCIONAR TU CASINO PARA PREDECIR</div>
             <div class="casino-grid">
                 <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
                 <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156718063-9d7f327c-3f38-4c54-a4af-8b6902096337.png"></div>
@@ -255,13 +255,13 @@
                 <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157291495-d6069e42-b827-4bc1-add5-4e7fb9a90656.jpg"></div>
                 <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157380024-78169a5a-68bd-4a96-b234-d773ddd3cff5.png"></div>
             </div>
-            <button class="next-btn" id="btn" onclick="runSequence()" disabled>SIGUIENTE RONDA</button>
+            <button class="next-btn" id="btn" onclick="runSequence()" disabled>Siguiente Ronda</button>
         </div>
     </div>
 
     <div class="security-footer">
-        <img src="https://images.icon-icons.com/2232/PNG/96/telegram_logo_icon_134592.png" style="width: 14px;">
-        <span>ＰＲＥＤＩＣＴＯＲ ＶＩＰ</span>
+        <img src="https://images.icon-icons.com/2232/PNG/96/telegram_logo_icon_134592.png" style="width: 16px;">
+        <span>ＰＲＥＤＩＣＴＯＲ １ＷＩＮ</span>
     </div>
 </div>
 
@@ -276,7 +276,7 @@
            document.getElementById("pass").value === PASS_CORRECTA){
             document.getElementById("login-screen").style.display = "none";
         } else {
-            document.getElementById("login-msg").innerText = "Error de acceso";
+            document.getElementById("login-msg").innerText = "Usuario o contraseña incorrectos";
         }
     }
 
@@ -284,7 +284,7 @@
         document.querySelectorAll('.casino-btn').forEach(b => b.classList.remove('selected'));
         el.classList.add('selected');
         document.getElementById('btn').disabled = false;
-        document.getElementById('status').innerText = "VINCULADO";
+        document.getElementById('status').innerText = "VINCULACIÓN EXITOSA";
     }
 
     function runSequence() {
@@ -297,9 +297,8 @@
         document.getElementById('alert-icon').style.display = "none";
         progBar.style.strokeDashoffset = 440;
         
-        // Conteo rápido de 0.3s para que sea ágil pero se vea
         let count = 3;
-        status.innerText = "BUSCANDO...";
+        status.innerText = "INICIANDO PREDICTOR...";
         
         let timer = setInterval(() => {
             display.innerText = count;
@@ -308,7 +307,7 @@
                 startAnalysis();
             }
             count--;
-        }, 300); 
+        }, 200); 
     }
 
     function startAnalysis() {
@@ -324,10 +323,10 @@
         step = (step + 1) % misSeñales.length;
 
         let val = 1.00;
-        status.innerText = "PROCESANDO...";
+        status.innerText = "PREDICCIÓN EN TIEMPO REAL!";
 
         let loop = setInterval(() => {
-            val += 0.05; // Velocidad equilibrada para que no falle el navegador
+            val += 0.12; 
             display.innerText = val.toFixed(2) + "x";
 
             let p = (val - 1) / (target - 1);
@@ -337,19 +336,21 @@
             if (val >= target) {
                 clearInterval(loop);
                 display.innerText = target.toFixed(2) + "x";
-                status.innerText = "¡LISTO!";
+                status.innerText = "¡PREDICCIÓN COMPLETADA!";
                 alertImg.style.display = "block";
                 btn.disabled = false;
 
+                // Forzar que suene SIEMPRE al final de cada ronda
+                winAudio.pause();
                 winAudio.currentTime = 0;
-                winAudio.play().catch(() => {});
+                winAudio.play().catch(e => console.log("Error de audio:", e));
 
                 const log = document.createElement('div');
                 log.className = 'payout-tag';
                 log.innerText = target.toFixed(2) + "x";
                 history.prepend(log);
             }
-        }, 20); // 20ms es el punto dulce entre rapidez y estabilidad
+        }, 15); 
     }
 </script>
 </body>
