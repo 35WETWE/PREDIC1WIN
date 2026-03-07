@@ -24,24 +24,24 @@
             overflow: hidden;
         }
 
-        /* PANTALLA DE CARGA */
+        /* PANTALLA DE CARGA OBLIGATORIA */
         #loader-screen {
             position: fixed;
             inset: 0;
             background: #000;
-            display: none;
+            display: none; /* Se activa con JS */
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 10000;
+            z-index: 10001;
         }
         .loader-img {
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            animation: rotate 2s linear infinite;
+            animation: spin 2s linear infinite;
         }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         
         .loader-text {
             color: white;
@@ -59,7 +59,7 @@
             background: var(--app-bg);
             position: relative;
             overflow: hidden;
-            display: flex;
+            display: none; /* OCULTO HASTA QUE TERMINE LA CARGA */
             flex-direction: column;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
@@ -218,7 +218,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
+            z-index: 10000;
         }
         .login-box {
             width: 90%;
@@ -243,7 +243,7 @@
 
 <div id="loader-screen">
     <img class="loader-img" src="https://media.istockphoto.com/id/1842732901/vector/loading-icon.jpg?b=1&s=170x170&k=20&c=nzH0ZjZJIXBdB0lLu6s3nxAX6E88BxUzzsd6s_Tz1hI=">
-    <div class="loader-text">SINCRONIZANDO SERVIDOR...</div>
+    <div class="loader-text">ESTABLECIENDO CONEXIÓN SEGURA...</div>
 </div>
 
 <div id="login-screen">
@@ -252,12 +252,12 @@
         <h2 style="color:var(--primary)">ＰＲＥＤＩＣＴＯＲ</h2>
         <input id="user" type="text" placeholder="Correo Electrónico" class="login-input">
         <input id="pass" type="password" placeholder="Contraseña" class="login-input">
-        <button onclick="login()" class="next-btn" style="padding:10px;">INGRESAR</button>
+        <button onclick="iniciarLogin()" class="next-btn" style="padding:10px;">INGRESAR</button>
         <p id="login-msg" style="color:red; font-size:12px;"></p>
     </div>
 </div>
 
-<div class="main-container">
+<div class="main-container" id="app">
     <div class="app-header">ＡＶＩＡＴＯＲ ＰＲＥＤＩＣＴＯＲ</div>
     <div class="history-bar" id="historyBar"></div>
 
@@ -307,16 +307,23 @@
     const misSeñales = [2.00, 1.51, 1.33, 4.41, 2.90, 1.05];
     let step = 0;
 
-    function login(){
+    function iniciarLogin(){
         const user = document.getElementById("user").value;
         const pass = document.getElementById("pass").value;
+        const loginScreen = document.getElementById("login-screen");
+        const loader = document.getElementById("loader-screen");
+        const app = document.getElementById("app");
+
         if(user === USER_CORRECTO && pass === PASS_CORRECTA){
-            document.getElementById("login-screen").style.display = "none";
-            document.getElementById("loader-screen").style.display = "flex";
+            // 1. Ocultar Login
+            loginScreen.style.display = "none";
+            // 2. Mostrar Loader
+            loader.style.display = "flex";
             
-            // CARGA DE 3 SEGUNDOS
+            // 3. ESPERAR 3 SEGUNDOS OBLIGATORIOS
             setTimeout(() => {
-                document.getElementById("loader-screen").style.display = "none";
+                loader.style.display = "none";
+                app.style.display = "flex";
             }, 3000);
             
         } else {
@@ -384,7 +391,6 @@
                 alertImg.style.display = "block";
                 btn.disabled = false;
 
-                // SONIDO EN CADA RONDA
                 winAudio.currentTime = 0;
                 winAudio.play().catch(() => {});
 
