@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ＰＲＥＤＩＣＴＯＲ</title>
+    <title>ＰＲＥＤＩＣＴＯＲ ⚡️ FAST</title>
     <style>
         :root {
             --primary: #E7180B;
@@ -67,7 +67,7 @@
             border: 2px solid #000;
             color: var(--primary);
             white-space: nowrap;
-            animation: slideIn 1.0s ease-out;
+            animation: slideIn 0.3s ease-out;
         }
         @keyframes slideIn { from { transform: translateX(-20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
@@ -98,8 +98,8 @@
 
         .prediction-area {
             position: relative;
-            width: 140px;
-            height: 140px;
+            width: 160px;
+            height: 160px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -113,9 +113,9 @@
             display: none;
             z-index: 50;
             filter: drop-shadow(0 0 15px rgba(231, 24, 11, 0.9));
-            animation: warningPulse 0.5s infinite alternate;
+            animation: warningPulse 0.4s infinite alternate;
         }
-        @keyframes warningPulse { from { transform: scale(1); } to { transform: scale(1.1); } }
+        @keyframes warningPulse { from { transform: scale(1); } to { transform: scale(1.15); } }
 
         .progress-ring { transform: rotate(-90deg); width: 160px; height: 160px; }
         .progress-ring__bg { stroke: #f0f0f0; stroke-width: 10; fill: transparent; r: 70; cx: 80; cy: 80; }
@@ -127,13 +127,13 @@
             r: 70; cx: 80; cy: 80;
             stroke-dasharray: 440;
             stroke-dashoffset: 440;
-            transition: stroke-dashoffset 0.1s linear;
+            transition: stroke-dashoffset 0.05s linear;
         }
 
         #result-display {
             position: absolute;
             font-size: 34px;
-            font-weight: 740;
+            font-weight: 800;
             color: var(--primary);
         }
 
@@ -154,7 +154,7 @@
             align-items: center;
             justify-content: center;
             background: #DAB2FF;
-            transition: 0.5s;
+            transition: 0.2s;
             overflow: hidden;
             padding: 4px;
         }
@@ -244,7 +244,7 @@
 <div id="login-screen">
     <div class="login-box">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" style="width:140px; margin-bottom:15px;">
-        <h2 style="color:var(--primary)">ＰＲＥＤＩＣＴＯＲ </h2>
+        <h2 style="color:var(--primary)">ＰＲＥＤＩＣＴＯＲ ⚡️</h2>
         <input id="user" type="text" placeholder="Correo Electrónico" class="login-input">
         <input id="pass" type="password" placeholder="Contraseña" class="login-input">
         <button onclick="login()" class="login-btn">INGRESAR</button>
@@ -299,8 +299,8 @@
 <script>
     const USER_CORRECTO = "12345678";
     const PASS_CORRECTA = "283212345678";
-    const misSeñales = [4.00, 1.02, 3.12, 2.12, 7.01, 1.09];
-    let step = 1;
+    const misSeñales = [4.00, 1.02, 3.12, 2.12, 7.01, 1.09, 3.55, 1.90, 6.20];
+    let step = 0;
 
     function login(){
         const user = document.getElementById("user").value;
@@ -324,9 +324,9 @@
     function playBeep() {
         const audio = document.getElementById('count-sound');
         if (audio) {
-            audio.volume = 0.0; 
-            audio.currentTime = 7;
-            audio.play().catch(e => console.log("Audio de conteo esperando interacción"));
+            audio.volume = 0.4;
+            audio.currentTime = 0;
+            audio.play().catch(e => {});
         }
     }
 
@@ -341,21 +341,20 @@
         progBar.style.strokeDashoffset = 440;
         
         let count = 3;
-        status.innerText = "INICIANDO PREDICTOR...";
+        status.innerText = "ESCANEO RÁPIDO...";
         display.innerText = count;
         playBeep();
 
         let timer = setInterval(() => {
             count--;
-            if (count >= 3) {
+            if (count >= 1) {
                 display.innerText = count;
                 playBeep();
             } else {
                 clearInterval(timer);
-                // Inicia la animación del multiplicador
                 startAnalysis();
             }
-        }, 1000); // 1 segundo exacto entre números
+        }, 300); // Conteo regresivo más rápido (300ms en vez de 1s)
     }
 
     function startAnalysis() {
@@ -368,16 +367,19 @@
         const winAudio = document.getElementById('win-sound');
 
         const target = misSeñales[step];
-        step = (step + 3) % misSeñales.length;
+        step = (step + 1) % misSeñales.length;
 
         let val = 1.00;
-        status.innerText = "PREDICCIÓN EN TIEMPO REAL!";
+        status.innerText = "PROCESANDO SEÑAL...";
 
+        // AJUSTE DE VELOCIDAD:
+        // setInterval a 10ms y val += 0.1 hace que suba volando
         let loop = setInterval(() => {
-            val += 0.01;
+            val += 0.15; 
             display.innerText = val.toFixed(2) + "x";
 
             let p = (val - 1) / (target - 1);
+            if(p > 1) p = 1;
             progBar.style.strokeDashoffset = 440 - (p * 440); 
 
             if (val >= target) {
@@ -385,13 +387,13 @@
                 display.innerText = target.toFixed(2) + "x";
 
                 if (winAudio) {
-                    winAudio.volume = 0.1;
-                    winAudio.currentTime = 7;
+                    winAudio.volume = 0.5;
+                    winAudio.currentTime = 0;
                     winAudio.play().catch(() => {});
                 }
 
                 alertImg.style.display = "block";
-                status.innerText = "¡PREDICCIÓN COMPLETADA!";
+                status.innerText = "¡LISTO!";
                 btn.disabled = false;
 
                 const log = document.createElement('div');
@@ -399,9 +401,8 @@
                 log.innerText = target.toFixed(2) + "x";
                 history.prepend(log);
             }
-        }, 1000000000000000000); // Velocidad fluida y realista
+        }, 15); // Solo 15 milisegundos entre cada actualización
     }
 </script>
 </body>
 </html>
-
