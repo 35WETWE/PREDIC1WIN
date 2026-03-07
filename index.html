@@ -23,7 +23,7 @@
             min-height: 100vh;
         }
 
-        /* PANTALLA DE CARGA - SOLO TU IMAGEN NUEVA */
+        /* PANTALLA DE CARGA - SPINNER AZUL */
         #loader-screen {
             position: fixed;
             inset: 0;
@@ -57,7 +57,7 @@
             background: var(--app-bg);
             position: relative;
             overflow: hidden;
-            display: none; /* Se activa tras login y carga */
+            display: none; 
             flex-direction: column;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
@@ -265,7 +265,6 @@
 </head>
 <body>
 
-<audio id="count-sound" src="https://assets.mixkit.co/active_storage/sfx/916/916-preview.mp3" preload="auto"></audio>
 <audio id="win-sound" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3" preload="auto"></audio>
 
 <div id="loader-screen">
@@ -363,15 +362,6 @@
         document.getElementById('status').innerText = "VINCULACIÓN EXITOSA";
     }
 
-    function playBeep() {
-        const audio = document.getElementById('count-sound');
-        if (audio) {
-            audio.volume = 0.5;
-            audio.currentTime = 0;
-            audio.play().catch(e => {});
-        }
-    }
-
     function runSequence() {
         const display = document.getElementById('result-display');
         const btn = document.getElementById('btn');
@@ -385,13 +375,11 @@
         let count = 3;
         status.innerText = "INICIANDO PREDICTOR...";
         display.innerText = count;
-        playBeep();
 
         let timer = setInterval(() => {
             count--;
             if (count >= 1) {
                 display.innerText = count;
-                playBeep();
             } else {
                 clearInterval(timer);
                 startAnalysis();
