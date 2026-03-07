@@ -67,9 +67,9 @@
             border: 2px solid #000;
             color: var(--primary);
             white-space: nowrap;
-            animation: slideIn 0.2s ease-out;
+            animation: slideIn 0.3s ease-out;
         }
-        @keyframes slideIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes slideIn { from { transform: translateX(-10px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
         .content {
             flex: 1;
@@ -82,10 +82,7 @@
             overflow-y: auto;
         }
 
-        .logo-box img {
-            width: 135px;
-            height: auto;
-        }
+        .logo-box img { width: 135px; height: auto; }
 
         .status-msg {
             font-size: 11px;
@@ -112,8 +109,7 @@
             top: -15px;
             display: none;
             z-index: 50;
-            filter: drop-shadow(0 0 15px rgba(231, 24, 11, 0.9));
-            animation: warningPulse 0.3s infinite alternate;
+            animation: warningPulse 0.5s infinite alternate;
         }
         @keyframes warningPulse { from { transform: scale(1); } to { transform: scale(1.1); } }
 
@@ -127,7 +123,7 @@
             r: 70; cx: 80; cy: 80;
             stroke-dasharray: 440;
             stroke-dashoffset: 440;
-            transition: stroke-dashoffset 0.05s linear;
+            transition: stroke-dashoffset 0.1s linear;
         }
 
         #result-display {
@@ -150,21 +146,12 @@
             border: 2px solid #eee;
             border-radius: 8px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             background: #DAB2FF;
             transition: 0.2s;
-            overflow: hidden;
             padding: 4px;
         }
         .casino-btn img { width: 100%; height: 100%; object-fit: contain; }
-        .casino-btn.selected {
-            border-color: #000;
-            background: #b184f5;
-            transform: scale(1.05);
-            border-width: 3px;
-        }
+        .casino-btn.selected { border-color: #000; background: #b184f5; transform: scale(1.05); border-width: 3px; }
 
         .next-btn {
             background: var(--primary);
@@ -177,7 +164,6 @@
             border-radius: 15px;
             cursor: pointer;
             box-shadow: 0 5px 0 #b30000;
-            transition: 0.1s;
             text-transform: uppercase;
         }
         .next-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #b30000; }
@@ -193,46 +179,31 @@
             font-weight: 740;
             color: var(--primary);
             background: #f9f9f9;
-            border-top: 1px solid #eee;
         }
 
         #login-screen {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: linear-gradient(160deg,#000,#1a1a1a);
+            inset: 0;
+            background: #000;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            padding: 20px;
         }
         .login-box {
-            width: 100%;
+            width: 90%;
             max-width: 350px;
             background: white;
-            padding: 40px 30px;
+            padding: 30px;
             border-radius: 25px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
         }
         .login-input {
             width: 100%;
             padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 10px;
+            margin-bottom: 10px;
             border: 2px solid var(--primary);
-            font-size: 16px;
-        }
-        .login-btn {
-            width: 100%;
-            padding: 15px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 740;
-            cursor: pointer;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -242,12 +213,11 @@
 
 <div id="login-screen">
     <div class="login-box">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" style="width:140px; margin-bottom:15px;">
         <h2 style="color:var(--primary)">ＰＲＥＤＩＣＴＯＲ</h2>
-        <input id="user" type="text" placeholder="Correo Electronico" class="login-input">
+        <input id="user" type="text" placeholder="Usuario" class="login-input">
         <input id="pass" type="password" placeholder="Contraseña" class="login-input">
-        <button onclick="login()" class="login-btn">INGRESAR</button>
-        <p id="login-msg" style="color:red; font-size:12px; margin-top:10px;"></p>
+        <button onclick="login()" class="next-btn" style="padding:10px;">INGRESAR</button>
+        <p id="login-msg" style="color:red; font-size:12px;"></p>
     </div>
 </div>
 
@@ -271,8 +241,8 @@
             <div id="result-display">1.00x</div>
         </div>
 
-        <div class="casino-selection-zone">
-            <div style="font-size: 10px; font-weight: 800; text-align: center; color: #333; margin-bottom: 5px;">SELECCIONAR TU CASINO PARA PREDECIR</div>
+        <div style="width:100%">
+            <div style="font-size: 9px; font-weight: 800; text-align: center; color: #333; margin-bottom: 5px;">SELECCIONA TU CASINO</div>
             <div class="casino-grid">
                 <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
                 <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156718063-9d7f327c-3f38-4c54-a4af-8b6902096337.png"></div>
@@ -290,7 +260,7 @@
     </div>
 
     <div class="security-footer">
-        <img src="https://images.icon-icons.com/2232/PNG/96/telegram_logo_icon_134592.png" style="width: 16px;">
+        <img src="https://images.icon-icons.com/2232/PNG/96/telegram_logo_icon_134592.png" style="width: 14px;">
         <span>ＰＲＥＤＩＣＴＯＲ ＶＩＰ</span>
     </div>
 </div>
@@ -298,17 +268,15 @@
 <script>
     const USER_CORRECTO = "12345678";
     const PASS_CORRECTA = "283212345678";
-    const misSeñales = [2.00, 1.51, 1.33, 4.41, 2.90, 1.05, 3.15, 6.20];
+    const misSeñales = [2.00, 1.51, 1.33, 4.41, 2.90, 1.05];
     let step = 0;
 
     function login(){
-        const user = document.getElementById("user").value;
-        const pass = document.getElementById("pass").value;
-        const msg = document.getElementById("login-msg");
-        if(user === USER_CORRECTO && pass === PASS_CORRECTA){
+        if(document.getElementById("user").value === USER_CORRECTO && 
+           document.getElementById("pass").value === PASS_CORRECTA){
             document.getElementById("login-screen").style.display = "none";
         } else {
-            msg.innerText = "Datos incorrectos";
+            document.getElementById("login-msg").innerText = "Error de acceso";
         }
     }
 
@@ -329,9 +297,9 @@
         document.getElementById('alert-icon').style.display = "none";
         progBar.style.strokeDashoffset = 440;
         
-        // Conteo rápido (sin sonido de titileo)
+        // Conteo rápido de 0.3s para que sea ágil pero se vea
         let count = 3;
-        status.innerText = "ANALIZANDO...";
+        status.innerText = "BUSCANDO...";
         
         let timer = setInterval(() => {
             display.innerText = count;
@@ -340,7 +308,7 @@
                 startAnalysis();
             }
             count--;
-        }, 150); 
+        }, 300); 
     }
 
     function startAnalysis() {
@@ -359,7 +327,7 @@
         status.innerText = "PROCESANDO...";
 
         let loop = setInterval(() => {
-            val += 0.20; // Incremento ultra rápido
+            val += 0.05; // Velocidad equilibrada para que no falle el navegador
             display.innerText = val.toFixed(2) + "x";
 
             let p = (val - 1) / (target - 1);
@@ -369,22 +337,19 @@
             if (val >= target) {
                 clearInterval(loop);
                 display.innerText = target.toFixed(2) + "x";
-                status.innerText = "PREDICCIÓN LISTA";
+                status.innerText = "¡LISTO!";
                 alertImg.style.display = "block";
                 btn.disabled = false;
 
-                // Solo suena al final
-                if(winAudio) {
-                    winAudio.currentTime = 0;
-                    winAudio.play().catch(() => {});
-                }
+                winAudio.currentTime = 0;
+                winAudio.play().catch(() => {});
 
                 const log = document.createElement('div');
                 log.className = 'payout-tag';
                 log.innerText = target.toFixed(2) + "x";
                 history.prepend(log);
             }
-        }, 10); // Loop de 10ms
+        }, 20); // 20ms es el punto dulce entre rapidez y estabilidad
     }
 </script>
 </body>
