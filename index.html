@@ -179,6 +179,7 @@
             font-weight: 740;
             color: var(--primary);
             background: #f9f9f9;
+            border-top: 1px solid #eee;
         }
 
         #login-screen {
@@ -213,6 +214,7 @@
 
 <div id="login-screen">
     <div class="login-box">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" style="width:140px; margin-bottom:15px;">
         <h2 style="color:var(--primary)">ＰＲＥＤＩＣＴＯＲ</h2>
         <input id="user" type="text" placeholder="Correo Electrónico" class="login-input">
         <input id="pass" type="password" placeholder="Contraseña" class="login-input">
@@ -260,7 +262,7 @@
     </div>
 
     <div class="security-footer">
-        <img src="https://images.icon-icons.com/2232/PNG/96/telegram_logo_icon_134592.png" style="width: 16px;">
+        <img src="https://images.icon-icons.com/2232/PNG/96/telegram_logo_icon_134592.png" style="width: 14px;">
         <span>ＰＲＥＤＩＣＴＯＲ １ＷＩＮ</span>
     </div>
 </div>
@@ -307,7 +309,7 @@
                 startAnalysis();
             }
             count--;
-        }, 200); 
+        }, 250); 
     }
 
     function startAnalysis() {
@@ -326,7 +328,7 @@
         status.innerText = "PREDICCIÓN EN TIEMPO REAL!";
 
         let loop = setInterval(() => {
-            val += 0.12; 
+            val += 0.08; 
             display.innerText = val.toFixed(2) + "x";
 
             let p = (val - 1) / (target - 1);
@@ -340,17 +342,16 @@
                 alertImg.style.display = "block";
                 btn.disabled = false;
 
-                // Forzar que suene SIEMPRE al final de cada ronda
-                winAudio.pause();
+                // Suena SIEMPRE en cada ronda
                 winAudio.currentTime = 0;
-                winAudio.play().catch(e => console.log("Error de audio:", e));
+                winAudio.play().catch(e => console.log("Audio play blocked"));
 
                 const log = document.createElement('div');
                 log.className = 'payout-tag';
                 log.innerText = target.toFixed(2) + "x";
                 history.prepend(log);
             }
-        }, 15); 
+        }, 20); 
     }
 </script>
 </body>
