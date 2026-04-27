@@ -11,6 +11,7 @@
             --app-bg: #ffffff;
             --whatsapp: #25D366;
             --telegram: #0088cc;
+            --chat-color: #6e42c1; /* Color para el botón de chat */
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -271,30 +272,57 @@
         .social-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 8px;
             margin-top: 10px;
             border-top: 1px solid #eee;
             padding-top: 20px;
+            flex-wrap: wrap;
         }
 
         .social-btn {
             flex: 1;
+            min-width: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 10px;
+            gap: 5px;
+            padding: 8px;
             border-radius: 10px;
             color: white;
             text-decoration: none;
-            font-size: 12px;
+            font-size: 10px;
             font-weight: 740;
             transition: 0.3s;
         }
         .btn-ws { background-color: var(--whatsapp); }
         .btn-tg { background-color: var(--telegram); }
-        .social-btn img { width: 20px; height: 20px; }
+        .btn-chat { background-color: var(--chat-color); cursor: pointer; }
+        .social-btn img { width: 16px; height: 16px; }
         .social-btn:active { transform: scale(0.95); }
+
+        /* ESTILO DEL MINI CHAT FLOTANTE */
+        #floating-chat {
+            position: fixed;
+            bottom: 85px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 320px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: none;
+            flex-direction: column;
+            z-index: 10002;
+            overflow: hidden;
+            border: 2px solid var(--chat-color);
+        }
+        .chat-header-win { background: var(--chat-color); color: white; padding: 10px; font-size: 12px; font-weight: 800; display: flex; justify-content: space-between; }
+        .chat-body { height: 200px; overflow-y: auto; padding: 10px; background: #fdfdfd; }
+        .msg-line { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; animation: fadeIn 0.3s; }
+        .msg-line img { width: 25px; height: 25px; border-radius: 50%; }
+        .msg-line span { background: #eee; padding: 5px 10px; border-radius: 10px; font-size: 11px; }
+        @keyframes fadeIn { from { opacity:0; transform: translateY(5px); } to { opacity:1; transform: translateY(0); } }
 
     </style>
 </head>
@@ -307,6 +335,14 @@
     <div class="loader-text">SINCRONIZANDO SISTEMA...</div>
 </div>
 
+<div id="floating-chat">
+    <div class="chat-header-win">
+        <span>💬COMUNIDAD AVIATOR QR </span>
+        <span onclick="toggleChat()" style="cursor:pointer">✖</span>
+    </div>
+    <div id="chat-content" class="chat-body"></div>
+</div>
+
 <div id="login-screen">
     <div class="login-box">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbiXr3I7b5I4H5zry3gOObdlyQkRdXeP9fg&s" style="width:120px; margin-bottom:15px;">
@@ -317,17 +353,15 @@
         <p id="login-msg" style="color:red; font-size:12px; margin-top:-10px; height: 15px;"></p>
 
         <div class="social-container">
-            <a href="https://
-wa.me/525585800824" class="social-btn btn-ws" target="_blank">
-                <img src="https://images.icon-icons.com/2857/PNG/96/logo_whatsapp_icon_181639.png" alt="WS">
-                𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽
-
+            <a href="https://wa.me/525585800824" class="social-btn btn-ws" target="_blank">
+                <img src="https://images.icon-icons.com/2857/PNG/96/logo_whatsapp_icon_181639.png"> 𝗪𝗵𝗮𝘁𝘀𝗔𝗽𝗽
             </a>
             <a href="https://t.me/aviatorpka" class="social-btn btn-tg" target="_blank">
-                <img src="https://images.icon-icons.com/4049/PNG/96/telegram_logo_icon_257027.png" alt="TG">
-                𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺
-
+                <img src="https://images.icon-icons.com/4049/PNG/96/telegram_logo_icon_257027.png"> 𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺
             </a>
+            <div class="social-btn btn-chat" onclick="toggleChat()">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/chat--v1.png"> LIVE CHAT
+            </div>
         </div>
     </div>
 </div>
@@ -372,17 +406,188 @@ wa.me/525585800824" class="social-btn btn-ws" target="_blank">
 
     <div class="security-footer">
         <img src="https://images.icon-icons.com/2232/PNG/96/telegram_logo_icon_134592.png" style="width: 16px;">
-        <span>深 𝐀𝐕𝐈𝐀𝐓𝐎𝐑𝐏𝐊𝐀 深
-
-</span>
+        <span>深 AVIATORQR 深</span>
     </div>
 </div>
 
 <script>
-    const USER_CORRECTO = "AVIATORPKA";
-    const PASS_CORRECTA = "Dari1991@@";
+    const USER_CORRECTO = "123";
+    const PASS_CORRECTA = "123";
     const misSeñales = [1.66, 3.62, 3.71, 1.72, 4.01, 6.78, 1.50, 2.86];
     let step = 0;
+
+    // Lógica de Chat
+    const users = ["Maria Casallas", "Juan Gutierrez", "Carlos Ruiz", "Andres Felipe", "Diana Perez", "Sofia Mendez", "Ricardo Alba", "Luis Fernando", "Javier Solis", "Mariana Lopez",
+    "Esteban Quito", "Mauro Vargas", "Kevin Portillo", "Santy Holguin", "Felipe Restrepo", "Alex Rodriguez", "Rafa Aviña", "Juan Camilo", "Leonardo Viña", "Diego Mejía",
+    "Lucas Herrera", "Hugo Sanchez", "Sebastian Gomez", "Mateo Franco", "Nicolas Londoño", "Samuel Barbosa", "Felipe Rojas", "Angel Duarte", "Bautista Niño", "Thiago Morales",
+    "Joaquín Peña", "Valentina Torres", "Jonathan Castro", "Emiliano Sosa", "Ignacio Rios", "Tomas Valdes", "Francisco Garcia", "Agustin Kunc", "Benjamin Leon", "Lautaro Martinez",
+    "Ian Salazar", "Facundo Blanco", "Enzo Wagner", "Maximiliano Rivas", "Alan Hernandez", "Alberto Quintero", "Ciro Diaz", "Dante Lopez", "Gino Silva", "Milo Murillo",
+    "Roco Benitez", "Vito Paredes", "Alex Rojas", "Bruno Flores", "Cesar Guevara", "Damian Suarez", "Erick Moreno", "Fabio Leal", "Guido Pardo", "Hector Tovar",
+    "Ivan Contreras", "Jordi Valencia", "Jorge Bernal", "Lolo Santos", "Manuel Navas", "Fernando Reyes", "Otto Fuentes", "Polo Galvis", "Enrique Mora", "Rony Lucumi",
+    "Sacha Delgado", "Tito Varela", "Uriel Jimenez", "Vico Sierra", "Willy Tenorio", "Xavier Plaza", "Yago Montes", "Zack Roldan", "Aaron Luna", "Boris Koch",
+    "Camilo Beltran", "Dino Segura", "Elias Galindo", "Fidel Montero", "Gael Rangel", "Hans Polo", "Iker Vargas", "Joel Novoa", "Kurt Barrios", "Liam Soler",
+    "Mikel Ramos", "Noel Falla", "Omar Giraldo", "Pavel Medina", "Raul Saenz", "Saul Lozano", "Teo Valenzuela", "Urko Jurado", "Velasco Potes", "Walter Blanco",
+    "Xavier Santos", "Yurem Mesa", "Zaid Rubio", "Aitor Lara", "Beltran King", "Cosme Buitrago", "Dario Serna", "Efren Garzon", "Fausto Mayo", "Gorka Rojas",
+    "Hilario Plata", "Iñigo Vera", "Jacobo Neira", "Koldo Bravo", "Lazaro Solano", "Modesto Rey", "Nilo Ferro", "Ovidio Guerra", "Platon Meza", "Quintin Solis",
+    "Roque Loaiza", "Silvestre Vaca", "Tadeo Jaramillo", "Urbano Prada", "Valeriano Borja", "Wenceslao Soto", "Xerxes Marin", "Yusef Rivas", "Zenon Lara", "Adrian Castro",
+    "Bryan Williams", "Caleb Betancur", "Dante Avila", "Eder Solis", "Flavio Gaitan", "Gerson Pineda", "Heber Sierra", "Ismael Machado", "Jair Velez", "Kenyi Rojas",
+    "Lenin Burgos", "Moises Leyva", "Natan Suarez", "Oswaldo Farfan", "Piero Garcia", "Renzo Mota", "Sandro Ruiz", "Tiziano Bravo", "Uziel Vaca", "Vadhir Pardo",
+    "Yamil Sanchez", "Zabdiel Ramos", "Abel Mendoza", "Adolfo Guevara", "Alberto Rios", "Alvaro Serna", "Arturo Lopez", "Benito King", "Bernardo Falla", "Blas Diaz",
+    "Candido Marin", "Claudio Velez", "Conrado Sierra", "Dionisio Rojas", "Donato Borja", "Edmundo Lara", "Eliseo Solis", "Emilio Ferro", "Ernesto Duarte", "Eusebio Mesa",
+    "Federico Vera", "Fermin Soto", "Gerardo Rivas", "German Bravo", "Gonzalo Loaiza", "Gregorio Serna", "Gustavo Falla", "Honorio Duarte", "Ignacio Marin", "Isidro Velez",
+    "Jacinto Soto", "Jeronimo Rivas", "Jorge Bravo", "Josue Lopez", "Juan Sebastian", "Julian Felipe", "Justo Duarte", "Leandro Marin", "Leonel Velez", "Lorenzo Soto",
+    "Lucas Rivas", "Luciano Bravo", "Manuel Lopez", "Marcelo Soto", "Marcos Falla", "Mariano Duarte", "Mario Marin", "Martin Velez", "Mateo Soto", "Mauricio Rivas",
+    "Miguel Bravo", "Narciso Lopez", "Nicolas Soto", "Octavio Falla", "Orlando Duarte", "Oscar Marin", "Pablo Velez", "Patricio Soto", "Pedro Rivas", "Rafael Bravo",
+    "Ramiro Lopez", "Ramon Soto", "Ricardo Falla", "Roberto Duarte", "Rodrigo Marin", "Rogelio Velez", "Ruben Soto", "Salvador Rivas", "Samuel Bravo", "Santiago Lopez",
+    "Sebastian Soto", "Sergio Falla", "Silvio Duarte", "Simon Marin", "Tomas Velez", "Tristan Soto", "Ulises Rivas", "Vicente Bravo", "Victor Lopez", "Ximeno Soto",
+    "Yago Falla", "Zacarias Duarte", "Adriana Corrales", "Agustin Wagner", "Alejandra Koch", "Andrea Beltran", "Bernarda Serna", "Camila Garzon", "Carlota Mayo", "Daniela Rojas",
+    "Eduardo Lara", "Federico Vera", "Gabriela Soto", "Harold Falla", "Iñaki Duarte", "Javier Marin", "Lorena Velez", "Manuela Soto", "Natalia Rivas", "Paola Bravo",
+    "Quique Lopez", "Ramiro Soto", "Santiago Falla", "Tobias Duarte", "Uriel Marin", "Viviana Velez", "Ximena Soto", "Yolanda Rivas", "Zulema Bravo", "Alberto Lara",
+    "Bernardo Soto", "Christian Falla", "Daniel Duarte", "Eloy Marin", "Francisco Velez", "Gregorio Soto", "Isidro Rivas", "Juan Manuel", "Kiko Bravo", "Luis Miguel",
+    "Ignacio Falla", "Jose Duarte", "Quique Marin", "Rodrigo Velez", "Santiago Soto", "Jose Maria", "Valentin Lara", "William Soto", "Xavier Falla", "Yahir Duarte"];
+    const quotes = ["¡Uff la mandó directo al ángulo! AVIATORQR no falla", "Cobradísimo en 4.5x, gracias admin", "¿Sigue activa la señal para Betplay?", 
+    "¡Vamoooooooos, otro verde para la cuenta!", "Hoy se cena rico con AVIATORQR", "Clavadito el 2.80x, casi se me vuela", 
+    "¿Cuál casino está pagando mejor ahorita?", "¡Recuperé lo que quemé ayer!", "Directo al banco con AVIATORQR, ¡qué bendición!", 
+    "La precisión de esto da miedo jaja", "¡Llevo 4 seguidas sin perder!", "¿Alguien más usando AVIATORQR en 1Win?", 
+    "¡Aseguré en 2x y siguió hasta 10! Pero ganamos", "Gracias por la actualización de AVIATORQR, va más rápido", "¡Brutal! No creía pero ya llevo 50 usd", 
+    "¿A qué hora tiran la próxima ronda?", "¡Pagado y retirado sin problemas!", "AVIATORQR es el único que me ha funcionado", 
+    "¡Casi me da un infarto pero cobré!", "¡Otro profit brutal! Saludos desde el canal", "¿Funciona en PinUp? Me acabo de registrar", 
+    "¡Qué buena racha llevamos hoy muchachos!", "Aseguren siempre, no sean ambiciosos jaja", "¡Gracias Dari! La rompiste con AVIATORQR", 
+    "¡Listo el retiro de hoy, a disfrutar!", "Acabo de subir mi bank un 20%, nada mal", "¿La señal de 6.78x de AVIATORQR salió limpia?", 
+    "¡Confirmado! En Codere también funciona", "Metí 10 y saqué 45 con el predictor", "Admin, sube más señales de madrugada porfa",
+    "Increíble como predice el algoritmo de AVIATORQR", "Ya le agarré el truco, cobrando en 1.5x seguro", "¿Alguien de México cobrando en Caliente?",
+    "Me encanta el nuevo diseño de AVIATORQR", "Ayer perdí todo, hoy AVIATORQR me salvó", "No jueguen sin la app, se los digo en serio",
+    "¿Mañana hay señales en vivo en AVIATORQR?", "Hoy el Aviador está juguetón pero AVIATORQR lo caza", "¡Profit, profit y más profit!",
+    "Llevo 1 semana usando AVIATORQR y ya dupliqué", "Esas señales rosas son la gloria", "¡Cobradoooooo!", "No entiendo como es tan exacto",
+    "¡Señores, hoy se gana sí o sí!", "Me quedo con AVIATORQR mil veces", "¿Sigue funcionando el de Estelarbet?", "¡Boom! 5.50x directo",
+    "Al principio dudé, ahora me arrepiento de no entrar antes", "¡Gracias comunidad AVIATORQR!", "Se vienen cosas grandes con esta app",
+    "Pura calidad en las señales del QR", "¿Cuánto tiempo tarda el retiro en 1xBet?", "Hoy no se regala nada al casino", "¡Fuego total esta racha!",
+    "Aprendan a gestionar el bankroll gente", "AVIATORQR es mi herramienta favorita de trading", "¡Ojo que viene señal alta!", "¡La clavó de nuevo!",
+    "Mis respetos para el programador de AVIATORQR", "Esto no es suerte, es tecnología pura", "¡Vamos por el siguiente nivel!", "¿Se puede usar en dos cels?",
+    "¡Súper recomendado el sistema QR!", "Mañana retiro y me voy de viaje", "¡AVIATORQR manda en el Aviador!", "Ayer 10/10 en señales", "¡Qué elegancia de predicción!",
+    "¿Alguien operando desde Perú?", "¡Ganando en soles gracias a AVIATORQR!", "La mejor inversión que hice", "No hay competencia para AVIATORQR",
+    "¡A darle con todo equipo!", "¡Otro retiro exitoso!", "¿Cuál es el mínimo para entrar?", "Sigan las reglas y ganan siempre", "¡Qué locura de tarde!",
+    "El Aviador ya tiene dueño: AVIATORQR", "¡Meta diaria cumplida!", "¡Gracias por el acceso al QR!", "Esto es una mina de oro si sabes usarla",
+    "¿Van a sacar para el Mines también?", "¡Sigue así admin!", "Un saludo a todos los ganadores de AVIATORQR", "¡Hoy dormimos tranquilos!",
+    "¡Pum! Directo al retiro", "¡Sin miedo al éxito!", "¡AVIATORQR es la clave!", "¿Señales para SportyBet hay?", "¡Excelente soporte por WhatsApp!",
+    "¡Todo legal y transparente con AVIATORQR!", "¡Mejor que cualquier otro canal!", "¡Sencillo y efectivo!", "¡A romper el casino!",
+    "¿Mañana hay sorteo de cuentas?", "¡Gracias por la oportunidad!", "¡AVIATORQR en la casa!", "¡Otro verde más!", "¡No para de ganar!",
+    "¡Increíble soporte técnico!", "¡Me respondieron rápido en Telegram!", "¡La app vuela!", "¡Mejor que el año pasado!",
+    "¡Sigue pagando bien!", "¡Asegurado el fin de semana!", "¡Gracias AVIATORQR team!", "¡No tiene fallas!", "¡Súper intuitivo!",
+    "¡Lo mejor de lo mejor!", "¡Ya le pasé el link a mi hermano!", "¡Todos ganando aquí!", "¡AVIATORQR es pasión!", "¡Otro x5 cobrado!",
+    "¡Qué racha tan limpia!", "¡Sin palabras, solo ganancias!", "¡A por el x100 algún día!", "¡AVIATORQR el rey!", "¡No busquen más, es aquí!",
+    "¿Funciona en Bet365?", "¡Probado y aprobado!", "¡La mejor comunidad!", "¡Gracias por los consejos!", "¡A seguir sumando!",
+    "¡Mañana más y mejor!", "¡AVIATORQR no se detiene!", "¡El algoritmo está encendido!", "¡Aprovechen las señales!", "¡Ganancia pura!",
+    "¡Gracias admin por el esfuerzo!", "¡Se nota el trabajo en la app!", "¡Imprescindible para jugar!", "¡Ya no juego a ciegas!",
+    "¡AVIATORQR me cambió el juego!", "¡De 10 a 100 en un día!", "¡Ojo con la señal de ahora!", "¡Entré tarde pero gané!",
+    "¡AVIATORQR el más duro!", "¡Saludos desde Argentina, acá ganando!", "¡En Betsson también corre bien!", "¡Listo para la acción!",
+    "¡Qué buen grupo hay aquí!", "¡Todos para uno y AVIATORQR para todos!", "¡A cobrar se ha dicho!", "¡AVIATORQR o nada!",
+    "¡El terror de los bots!", "¡Tecnología de punta!", "¡Se agradece la honestidad!", "¡AVIATORQR es real!", "¡Subiendo de nivel!",
+    "¡A por todas!", "¡La app está de locos!", "¡No hay nada igual!", "¡AVIATORQR es el futuro!", "¡Gracias de verdad!",
+    "¡Mañana retiro grande!", "¡Hoy fue un día histórico!", "¡AVIATORQR cumpliendo sueños!", "¡A disfrutar lo ganado!",
+    "¡Gracias por tanto!", "¡AVIATORQR es la marca!", "¡La número 1!", "¡Sin duda alguna!", "¡A por el siguiente verde!",
+    "¡AVIATORQR es el camino!", "¡Súper feliz con los resultados!", "¡Mejor de lo esperado!", "¡AVIATORQR lo hace fácil!",
+    "¡A ganar siempre!", "¡Con AVIATORQR se puede!", "¡Gracias por la confianza!", "¡AVIATORQR es seguridad!", "¡Al 100 con la app!",
+    "¡Dándole duro al Aviador!", "¡AVIATORQR es el escudo!", "¡Ganando y aprendiendo!", "¡AVIATORQR es sabiduría!", "¡A por el éxito!",
+    "¡Gracias admin por el apoyo!", "¡AVIATORQR es la herramienta!", "¡Indispensable!", "¡AVIATORQR es el motor!", "¡A volar alto!",
+    "¡AVIATORQR es la brújula!", "¡Hacia la cima con AVIATORQR!", "¡Sin límites!", "¡AVIATORQR es libertad!", "¡Ganando en todas!",
+    "¡AVIATORQR es el aliado!", "¡Gracias por el acceso VIP!", "¡AVIATORQR es la élite!", "¡Lo máximo!", "¡AVIATORQR al poder!",
+    "¡A seguir rompiéndola!", "¡AVIATORQR es la fuerza!", "¡Gracias por las señales gratis!", "¡AVIATORQR es generosidad!",
+    "¡AVIATORQR es unión!", "¡Juntos ganamos más!", "¡AVIATORQR es el equipo!", "¡A por el premio mayor!", "¡AVIATORQR es el triunfo!",
+    "¡Gracias por la transparencia!", "¡AVIATORQR es claridad!", "¡Al éxito con AVIATORQR!", "¡AVIATORQR es el destino!", "¡A ganar!",
+    "¡AVIATORQR es la solución!", "¡Gracias por todo!", "¡AVIATORQR es el top!", "¡Insuperable!", "¡AVIATORQR es la gloria!",
+    "¡A cobrar!", "¡AVIATORQR es la alegría!", "¡Gracias por la motivación!", "¡AVIATORQR es la energía!", "¡A por el verde!",
+    "¡AVIATORQR es el éxito!", "¡Gracias por la constancia!", "¡AVIATORQR es el orden!", "¡A por la meta!", "¡AVIATORQR es el fin!",
+    "¡Gracias por la visión!", "¡AVIATORQR es la meta!", "¡A por el sueño!", "¡AVIATORQR es la realidad!", "¡Ganando!",
+    "¡AVIATORQR es el momento!", "¡Gracias por el ahora!", "¡AVIATORQR es el presente!", "¡A por el mañana!", "¡AVIATORQR es el futuro!",
+    "¡AVIATORQR es el mundo!", "¡Gracias por el alcance!", "¡AVIATORQR es global!", "¡A por la victoria!", "¡AVIATORQR es el grito!",
+    "¡Ganamos!", "¡AVIATORQR es la voz!", "¡Gracias por el eco!", "¡AVIATORQR es el sonido!", "¡A por el premio!", "¡AVIATORQR es la luz!",
+    "¡Gracias por el camino!", "¡AVIATORQR es la senda!", "¡A por el oro!", "¡AVIATORQR es el tesoro!", "¡Ganancia!",
+    "¡AVIATORQR es el valor!", "¡Gracias por el precio!", "¡AVIATORQR es el costo!", "¡A por la ganancia!", "¡AVIATORQR es el beneficio!",
+    "¡AVIATORQR es el resultado!", "¡Gracias por el dato!", "¡AVIATORQR es el número!", "¡A por el x!", "¡AVIATORQR es el multiplicador!",
+    "¡AVIATORQR es la suma!", "¡Gracias por el total!", "¡AVIATORQR es el saldo!", "¡A por el balance!", "¡AVIATORQR es la cuenta!",
+    "¡AVIATORQR es el banco!", "¡Gracias por el cash!", "¡AVIATORQR es el dinero!", "¡A por la plata!", "¡AVIATORQR es el billo!",
+    "¡AVIATORQR es la plata!", "¡Gracias por el cobro!", "¡AVIATORQR es la paga!", "¡A por el sueldo!", "¡AVIATORQR es la vida!","¡Uff la mandó directo al ángulo! AVIATORQR no falla", "Cobradísimo en 4.5x, gracias admin", "¿Sigue activa la señal para Betplay parcero?", 
+    "¡Vamoooooooos, otro verde para la cuenta! Saludos desde CDMX", "Hoy se cena rico con AVIATORQR, qué chimba", "Clavadito el 2.80x, casi se me vuela el avión", 
+    "¿Cuál casino está pagando mejor ahorita en Panamá?", "¡Recuperé lo que quemé ayer, pura vida!", "Directo al banco con AVIATORQR, ¡bendiciones!", 
+    "La precisión de esto da miedo, neta que sí", "¡Llevo 4 seguidas sin perder, qué nivel!", "¿Alguien más usando AVIATORQR en 1Win desde Guate?", 
+    "¡Aseguré en 2x y siguió hasta 10! Pero coronamos", "Gracias por la actualización, está volando la app", "¡Brutal! No creía pero ya llevo 50 pesitos", 
+    "¿A qué hora tiran la próxima ronda muchachos?", "¡Pagado y retirado sin fallas, pura calidad!", "AVIATORQR es el único que me ha funcionado aquí", 
+    "¡Casi me da un patatús pero cobré!", "¡Otro profit brutal! Saludos desde Honduras", "¿Funciona en PinUp? Me acabo de registrar carnal", 
+    "¡Qué buena racha llevamos hoy equipo!", "Aseguren siempre, no sean ambiciosos que el avión se va", "¡Gracias Dari! La rompiste con AVIATORQR", 
+    "¡Listo el retiro de hoy, a disfrutar con la familia!", "Acabo de subir mi bank un 20%, excelente servicio", "¿La señal de 6.78x de AVIATORQR salió limpia?", 
+    "¡Confirmado! En Codere Mexico también funciona de 10", "Metí 10 y saqué 45 con el predictor, ¡una locura!", "Admin, sube más señales de madrugada porfa",
+    "Increíble como predice el algoritmo de AVIATORQR", "Ya le agarré el truco, cobrando en 1.5x seguro", "¿Alguien de México cobrando en Caliente?",
+    "Me encanta el nuevo diseño de AVIATORQR, muy pro", "Ayer perdí todo, hoy AVIATORQR me salvó la vida", "No jueguen sin la app, se los digo de compas",
+    "¿Mañana hay señales en vivo en AVIATORQR?", "Hoy el Aviador está juguetón pero AVIATORQR lo caza", "¡Profit, profit y más profit, qué nota!",
+    "Llevo 1 semana usando AVIATORQR y ya dupliqué el bank", "Esas señales rosas son la gloria total", "¡Cobradoooooo, gracias jefe!", "No entiendo como es tan exacto",
+    "¡Señores, hoy se gana sí o sí! Saludos desde San Salvador", "Me quedo con AVIATORQR mil veces, lo mejor", "¿Sigue funcionando el de Estelarbet?", "¡Boom! 5.50x directo",
+    "Al principio dudé, ahora me arrepiento de no entrar antes", "¡Gracias comunidad AVIATORQR!", "Se vienen cosas grandes con esta app",
+    "Pura calidad en las señales del QR, sin errores", "¿Cuánto tiempo tarda el retiro en 1xBet?", "Hoy no se regala nada al casino, ¡ni un peso!", "¡Fuego total esta racha!",
+    "Aprendan a gestionar el bankroll gente, no se aloquen", "AVIATORQR es mi herramienta favorita ahora", "¡Ojo que viene señal alta en breve!", "¡La clavó de nuevo!",
+    "Mis respetos para el programador de AVIATORQR", "Esto no es suerte, es pura tecnología", "¡Vamos por el siguiente nivel, parceros!", "¿Se puede usar en dos cels?",
+    "¡Súper recomendado el sistema QR, 10/10!", "Mañana retiro y me voy de viaje con la novia", "¡AVIATORQR manda en el Aviador!", "Ayer 10/10 en señales", "¡Qué elegancia de predicción!",
+    "¿Alguien operando desde Perú hoy?", "¡Ganando en soles gracias a AVIATORQR!", "La mejor inversión que hice este año", "No hay competencia para AVIATORQR",
+    "¡A darle con todo equipo, pura vida!", "¡Otro retiro exitoso, gracias admin!", "¿Cuál es el mínimo para entrar?", "Sigan las reglas y ganan siempre", "¡Qué locura de tarde!",
+    "El Aviador ya tiene dueño: AVIATORQR", "¡Meta diaria cumplida, nos vemos mañana!", "¡Gracias por el acceso al QR, está de lujo!", "Esto es una mina de oro",
+    "¿Van a sacar para el Mines también?", "¡Sigue así admin, eres un crack!", "Un saludo a todos los ganadores de AVIATORQR", "¡Hoy dormimos tranquilos!",
+    "¡Pum! Directo al retiro, sin tanto rodeo", "¡Sin miedo al éxito, muchachos!", "¡AVIATORQR es la clave!", "¿Señales para SportyBet hay?", "¡Excelente soporte por WhatsApp!",
+    "¡Todo legal y transparente con AVIATORQR!", "¡Mejor que cualquier otro canal de Telegram!", "¡Sencillo y efectivo!", "¡A romper el casino!",
+    "¿Mañana hay sorteo de cuentas?", "¡Gracias por la oportunidad, bendiciones!", "¡AVIATORQR en la casa!", "¡Otro verde más, qué delicia!", "¡No para de ganar!",
+    "¡Increíble soporte técnico!", "¡Me respondieron rápido!", "¡La app vuela!", "¡Mejor que el año pasado!",
+    "¡Sigue pagando bien!", "¡Asegurado el fin de semana!", "¡Gracias AVIATORQR team!", "¡No tiene fallas!", "¡Súper intuitivo!",
+    "¡Lo mejor de lo mejor!", "¡Ya le pasé el link a mi hermano!", "¡Todos ganando aquí!", "¡AVIATORQR es pasión!", "¡Otro x5 cobrado!",
+    "¡Qué racha tan limpia!", "¡Sin palabras, solo ganancias!", "¡A por el x100 algún día!", "¡AVIATORQR el rey!", "¡No busquen más!",
+    "¿Funciona en Bet365? Sí, ya lo probé", "¡Probado y aprobado!", "¡La mejor comunidad latina!", "¡Gracias por los consejos!", "¡A seguir sumando!",
+    "¡Mañana más y mejor!", "¡AVIATORQR no se detiene!", "¡El algoritmo está encendido!", "¡Aprovechen las señales!", "¡Ganancia pura!",
+    "¡Gracias admin por el esfuerzo!", "¡Se nota el trabajo en la app!", "¡Imprescindible para jugar!", "¡Ya no juego a ciegas!",
+    "¡AVIATORQR me cambió el juego!", "¡De 10 a 100 en un día!", "¡Ojo con la señal de ahora!", "¡Entré tarde pero gané!",
+    "¡AVIATORQR el más duro de todos!", "¡Saludos desde Argentina, acá ganando!", "¡En Betsson también corre bien!", "¡Listo para la acción!",
+    "¡Qué buen grupo hay aquí!", "¡Todos para uno y AVIATORQR para todos!", "¡A cobrar se ha dicho!", "¡AVIATORQR o nada!",
+    "¡El terror de los casinos!", "¡Tecnología de punta!", "¡Se agradece la honestidad!", "¡AVIATORQR es real!", "¡Subiendo el nivel!",
+    "¡A por todas!", "¡La app está de locos!", "¡No hay nada igual!", "¡AVIATORQR es el futuro!", "¡Gracias de verdad!",
+    "¡Mañana retiro grande!", "¡Hoy fue un día histórico!", "¡AVIATORQR cumpliendo sueños!", "¡A disfrutar lo ganado!",
+    "¡Gracias por tanto!", "¡AVIATORQR es la marca!", "¡La número 1!", "¡Sin duda alguna!", "¡A por el siguiente verde!",
+    "¡AVIATORQR es el camino!", "¡Súper feliz con los resultados!", "¡Mejor de lo esperado!", "¡AVIATORQR lo hace fácil!",
+    "¡A ganar siempre!", "¡Con AVIATORQR se puede!", "¡Gracias por la confianza!", "¡AVIATORQR es seguridad!", "¡Al 100 con la app!",
+    "¡Dándole duro al Aviador!", "¡AVIATORQR es el escudo!", "¡Ganando y aprendiendo!", "¡AVIATORQR es sabiduría!", "¡A por el éxito!",
+    "¡Gracias admin por el apoyo!", "¡AVIATORQR es la herramienta!", "¡Indispensable!", "¡AVIATORQR es el motor!", "¡A volar alto!",
+    "¡AVIATORQR es la brújula!", "¡Hacia la cima con AVIATORQR!", "¡Sin límites!", "¡AVIATORQR es libertad!", "¡Ganando en todas!",
+    "¡AVIATORQR es el aliado!", "¡Gracias por el acceso VIP!", "¡AVIATORQR es la élite!", "¡Lo máximo!", "¡AVIATORQR al poder!",
+    "¡A seguir rompiéndola!", "¡AVIATORQR es la fuerza!", "¡Gracias por las señales gratis!", "¡AVIATORQR es generosidad!",
+    "¡AVIATORQR es unión!", "¡Juntos ganamos más!", "¡AVIATORQR es el equipo!", "¡A por el premio mayor!", "¡AVIATORQR es el triunfo!",
+    "¡Gracias por la transparencia!", "¡AVIATORQR es claridad!", "¡Al éxito con AVIATORQR!", "¡AVIATORQR es el destino!", "¡A ganar!",
+    "¡AVIATORQR es la solución!", "¡Gracias por todo!", "¡AVIATORQR es el top!", "¡Insuperable!", "¡AVIATORQR es la gloria!",
+    "¡A cobrar!", "¡AVIATORQR es la alegría!", "¡Gracias por la motivación!", "¡AVIATORQR es la energía!", "¡A por el verde!",
+    "¡AVIATORQR es el éxito!", "¡Gracias por la constancia!", "¡AVIATORQR es el orden!", "¡A por la meta!", "¡AVIATORQR es el fin!",
+    "¡Gracias por la visión!", "¡AVIATORQR es la meta!", "¡A por el sueño!", "¡AVIATORQR es la realidad!", "¡Ganando!",
+    "¡AVIATORQR es el momento!", "¡Gracias por el ahora!", "¡AVIATORQR es el presente!", "¡A por el mañana!", "¡AVIATORQR es el futuro!",
+    "¡AVIATORQR es el mundo!", "¡Gracias por el alcance!", "¡AVIATORQR es global!", "¡A por la victoria!", "¡AVIATORQR es el grito!",
+    "¡Ganamos!", "¡AVIATORQR es la voz!", "¡Gracias por el eco!", "¡AVIATORQR es el sonido!", "¡A por el premio!", "¡AVIATORQR es la luz!",
+    "¡Gracias por el camino!", "¡AVIATORQR es la senda!", "¡A por el oro!", "¡AVIATORQR es el tesoro!", "¡Ganancia!",
+    "¡AVIATORQR es el valor!", "¡Gracias por el precio!", "¡AVIATORQR es el costo!", "¡A por la ganancia!", "¡AVIATORQR es el beneficio!",
+    "¡AVIATORQR es el resultado!", "¡Gracias por el dato!", "¡AVIATORQR es el número!", "¡A por el x!", "¡AVIATORQR es el multiplicador!",
+    "¡AVIATORQR es la suma!", "¡Gracias por el total!", "¡AVIATORQR es el saldo!", "¡A por el balance!", "¡AVIATORQR es la cuenta!",
+    "¡AVIATORQR es el banco!", "¡Gracias por el efectivo!", "¡AVIATORQR es el dinero!", "¡A por la plata!", "¡AVIATORQR es el éxito!",
+    "¡AVIATORQR es la meta!", "¡Gracias por el cobro!", "¡AVIATORQR es la paga!", "¡A por el sueldo!", "¡AVIATORQR es la vida!"];
+    
+    function toggleChat() {
+        const chat = document.getElementById('floating-chat');
+        chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function addFakeMsg() {
+        const cont = document.getElementById('chat-content');
+        const av = Math.floor(Math.random() * 50) + 5;
+        const u = users[Math.floor(Math.random() * users.length)];
+        const q = quotes[Math.floor(Math.random() * quotes.length)];
+        const div = document.createElement('div');
+        div.className = 'msg-line';
+        div.innerHTML = `<img src="https://aviator-next.spribegaming76.click/assets/static/avatars/v2/av-${av}.png?v=4.2.108"> <span><b>${u}:</b> ${q}</span>`;
+        cont.prepend(div);
+        if(cont.children.length > 15) cont.lastElementChild.remove();
+    }
+    setInterval(addFakeMsg, 4000);
 
     function login(){
         const user = document.getElementById("user").value;
@@ -485,4 +690,3 @@ wa.me/525585800824" class="social-btn btn-ws" target="_blank">
 </script>
 </body>
 </html>
-
