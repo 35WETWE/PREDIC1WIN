@@ -337,7 +337,7 @@
 
 <div id="floating-chat">
     <div class="chat-header-win">
-        <span>🫟COMUNIDAD PREDIC1WIN</span>
+        <span>          ➡️​​COMUNIDAD DE AVIATOR</span>
         <span onclick="toggleChat()" style="cursor:pointer">​❌</span>
     </div> 
     <div id="chat-content" class="chat-body"></div>
@@ -351,7 +351,13 @@
         <input id="pass" type="password" placeholder="Contraseña" class="login-input">
         <button onclick="login()" class="login-btn">INGRESAR</button>
         <p id="login-msg" style="color:red; font-size:12px; margin-top:-10px; height: 15px;"></p>
-
+<!-- BOTÓN DE SUSCRIPCIÓN VIP -->
+<a href="https://t.me/predic1win" target="_blank" style="text-decoration: none;">
+    <button type="button" style="background: #000; color: #FFD700; border: 2px solid #FFD700; padding: 12px; width: 100%; font-size: 13px; font-weight: 800; border-radius: 12px; cursor: pointer; margin: 10px 0; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);">
+        <img src="https://img.icons8.com/ios-filled/50/FFD700/crown.png" style="width: 18px;">
+        <span>PLAN DE SUSCRIPCIÓN - $5.00 USD</span>
+    </button>
+</a>
         <div class="social-container">
             <a href="https://wa.me/525585800824" class="social-btn btn-ws" target="_blank">
                 <img src="https://images.icon-icons.com/2857/PNG/96/logo_whatsapp_icon_181639.png"> WHATSAPP
@@ -413,7 +419,7 @@
 <script>
     const USER_CORRECTO = "aviatorapp";
     const PASS_CORRECTA = "1234567";
-    const misSeñales = [2.66, 2.53, 2.50, 1.71, 3.01, 5.78, 1.50, 2.86];
+    const misSeñales = [1.93, 3.99, 7.02, 1.71, 3.01, 5.78, 1.50, 2.86];
     let step = 0;
 
     // Lógica de Chat
@@ -655,7 +661,7 @@
 
         let loop = setInterval(() => {
             val += 0.08;
-            display.innerText = val.toFixed(2) + "x";
+            display.innerText = val.toFixed(2) + "X";
 
             let p = (val - 1) / (target - 1);
             if(p > 1) p = 1;
@@ -663,7 +669,7 @@
 
             if (val >= target) {
                 clearInterval(loop);
-                display.innerText = target.toFixed(2) + "x";
+                display.innerText = target.toFixed(2) + "X​";
 
                 if (winAudio) {
                     winAudio.volume = 0.5;
@@ -677,7 +683,7 @@
 
                 const log = document.createElement('div');
                 log.className = 'payout-tag';
-                log.innerText = target.toFixed(2) + "x";
+                log.innerText = target.toFixed(2) + "✖️";
                 history.prepend(log);
             }
         }, 30); 
