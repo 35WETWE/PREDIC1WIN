@@ -13,41 +13,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
 
-   <script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          // Color principal (Tu dorado)
-          primary: {
-            DEFAULT: '#facc15',
-            hover: '#eab308',
-          },
-          // Escala de grises profunda para el fondo
-          base: {
-            100: '#ffffff',
-            200: '#2a2a2a',
-            300: '#1e1e1e', // Tu base original
-            400: '#141414', // Fondo principal
-            500: '#0a0a0a', // Fondo más oscuro
-          },
-          // Colores de acento para modernizar
-          accent: {
-            blue: '#3b82f6',
-            purple: '#8b5cf6',
-            green: '#22c55e',
-            red: '#ef4444',
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#facc15',
+              'base-300': '#1e1e1e',
+              'base-400': '#0f0f0f',
+            }
           }
-        },
-        // Añadimos sombras más robustas
-        boxShadow: {
-          'neon': '0 0 15px rgba(250, 204, 21, 0.3)',
-          'card': '0 10px 25px -5px rgba(0, 0, 0, 0.5)',
         }
       }
-    }
-  }
-</script>
+    </script>
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; background-color: #0a0a0a; color: white; overflow-x: hidden; }
@@ -129,56 +108,95 @@
 <meta property="og:title" content="BETONWIN - Casino Profesional" data-id="th-modified"><meta property="og:image" content="https://www.coinbeti.com/og-image.jpg" data-id="th-modified"><meta property="og:url" content="https://www.coinbeti.com/" data-id="th-modified"><meta property="og:type" content="website" data-id="th-modified"><meta name="description" content="index" data-id="th-modified"><meta property="og:description" content="index" data-id="th-modified"><script defer data-domain="www.coinbeti.com" src="https://analytics.tiiny.site/js/plausible.js"></script></head>
 <body>
 
-   <!-- BUSCADOR, CATEGORÍAS Y ESTADÍSTICAS -->
-<section class="max-w-[1450px] mx-auto w-full px-4 py-8">
-    
-    <!-- Fila superior: Buscador y Categorías -->
-    <div class="flex flex-col lg:flex-row gap-6 items-center justify-between mb-8">
-        
-        <!-- Buscador con estilo profesional -->
-        <div class="relative w-full lg:w-1/3 group">
-            <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-primary transition-colors"></i>
-            <input type="text" id="buscador-juegos" 
-                   class="w-full bg-[#1a1a1a] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-all" 
-                   placeholder="Buscar tu juego favorito..." 
-                   onkeyup="filtrarJuegos(this.value)">
+    <!-- HEADER -->
+    <header class="bg-[#141414] w-full flex items-center justify-between px-6 border-b border-white/5 sticky top-0 z-[200] py-2 flex-wrap">
+        <div class="flex items-center gap-4 md:gap-10">
+            <div class="betonwin-logo" onclick="abrirSalon(); return false;">BET<span>ON</span>WIN</div>
         </div>
+        <nav class="flex gap-4 md:gap-6 text-[11px] font-bold uppercase tracking-widest text-gray-400">
+            <a href="#" class="text-primary border-b-2 border-primary pb-1">CASINO</a>
+            <a href="#" onclick="abrirPokerEnVivo(); return false;" class="hover:text-white">POKER EN VIVO</a>
+            <a href="#" onclick="abrirPromociones(); return false;" class="hover:text-white">PROMOCIONES</a>
+            <a href="#" onclick="abrirDeportes(); return false;" class="hover:text-white">DEPORTES</a>
+            <a href="#" onclick="abrirJuegoEnVivo(); return false;" class="hover:text-white">EN VIVO</a>
+            <a href="#" onclick="abrirTorneos(); return false;" class="hover:text-white">TORNEOS</a>
+            <a href="#" onclick="abrirVIP(); return false;" class="hover:text-white">VIP</a>
+            <a href="#" onclick="abrirRuleta(); return false;" class="hover:text-white">RULETA</a>
+            <a href="#" onclick="abrirFlipCard(); return false;" class="hover:text-white">FLIPCARD</a>
+        </nav>
+        <div id="user-header-area" class="flex items-center gap-2 md:gap-4">
+            <button onclick="abrirLogin()" class="text-gray-400 text-[11px] font-bold px-2 hover:text-white">INICIAR</button>
+            <button onclick="abrirRegistro()" class="bg-primary text-black text-[11px] font-black px-3 md:px-5 py-2 rounded-md uppercase hover:bg-yellow-500">REGISTRARSE</button>
+        </div>
+    </header>
 
-        <!-- Categorías scrollables -->
-        <div class="flex overflow-x-auto lg:overflow-visible gap-2 pb-2 lg:pb-0 w-full lg:w-auto scrollbar-hide">
-            <button class="px-5 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest bg-primary text-black transition-all hover:scale-105 active-categoria" onclick="filtrarCategoria('todos', this)">Todos</button>
-            <button class="px-5 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest bg-[#1a1a1a] text-gray-400 hover:bg-white/5 transition-all" onclick="filtrarCategoria('slots', this)">Slots</button>
-            <button class="px-5 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest bg-[#1a1a1a] text-gray-400 hover:bg-white/5 transition-all" onclick="filtrarCategoria('crash', this)">Crash</button>
-            <button class="px-5 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest bg-[#1a1a1a] text-gray-400 hover:bg-white/5 transition-all" onclick="filtrarCategoria('populares', this)">Populares</button>
-            <button class="px-5 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest bg-[#1a1a1a] text-gray-400 hover:bg-white/5 transition-all" onclick="filtrarCategoria('favoritos', this)">Favoritos</button>
+    <div id="modal-overlay">
+        <div id="contenedor-modal" class="w-full max-w-6xl transform transition-all p-4 relative"></div>
+    </div>
+
+    <div id="game-modal-overlay" class="game-modal-overlay">
+        <div class="game-modal-content">
+            <button class="btn-cerrar-juego" onclick="cerrarJuegoModal()"><i class="fas fa-times"></i></button>
+            <iframe id="game-iframe" class="game-iframe" allow="accelerometer; autoplay; clipboard-read; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
     </div>
 
-    <!-- Stats Card Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bg-[#1a1a1a] border border-white/5 p-6 rounded-2xl flex items-center justify-between">
-            <div>
-                <p class="text-[10px] uppercase text-gray-500 font-bold tracking-widest">Jugadores Online</p>
-                <h3 class="text-2xl font-black text-white" id="stats-jugadores">6.1K</h3>
-            </div>
-            <div class="text-primary/20 text-3xl"><i class="fas fa-users"></i></div>
-        </div>
-        <div class="bg-[#1a1a1a] border border-white/5 p-6 rounded-2xl flex items-center justify-between">
-            <div>
-                <p class="text-[10px] uppercase text-gray-500 font-bold tracking-widest">Bote Acumulado</p>
-                <h3 class="text-2xl font-black text-primary" id="stats-bote">$12.5K</h3>
-            </div>
-            <div class="text-primary/20 text-3xl"><i class="fas fa-coins"></i></div>
-        </div>
-        <div class="bg-[#1a1a1a] border border-white/5 p-6 rounded-2xl flex items-center justify-between">
-            <div>
-                <p class="text-[10px] uppercase text-gray-500 font-bold tracking-widest">Ganadores Hoy</p>
-                <h3 class="text-2xl font-black text-white" id="stats-ganadores">1.3k</h3>
-            </div>
-            <div class="text-primary/20 text-3xl"><i class="fas fa-trophy"></i></div>
-        </div>
+    <div id="admin-badge" class="admin-badge" style="display: none;">
+        <i class="fas fa-crown mr-2"></i> MODO ADMIN
     </div>
-</section>
+
+    <!-- CHAT INTELIGENTE -->
+    <div id="chat-button" onclick="toggleChat()">
+        <i class="fas fa-headset text-2xl"></i>
+    </div>
+    <div id="chat-modal">
+        <div class="chat-header"><span class="font-bold">💬 Soporte BETONWIN</span><button onclick="toggleChat()" class="text-gray-400 hover:text-white"><i class="fas fa-times"></i></button></div>
+        <div class="chat-mensajes" id="chat-mensajes"><div class="chat-mensaje soporte">¡Hola! ¿En qué podemos ayudarte? Puedes consultarme sobre recargas, depósitos, métodos de pago o tardanzas.</div></div>
+        <div class="chat-input-area"><input type="text" id="chat-input" placeholder="Escribe tu mensaje..." onkeypress="if(event.key==='Enter') enviarMensaje()"><button onclick="enviarMensaje()">Enviar</button></div>
+    </div>
+
+    <!-- HERO SLIDER -->
+    <section class="max-w-[1450px] mx-auto w-full p-4">
+        <div class="grid grid-cols-12 gap-4 side-container">
+            <div class="col-span-12 md:col-span-9 relative h-full">
+                <div class="swiper swiper-main h-full rounded-2xl overflow-hidden">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212T294a0818-81e1-43f2-86e0-a749c4473829.jpg" alt="slide1"></div>
+                        <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212Td842f1f2-aac7-4963-a619-179b0312baaf.jpg" alt="slide2"></div>
+                        <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212Te43787fd-b5aa-46d6-be2d-07440778944f.jpg" alt="slide3"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="hidden md:block md:col-span-3 h-full">
+                <div class="swiper swiper-side h-full">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide !h-[155px] pb-2"><img src="https://images.virtualsoft.tech/m/msj0212T1772833927.jpg" class="w-full h-full object-cover rounded-xl border border-white/5 hover:border-primary transition-all"></div>
+                        <div class="swiper-slide !h-[155px] pb-2"><img src="https://images.virtualsoft.tech/m/msj0212T1772630933.jpg" class="w-full h-full object-cover rounded-xl border border-white/5 hover:border-primary transition-all"></div>
+                        <div class="swiper-slide !h-[155px]"><img src="https://images.virtualsoft.tech/m/msj0212T1772837583.jpg" class="w-full h-full object-cover rounded-xl border border-white/5 hover:border-primary transition-all"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BUSCADOR Y CATEGORÍAS -->
+    <section class="max-w-[1450px] mx-auto w-full p-4 mt-8">
+        <div class="buscador-container"><i class="fas fa-search"></i><input type="text" id="buscador-juegos" class="buscador-input" placeholder="Buscar juego..." onkeyup="filtrarJuegos(this.value)"></div>
+        <div class="categorias-container">
+            <button class="categoria-btn active" onclick="filtrarCategoria('todos', this)">Todos</button>
+            <button class="categoria-btn" onclick="filtrarCategoria('slots', this)">Slots</button>
+            <button class="categoria-btn" onclick="filtrarCategoria('crash', this)">Crash</button>
+            <button class="categoria-btn" onclick="filtrarCategoria('nuevos', this)">Nuevos</button>
+            <button class="categoria-btn" onclick="filtrarCategoria('populares', this)">Populares</button>
+            <button class="categoria-btn" onclick="filtrarCategoria('favoritos', this)">Favoritos</button>
+        </div>
+        <div class="stats-container">
+            <div class="stat-item"><div class="valor" id="stats-jugadores">6.1K</div><div class="etiqueta">Jugadores Online</div></div>
+            <div class="stat-item"><div class="valor" id="stats-bote">$12.5K</div><div class="etiqueta">Bote Acumulado</div></div>
+            <div class="stat-item"><div class="valor" id="stats-ganadores">954</div><div class="etiqueta">Ganadores Hoy</div></div>
+        </div>
+    </section>
 <!-- GRID DE JUEGOS (2 COLUMNAS PARA IPHONE) -->
 <div class="grid grid-cols-2 gap-3 p-3" id="juegos-container">
     <!-- Generado por JS -->
