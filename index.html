@@ -179,619 +179,89 @@
         </div>
     </div>
 </section>
-
-    <!-- JUEGOS DESTACADOS (TODOS LOS JUEGOS) -->
-    <main class="max-w-[1450px] mx-auto w-full p-4 mt-8">
-        <h2 class="text-white font-black italic uppercase text-lg flex items-center gap-3 mb-8">
-            <span class="w-1.5 h-6 bg-primary rounded-full"></span> JUEGOS DESTACADOS
-        </h2>
-     <!-- Clon de Juego: Sugar Rush (con etiqueta HOT) -->
-<div class="game-card h-24 sm:h-32 w-full rounded-xl overflow-hidden transition-all hover:scale-[1.02]" data-categoria="slots populares" data-nombre="sugar rush">
-    <div class="w-full h-full bg-base-300 relative group cursor-pointer">
-        
-        <!-- Etiqueta HOT -->
-        <div class="absolute top-2 left-2 z-10 px-2 py-0.5 bg-primary/90 backdrop-blur-sm text-[8px] font-black uppercase text-black rounded shadow-lg">
-            HOT
-        </div>
-
-        <!-- Imagen -->
-        <img src="https://images.virtualsoft.tech/productos/sugar-rushT1731536549.gif" class="h-[75%] w-full object-cover">
-        
-        <!-- Pie de tarjeta -->
-        <div class="flex justify-between items-center w-full h-[25%] px-2 bg-base-300">
-            <p class="truncate text-xs text-neutral font-light capitalize w-full">sugar rush</p>
-            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('sugar-rush', this)">
-                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
-            </button>
-        </div>
-        
-        <!-- Capa de clic -->
-        <div onclick="intentarJugar()" class="absolute inset-0"></div>
-    </div>
-</div>
-            <!-- Gates of Olympus -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots populares" data-nombre="gates of olympus">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/Gates-of-OlympusT1746469136.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">gates of olympus</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('gates-of-olympus', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Sweet Alchemy -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="sweet alchemy">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/Sweet-AlchemyT1706305856.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">sweet alchemy</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('sweet-alchemy', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Coin Strike -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="coin strike">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/Coin-Strike-Hold-and-WinT1737407157.gif" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">coin strike</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('coin-strike', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- 100 Power Hot -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="100 power hot">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/m/100-Power-Hot-Golden-Coins-LinkT1772553129.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">100 power hot</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('100-power-hot', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Thunder Coins -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="thunder coins">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/Thunder-Coins-XXL-Hold-and-WinT1748282106.gif" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">thunder coins</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('thunder-coins', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Burning Fortunator -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="burning fortunator">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/Burning-FortunatorT1737407369.gif" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">burning fortunator</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('burning-fortunator', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Golden Ticket 2 -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="golden ticket">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/Golden-Ticket-2T1599155052.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">golden ticket 2</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('golden-ticket', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- 1000 Olympus Rivals -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="1000 olympus rivals">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/m/1000-Olympus-RivalsT1768322798.gif" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">1000 olympus rivals</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('1000-olympus-rivals', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Victory Coins -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="victory coins">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/m/Victory-CoinsT1762359242.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">victory coins</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('victory-coins', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Roman Coins -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="roman coins">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/&nbsp;Roman-CoinsT1758572991.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">roman coins</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('roman-coins', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Lion Gems -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="lion gems">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/m/Lion-Gems-3-Pots-Hold-and-WinT1760458170.gif" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">lion gems</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('lion-gems', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Rockin Joker -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="rockin joker">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/m/RockinJoker-Hold-and-WinT1760544717.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">rockin joker</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('rockin-joker', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Dazzling Crown -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="dazzling crown">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/Dazzling-CrownT1731609654.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">dazzling crown</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('dazzling-crown', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Moon Princess -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="moon princess">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/Moon-Princess-100T1649715255.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">moon princess</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('moon-princess', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- 3 Energy Crowns -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="3 energy crowns">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/3-Energy-CrownsT1759161712.gif" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">3 energy crowns</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('3-energy-crowns', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Sea of Fortune -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="sea of fortune">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/Sea-of-FortuneT1755810053.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">sea of fortune</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('sea-of-fortune', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Cash Pig 2 -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="cash pig">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/Cash-Pig-2T1745962887.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">cash pig 2</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('cash-pig', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Royal Coins 2 -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="royal coins">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/royal-coins-2T1667597617.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">royal coins 2</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('royal-coins', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Very Hot 40 -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="very hot 40">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/m/Very-Hot-40T1763655561.jpg" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">very hot 40</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('very-hot-40', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Fortune Snake -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="fortune snake">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/m/Fortune-SnakeT1760731690.gif" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">fortune snake</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('fortune-snake', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Zeus -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="zeus">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/Zeus-the-InvincibleT1742916404.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">zeus invincible</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('zeus', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Big Wild Buffalo -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="big wild buffalo">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/m/Big-Wild-Buffalo-2T1764263438.gif" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">big wild buffalo</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('big-wild-buffalo', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Wild 27 -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="wild 27">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/m/Wild-27-ExtremeT1767126698.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">wild 27 extreme</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('wild-27', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Winners Arms -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="winners arms">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/The-Winners-Arms-V93T1717526245.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">winners arms</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('winners-arms', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- MummyLand -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="mummyland">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/MummyLand-TreasuresT1729024108.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">mummyland</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('mummyland', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Cash Streak Dice -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="cash streak dice">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/m/Cash-Streak-DiceT1766499839.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">cash streak dice</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('cash-streak-dice', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Penalty Rush -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="penalty rush">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/m/Penalty-RushT1771010767.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">penalty rush</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('penalty-rush', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- The Fortuner -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="fortuner">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/The-FortunerT1741616555.gif" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">the fortuner</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('fortuner', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Irish Coins -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="irish coins">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/Irish-CoinsT1689714476.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">irish coins</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('irish-coins', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Aviatrix -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="aviatrix">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.seeklogo.com/logo-png/62/2/aviatrix-logo-png_seeklogo-620063.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">aviatrix</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('aviatrix', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Spaceman -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="spaceman">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/SpaceManT1669818906.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">spaceman</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('spaceman', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Caramelo Sortudo -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="caramelo sortudo">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/Caramelo-SortudoT1747750622.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">caramelo sortudo</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('caramelo-sortudo', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Lucky Phoenix -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="lucky phoenix">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/Lucky-PhoenixT1749571601.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">lucky phoenix</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('lucky-phoenix', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- 888 Dragons -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="888 dragons">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/888-DragonsT1557785735.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">888 dragons</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('888-dragons', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-            <!-- Golden Tree -->
-            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="golden tree">
-                <div class="w-full h-full rounded-xl bg-base-300 relative">
-                    <img src="https://images.virtualsoft.tech/productos/Golden-TreeT1702649984.png" class="h-[75%] w-full rounded-3xl object-cover">
-                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-                        <p class="truncate text-xs text-neutral font-light capitalize w-full">golden tree</p>
-                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('golden-tree', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
-                    </div>
-                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
-                </div>
-            </div>
-           <!-- Clon 1: Spaceman -->
-<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="spaceman">
-    <div class="w-full h-full rounded-xl bg-base-300 relative">
-        <img src="https://images.virtualsoft.tech/productos/Hit-BarT1731591442.gif" class="h-[75%] w-full rounded-3xl object-cover">
-        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-            <p class="truncate text-xs text-neutral font-light capitalize w-full">spaceman</p>
-            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('spaceman', this)">
-                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
-            </button>
-        </div>
-        <div onclick="intentarJugar()" class="absolute inset-0"></div>
-    </div>
+<!-- GRID DE JUEGOS (2 COLUMNAS PARA IPHONE) -->
+<div class="grid grid-cols-2 gap-3 p-3" id="juegos-container">
+    <!-- Generado por JS -->
 </div>
 
-<!-- Clon 2: Mines -->
-<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="mines">
-    <div class="w-full h-full rounded-xl bg-base-300 relative">
-        <img src="https://images.virtualsoft.tech/productos/Lucky-DestinyT1744129332.gif" class="h-[75%] w-full rounded-3xl object-cover">
-        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-            <p class="truncate text-xs text-neutral font-light capitalize w-full">mines</p>
-            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('mines', this)">
-                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
-            </button>
-        </div>
-        <div onclick="intentarJugar()" class="absolute inset-0"></div>
-    </div>
-</div>
-<!-- Clon 1: Spaceman -->
-<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="spaceman">
-    <div class="w-full h-full rounded-xl bg-base-300 relative">
-        <img src="https://images.virtualsoft.tech/productos/Mega-Fire-Blaze-Khonsu-God-of-MoonT1731537120.gif" class="h-[75%] w-full rounded-3xl object-cover">
-        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-            <p class="truncate text-xs text-neutral font-light capitalize w-full">spaceman</p>
-            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('spaceman', this)">
-                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
-            </button>
-        </div>
-        <div onclick="intentarJugar()" class="absolute inset-0"></div>
-    </div>
-</div>
+<script>
+    const container = document.getElementById('juegos-container');
+    const imagenes = [
+        "https://images.virtualsoft.tech/productos/sugar-rushT1731536549.gif",
+        "https://images.virtualsoft.tech/productos/Gates-of-OlympusT1746469136.png"
+        // ... (agrega tus 60 URLs aquí)
+    ];
 
-<!-- Clon 2: Mines -->
-<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="mines">
-    <div class="w-full h-full rounded-xl bg-base-300 relative">
-        <img src="https://images.virtualsoft.tech/productos/PiaT1741699161.gif" class="h-[75%] w-full rounded-3xl object-cover">
-        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-            <p class="truncate text-xs text-neutral font-light capitalize w-full">mines</p>
-            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('mines', this)">
-                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+    for(let i = 0; i < 60; i++) {
+        const imgUrl = imagenes[i] || 'https://via.placeholder.com/150';
+        container.innerHTML += `
+        <div class="relative w-full aspect-[4/5] bg-[#141414] rounded-2xl overflow-hidden border border-white/5 group active:scale-[0.98] transition-transform">
+            <div class="absolute top-2 left-2 z-10 px-2 py-0.5 bg-red-600 text-[8px] font-black uppercase text-white rounded shadow-md">HOT</div>
+            
+            <div class="w-full h-[70%] flex items-center justify-center p-2">
+                <img src="${imgUrl}" class="w-full h-full object-contain">
+            </div>
+            
+            <button onclick="mostrarAlerta('${imgUrl}')" class="absolute bottom-2 right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-black shadow-lg z-20">
+                <i class="fas fa-play text-[10px]"></i>
             </button>
-        </div>
-        <div onclick="intentarJugar()" class="absolute inset-0"></div>
-    </div>
-</div>
-<!-- Clon 1: Spaceman -->
-<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="spaceman">
-    <div class="w-full h-full rounded-xl bg-base-300 relative">
-        <img src="https://images.virtualsoft.tech/productos/Power-BallsT1738078123.gif" class="h-[75%] w-full rounded-3xl object-cover">
-        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-            <p class="truncate text-xs text-neutral font-light capitalize w-full">spaceman</p>
-            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('spaceman', this)">
-                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
-            </button>
-        </div>
-        <div onclick="intentarJugar()" class="absolute inset-0"></div>
-    </div>
-</div>
 
-<!-- Clon 2: Mines -->
-<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="mines">
-    <div class="w-full h-full rounded-xl bg-base-300 relative">
-        <img src="https://images.virtualsoft.tech/productos/Super-7-3x3T1757346619.gif" class="h-[75%] w-full rounded-3xl object-cover">
-        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-            <p class="truncate text-xs text-neutral font-light capitalize w-full">mines</p>
-            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('mines', this)">
-                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
-            </button>
-        </div>
-        <div onclick="intentarJugar()" class="absolute inset-0"></div>
-    </div>
-</div>
-<!-- Clon 1: Spaceman -->
-<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="spaceman">
-    <div class="w-full h-full rounded-xl bg-base-300 relative">
-        <img src="https://images.virtualsoft.tech/productos/Zeus-the-InvincibleT1742916404.png" class="h-[75%] w-full rounded-3xl object-cover">
-        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-            <p class="truncate text-xs text-neutral font-light capitalize w-full">spaceman</p>
-            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('spaceman', this)">
-                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
-            </button>
-        </div>
-        <div onclick="intentarJugar()" class="absolute inset-0"></div>
-    </div>
-</div>
-<!-- Clon 1: Spaceman -->
-<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="spaceman">
-    <div class="w-full h-full rounded-xl bg-base-300 relative">
-        <img src="https://images.virtualsoft.tech/productos/totemT1696953989.png" class="h-[75%] w-full rounded-3xl object-cover">
-        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-            <p class="truncate text-xs text-neutral font-light capitalize w-full">spaceman</p>
-            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('spaceman', this)">
-                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
-            </button>
-        </div>
-        <div onclick="intentarJugar()" class="absolute inset-0"></div>
-    </div>
-</div>
+            <div class="w-full h-[30%] flex items-center px-3 text-[10px] text-gray-400 uppercase font-bold truncate">
+                Juego ${i + 1}
+            </div>
+        </div>`;
+    }
 
-<!-- Clon 2: Mines -->
-<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="mines">
-    <div class="w-full h-full rounded-xl bg-base-300 relative">
-        <img src="https://images.virtualsoft.tech/productos/Zeus-the-ThundererT1633437038.png" class="h-[75%] w-full rounded-3xl object-cover">
-        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-            <p class="truncate text-xs text-neutral font-light capitalize w-full">mines</p>
-            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('mines', this)">
-                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
-            </button>
-        </div>
-        <div onclick="intentarJugar()" class="absolute inset-0"></div>
-    </div>
-</div>
-<!-- Clon 1: Spaceman -->
-<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="spaceman">
-    <div class="w-full h-full rounded-xl bg-base-300 relative">
-        <img src="https://images.virtualsoft.tech/productos/royal-coins-2T1667597617.png" class="h-[75%] w-full rounded-3xl object-cover">
-        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-            <p class="truncate text-xs text-neutral font-light capitalize w-full">spaceman</p>
-            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('spaceman', this)">
-                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
-            </button>
-        </div>
-        <div onclick="intentarJugar()" class="absolute inset-0"></div>
-    </div>
-</div>
+    function mostrarAlerta(url) {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = "position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.95); padding:20px;";
+        overlay.innerHTML = `
+            <div class="w-full max-w-sm bg-[#1c1c1e] p-6 rounded-3xl text-center border border-white/10 shadow-2xl">
+                <div class="w-20 h-20 mx-auto mb-4 rounded-2xl overflow-hidden border border-white/10 shadow-lg">
+                    <img src="${url}" class="w-full h-full object-cover">
+                </div>
+                <h2 class="text-white font-black text-xl mb-1">Fondos Insuficientes</h2>
+                <p class="text-gray-400 text-xs mb-6">Recarga tu cuenta para jugar este título.</p>
+                <button onclick="this.parentElement.parentElement.remove()" class="w-full bg-primary py-3 rounded-xl font-black text-black uppercase text-sm">Cerrar</button>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+    }
+</script>
 
-<!-- Clon 2: Mines -->
-<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="mines">
-    <div class="w-full h-full rounded-xl bg-base-300 relative">
-        <img src="https://www.ruletix.store/static/cdnimg/v4/20A30EF8A2A766140D074FF3EC9A76B2" class="h-[75%] w-full rounded-3xl object-cover">
-        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-            <p class="truncate text-xs text-neutral font-light capitalize w-full">mines</p>
-            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('mines', this)">
-                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
-            </button>
-        </div>
-        <div onclick="intentarJugar()" class="absolute inset-0"></div>
-    </div>
-</div>
-
-<!-- Clon 2: Mines -->
-<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="mines">
-    <div class="w-full h-full rounded-xl bg-base-300 relative">
-        <img src="https://www.ruletix.mx/static/cdnimg/v4/6B0273686841D72DDEC69D572BABF402" class="h-[75%] w-full rounded-3xl object-cover">
-        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
-            <p class="truncate text-xs text-neutral font-light capitalize w-full">mines</p>
-            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('mines', this)">
-                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
-            </button>
-        </div>
-        <div onclick="intentarJugar()" class="absolute inset-0"></div>
-    </div>
-</div>
-   <section class="max-w-[1450px] mx-auto w-full p-4 mt-12">
+<!-- SECCIÓN BONOS (AJUSTADA A MÓVIL) -->
+<section class="max-w-[1450px] mx-auto w-full p-4 mt-6">
     <h2 class="text-white font-black italic uppercase text-lg flex items-center gap-3 mb-6">
         <span class="w-1.5 h-6 bg-primary rounded-full"></span> BONOS ACTIVOS
     </h2>
     
-    <div class="flex flex-wrap gap-6">
-        
-        <div class="flex-1 min-w-[300px] bg-base-300 border border-white/10 rounded-2xl p-6 transition-all hover:border-primary/50 group">
-            <div class="text-primary font-black text-3xl mb-2">100%</div>
-            <div class="text-white font-bold text-lg">Hasta $500</div>
-            <p class="text-gray-400 text-sm mb-6">en tu primer depósito</p>
-            <button onclick="reclamarBono('primer-deposito')" class="flex items-center gap-2 text-xs uppercase font-black tracking-widest text-primary group-hover:text-white transition-colors">
-                Reclamar <span>→</span>
-            </button>
+    <!-- Grid de bonos: 1 columna en móvil, 3 en escritorio -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-[#1a1a1a] border border-white/5 rounded-2xl p-6 transition-all hover:border-primary/50">
+            <div class="text-primary font-black text-3xl mb-1">100%</div>
+            <div class="text-white font-bold text-sm">Hasta $500</div>
+            <p class="text-gray-500 text-[10px] uppercase mb-4 tracking-widest">en primer depósito</p>
+            <button onclick="reclamarBono('primer-deposito')" class="text-[10px] font-black uppercase text-primary">Reclamar →</button>
         </div>
 
-        <div class="flex-1 min-w-[300px] bg-base-300 border border-white/10 rounded-2xl p-6 transition-all hover:border-primary/50 group">
-            <div class="text-primary font-black text-3xl mb-2">50%</div>
-            <div class="text-white font-bold text-lg">Cashback</div>
-            <p class="text-gray-400 text-sm mb-6">todos los viernes</p>
-            <button onclick="reclamarBono('cashback')" class="flex items-center gap-2 text-xs uppercase font-black tracking-widest text-primary group-hover:text-white transition-colors">
-                Reclamar <span>→</span>
-            </button>
+        <div class="bg-[#1a1a1a] border border-white/5 rounded-2xl p-6 transition-all hover:border-primary/50">
+            <div class="text-primary font-black text-3xl mb-1">50%</div>
+            <div class="text-white font-bold text-sm">Cashback</div>
+            <p class="text-gray-500 text-[10px] uppercase mb-4 tracking-widest">todos los viernes</p>
+            <button onclick="reclamarBono('cashback')" class="text-[10px] font-black uppercase text-primary">Reclamar →</button>
         </div>
 
-        <div class="flex-1 min-w-[300px] bg-base-300 border border-white/10 rounded-2xl p-6 transition-all hover:border-primary/50 group">
-            <div class="text-primary font-black text-3xl mb-2">20</div>
-            <div class="text-white font-bold text-lg">Giros gratis</div>
-            <p class="text-gray-400 text-sm mb-6">sin depósito</p>
-            <button onclick="reclamarBono('giros-gratis')" class="flex items-center gap-2 text-xs uppercase font-black tracking-widest text-primary group-hover:text-white transition-colors">
-                Reclamar <span>→</span>
-            </button>
+        <div class="bg-[#1a1a1a] border border-white/5 rounded-2xl p-6 transition-all hover:border-primary/50">
+            <div class="text-primary font-black text-3xl mb-1">20</div>
+            <div class="text-white font-bold text-sm">Giros gratis</div>
+            <p class="text-gray-500 text-[10px] uppercase mb-4 tracking-widest">sin depósito</p>
+            <button onclick="reclamarBono('giros-gratis')" class="text-[10px] font-black uppercase text-primary">Reclamar →</button>
         </div>
-
     </div>
 </section>
+   
+
+   
 
     <!-- FOOTER -->
     <footer class="bg-[#0f0f0f] border-t border-white/5 mt-16 py-12">
