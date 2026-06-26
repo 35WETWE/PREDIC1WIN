@@ -1,214 +1,1374 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>TikTok</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto; background: #000; color: #fff; margin: 0; padding: 20px; display: flex; justify-content: center; }
-        .container { width: 100%; max-width: 393px; }
-        
-        .tiktok-logo { width: 72px; height: 72px; display: block; margin: 20px auto; }
-        input { width: 100%; padding: 16px; margin: 10px 0; border-radius: 12px; background: #111; border: 1px solid #333; color: #fff; box-sizing: border-box; font-size: 16px; }
-        button { width: 100%; padding: 16px; border-radius: 12px; border: none; background: #fe2c55; color: white; font-weight: bold; cursor: pointer; font-size: 16px; transition: transform 0.2s; }
-        button:active { transform: scale(0.96); }
-        
-        #profile-display { background: #111; padding: 20px; border-radius: 15px; text-align: center; margin-bottom: 20px; display: none; }
-        .avatar { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #fe2c55; margin-bottom: 10px; }
-        
-        .gift-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; height: 300px; overflow-y: auto; background: #111; padding: 10px; border-radius: 12px; }
-        .gift-item { border: 1px solid #333; border-radius: 8px; padding: 5px; cursor: pointer; display: flex; align-items: center; justify-content: center; position: relative; }
-        .gift-item img { width: 100%; }
-        .selected { border: 2px solid #fff; }
-        .gift-price { position: absolute; bottom: 2px; right: 2px; background: rgba(0,0,0,0.7); color: #fff; font-size: 10px; padding: 2px 4px; border-radius: 4px; font-weight: bold; }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title data-id="th-modified">BETONWIN - Casino Profesional</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
 
-        .card-option { background: #1a1a1a; padding: 15px; margin: 10px 0; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #333; cursor: pointer; }
-        .card-option.active { border: 2px solid #fff; }
-        
-        /* Carga y Alerta */
-        #loader-img { width: 72px; height: 72px; animation: spin 1.5s linear infinite; display: block; margin: 40px auto; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-
-        #super-alerta {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000;
-            display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 1000;
+   <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          // Color principal (Tu dorado)
+          primary: {
+            DEFAULT: '#facc15',
+            hover: '#eab308',
+          },
+          // Escala de grises profunda para el fondo
+          base: {
+            100: '#ffffff',
+            200: '#2a2a2a',
+            300: '#1e1e1e', // Tu base original
+            400: '#141414', // Fondo principal
+            500: '#0a0a0a', // Fondo más oscuro
+          },
+          // Colores de acento para modernizar
+          accent: {
+            blue: '#3b82f6',
+            purple: '#8b5cf6',
+            green: '#22c55e',
+            red: '#ef4444',
+          }
+        },
+        // Añadimos sombras más robustas
+        boxShadow: {
+          'neon': '0 0 15px rgba(250, 204, 21, 0.3)',
+          'card': '0 10px 25px -5px rgba(0, 0, 0, 0.5)',
         }
-        .icon-regalo { width: 100px; height: 100px; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+      }
+    }
+  }
+</script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: #0a0a0a; color: white; overflow-x: hidden; }
+        .swiper-main { width: 100%; height: 100%; border-radius: 12px; }
+        .swiper-side { width: 100%; height: 100%; }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        .side-container { height: 480px; }
+        .game-card { transition: all 0.3s ease; cursor: pointer; }
+        .game-card:hover { transform: translateY(-5px); }
+        .game-card:active { transform: scale(0.98); }
+        #modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+        .btn-cerrar { position: absolute; top: 15px; right: 15px; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; border: none; font-size: 20px; z-index: 10001; }
+        .btn-cerrar:hover { background: #ef4444; transform: scale(1.1) rotate(90deg); }
+        .admin-badge { position: fixed; top: 80px; right: 20px; background: #facc15; color: black; padding: 8px 16px; border-radius: 30px; font-weight: 900; font-size: 12px; z-index: 1000; animation: pulse 2s infinite; pointer-events: none; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        .notificacion { position: fixed; top: 80px; right: 20px; z-index: 10001; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.3); transform: translateX(400px); transition: transform 0.3s ease; max-width: 350px; }
+        .notificacion.mostrar { transform: translateX(0); }
+        .notificacion.exito { background: #10b981; }
+        .notificacion.error { background: #ef4444; }
+        .notificacion.info { background: #3b82f6; }
+        .notificacion.advertencia { background: #f59e0b; }
+        .buscador-container { position: relative; margin-bottom: 1rem; }
+        .buscador-container i { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #888; }
+        .buscador-input { width: 100%; background: #1e1e1e; border: 1px solid rgba(255,255,255,0.1); border-radius: 0.75rem; padding: 1rem 1rem 1rem 3rem; color: white; }
+        .buscador-input:focus { border-color: #facc15; outline: none; }
+        .categorias-container { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; margin: 1rem 0; }
+        .categoria-btn { padding: 0.5rem 1.5rem; border-radius: 9999px; font-weight: 700; font-size: 0.875rem; white-space: nowrap; background: rgba(255,255,255,0.1); color: white; border: none; cursor: pointer; }
+        .categoria-btn.active { background: #facc15; color: black; }
+        .stats-container { background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); border-radius: 12px; padding: 1rem; margin: 1rem 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
+        .stat-item { text-align: center; }
+        .stat-item .valor { font-size: 1.5rem; font-weight: 900; color: #facc15; }
+        .stat-item .etiqueta { font-size: 0.75rem; color: #888; text-transform: uppercase; }
+        .betonwin-logo { color: #facc15; font-weight: 900; font-size: 24px; font-style: italic; cursor: pointer; }
+        .betonwin-logo span { color: white; }
+        .deposito-modal { max-height: 90vh; overflow-y: auto; background: #1a1a1a; width: 100%; max-width: 550px; border-radius: 16px; position: relative; }
+        .metodos-tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; flex-wrap: wrap; }
+        .metodo-tab { padding: 10px 20px; border-radius: 8px 8px 0 0; cursor: pointer; font-weight: 600; font-size: 14px; background: #2a2a2a; color: #aaa; flex: 1; text-align: center; }
+        .metodo-tab.active { background: #facc15; color: black; }
+        .wallet-card { background: #1e1e1e; border: 1px solid #333; border-radius: 12px; padding: 12px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; }
+        .wallet-card.selected { border-color: #facc15; background: rgba(250,204,21,0.1); }
+        .wallet-address { font-family: monospace; font-size: 12px; color: #facc15; }
+        .file-input { background: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 12px; color: white; width: 100%; cursor: pointer; }
+        .file-input::file-selector-button { background: #facc15; color: black; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: bold; margin-right: 10px; }
+        .radio-custom { accent-color: #facc15; width: 18px; height: 18px; cursor: pointer; }
+        .checkbox-custom { accent-color: #facc15; width: 18px; height: 18px; cursor: pointer; }
+        .favorito-activo svg { fill: #facc15; }
+        #chat-button { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background: #facc15; color: black; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 15px rgba(250,204,21,0.3); z-index: 1000; transition: all 0.3s ease; }
+        #chat-button:hover { transform: scale(1.1); }
+        #chat-modal { position: fixed; bottom: 90px; right: 20px; width: 380px; background: #141414; border-radius: 12px; border: 1px solid #333; z-index: 1001; display: none; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .chat-header { padding: 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
+        .chat-mensajes { height: 350px; overflow-y: auto; padding: 15px; }
+        .chat-mensaje { margin-bottom: 10px; padding: 8px 12px; border-radius: 8px; max-width: 85%; }
+        .chat-mensaje.usuario { background: #facc15; color: black; margin-left: auto; }
+        .chat-mensaje.soporte { background: #2a2a2a; color: white; }
+        .chat-input-area { padding: 15px; border-top: 1px solid #333; display: flex; gap: 10px; }
+        .chat-input-area input { flex: 1; background: #0a0a0a; border: 1px solid #333; border-radius: 8px; padding: 10px; color: white; }
+        .chat-input-area button { background: #facc15; color: black; border: none; border-radius: 8px; padding: 0 15px; font-weight: bold; cursor: pointer; }
+        .btn-whatsapp { background: #25D366; color: white; padding: 10px 15px; border-radius: 8px; display: inline-flex; align-items: center; gap: 10px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; border: none; margin-top: 10px; width: 100%; justify-content: center; }
+        .btn-whatsapp:hover { background: #128C7E; transform: scale(1.02); }
+        .game-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 10000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+        .game-modal-content { background: transparent; width: 100%; max-width: 500px; height: 850px; border-radius: 16px; position: relative; overflow: hidden; }
+        .game-iframe { width: 100%; height: 100%; border: none; }
+        .btn-cerrar-juego { position: absolute; top: 10px; right: 10px; width: 35px; height: 35px; border-radius: 50%; background: rgba(0,0,0,0.7); color: white; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10001; border: 1px solid rgba(255,255,255,0.3); }
+        .btn-cerrar-juego:hover { background: #ef4444; transform: scale(1.1); }
+
+        @media (max-width: 768px) {
+            .side-container { height: 200px !important; }
+            .betonwin-logo { font-size: 18px !important; }
+            nav { display: flex !important; overflow-x: auto !important; gap: 1rem !important; width: 100% !important; order: 3 !important; }
+            nav a { font-size: 10px !important; white-space: nowrap !important; }
+            .deposito-modal { width: 95%; margin: 0 auto; }
+            .game-modal-content { max-width: 95%; height: 80vh; }
+            #chat-modal { width: 330px; right: 10px; bottom: 80px; }
+        }
+        @media (max-width: 480px) {
+            .grid-cols-3 { grid-template-columns: repeat(2, 1fr) !important; }
+        }
     </style>
-</head>
+<meta property="og:title" content="BETONWIN - Casino Profesional" data-id="th-modified"><meta property="og:image" content="https://www.coinbeti.com/og-image.jpg" data-id="th-modified"><meta property="og:url" content="https://www.coinbeti.com/" data-id="th-modified"><meta property="og:type" content="website" data-id="th-modified"><meta name="description" content="index" data-id="th-modified"><meta property="og:description" content="index" data-id="th-modified"><script defer data-domain="www.coinbeti.com" src="https://analytics.tiiny.site/js/plausible.js"></script></head>
 <body>
 
-<div class="container" id="main-app">
-    <img src="https://images.icon-icons.com/3018/PNG/96/box_tiktok_icon_188584.png" class="tiktok-logo">
-    <h1 style="text-align: center;">𝙍𝙚𝙜𝙖𝙡𝙤𝙨 𝘿𝙚 𝙏𝙞𝙠-𝙏𝙤𝙠</h1>
+    <!-- HEADER -->
+    <header class="bg-[#141414] w-full flex items-center justify-between px-6 border-b border-white/5 sticky top-0 z-[200] py-2 flex-wrap">
+        <div class="flex items-center gap-4 md:gap-10">
+            <div class="betonwin-logo" onclick="abrirSalon(); return false;">BET<span>ON</span>WIN</div>
+        </div>
+        <nav class="flex gap-4 md:gap-6 text-[11px] font-bold uppercase tracking-widest text-gray-400">
+            <a href="#" class="text-primary border-b-2 border-primary pb-1">CASINO</a>
+            <a href="#" onclick="abrirPokerEnVivo(); return false;" class="hover:text-white">POKER EN VIVO</a>
+            <a href="#" onclick="abrirPromociones(); return false;" class="hover:text-white">PROMOCIONES</a>
+            <a href="#" onclick="abrirDeportes(); return false;" class="hover:text-white">DEPORTES</a>
+            <a href="#" onclick="abrirJuegoEnVivo(); return false;" class="hover:text-white">EN VIVO</a>
+            <a href="#" onclick="abrirTorneos(); return false;" class="hover:text-white">TORNEOS</a>
+            <a href="#" onclick="abrirVIP(); return false;" class="hover:text-white">VIP</a>
+            <a href="#" onclick="abrirRuleta(); return false;" class="hover:text-white">RULETA</a>
+            <a href="#" onclick="abrirFlipCard(); return false;" class="hover:text-white">FLIPCARD</a>
+        </nav>
+        <div id="user-header-area" class="flex items-center gap-2 md:gap-4">
+            <button onclick="abrirLogin()" class="text-gray-400 text-[11px] font-bold px-2 hover:text-white">INICIAR</button>
+            <button onclick="abrirRegistro()" class="bg-primary text-black text-[11px] font-black px-3 md:px-5 py-2 rounded-md uppercase hover:bg-yellow-500">REGISTRARSE</button>
+        </div>
+    </header>
+
+    <div id="modal-overlay">
+        <div id="contenedor-modal" class="w-full max-w-6xl transform transition-all p-4 relative"></div>
+    </div>
+
+    <div id="game-modal-overlay" class="game-modal-overlay">
+        <div class="game-modal-content">
+            <button class="btn-cerrar-juego" onclick="cerrarJuegoModal()"><i class="fas fa-times"></i></button>
+            <iframe id="game-iframe" class="game-iframe" allow="accelerometer; autoplay; clipboard-read; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div id="admin-badge" class="admin-badge" style="display: none;">
+        <i class="fas fa-crown mr-2"></i> MODO ADMIN
+    </div>
+
+    <!-- CHAT INTELIGENTE -->
+    <div id="chat-button" onclick="toggleChat()">
+        <i class="fas fa-headset text-2xl"></i>
+    </div>
+    <div id="chat-modal">
+        <div class="chat-header"><span class="font-bold">💬 Soporte BETONWIN</span><button onclick="toggleChat()" class="text-gray-400 hover:text-white"><i class="fas fa-times"></i></button></div>
+        <div class="chat-mensajes" id="chat-mensajes"><div class="chat-mensaje soporte">¡Hola! ¿En qué podemos ayudarte? Puedes consultarme sobre recargas, depósitos, métodos de pago o tardanzas.</div></div>
+        <div class="chat-input-area"><input type="text" id="chat-input" placeholder="Escribe tu mensaje..." onkeypress="if(event.key==='Enter') enviarMensaje()"><button onclick="enviarMensaje()">Enviar</button></div>
+    </div>
+
+    <!-- HERO SLIDER -->
+    <section class="max-w-[1450px] mx-auto w-full p-4">
+        <div class="grid grid-cols-12 gap-4 side-container">
+            <div class="col-span-12 md:col-span-9 relative h-full">
+                <div class="swiper swiper-main h-full rounded-2xl overflow-hidden">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212T294a0818-81e1-43f2-86e0-a749c4473829.jpg" alt="slide1"></div>
+                        <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212Td842f1f2-aac7-4963-a619-179b0312baaf.jpg" alt="slide2"></div>
+                        <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212Te43787fd-b5aa-46d6-be2d-07440778944f.jpg" alt="slide3"></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div class="hidden md:block md:col-span-3 h-full">
+                <div class="swiper swiper-side h-full">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide !h-[155px] pb-2"><img src="https://images.virtualsoft.tech/m/msj0212T1772833927.jpg" class="w-full h-full object-cover rounded-xl border border-white/5 hover:border-primary transition-all"></div>
+                        <div class="swiper-slide !h-[155px] pb-2"><img src="https://images.virtualsoft.tech/m/msj0212T1772630933.jpg" class="w-full h-full object-cover rounded-xl border border-white/5 hover:border-primary transition-all"></div>
+                        <div class="swiper-slide !h-[155px]"><img src="https://images.virtualsoft.tech/m/msj0212T1772837583.jpg" class="w-full h-full object-cover rounded-xl border border-white/5 hover:border-primary transition-all"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BUSCADOR Y CATEGORÍAS -->
+    <section class="max-w-[1450px] mx-auto w-full p-4 mt-8">
+        <div class="buscador-container"><i class="fas fa-search"></i><input type="text" id="buscador-juegos" class="buscador-input" placeholder="Buscar juego..." onkeyup="filtrarJuegos(this.value)"></div>
+        <div class="categorias-container">
+            <button class="categoria-btn active" onclick="filtrarCategoria('todos', this)">Todos</button>
+            <button class="categoria-btn" onclick="filtrarCategoria('slots', this)">Slots</button>
+            <button class="categoria-btn" onclick="filtrarCategoria('crash', this)">Crash</button>
+            <button class="categoria-btn" onclick="filtrarCategoria('nuevos', this)">Nuevos</button>
+            <button class="categoria-btn" onclick="filtrarCategoria('populares', this)">Populares</button>
+            <button class="categoria-btn" onclick="filtrarCategoria('favoritos', this)">Favoritos</button>
+        </div>
+        <div class="stats-container">
+            <div class="stat-item"><div class="valor" id="stats-jugadores">6.1K</div><div class="etiqueta">Jugadores Online</div></div>
+            <div class="stat-item"><div class="valor" id="stats-bote">$12.5K</div><div class="etiqueta">Bote Acumulado</div></div>
+            <div class="stat-item"><div class="valor" id="stats-ganadores">954</div><div class="etiqueta">Ganadores Hoy</div></div>
+        </div>
+    </section>
+
+    <!-- JUEGOS DESTACADOS (TODOS LOS JUEGOS) -->
+    <main class="max-w-[1450px] mx-auto w-full p-4 mt-8">
+        <h2 class="text-white font-black italic uppercase text-lg flex items-center gap-3 mb-8">
+            <span class="w-1.5 h-6 bg-primary rounded-full"></span> JUEGOS DESTACADOS
+        </h2>
+        <div class="grid grid-cols-3 sm:grid-cols-6 gap-x-[2rem] gap-y-7 sm:gap-y-10 py-2" id="juegos-container">
+            <!-- Sugar Rush -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots populares" data-nombre="sugar rush">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/sugar-rushT1731536549.gif" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">sugar rush</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('sugar-rush', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Gates of Olympus -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots populares" data-nombre="gates of olympus">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/Gates-of-OlympusT1746469136.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">gates of olympus</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('gates-of-olympus', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Sweet Alchemy -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="sweet alchemy">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/Sweet-AlchemyT1706305856.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">sweet alchemy</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('sweet-alchemy', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Coin Strike -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="coin strike">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/Coin-Strike-Hold-and-WinT1737407157.gif" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">coin strike</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('coin-strike', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- 100 Power Hot -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="100 power hot">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/m/100-Power-Hot-Golden-Coins-LinkT1772553129.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">100 power hot</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('100-power-hot', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Thunder Coins -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="thunder coins">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/Thunder-Coins-XXL-Hold-and-WinT1748282106.gif" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">thunder coins</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('thunder-coins', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Burning Fortunator -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="burning fortunator">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/Burning-FortunatorT1737407369.gif" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">burning fortunator</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('burning-fortunator', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Golden Ticket 2 -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="golden ticket">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/Golden-Ticket-2T1599155052.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">golden ticket 2</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('golden-ticket', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- 1000 Olympus Rivals -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="1000 olympus rivals">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/m/1000-Olympus-RivalsT1768322798.gif" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">1000 olympus rivals</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('1000-olympus-rivals', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Victory Coins -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="victory coins">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/m/Victory-CoinsT1762359242.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">victory coins</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('victory-coins', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Roman Coins -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="roman coins">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/&nbsp;Roman-CoinsT1758572991.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">roman coins</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('roman-coins', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Lion Gems -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="lion gems">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/m/Lion-Gems-3-Pots-Hold-and-WinT1760458170.gif" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">lion gems</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('lion-gems', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Rockin Joker -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="rockin joker">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/m/RockinJoker-Hold-and-WinT1760544717.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">rockin joker</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('rockin-joker', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Dazzling Crown -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="dazzling crown">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/Dazzling-CrownT1731609654.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">dazzling crown</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('dazzling-crown', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Moon Princess -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="moon princess">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/Moon-Princess-100T1649715255.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">moon princess</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('moon-princess', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- 3 Energy Crowns -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="3 energy crowns">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/3-Energy-CrownsT1759161712.gif" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">3 energy crowns</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('3-energy-crowns', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Sea of Fortune -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="sea of fortune">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/Sea-of-FortuneT1755810053.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">sea of fortune</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('sea-of-fortune', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Cash Pig 2 -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="cash pig">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/Cash-Pig-2T1745962887.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">cash pig 2</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('cash-pig', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Royal Coins 2 -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="royal coins">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/royal-coins-2T1667597617.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">royal coins 2</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('royal-coins', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Very Hot 40 -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="very hot 40">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/m/Very-Hot-40T1763655561.jpg" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">very hot 40</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('very-hot-40', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Fortune Snake -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="fortune snake">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/m/Fortune-SnakeT1760731690.gif" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">fortune snake</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('fortune-snake', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Zeus -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="zeus">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/Zeus-the-InvincibleT1742916404.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">zeus invincible</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('zeus', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Big Wild Buffalo -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="big wild buffalo">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/m/Big-Wild-Buffalo-2T1764263438.gif" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">big wild buffalo</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('big-wild-buffalo', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Wild 27 -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="wild 27">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/m/Wild-27-ExtremeT1767126698.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">wild 27 extreme</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('wild-27', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Winners Arms -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="winners arms">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/The-Winners-Arms-V93T1717526245.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">winners arms</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('winners-arms', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- MummyLand -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="mummyland">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/MummyLand-TreasuresT1729024108.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">mummyland</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('mummyland', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Cash Streak Dice -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="cash streak dice">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/m/Cash-Streak-DiceT1766499839.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">cash streak dice</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('cash-streak-dice', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Penalty Rush -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="penalty rush">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/m/Penalty-RushT1771010767.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">penalty rush</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('penalty-rush', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- The Fortuner -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="fortuner">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/The-FortunerT1741616555.gif" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">the fortuner</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('fortuner', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Irish Coins -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="irish coins">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/Irish-CoinsT1689714476.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">irish coins</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('irish-coins', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Aviatrix -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="aviatrix">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.seeklogo.com/logo-png/62/2/aviatrix-logo-png_seeklogo-620063.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">aviatrix</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('aviatrix', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Spaceman -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="spaceman">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/SpaceManT1669818906.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">spaceman</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('spaceman', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Caramelo Sortudo -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="caramelo sortudo">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/Caramelo-SortudoT1747750622.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">caramelo sortudo</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('caramelo-sortudo', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Lucky Phoenix -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots nuevos" data-nombre="lucky phoenix">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/Lucky-PhoenixT1749571601.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">lucky phoenix</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('lucky-phoenix', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- 888 Dragons -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="888 dragons">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/888-DragonsT1557785735.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">888 dragons</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('888-dragons', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+            <!-- Golden Tree -->
+            <div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="golden tree">
+                <div class="w-full h-full rounded-xl bg-base-300 relative">
+                    <img src="https://images.virtualsoft.tech/productos/Golden-TreeT1702649984.png" class="h-[75%] w-full rounded-3xl object-cover">
+                    <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+                        <p class="truncate text-xs text-neutral font-light capitalize w-full">golden tree</p>
+                        <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('golden-tree', this)"><svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg></button>
+                    </div>
+                    <div onclick="intentarJugar()" class="absolute inset-0"></div>
+                </div>
+            </div>
+           <!-- Clon 1: Spaceman -->
+<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="spaceman">
+    <div class="w-full h-full rounded-xl bg-base-300 relative">
+        <img src="https://images.virtualsoft.tech/productos/Hit-BarT1731591442.gif" class="h-[75%] w-full rounded-3xl object-cover">
+        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+            <p class="truncate text-xs text-neutral font-light capitalize w-full">spaceman</p>
+            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('spaceman', this)">
+                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+            </button>
+        </div>
+        <div onclick="intentarJugar()" class="absolute inset-0"></div>
+    </div>
+</div>
+
+<!-- Clon 2: Mines -->
+<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="mines">
+    <div class="w-full h-full rounded-xl bg-base-300 relative">
+        <img src="https://images.virtualsoft.tech/productos/Lucky-DestinyT1744129332.gif" class="h-[75%] w-full rounded-3xl object-cover">
+        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+            <p class="truncate text-xs text-neutral font-light capitalize w-full">mines</p>
+            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('mines', this)">
+                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+            </button>
+        </div>
+        <div onclick="intentarJugar()" class="absolute inset-0"></div>
+    </div>
+</div>
+<!-- Clon 1: Spaceman -->
+<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="spaceman">
+    <div class="w-full h-full rounded-xl bg-base-300 relative">
+        <img src="https://images.virtualsoft.tech/productos/Mega-Fire-Blaze-Khonsu-God-of-MoonT1731537120.gif" class="h-[75%] w-full rounded-3xl object-cover">
+        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+            <p class="truncate text-xs text-neutral font-light capitalize w-full">spaceman</p>
+            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('spaceman', this)">
+                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+            </button>
+        </div>
+        <div onclick="intentarJugar()" class="absolute inset-0"></div>
+    </div>
+</div>
+
+<!-- Clon 2: Mines -->
+<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="mines">
+    <div class="w-full h-full rounded-xl bg-base-300 relative">
+        <img src="https://images.virtualsoft.tech/productos/PiaT1741699161.gif" class="h-[75%] w-full rounded-3xl object-cover">
+        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+            <p class="truncate text-xs text-neutral font-light capitalize w-full">mines</p>
+            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('mines', this)">
+                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+            </button>
+        </div>
+        <div onclick="intentarJugar()" class="absolute inset-0"></div>
+    </div>
+</div>
+<!-- Clon 1: Spaceman -->
+<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="spaceman">
+    <div class="w-full h-full rounded-xl bg-base-300 relative">
+        <img src="https://images.virtualsoft.tech/productos/Power-BallsT1738078123.gif" class="h-[75%] w-full rounded-3xl object-cover">
+        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+            <p class="truncate text-xs text-neutral font-light capitalize w-full">spaceman</p>
+            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('spaceman', this)">
+                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+            </button>
+        </div>
+        <div onclick="intentarJugar()" class="absolute inset-0"></div>
+    </div>
+</div>
+
+<!-- Clon 2: Mines -->
+<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="mines">
+    <div class="w-full h-full rounded-xl bg-base-300 relative">
+        <img src="https://images.virtualsoft.tech/productos/Super-7-3x3T1757346619.gif" class="h-[75%] w-full rounded-3xl object-cover">
+        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+            <p class="truncate text-xs text-neutral font-light capitalize w-full">mines</p>
+            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('mines', this)">
+                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+            </button>
+        </div>
+        <div onclick="intentarJugar()" class="absolute inset-0"></div>
+    </div>
+</div>
+<!-- Clon 1: Spaceman -->
+<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="spaceman">
+    <div class="w-full h-full rounded-xl bg-base-300 relative">
+        <img src="https://images.virtualsoft.tech/productos/Zeus-the-InvincibleT1742916404.png" class="h-[75%] w-full rounded-3xl object-cover">
+        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+            <p class="truncate text-xs text-neutral font-light capitalize w-full">spaceman</p>
+            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('spaceman', this)">
+                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+            </button>
+        </div>
+        <div onclick="intentarJugar()" class="absolute inset-0"></div>
+    </div>
+</div>
+<!-- Clon 1: Spaceman -->
+<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="spaceman">
+    <div class="w-full h-full rounded-xl bg-base-300 relative">
+        <img src="https://images.virtualsoft.tech/productos/totemT1696953989.png" class="h-[75%] w-full rounded-3xl object-cover">
+        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+            <p class="truncate text-xs text-neutral font-light capitalize w-full">spaceman</p>
+            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('spaceman', this)">
+                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+            </button>
+        </div>
+        <div onclick="intentarJugar()" class="absolute inset-0"></div>
+    </div>
+</div>
+
+<!-- Clon 2: Mines -->
+<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="mines">
+    <div class="w-full h-full rounded-xl bg-base-300 relative">
+        <img src="https://images.virtualsoft.tech/productos/Zeus-the-ThundererT1633437038.png" class="h-[75%] w-full rounded-3xl object-cover">
+        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+            <p class="truncate text-xs text-neutral font-light capitalize w-full">mines</p>
+            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('mines', this)">
+                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+            </button>
+        </div>
+        <div onclick="intentarJugar()" class="absolute inset-0"></div>
+    </div>
+</div>
+<!-- Clon 1: Spaceman -->
+<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="crash" data-nombre="spaceman">
+    <div class="w-full h-full rounded-xl bg-base-300 relative">
+        <img src="https://images.virtualsoft.tech/productos/royal-coins-2T1667597617.png" class="h-[75%] w-full rounded-3xl object-cover">
+        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+            <p class="truncate text-xs text-neutral font-light capitalize w-full">spaceman</p>
+            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('spaceman', this)">
+                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+            </button>
+        </div>
+        <div onclick="intentarJugar()" class="absolute inset-0"></div>
+    </div>
+</div>
+
+<!-- Clon 2: Mines -->
+<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="mines">
+    <div class="w-full h-full rounded-xl bg-base-300 relative">
+        <img src="https://www.ruletix.store/static/cdnimg/v4/20A30EF8A2A766140D074FF3EC9A76B2" class="h-[75%] w-full rounded-3xl object-cover">
+        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+            <p class="truncate text-xs text-neutral font-light capitalize w-full">mines</p>
+            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('mines', this)">
+                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+            </button>
+        </div>
+        <div onclick="intentarJugar()" class="absolute inset-0"></div>
+    </div>
+</div>
+
+<!-- Clon 2: Mines -->
+<div class="game-card h-24 sm:h-32 w-28 sm:w-40 rounded-xl" data-categoria="slots" data-nombre="mines">
+    <div class="w-full h-full rounded-xl bg-base-300 relative">
+        <img src="https://www.ruletix.mx/static/cdnimg/v4/6B0273686841D72DDEC69D572BABF402" class="h-[75%] w-full rounded-3xl object-cover">
+        <div class="flex justify-between items-center w-full h-[25%] rounded-xl px-2">
+            <p class="truncate text-xs text-neutral font-light capitalize w-full">mines</p>
+            <button class="flex items-center justify-center w-8 h-8 hover:scale-125 favorite-btn" onclick="event.stopPropagation(); toggleFavorito('mines', this)">
+                <svg width="24" height="16" fill="currentColor" viewBox="0 0 576 512"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"></path></svg>
+            </button>
+        </div>
+        <div onclick="intentarJugar()" class="absolute inset-0"></div>
+    </div>
+</div>
+   <section class="max-w-[1450px] mx-auto w-full p-4 mt-12">
+    <h2 class="text-white font-black italic uppercase text-lg flex items-center gap-3 mb-6">
+        <span class="w-1.5 h-6 bg-primary rounded-full"></span> BONOS ACTIVOS
+    </h2>
     
-    <input type="text" id="username" placeholder="@usuario">
-    <button onclick="buscarPerfil()">𝘽𝙪𝙨𝙘𝙖𝙧 𝙋𝙚𝙧𝙛𝙞𝙡</button>
-
-    <div id="profile-display">
-        <img id="avatar-img" class="avatar" src="" alt="Avatar">
-        <h2 id="display-name">@Usuario</h2>
-    </div>
-
-    <div id="step2" style="display:none;">
-        <p>𝑬𝒍𝒊𝒈𝒆 𝒕𝒖 𝒓𝒆𝒈𝒂𝒍𝒐:</p>
-        <div class="gift-grid" id="grid"></div>
+    <div class="flex flex-wrap gap-6">
         
-        <p>Método de pago:</p>
-        <div class="card-option" onclick="seleccionarCard(this)">
-            <span>𝙑𝙞𝙨𝙖</span>
-            <img src="https://images.icon-icons.com/2341/PNG/96/visa_payment_method_card_icon_142729.png" width="40">
+        <div class="flex-1 min-w-[300px] bg-base-300 border border-white/10 rounded-2xl p-6 transition-all hover:border-primary/50 group">
+            <div class="text-primary font-black text-3xl mb-2">100%</div>
+            <div class="text-white font-bold text-lg">Hasta $500</div>
+            <p class="text-gray-400 text-sm mb-6">en tu primer depósito</p>
+            <button onclick="reclamarBono('primer-deposito')" class="flex items-center gap-2 text-xs uppercase font-black tracking-widest text-primary group-hover:text-white transition-colors">
+                Reclamar <span>→</span>
+            </button>
         </div>
-        <div class="card-option" onclick="seleccionarCard(this)">
-            <span>𝙈𝙖𝙨𝙩𝙚𝙧𝙘𝙖𝙧𝙙</span>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" width="40">
+
+        <div class="flex-1 min-w-[300px] bg-base-300 border border-white/10 rounded-2xl p-6 transition-all hover:border-primary/50 group">
+            <div class="text-primary font-black text-3xl mb-2">50%</div>
+            <div class="text-white font-bold text-lg">Cashback</div>
+            <p class="text-gray-400 text-sm mb-6">todos los viernes</p>
+            <button onclick="reclamarBono('cashback')" class="flex items-center gap-2 text-xs uppercase font-black tracking-widest text-primary group-hover:text-white transition-colors">
+                Reclamar <span>→</span>
+            </button>
         </div>
-        <button onclick="iniciarCarga()">𝘊𝘰𝘯𝘧𝘪𝘳𝘮𝘢𝘳 𝘺 𝘌𝘯𝘷𝘪𝘢𝘳</button>
+
+        <div class="flex-1 min-w-[300px] bg-base-300 border border-white/10 rounded-2xl p-6 transition-all hover:border-primary/50 group">
+            <div class="text-primary font-black text-3xl mb-2">20</div>
+            <div class="text-white font-bold text-lg">Giros gratis</div>
+            <p class="text-gray-400 text-sm mb-6">sin depósito</p>
+            <button onclick="reclamarBono('giros-gratis')" class="flex items-center gap-2 text-xs uppercase font-black tracking-widest text-primary group-hover:text-white transition-colors">
+                Reclamar <span>→</span>
+            </button>
+        </div>
+
     </div>
+</section>
 
-    <div id="loader" style="display:none; text-align:center;">
-        <img id="loader-img" src="https://images.icon-icons.com/1489/PNG/96/loadingcircles_102612.png">
-        <p>Procesando transacción...</p>
-    </div>
-</div>
+    <!-- FOOTER -->
+    <footer class="bg-[#0f0f0f] border-t border-white/5 mt-16 py-12">
+        <div class="max-w-[1450px] mx-auto w-full p-4 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div><div class="betonwin-logo text-xl mb-4" onclick="abrirSalon(); return false;">BET<span>ON</span>WIN</div><p class="text-xs text-gray-500">© 2024 Todos los derechos reservados.</p><p class="text-xs text-gray-600 mt-2">Juega con responsabilidad</p></div>
+            <div><h4 class="text-white font-bold uppercase text-xs tracking-widest mb-4">JUEGOS</h4><ul class="space-y-2 text-xs text-gray-500"><li><a href="#" class="hover:text-primary">Aviator</a></li><li><a href="#" class="hover:text-primary">Slots</a></li><li><a href="#" class="hover:text-primary">Ruleta</a></li><li><a href="#" class="hover:text-primary">FlipCard</a></li></ul></div>
+            <div><h4 class="text-white font-bold uppercase text-xs tracking-widest mb-4">INFORMACIÓN</h4><ul class="space-y-2 text-xs text-gray-500"><li><a href="#" class="hover:text-primary">Términos</a></li><li><a href="#" class="hover:text-primary">Ayuda</a></li></ul></div>
+            <div><h4 class="text-white font-bold uppercase text-xs tracking-widest mb-4">PAGOS</h4><ul class="space-y-2 text-xs text-gray-500"><li class="flex items-center gap-2">USDT (ERC20) • Banco Pichincha</li></ul></div>
+        </div>
+    </footer>
 
-<div id="super-alerta">
-    <img src="https://www.bet4.pe/assets/bet4_promotion-CmJXRReZ.svg" class="icon-regalo">
-    <h3>¡Éxito!</h3>
-    <p>El regalo llegará en 24 horas hábiles.</p>
-    <button onclick="reiniciarApp()" style="width: 200px; margin-top: 20px;">𝘼𝙘𝙚𝙥𝙩𝙖𝙧</button>
-</div>
+    <script>
+        // ============================================
+        // PAÍSES Y MONEDAS
+        // ============================================
+        const PAISES_MONEDAS = {
+            'CO': { nombre: 'Colombia', moneda: 'COP', simbolo: '$', tasa: 4000, prefijo: '+57' },
+            'MX': { nombre: 'México', moneda: 'MXN', simbolo: '$', tasa: 18.5, prefijo: '+52' },
+            'PE': { nombre: 'Perú', moneda: 'PEN', simbolo: 'S/', tasa: 3.7, prefijo: '+51' },
+            'AR': { nombre: 'Argentina', moneda: 'ARS', simbolo: '$', tasa: 1000, prefijo: '+54' },
+            'CL': { nombre: 'Chile', moneda: 'CLP', simbolo: '$', tasa: 950, prefijo: '+56' },
+            'US': { nombre: 'Estados Unidos', moneda: 'USD', simbolo: '$', tasa: 1, prefijo: '+1' },
+            'ES': { nombre: 'España', moneda: 'EUR', simbolo: '€', tasa: 0.92, prefijo: '+34' },
+            'EC': { nombre: 'Ecuador', moneda: 'USD', simbolo: '$', tasa: 1, prefijo: '+593' }
+        };
 
-<script>
-    // Tu lista original con precios añadidos
-    const giftsData = [
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/9b96e064a327ac9f720a767a1c2603b3.png~tplv-obj.webp", price: 14999 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/ef248375c4167d70c1642731c732c982~tplv-obj.webp", price: 25999 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/df63eee488dc0994f6f5cb2e65f2ae49~tplv-obj.webp", price: 10000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/8ef48feba8dd293a75ae9d4376fb17c9~tplv-obj.webp", price: 20000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/6026505eea9b9bce071dd699253abf6a~tplv-obj.webp", price: 10999 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/9ad035b088dfeaf298fdc9cd84d50000.png~tplv-obj.webp", price: 10009 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/8173e9b07875cca37caa5219e4903a40.png~tplv-obj.webp", price: 20000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/4ab2b1c3d5ce336a97eeaf2a8f131c00.png~tplv-obj.webp", price: 15000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/8520d47b59c202a4534c1560a355ae06~tplv-obj.webp", price: 50000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/e7ce188da898772f18aaffe49a7bd7db~tplv-obj.webp", price: 7000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/075198e03b73c4037429db72dc9ffa24.png~tplv-obj.webp", price: 5099 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/149b8ec691a1b9e5e7dac329e790e150.png~tplv-obj.webp", price: 4600 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/8b87bbb88b80a5bf63abb6abcd4fa147.png~tplv-obj.webp", price: 9999 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/483c644e67e9bb1dd5970f2df00b7576~tplv-obj.webp", price: 5999 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/858e9f4a507368b572738981e969b465.png~tplv-obj.webp", price: 3599 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/f260aeb10751f0ad9092e6c0c52c950e.png~tplv-obj.webp", price: 10000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/d80eedff9321f5acabafbc885918139e.png~tplv-obj.webp", price: 10099 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/3f1945b0d96e665a759f747e5e0cf7a9~tplv-obj.webp", price: 9960 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/719e1f271c29f2165bda5d787501c307.png~tplv-obj.webp", price: 3699 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/motor_icon_green.png~tplv-obj.webp", price: 5603 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/71883933511237f7eaa1bf8cd12ed575~tplv-obj.webp", price: 11000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/1d067d13988e8754ed6adbebd89b9ee8.png~tplv-obj.webp", price: 2920 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/796b15068f06c947eeead7517e0bd5e4.png~tplv-obj.webp", price: 2380 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/0de49ea9a79e65307c674596da517792.png~tplv-obj.webp", price: 8240 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/443c163954f4f7636909fb6980518745.png~tplv-obj.webp", price: 2858 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/1ea8dbb805466c4ced19f29e9590040f~tplv-obj.webp", price: 6000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/0eafd5c28cdb2563f3386679643abb29.png~tplv-obj.webp", price: 8000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/f33e074aa9308800afec8c0ecaa0ef42.png~tplv-obj.webp", price: 35000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/5734e71ba84d872c08d8c68e94b5ce36.png~tplv-obj.webp", price: 10000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/61e7dc294d766a81abf7bce5591db60c.png~tplv-obj.webp", price: 9300 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/c2413f87d3d27ac0a616ac99ccaa9278.png~tplv-obj.webp", price: 3310 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/469999dc1598d243114e9969f8d19467.png~tplv-obj.webp", price: 3288 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/5aa9258af43983e39f90cf300c3e98d4.png~tplv-obj.webp", price: 7000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/af980f4ec9ed73f3229df8dfb583abe6.png~tplv-obj.webp", price: 2500 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/af67b28480c552fd8e8c0ae088d07a1d.png~tplv-obj.webp", price: 11000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/17ce759753f11358e75a3c7568eaad1b.png~tplv-obj.webp", price: 7500 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/b5ac8bb9da5569185bfdc1be357d3906.png~tplv-obj.webp", price: 12000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/4a9a2b3c9ae95efd305eee880ded9c54.png~tplv-obj.webp", price: 3980 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/b446be331b24f136afbdff8eaf5cf9d5.png~tplv-obj.webp", price: 9390 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/5502bfb46b11ef92c70597eae10b35e3.png~tplv-obj.webp", price: 4000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/9494c8a0bc5c03521ef65368e59cc2b8~tplv-obj.webp", price: 11410 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/97a26919dbf6afe262c97e22a83f4bf1~tplv-obj.webp", price: 4200 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/863e7947bc793f694acbe970d70440a1.png~tplv-obj.webp", price: 1430 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/991cb8b02429d17007db77e38c1aeaf6.png~tplv-obj.webp", price: 4540 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/2385dccf1c6ce8b31233186a1072c5ac.png~tplv-obj.webp", price: 5300 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/9108da5ad7e112db04db2ce97b81d527.png~tplv-obj.webp", price: 4600 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/0e3769575f5b7b27b67c6330376961a4.png~tplv-obj.webp", price: 7470 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/767d7ea90f58f3676bbc5b1ae3c9851d.png~tplv-obj.webp", price: 5000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/cc2fe165b4365bda331c47f0fd212acd.png~tplv-obj.webp", price: 4990 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/b2aafe2ca2e529b10194d143ef86a31b.png~tplv-obj.webp", price: 4000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/3cbaea405cc61e8eaab6f5a14d127511.png~tplv-obj.webp", price: 500 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/b48c69f4df49c28391bcc069bbc31b41.png~tplv-obj.webp", price: 350 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/1d1650cd9bb0e39d72a6e759525ffe59~tplv-obj.webp", price: 510 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/4756a2a4604d2cb5bb5b0639b259e9b5.png~tplv-obj.webp", price: 400 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/d4faa402c32bf4f92bee654b2663d9f1~tplv-obj.webp", price: 550 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/1153dd51308c556cb4fcc48c7d62209f.png~tplv-obj.webp", price: 560 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/964574672ba78aec095a139e955de948.png~tplv-obj.webp", price: 570 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/4227ed71f2c494b554f9cbe2147d4899~tplv-obj.webp", price: 580 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/805e6b8051d50ca6e6c9b74d5fc89045.png~tplv-obj.webp", price: 4000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/96d1cf92904427a17d81b868d7dafc91.png~tplv-obj.webp", price: 300 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/b6266323ef3ea0d313cbab6911ff8c46~tplv-obj.webp", price: 173 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/f76750ab58ee30fc022c9e4e11d25c9d.png~tplv-obj.webp", price: 620 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/eb0923dbab5251f4c2e0496b11b55c4f~tplv-obj.webp", price: 500 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/9f8bd92363c400c284179f6719b6ba9c~tplv-obj.webp", price: 610 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/70529cd75b4d64587658c462c45dc238~tplv-obj.webp", price: 690 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/183225b378b1bdf758a992781727b850~tplv-obj.webp", price: 600 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/79a02148079526539f7599150da9fd28.png~tplv-obj.webp", price: 670 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/21549ba24f76a01d00373cb8e35660ae.png~tplv-obj.webp", price: 1000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/e1932db6aea81bbddc4e7dc0229ac155~tplv-obj.webp", price: 690 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/0f158a08f7886189cdabf496e8a07c21~tplv-obj.webp", price: 700 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/148eef0884fdb12058d1c6897d1e02b9~tplv-obj.webp", price: 710 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/d78ed6496fd57286b42ac033acbee299.png~tplv-obj.webp", price: 100 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/551ecaf639c5e02354f9e7c1a763ec72.png~tplv-obj.webp", price: 730 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/resource/e033c3f28632e233bebac1668ff66a2f.png~tplv-obj.webp", price: 973 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/b158b8493b51a3f30c59710c39d1dc96~tplv-obj.webp", price: 9000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/cb4e11b3834e149f08e1cdcc93870b26~tplv-obj.webp", price: 5500 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/12374117770f779919bf002461fdfac0.png~tplv-obj.webp", price: 8000 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/075e206d6da035f10ff5f8fecd82abcc.png~tplv-obj.webp", price: 222 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/alisg/webcast-sg/resource/6703facdac34caefbd0617a6321afe9b.png~tplv-obj.webp", price: 100 },
-        { url: "https://p16-webcast.tiktokcdn.com/img/maliva/webcast-va/98bea1b189fba75bf0ca766b4dc1976e~tplv-obj.webp", price: 703 }
-    ];
+        // ============================================
+        // CONFIGURACIÓN INICIAL - SALDO SIEMPRE 0
+        // ============================================
+        let usuarioActual = {
+            nombre: "", apellido: "", email: "", id: Math.floor(10000000 + Math.random() * 90000000).toString(),
+            saldo: 0, isAdmin: false, pais: 'CO', moneda: 'COP', simbolo: '$', tasa: 4000,
+            primerDepositoRealizado: false, retirosPendientes: []
+        };
 
-    function buscarPerfil() {
-        const user = document.getElementById('username').value;
-        if(user) {
-            document.getElementById('display-name').innerText = user;
-            document.getElementById('avatar-img').src = `https://unavatar.io/tiktok/${user.replace('@','')}`;
-            document.getElementById('profile-display').style.display = 'block';
-            document.getElementById('step2').style.display = 'block';
+        const ADMINISTRADORES = { "@": "@" };
+
+        const BILLETERAS_USDT = [
+            { direccion: "0x74Ba6E36917744D8A4d98fd709fE3de4f790c1A3", nombre: "Billetera Principal" },
+        ];
+        let billeteraSeleccionada = BILLETERAS_USDT[0];
+
+        const DATOS_BANCO_PICHINCHA = { nombre: "Banco Pichincha", numero: "2214166379", titular: "ANTONIO PEREZ", tipo: "Cuenta de Ahorros" };
+
+        let metodoActivo = 'cripto';
+        let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+
+        const overlay = document.getElementById('modal-overlay');
+        const contenedorModal = document.getElementById('contenedor-modal');
+        const userHeader = document.getElementById('user-header-area');
+        const gameModalOverlay = document.getElementById('game-modal-overlay');
+        const gameIframe = document.getElementById('game-iframe');
+
+        // ============================================
+        // CHAT INTELIGENTE
+        // ============================================
+        function toggleChat() {
+            const chat = document.getElementById('chat-modal');
+            chat.style.display = chat.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function enviarMensaje() {
+            const input = document.getElementById('chat-input');
+            const msg = input.value.trim().toLowerCase();
+            if(!msg) return;
             
-            const grid = document.getElementById('grid');
-            grid.innerHTML = '';
-            // Iteramos sobre los datos para mostrar imagen y precio
-            giftsData.forEach(item => {
-                grid.innerHTML += `<div class="gift-item" onclick="seleccionar(this)">
-                    <img src="${item.url}" width="100%">
-                    <span class="gift-price">$${item.price}</span>
-                </div>`;
+            const chatMsgs = document.getElementById('chat-mensajes');
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-mensaje usuario bg-primary text-black p-2 rounded-lg mb-2 ml-auto max-w-[80%]';
+            userMsg.textContent = input.value.trim();
+            chatMsgs.appendChild(userMsg);
+            input.value = '';
+            
+            setTimeout(() => {
+                const supportMsg = document.createElement('div');
+                supportMsg.className = 'chat-mensaje soporte bg-gray-800 p-2 rounded-lg mb-2';
+                
+                let respuesta = "";
+                
+                if (msg.includes("recarga") || msg.includes("depósito") || msg.includes("deposito")) {
+                    respuesta = "💰 Para recargar, ve al botón RECARGAR en la parte superior. Aceptamos USDT (ERC20) y transferencia bancaria a Banco Pichincha. El proceso tarda máximo 24 horas hábiles.";
+                }
+                else if (msg.includes("método") || msg.includes("metodo") || msg.includes("pago") || msg.includes("usdt") || msg.includes("cripto")) {
+                    respuesta = "💳 Aceptamos: USDT (ERC20) y transferencias a Banco Pichincha (Cuenta: 2214166379, Titular: ANTONIO PEREZ). Los comprobantes se revisan en 24h.";
+                }
+                else if (msg.includes("tardanza") || msg.includes("demora") || msg.includes("cuanto tarda") || msg.includes("cuánto tarda")) {
+                    respuesta = "⏱️ Los depósitos por USDT y transferencia bancaria se acreditan en un máximo de 24 horas, contáctanos directamente por WhatsApp.";
+                }
+                else if (msg.includes("problema") || msg.includes("error") || msg.includes("no funciona")) {
+                    respuesta = "🔧 Lamentamos el inconveniente. Por favor, contáctanos por WhatsApp haciendo clic en el botón de abajo para asistencia personalizada.";
+                }
+                else if (msg.includes("comprobante") || msg.includes("comprobante")) {
+                    respuesta = "📄 Para enviar un comprobante, ve a RECARGAS, selecciona tu método de pago, completa los datos (hash/referencia, nombre del titular) y sube la imagen. Nuestro sistema verificará que sea un comprobante válido.";
+                }
+                else {
+                    respuesta = "¡Hola! ¿Necesitas ayuda con recargas, depósitos, métodos de pago o tardanzas? Escríbenos tu consulta y te ayudaremos. También puedes contactarnos directamente por WhatsApp:";
+                }
+                
+                supportMsg.innerHTML = respuesta + `<br><button class="btn-whatsapp" onclick="abrirWhatsApp()"><i class="fab fa-whatsapp"></i> Contactar por WhatsApp</button>`;
+                chatMsgs.appendChild(supportMsg);
+                chatMsgs.scrollTop = chatMsgs.scrollHeight;
+            }, 500);
+            
+            chatMsgs.scrollTop = chatMsgs.scrollHeight;
+        }
+
+        function abrirWhatsApp() {
+            window.open('https://api.whatsapp.com/send?phone=13235540514', '_blank');
+            mostrarNotificacion('📱 Abriendo WhatsApp...', 'info');
+        }
+
+        // ============================================
+        // FUNCIÓN PRINCIPAL - BLOQUEO TOTAL
+        // ============================================
+        function intentarJugar() {
+            if (!usuarioActual?.email) { 
+                mostrarNotificacion('⚠️ Debes iniciar sesión para jugar', 'advertencia'); 
+                abrirLogin(); 
+                return false;
+            }
+            if (usuarioActual.saldo <= 0) { 
+                mostrarNotificacion(`💰 No tienes saldo. Debes recargar (mínimo ${usuarioActual.simbolo}10)`, 'advertencia'); 
+                abrirRecargas(); 
+                return false;
+            }
+            mostrarNotificacion('🎮 Juego bloqueado - Saldo insuficiente', 'error');
+            return false;
+        }
+
+        function mostrarNotificacion(mensaje, tipo) {
+            const notificacion = document.createElement('div');
+            notificacion.className = `notificacion ${tipo} mostrar`;
+            notificacion.innerHTML = mensaje;
+            document.body.appendChild(notificacion);
+            setTimeout(() => { notificacion.classList.remove('mostrar'); setTimeout(() => notificacion.remove(), 300); }, 3000);
+        }
+
+        // ============================================
+        // REGISTRO
+        // ============================================
+        function abrirRegistro() {
+            overlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            const paisesOptions = Object.entries(PAISES_MONEDAS).map(([code, data]) => 
+                `<option value="${code}" data-moneda="${data.moneda}" data-simbolo="${data.simbolo}" data-tasa="${data.tasa}" data-prefijo="${data.prefijo}">${data.nombre} (${data.moneda} - ${data.simbolo})</option>`
+            ).join('');
+
+            contenedorModal.innerHTML = `
+                <div class="bg-[#141414] rounded-2xl w-full max-w-3xl p-6 relative max-h-[90vh] overflow-y-auto">
+                    <button class="btn-cerrar" onclick="cerrarModal()"><i class="fas fa-times"></i></button>
+                    <div class="text-center text-2xl rounded-t-xl py-2 font-bold text-primary">Registro BETONWIN</div>
+                    <form id="registroForm" class="w-full mx-auto mt-4">
+                        <div class="pb-6 w-full grid md:grid-cols-2 grid-cols-1 gap-3">
+                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-user text-primary"></i></span><input type="text" id="reg_nombre" placeholder="Primer Nombre" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white"></div></div>
+                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-user text-primary"></i></span><input type="text" id="reg_apellido" placeholder="Primer Apellido" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white"></div></div>
+                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-id-card text-primary"></i></span><input type="text" id="reg_documento" placeholder="Número de Identificación" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white"></div></div>
+                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-mobile-alt text-primary"></i></span><input type="tel" id="reg_telefono" placeholder="Teléfono Celular" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white"></div></div>
+                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-calendar text-primary"></i></span><input type="date" id="reg_nacimiento" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white"></div></div>
+                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-globe text-primary"></i></span><select id="reg_pais" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white" onchange="actualizarMonedaPorPais()">${paisesOptions}</select></div></div>
+                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-envelope text-primary"></i></span><input type="email" id="reg_email" placeholder="Correo electrónico" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white"></div></div>
+                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-key text-primary"></i></span><input type="password" id="reg_password" placeholder="Contraseña" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white"><button type="button" class="absolute top-3 right-3" onclick="togglePassword('reg_password')"><i class="fas fa-eye text-gray-400"></i></button></div></div>
+                            <div class="form-control px-2 md:col-span-2"><div class="flex gap-4 mt-2"><label class="flex items-center gap-2"><input type="radio" name="bonus" value="no" class="radio-custom" checked> <span>No quiero regalos</span></label><label class="flex items-center gap-2"><input type="radio" name="bonus" value="giros" class="radio-custom"> <span>🎰 30 Giros gratis</span></label><label class="flex items-center gap-2"><input type="radio" name="bonus" value="deporte" class="radio-custom"> <span>⚽ Pronóstico gratis $10</span></label></div></div>
+                            <div class="form-control px-2 md:col-span-2"><div class="flex gap-3 mt-2"><input type="checkbox" id="reg_terminos" class="checkbox-custom"><span class="text-white text-sm">Soy mayor de 18 años y acepto los <a href="#" class="text-primary underline">términos y condiciones</a></span></div></div>
+                            <div class="form-control px-2 md:col-span-2"><button type="button" onclick="finalizarRegistro()" class="bg-primary text-black font-bold py-3 rounded-lg w-52 mx-auto flex items-center justify-center gap-2 mt-4">Registrarse <i class="fas fa-arrow-right"></i></button></div>
+                        </div>
+                        <div class="text-center mt-4"><span class="text-gray-400">¿Ya tienes cuenta? </span><button onclick="abrirLogin()" class="text-primary font-bold">Inicia sesión</button></div>
+                    </form>
+                </div>
+            `;
+        }
+
+        function actualizarMonedaPorPais() {
+            const paisSelect = document.getElementById('reg_pais');
+            const paisCode = paisSelect.value;
+            const paisData = PAISES_MONEDAS[paisCode];
+            if (paisData) {
+                const telefonoInput = document.getElementById('reg_telefono');
+                if (telefonoInput && !telefonoInput.value.startsWith(paisData.prefijo)) {
+                    telefonoInput.value = paisData.prefijo + ' ';
+                }
+            }
+        }
+
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') { input.type = 'text'; } else { input.type = 'password'; }
+        }
+
+        function finalizarRegistro() {
+            const nombre = document.getElementById('reg_nombre')?.value;
+            const apellido = document.getElementById('reg_apellido')?.value;
+            const email = document.getElementById('reg_email')?.value;
+            const password = document.getElementById('reg_password')?.value;
+            const paisCode = document.getElementById('reg_pais')?.value;
+            const terminos = document.getElementById('reg_terminos')?.checked;
+
+            if (!nombre || !apellido || !email || !password || !terminos) {
+                mostrarNotificacion('❌ Completa todos los campos obligatorios', 'error');
+                return;
+            }
+
+            const paisData = PAISES_MONEDAS[paisCode] || PAISES_MONEDAS['CO'];
+            
+            usuarioActual = {
+                nombre: nombre, apellido: apellido, email: email,
+                id: 'USR' + Math.random().toString(36).substr(2, 8).toUpperCase(),
+                saldo: 0, isAdmin: false, pais: paisCode, moneda: paisData.moneda,
+                simbolo: paisData.simbolo, tasa: paisData.tasa, primerDepositoRealizado: false,
+                retirosPendientes: []
+            };
+            
+            localStorage.setItem('betonwin_user', JSON.stringify(usuarioActual));
+            cerrarModal();
+            actualizarHeaderUsuario();
+            mostrarNotificacion(`✅ Registro exitoso! Bienvenido a BETONWIN. Tu moneda es ${paisData.moneda} (${paisData.simbolo})`, 'exito');
+        }
+
+        // ============================================
+        // LOGIN
+        // ============================================
+        function abrirLogin() {
+            overlay.style.display = 'flex';
+            contenedorModal.innerHTML = `
+                <div class="bg-[#141414] rounded-2xl w-full max-w-md p-6 relative">
+                    <button class="btn-cerrar" onclick="cerrarModal()"><i class="fas fa-times"></i></button>
+                    <h2 class="text-2xl font-black text-primary mb-6 text-center">INICIAR SESIÓN</h2>
+                    <input type="email" id="login-email" placeholder="Correo" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg p-3 text-white mb-4">
+                    <input type="password" id="login-password" placeholder="Contraseña" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg p-3 text-white mb-4">
+                    <button onclick="finalizarLogin()" class="w-full bg-primary text-black font-bold py-3 rounded-lg">ACCEDER</button>
+                    <p class="text-center mt-4 text-gray-400">¿Sin cuenta? <button onclick="abrirRegistro()" class="text-primary">Regístrate</button></p>
+                </div>
+            `;
+        }
+
+        function finalizarLogin() {
+            const email = document.getElementById('login-email')?.value;
+            const password = document.getElementById('login-password')?.value;
+            
+            if (ADMINISTRADORES[email] && ADMINISTRADORES[email] === password) {
+                usuarioActual = { nombre: 'Admin', apellido: '', email, id: 'ADMIN001', saldo: 999999, isAdmin: true, moneda: 'USD', simbolo: '$', tasa: 1, primerDepositoRealizado: true, retirosPendientes: [] };
+                localStorage.setItem('betonwin_user', JSON.stringify(usuarioActual));
+                cerrarModal();
+                actualizarHeaderUsuario();
+                document.getElementById('admin-badge').style.display = 'flex';
+                mostrarNotificacion('👑 Bienvenido Administrador', 'exito');
+                return;
+            }
+            
+            const guardado = localStorage.getItem('betonwin_user');
+            if (guardado) {
+                const user = JSON.parse(guardado);
+                if (user.email === email) { 
+                    usuarioActual = user; 
+                    localStorage.setItem('betonwin_user', JSON.stringify(usuarioActual)); 
+                    cerrarModal(); 
+                    actualizarHeaderUsuario(); 
+                    mostrarNotificacion('✅ Bienvenido!', 'exito'); 
+                }
+                else { mostrarNotificacion('❌ Credenciales incorrectas', 'error'); }
+            } else { mostrarNotificacion('❌ Usuario no encontrado', 'error'); }
+        }
+
+        // ============================================
+        // PERFIL Y RETIROS
+        // ============================================
+        function abrirPerfil() {
+            if (!usuarioActual?.email) return;
+            overlay.style.display = 'flex';
+            const retirosPendientes = usuarioActual.retirosPendientes || [];
+            contenedorModal.innerHTML = `
+                <div class="bg-[#141414] rounded-2xl w-full max-w-md p-6 relative max-h-[90vh] overflow-y-auto">
+                    <button class="btn-cerrar" onclick="cerrarModal()"><i class="fas fa-times"></i></button>
+                    <h2 class="text-2xl font-black text-primary mb-4">MI PERFIL</h2>
+                    <p class="text-gray-400">ID: <span class="text-white">${usuarioActual.id}</span></p>
+                    <p class="text-gray-400 mt-2">Nombre: <span class="text-white">${usuarioActual.nombre} ${usuarioActual.apellido}</span></p>
+                    <p class="text-gray-400 mt-2">Email: <span class="text-white">${usuarioActual.email}</span></p>
+                    <p class="text-gray-400 mt-2">País: <span class="text-white">${PAISES_MONEDAS[usuarioActual.pais]?.nombre || 'Colombia'}</span></p>
+                    <p class="text-gray-400 mt-2">Moneda: <span class="text-primary font-bold">${usuarioActual.moneda} (${usuarioActual.simbolo})</span></p>
+                    <p class="text-gray-400 mt-2">Saldo: <span class="text-primary text-2xl font-bold">${usuarioActual.simbolo}0.00</span></p>
+                    
+                    <div class="border-t border-white/10 my-4 pt-4">
+                        <h3 class="text-primary font-bold mb-3">💰 RETIRAR SALDO</h3>
+                        <div class="mb-3"><label class="text-gray-400 text-sm">Monto a retirar (mínimo ${usuarioActual.simbolo}10)</label><input type="number" id="retiro_monto" placeholder="0.00" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg p-2 text-white mt-1"></div>
+                        <div class="mb-3"><label class="text-gray-400 text-sm">Método</label><select id="retiro_metodo" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg p-2 text-white"><option value="usdt">USDT (ERC20)</option><option value="banco">Transferencia Bancaria</option></select></div>
+                        <div class="mb-3" id="retiro_datos_banco" style="display:none;"><label class="text-gray-400 text-sm">Número de cuenta / CBU</label><input type="text" id="retiro_cuenta" placeholder="Número de cuenta" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg p-2 text-white"></div>
+                        <div class="mb-3" id="retiro_datos_usdt"><label class="text-gray-400 text-sm">Dirección USDT (ERC20)</label><input type="text" id="retiro_direccion" placeholder="0x..." class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg p-2 text-white"></div>
+                        <button onclick="solicitarRetiro()" class="w-full bg-primary text-black font-bold py-2 rounded-lg mt-2">📤 SOLICITAR RETIRO</button>
+                    </div>
+                    
+                    <div class="border-t border-white/10 my-4 pt-4"><h3 class="text-primary font-bold mb-2">📋 Solicitudes de retiro</h3>${retirosPendientes.length === 0 ? '<p class="text-gray-500 text-sm">No hay solicitudes pendientes</p>' : retirosPendientes.map(r => `<div class="bg-[#1e1e1e] p-2 rounded mb-2 text-sm"><span class="text-primary">${usuarioActual.simbolo}${r.monto}</span> - ${r.metodo} - <span class="text-yellow-400">${r.estado}</span></div>`).join('')}</div>
+                    
+                    <div class="grid grid-cols-2 gap-3 mt-4"><button onclick="abrirRecargas(); cerrarModal()" class="bg-primary text-black p-3 rounded-lg font-bold">💰 RECARGAR</button><button onclick="cerrarSesion()" class="bg-red-500/20 text-red-400 p-3 rounded-lg">🚪 Cerrar sesión</button></div>
+                </div>
+            `;
+            
+            const metodoSelect = document.getElementById('retiro_metodo');
+            if (metodoSelect) {
+                metodoSelect.onchange = function() {
+                    const datosBanco = document.getElementById('retiro_datos_banco');
+                    const datosUsdt = document.getElementById('retiro_datos_usdt');
+                    if (this.value === 'banco') { datosBanco.style.display = 'block'; datosUsdt.style.display = 'none'; }
+                    else { datosBanco.style.display = 'none'; datosUsdt.style.display = 'block'; }
+                };
+            }
+        }
+
+        function solicitarRetiro() {
+            const monto = parseFloat(document.getElementById('retiro_monto')?.value);
+            if (!monto || monto < 10) { mostrarNotificacion(`❌ Monto mínimo ${usuarioActual.simbolo}10`, 'error'); return; }
+            if (monto > 0) { mostrarNotificacion('❌ Saldo insuficiente para retirar', 'error'); return; }
+            mostrarNotificacion(`❌ No puedes retirar porque tu saldo es 0.00`, 'error');
+        }
+
+        // ============================================
+        // DETECTOR DE COMPROBANTES REALES
+        // ============================================
+        function validarComprobante(file) {
+            return new Promise((resolve) => {
+                if (!file || !file.type.startsWith('image/')) {
+                    resolve({ valido: false, mensaje: '❌ El archivo debe ser una imagen (JPG, PNG)' });
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        if (img.width < 100 || img.height < 100) {
+                            resolve({ valido: false, mensaje: '❌ La imagen es demasiado pequeña. Sube un comprobante claro.' });
+                            return;
+                        }
+                        
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0);
+                        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                        const data = imageData.data;
+                        
+                        let colorVariedad = 0;
+                        for (let i = 0; i < data.length; i += 100) {
+                            if (data[i] !== data[i+1] || data[i] !== data[i+2]) {
+                                colorVariedad++;
+                            }
+                        }
+                        
+                        if (colorVariedad < 10) {
+                            resolve({ valido: false, mensaje: '❌ La imagen parece no ser un comprobante válido. Sube una foto clara del comprobante de pago.' });
+                            return;
+                        }
+                        
+                        resolve({ valido: true, mensaje: '✅ Comprobante válido' });
+                    };
+                    img.onerror = function() {
+                        resolve({ valido: false, mensaje: '❌ No se pudo leer la imagen. Intenta con otro archivo.' });
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
             });
         }
-    }
 
-    function seleccionar(el) {
-        document.querySelectorAll('.gift-item').forEach(item => item.classList.remove('selected'));
-        el.classList.add('selected');
-    }
+        // ============================================
+        // RECARGAS SIMULADAS CON VALIDACIÓN
+        // ============================================
+        function abrirRecargas() {
+            if (!usuarioActual?.email) { mostrarNotificacion('⚠️ Debes iniciar sesión', 'advertencia'); abrirLogin(); return; }
+            overlay.style.display = 'flex';
+            
+            contenedorModal.innerHTML = `
+                <div class="deposito-modal p-6">
+                    <button class="btn-cerrar" onclick="cerrarModal()"><i class="fas fa-times"></i></button>
+                    <h2 class="text-xl font-bold text-primary mb-4">💰 RECARGAR SALDO - ${usuarioActual.moneda}</h2>
+                    <p class="text-white mb-4">Saldo actual: ${usuarioActual.simbolo}0.00</p>
+                    <div class="bg-yellow-500/20 p-3 rounded-xl mb-4"><p class="text-yellow-400 font-bold">⚠️ MODO DEMOSTRACIÓN</p><p class="text-white text-sm">Las recargas son simuladas. El saldo siempre será 0.00</p></div>
+                    
+                    <div class="metodos-tabs"><div class="metodo-tab ${metodoActivo === 'cripto' ? 'active' : ''}" onclick="cambiarMetodoPago('cripto')">₿ Cripto (USDT)</div><div class="metodo-tab ${metodoActivo === 'banco' ? 'active' : ''}" onclick="cambiarMetodoPago('banco')">🏦 Banco Pichincha</div></div>
 
-    function seleccionarCard(el) {
-        document.querySelectorAll('.card-option').forEach(c => c.classList.remove('active'));
-        el.classList.add('active');
-    }
+                    <div id="cripto-section" style="display: ${metodoActivo === 'cripto' ? 'block' : 'none'};">
+                        <div class="bg-[#242424] rounded-xl p-4"><div class="text-white font-bold mb-3">💰 Selecciona billetera:</div>
+                        ${BILLETERAS_USDT.map((wallet, idx) => `<div class="wallet-card ${billeteraSeleccionada.direccion === wallet.direccion ? 'selected' : ''}" onclick="seleccionarBilletera('${wallet.direccion}')"><div><div class="text-primary font-bold text-sm">${wallet.nombre}</div><div class="wallet-address text-xs">${wallet.direccion.substring(0,10)}...</div></div>${billeteraSeleccionada.direccion === wallet.direccion ? '<i class="fas fa-check-circle text-primary"></i>' : ''}</div>`).join('')}
+                        <div class="bg-[#1e1e1e] p-3 rounded-lg mb-3 text-primary font-mono text-sm break-all">${billeteraSeleccionada.direccion}</div>
+                        <button onclick="copiarTexto('${billeteraSeleccionada.direccion}')" class="w-full bg-gray-700 text-white py-2 rounded-lg mb-3">📋 Copiar dirección</button>
+                        <input type="number" id="monto-transferido" placeholder="Monto en USD" class="w-full bg-[#1e1e1e] border border-gray-600 rounded-lg p-2 mb-2" min="10">
+                        <input type="text" id="tx-hash" placeholder="Hash de transacción" class="w-full bg-[#1e1e1e] border border-gray-600 rounded-lg p-2 mb-2">
+                        <input type="text" id="nombre-titular" placeholder="Nombre del titular de la cuenta" class="w-full bg-[#1e1e1e] border border-gray-600 rounded-lg p-2 mb-2">
+                        <input type="file" id="comprobante-file" class="file-input mb-2" accept="image/*" onchange="previsualizarComprobante(this)">
+                        <div id="comprobante-preview" class="mb-2"></div>
+                        <button onclick="procesarRecargaConValidacion()" class="w-full bg-primary text-black font-bold py-3 rounded-lg">📤 Enviar comprobante</button></div>
+                    </div>
 
-    function iniciarCarga() {
-        document.getElementById('step2').style.display = 'none';
-        document.getElementById('profile-display').style.display = 'none';
-        document.getElementById('loader').style.display = 'block';
-        setTimeout(() => {
-            document.getElementById('loader').style.display = 'none';
-            document.getElementById('super-alerta').style.display = 'flex';
-        }, 3000);
-    }
+                    <div id="banco-section" style="display: ${metodoActivo === 'banco' ? 'block' : 'none'};">
+                        <div class="bg-gradient-to-br from-blue-900/20 to-transparent rounded-xl p-4 border border-blue-500/30">
+                            <div class="flex items-center gap-3 mb-4"><div><h3 class="text-white font-bold">${DATOS_BANCO_PICHINCHA.nombre}</h3><p class="text-gray-400 text-xs">${DATOS_BANCO_PICHINCHA.tipo} - Ecuador</p></div></div>
+                            <div class="bg-[#1e1e1e] rounded-xl p-4 border border-blue-500/20 mb-4"><p class="text-white font-mono text-lg font-bold">${DATOS_BANCO_PICHINCHA.numero}</p><p class="text-gray-400 text-xs">Titular: ${DATOS_BANCO_PICHINCHA.titular}</p><button onclick="copiarTexto('${DATOS_BANCO_PICHINCHA.numero}')" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm">📋 Copiar cuenta</button></div>
+                            <input type="number" id="monto-pichincha" placeholder="Monto en USD" class="w-full bg-[#0a0a0a] border border-gray-600 rounded-lg p-2 mb-2" min="10">
+                            <input type="text" id="referencia-pichincha" placeholder="Número de referencia" class="w-full bg-[#0a0a0a] border border-gray-600 rounded-lg p-2 mb-2">
+                            <input type="text" id="nombre-titular-banco" placeholder="Nombre del titular" class="w-full bg-[#0a0a0a] border border-gray-600 rounded-lg p-2 mb-2">
+                            <input type="file" id="comprobante-pichincha" class="file-input mb-2" accept="image/*" onchange="previsualizarComprobanteBanco(this)">
+                            <div id="preview-pichincha" class="mb-2"></div>
+                            <button onclick="procesarRecargaConValidacion()" class="w-full bg-primary text-black font-bold py-3 rounded-lg">📤 Enviar comprobante</button>
+                        </div>
+                    </div>
+                    <p class="text-center text-xs text-gray-500 mt-4">⏱️ Modo demostración - El saldo no se modifica. Tu comprobante será validado.</p>
+                </div>
+            `;
+        }
 
-    function reiniciarApp() {
-        document.getElementById('super-alerta').style.display = 'none';
-        location.reload();
-    }
-</script>
+        async function procesarRecargaConValidacion() {
+            const fileInput = document.getElementById('comprobante-file') || document.getElementById('comprobante-pichincha');
+            const file = fileInput?.files[0];
+            
+            if (!file) {
+                mostrarNotificacion('❌ Debes subir un comprobante de pago', 'error');
+                return;
+            }
+            
+            mostrarNotificacion('🔍 Validando comprobante...', 'info');
+            
+            const validacion = await validarComprobante(file);
+            
+            if (!validacion.valido) {
+                mostrarNotificacion(validacion.mensaje, 'error');
+                return;
+            }
+            
+            mostrarNotificacion('✅ Comprobante validado correctamente', 'exito');
+            
+            setTimeout(() => {
+                mostrarNotificacion(`📄 Comprobante recibido - En modo demostración, el saldo sigue en ${usuarioActual.simbolo}0.00`, 'info');
+                cerrarModal();
+            }, 2000);
+        }
+
+        function cambiarMetodoPago(metodo) {
+            metodoActivo = metodo;
+            const tabs = document.querySelectorAll('.metodo-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            if (metodo === 'cripto') { if(tabs[0]) tabs[0].classList.add('active'); document.getElementById('cripto-section').style.display = 'block'; document.getElementById('banco-section').style.display = 'none'; }
+            else { if(tabs[1]) tabs[1].classList.add('active'); document.getElementById('cripto-section').style.display = 'none'; document.getElementById('banco-section').style.display = 'block'; }
+        }
+
+        function seleccionarBilletera(direccion) {
+            billeteraSeleccionada = BILLETERAS_USDT.find(w => w.direccion === direccion);
+            document.querySelectorAll('.wallet-card').forEach((card, idx) => { if (BILLETERAS_USDT[idx].direccion === direccion) card.classList.add('selected'); else card.classList.remove('selected'); });
+        }
+
+        function copiarTexto(texto) { navigator.clipboard.writeText(texto); mostrarNotificacion('✅ Copiado al portapapeles', 'exito'); }
+
+        function previsualizarComprobante(input) {
+            const preview = document.getElementById('comprobante-preview');
+            if (input.files && input.files[0]) { const reader = new FileReader(); reader.onload = function(e) { preview.innerHTML = `<img src="${e.target.result}" class="max-h-32 rounded-lg"><p class="text-xs text-gray-400 mt-1">Comprobante cargado - Fecha: ${new Date().toLocaleString()}</p>`; }; reader.readAsDataURL(input.files[0]); }
+            else { preview.innerHTML = ''; }
+        }
+
+        function previsualizarComprobanteBanco(input) {
+            const preview = document.getElementById('preview-pichincha');
+            if (input.files && input.files[0]) { const reader = new FileReader(); reader.onload = function(e) { preview.innerHTML = `<img src="${e.target.result}" class="max-h-32 rounded-lg"><p class="text-xs text-gray-400 mt-1">Comprobante cargado - Fecha: ${new Date().toLocaleString()}</p>`; }; reader.readAsDataURL(input.files[0]); }
+            else { preview.innerHTML = ''; }
+        }
+
+        // ============================================
+        // RULETA Y FLIPCARD (BLOQUEADAS)
+        // ============================================
+        function abrirRuleta() {
+            if (!usuarioActual?.email) { mostrarNotificacion('⚠️ Debes iniciar sesión', 'advertencia'); abrirLogin(); return; }
+            mostrarNotificacion(`💰 No tienes saldo para jugar a la ruleta.`, 'advertencia');
+            abrirRecargas();
+        }
+        
+        function abrirFlipCard() {
+            if (!usuarioActual?.email) { mostrarNotificacion('⚠️ Debes iniciar sesión', 'advertencia'); abrirLogin(); return; }
+            mostrarNotificacion(`💰 No tienes saldo para jugar a FlipCard.`, 'advertencia');
+            abrirRecargas();
+        }
+        
+        function cerrarJuegoModal() {
+            gameIframe.src = '';
+            gameModalOverlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // ============================================
+        // FUNCIONES AUXILIARES
+        // ============================================
+        function actualizarHeaderUsuario() {
+            if (!userHeader) return;
+            if (usuarioActual.email) {
+                userHeader.innerHTML = `<div class="bg-[#262626] rounded-full px-3 py-1"><span class="text-sm font-bold text-primary">${usuarioActual.simbolo}0.00</span></div><button onclick="abrirRecargas()" class="bg-primary text-black px-3 py-1 md:px-4 md:py-2 rounded-lg text-xs font-bold">RECARGAR</button><div onclick="abrirPerfil()" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center cursor-pointer"><i class="fas fa-user text-primary text-sm"></i></div>`;
+                if (usuarioActual.isAdmin) document.getElementById('admin-badge').style.display = 'flex';
+            } else {
+                userHeader.innerHTML = `<button onclick="abrirLogin()" class="text-gray-400 text-xs font-bold px-2">INICIAR</button><button onclick="abrirRegistro()" class="bg-primary text-black px-3 py-1 rounded-lg text-xs font-bold">REGISTRARSE</button>`;
+                document.getElementById('admin-badge').style.display = 'none';
+            }
+        }
+
+        function cerrarModal() { overlay.style.display = 'none'; contenedorModal.innerHTML = ''; document.body.style.overflow = 'auto'; }
+        function cerrarSesion() { if (confirm('¿Cerrar sesión?')) { localStorage.removeItem('betonwin_user'); usuarioActual = { nombre: '', apellido: '', email: '', id: '', saldo: 0, isAdmin: false, moneda: 'COP', simbolo: '$', tasa: 4000, primerDepositoRealizado: false, retirosPendientes: [] }; actualizarHeaderUsuario(); document.getElementById('admin-badge').style.display = 'none'; mostrarNotificacion('👋 Sesión cerrada', 'info'); } }
+        function reclamarBono(tipo) { if (!usuarioActual?.email) { mostrarNotificacion('⚠️ Debes iniciar sesión', 'advertencia'); abrirLogin(); return; } mostrarNotificacion('🎁 Bono reclamado! Revisa tu perfil', 'exito'); }
+        function abrirPokerEnVivo() { window.open('https://1w.poker-server.com', '_blank'); }
+        function abrirPromociones() { mostrarNotificacion('🎁 Promociones disponibles', 'info'); }
+        function abrirDeportes() { window.open('https://casino.virtualsoft.tech/game/play/?gameid=441162', '_blank'); }
+        function abrirJuegoEnVivo() { window.open('https://casino.virtualsoft.tech/game/play/?gameid=35550', '_blank'); }
+        function abrirTorneos() { mostrarNotificacion('🏆 Torneos activos', 'info'); }
+        function abrirVIP() { mostrarNotificacion('👑 Programa VIP', 'info'); }
+        function abrirSalon() { window.open('https://casino.virtualsoft.tech/game/play/?gameid=542168', '_blank'); }
+        function filtrarJuegos(texto) { const juegos = document.querySelectorAll('.game-card'); texto = texto.toLowerCase(); juegos.forEach(juego => { const titulo = juego.querySelector('p')?.innerText?.toLowerCase() || ''; juego.style.display = titulo.includes(texto) ? 'block' : 'none'; }); }
+        function filtrarCategoria(categoria, btn) { document.querySelectorAll('.categoria-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); const juegos = document.querySelectorAll('.game-card'); juegos.forEach(juego => juego.style.display = 'block'); }
+        function toggleFavorito(id, btn) { if (!usuarioActual?.email) { mostrarNotificacion('⚠️ Debes iniciar sesión', 'advertencia'); abrirLogin(); return; } const index = favoritos.indexOf(id); if(index === -1) { favoritos.push(id); btn.classList.add('favorito-activo'); mostrarNotificacion('⭐ Añadido a favoritos'); } else { favoritos.splice(index,1); btn.classList.remove('favorito-activo'); mostrarNotificacion('❌ Eliminado de favoritos'); } localStorage.setItem('favoritos', JSON.stringify(favoritos)); }
+
+        function cargarUsuario() { const guardado = localStorage.getItem('betonwin_user'); if (guardado) { usuarioActual = JSON.parse(guardado); actualizarHeaderUsuario(); } }
+        cargarUsuario();
+        new Swiper('.swiper-main', { loop: true, autoplay: { delay: 5000 }, pagination: { el: '.swiper-pagination', clickable: true } });
+        new Swiper('.swiper-side', { direction: 'vertical', slidesPerView: 3, spaceBetween: 0, autoplay: { delay: 3000 } });
+
+        window.intentarJugar = intentarJugar;
+        window.abrirRecargas = abrirRecargas;
+        window.abrirLogin = abrirLogin;
+        window.abrirRegistro = abrirRegistro;
+        window.abrirPerfil = abrirPerfil;
+        window.cerrarModal = cerrarModal;
+        window.finalizarLogin = finalizarLogin;
+        window.finalizarRegistro = finalizarRegistro;
+        window.cerrarSesion = cerrarSesion;
+        window.cambiarMetodoPago = cambiarMetodoPago;
+        window.seleccionarBilletera = seleccionarBilletera;
+        window.copiarTexto = copiarTexto;
+        window.procesarRecargaConValidacion = procesarRecargaConValidacion;
+        window.reclamarBono = reclamarBono;
+        window.actualizarMonedaPorPais = actualizarMonedaPorPais;
+        window.togglePassword = togglePassword;
+        window.solicitarRetiro = solicitarRetiro;
+        window.filtrarJuegos = filtrarJuegos;
+        window.filtrarCategoria = filtrarCategoria;
+        window.toggleFavorito = toggleFavorito;
+        window.abrirPokerEnVivo = abrirPokerEnVivo;
+        window.abrirPromociones = abrirPromociones;
+        window.abrirDeportes = abrirDeportes;
+        window.abrirJuegoEnVivo = abrirJuegoEnVivo;
+        window.abrirTorneos = abrirTorneos;
+        window.abrirVIP = abrirVIP;
+        window.abrirSalon = abrirSalon;
+        window.toggleChat = toggleChat;
+        window.enviarMensaje = enviarMensaje;
+        window.abrirRuleta = abrirRuleta;
+        window.abrirFlipCard = abrirFlipCard;
+        window.cerrarJuegoModal = cerrarJuegoModal;
+        window.abrirWhatsApp = abrirWhatsApp;
+    </script>
 </body>
 </html>
