@@ -1640,38 +1640,132 @@ function abrirLogin() {
             document.body.style.overflow = 'auto';
         }
 
-        // ============================================
-        // FUNCIONES AUXILIARES
-        // ============================================
-        function actualizarHeaderUsuario() {
-            if (!userHeader) return;
-            if (usuarioActual.email) {
-                userHeader.innerHTML = `<div class="bg-[#262626] rounded-full px-3 py-1"><span class="text-sm font-bold text-primary">${usuarioActual.simbolo}0.00</span></div><button onclick="abrirRecargas()" class="bg-primary text-black px-3 py-1 md:px-4 md:py-2 rounded-lg text-xs font-bold">RECARGAR</button><div onclick="abrirPerfil()" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center cursor-pointer"><i class="fas fa-user text-primary text-sm"></i></div>`;
-                if (usuarioActual.isAdmin) document.getElementById('admin-badge').style.display = 'flex';
-            } else {
-                userHeader.innerHTML = `<button onclick="abrirLogin()" class="text-gray-400 text-xs font-bold px-2">INICIAR</button><button onclick="abrirRegistro()" class="bg-primary text-black px-3 py-1 rounded-lg text-xs font-bold">REGISTRARSE</button>`;
-                document.getElementById('admin-badge').style.display = 'none';
-            }
+       // ============================================
+// FUNCIONES AUXILIARES ROBUSTAS
+// ============================================
+
+// Actualización del Header con iconos
+function actualizarHeaderUsuario() {
+    if (!userHeader) return;
+    
+    if (usuarioActual.email) {
+        userHeader.innerHTML = `
+            <div class="bg-[#262626] rounded-full px-3 py-1 flex items-center gap-2">
+                <i class="fas fa-wallet text-primary text-xs"></i>
+                <span class="text-sm font-bold text-primary">${usuarioActual.simbolo}0.00</span>
+            </div>
+            <button onclick="abrirRecargas()" class="bg-primary text-black px-4 py-2 rounded-lg text-xs font-bold hover:opacity-90 transition-opacity">
+                RECARGAR
+            </button>
+            <div onclick="abrirPerfil()" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center cursor-pointer hover:bg-white/20 transition-all">
+                <i class="fas fa-user text-primary text-sm"></i>
+            </div>
+        `;
+        if (document.getElementById('admin-badge')) {
+            document.getElementById('admin-badge').style.display = 'flex';
         }
+    } else {
+        userHeader.innerHTML = `
+            <button onclick="abrirLogin()" class="text-gray-400 text-xs font-bold px-3 hover:text-white transition-colors">
+                ACCEDER
+            </button>
+            <button onclick="abrirRegistro()" class="bg-primary text-black px-4 py-2 rounded-lg text-xs font-bold hover:opacity-90 transition-opacity">
+                REGISTRARSE
+            </button>
+        `;
+        if (document.getElementById('admin-badge')) {
+            document.getElementById('admin-badge').style.display = 'none';
+        }
+    }
+}
 
-        function cerrarModal() { overlay.style.display = 'none'; contenedorModal.innerHTML = ''; document.body.style.overflow = 'auto'; }
-        function cerrarSesion() { if (confirm('¿Cerrar sesión?')) { localStorage.removeItem('betonwin_user'); usuarioActual = { nombre: '', apellido: '', email: '', id: '', saldo: 0, isAdmin: false, moneda: 'COP', simbolo: '$', tasa: 4000, primerDepositoRealizado: false, retirosPendientes: [] }; actualizarHeaderUsuario(); document.getElementById('admin-badge').style.display = 'none'; mostrarNotificacion('👋 Sesión cerrada', 'info'); } }
-        function reclamarBono(tipo) { if (!usuarioActual?.email) { mostrarNotificacion('⚠️ Debes iniciar sesión', 'advertencia'); abrirLogin(); return; } mostrarNotificacion('🎁 Bono reclamado! Revisa tu perfil', 'exito'); }
-        function abrirPokerEnVivo() { window.open('https://1w.poker-server.com', '_blank'); }
-        function abrirPromociones() { mostrarNotificacion('🎁 Promociones disponibles', 'info'); }
-        function abrirDeportes() { window.open('https://casino.virtualsoft.tech/game/play/?gameid=441162', '_blank'); }
-        function abrirJuegoEnVivo() { window.open('https://casino.virtualsoft.tech/game/play/?gameid=35550', '_blank'); }
-        function abrirTorneos() { mostrarNotificacion('🏆 Torneos activos', 'info'); }
-        function abrirVIP() { mostrarNotificacion('👑 Programa VIP', 'info'); }
-        function abrirSalon() { window.open('https://casino.virtualsoft.tech/game/play/?gameid=542168', '_blank'); }
-        function filtrarJuegos(texto) { const juegos = document.querySelectorAll('.game-card'); texto = texto.toLowerCase(); juegos.forEach(juego => { const titulo = juego.querySelector('p')?.innerText?.toLowerCase() || ''; juego.style.display = titulo.includes(texto) ? 'block' : 'none'; }); }
-        function filtrarCategoria(categoria, btn) { document.querySelectorAll('.categoria-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); const juegos = document.querySelectorAll('.game-card'); juegos.forEach(juego => juego.style.display = 'block'); }
-        function toggleFavorito(id, btn) { if (!usuarioActual?.email) { mostrarNotificacion('⚠️ Debes iniciar sesión', 'advertencia'); abrirLogin(); return; } const index = favoritos.indexOf(id); if(index === -1) { favoritos.push(id); btn.classList.add('favorito-activo'); mostrarNotificacion('⭐ Añadido a favoritos'); } else { favoritos.splice(index,1); btn.classList.remove('favorito-activo'); mostrarNotificacion('❌ Eliminado de favoritos'); } localStorage.setItem('favoritos', JSON.stringify(favoritos)); }
+// Cierre de modales con limpieza de estado
+function cerrarModal() { 
+    overlay.style.display = 'none'; 
+    contenedorModal.innerHTML = ''; 
+    document.body.style.overflow = 'auto'; 
+}
 
-        function cargarUsuario() { const guardado = localStorage.getItem('betonwin_user'); if (guardado) { usuarioActual = JSON.parse(guardado); actualizarHeaderUsuario(); } }
-        cargarUsuario();
-        new Swiper('.swiper-main', { loop: true, autoplay: { delay: 5000 }, pagination: { el: '.swiper-pagination', clickable: true } });
-        new Swiper('.swiper-side', { direction: 'vertical', slidesPerView: 100, spaceBetween: 0, autoplay: { delay: 3000 } });
+// Cierre de sesión seguro
+function cerrarSesion() { 
+    if (confirm('¿Desea cerrar su sesión actual?')) { 
+        localStorage.removeItem('betonwin_user'); 
+        usuarioActual = { nombre: '', apellido: '', email: '', id: '', saldo: 0, isAdmin: false, moneda: 'COP', simbolo: '$', tasa: 4000, primerDepositoRealizado: false, retirosPendientes: [] }; 
+        actualizarHeaderUsuario(); 
+        mostrarNotificacion('Sesión finalizada correctamente', 'success'); 
+    } 
+}
+
+// Sistema de notificaciones profesional
+function mostrarNotificacion(mensaje, tipo = 'info') {
+    const icon = tipo === 'success' ? 'fa-check-circle' : 
+                 tipo === 'warning' ? 'fa-exclamation-triangle' : 'fa-info-circle';
+    
+    // Aquí puedes integrar un Toast profesional (como Toastify.js o SweetAlert2)
+    console.log(`[${tipo.toUpperCase()}] ${mensaje}`);
+    // Ejemplo de alerta simple pero estilizada:
+    alert(`${mensaje}`);
+}
+
+// Navegación y Acciones
+function reclamarBono(tipo) { 
+    if (!usuarioActual?.email) { 
+        mostrarNotificacion('Inicia sesión para reclamar bonos', 'warning'); 
+        abrirLogin(); 
+        return; 
+    } 
+    mostrarNotificacion('Bono procesado. Consulta tu panel de perfil', 'success'); 
+}
+
+function abrirPokerEnVivo() { window.open('https://1w.poker-server.com', '_blank'); }
+function abrirPromociones() { mostrarNotificacion('No hay promociones activas en este momento', 'info'); }
+function abrirDeportes() { window.open('https://casino.virtualsoft.tech/game/play/?gameid=441162', '_blank'); }
+function abrirJuegoEnVivo() { window.open('https://casino.virtualsoft.tech/game/play/?gameid=35550', '_blank'); }
+function abrirTorneos() { mostrarNotificacion('Torneos no disponibles actualmente', 'info'); }
+function abrirVIP() { mostrarNotificacion('Acceso exclusivo para miembros nivel Oro', 'info'); }
+function abrirSalon() { window.open('https://casino.virtualsoft.tech/game/play/?gameid=542168', '_blank'); }
+
+// Filtros y Favoritos
+function filtrarJuegos(texto) { 
+    const juegos = document.querySelectorAll('.game-card'); 
+    texto = texto.toLowerCase(); 
+    juegos.forEach(juego => { 
+        const titulo = juego.querySelector('p')?.innerText?.toLowerCase() || ''; 
+        juego.style.display = titulo.includes(texto) ? 'block' : 'none'; 
+    }); 
+}
+
+function toggleFavorito(id, btn) { 
+    if (!usuarioActual?.email) { 
+        mostrarNotificacion('Inicia sesión para guardar favoritos', 'warning'); 
+        abrirLogin(); 
+        return; 
+    } 
+    const index = favoritos.indexOf(id); 
+    if(index === -1) { 
+        favoritos.push(id); 
+        btn.classList.add('favorito-activo'); 
+        mostrarNotificacion('Agregado a favoritos', 'success'); 
+    } else { 
+        favoritos.splice(index,1); 
+        btn.classList.remove('favorito-activo'); 
+        mostrarNotificacion('Eliminado de favoritos', 'success'); 
+    } 
+    localStorage.setItem('favoritos', JSON.stringify(favoritos)); 
+}
+
+function cargarUsuario() { 
+    const guardado = localStorage.getItem('betonwin_user'); 
+    if (guardado) { 
+        try {
+            usuarioActual = JSON.parse(guardado); 
+            actualizarHeaderUsuario(); 
+        } catch(e) { console.error("Error al cargar usuario"); }
+    } 
+}
+
+// Inicialización
+cargarUsuario();
 
         window.intentarJugar = intentarJugar;
         window.abrirRecargas = abrirRecargas;
