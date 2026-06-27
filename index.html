@@ -333,22 +333,29 @@ function abrirWhatsApp() {
 
     // 3. Generar las tarjetas en el HTML
     const container = document.getElementById('juegos-container');
-    for(let i = 0; i < 60; i++) {
-        const juego = juegos[i] || { nombre: "Próximamente", url: 'https://via.placeholder.com/150' };
-        container.innerHTML += `
-            <div class="relative w-full aspect-[2/2] bg-[#141414] rounded-2xl overflow-hidden border border-white/5 group active:scale-[0.98] transition-transform">
-                <div class="absolute top-2 left-2 z-10 px-4 py-0.5 bg-red-600 text-[20px] font-black uppercase text-white rounded shadow-md">BETONWIN</div>
-                <div class="w-full h-[70%] flex items-center justify-center p-2">
-                    <img src="${juego.url}" class="w-full h-full object-contain">
-                </div>
-                <button onclick="mostrarAlerta('${juego.url}')" class="absolute bottom-2 right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-black shadow-lg z-20">
-                    <i class="fas fa-play text-[10px]"></i>
+for(let i = 0; i < 60; i++) {
+    const juego = juegos[i] || { nombre: "Próximamente", url: 'https://via.placeholder.com/150' };
+    
+    container.innerHTML += `
+        <div class="relative w-full aspect-[2/2] bg-[#141414] rounded-2xl overflow-hidden border border-white/5 group hover:border-primary/50 transition-all active:scale-[0.98]">
+            
+            <div class="absolute top-3 left-3 z-20 px-3 py-1 bg-black/60 backdrop-blur-md border border-white/10 rounded-lg text-[10px] font-black uppercase text-white tracking-wider">
+                BETONWIN
+            </div>
+
+            <div class="w-full h-[70%] flex items-center justify-center p-4 relative">
+                <img src="${juego.url}" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105">
+                
+                <button onclick="mostrarAlerta('${juego.url}')" class="absolute inset-0 m-auto w-14 h-14 bg-primary/90 rounded-full flex items-center justify-center text-black shadow-[0_0_20px_rgba(255,255,255,0.2)] z-30 transition-all duration-300 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100">
+                    <i class="fas fa-play text-xl ml-1"></i>
                 </button>
-                <div class="w-full h-[30%] flex items-center px-3 text-[10px] text-gray-400 uppercase font-bold truncate">
-                     ${juego.nombre}
-                </div>
-            </div>`;
-    }
+            </div>
+
+            <div class="w-full h-[30%] flex items-center px-4 text-[12px] text-white/70 uppercase font-bold truncate border-t border-white/5">
+                 ${juego.nombre}
+            </div>
+        </div>`;
+}
  
      // ============================================
 // PAÍSES, MONEDAS Y BANDERAS (50 PAÍSES)
