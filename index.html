@@ -266,70 +266,53 @@ function abrirWhatsApp() {
 </div>
 
 <script>
-    const container = document.getElementById('juegos-container');
-    const imagenes = [
-    "https://images.virtualsoft.tech/productos/sugar-rushT1731536549.gif",
-    "https://images.virtualsoft.tech/productos/Gates-of-OlympusT1746469136.png",
-    "https://images.virtualsoft.tech/m/Clover-Super-PotT1773091885.png",
-    "https://images.virtualsoft.tech/productos/Cheesy-Road-1781709499.png",
-    "https://images.virtualsoft.tech/m/4-Pots-Riches-Hold-and-WinT1772724101.gif",
-    "https://images.virtualsoft.tech/m/Bonbon-Pop-1000Te613ebea-fc34-43c1-88d5-a17379e09ae4.gif",
-    "https://images.virtualsoft.tech/productos/Blue-WizardT1731591091.gif",
-    "https://images.virtualsoft.tech/m/Diamond-Explosion-7sT1763051711.jpg",
-    "https://images.virtualsoft.tech/m/1000-Olympus-RivalsT1768322798.gif",
-    "https://images.virtualsoft.tech/productos/Golden-TreeT1702649984.png",
-    "https://images.virtualsoft.tech/m/40-Shining-CrownT1765311061.png",
-    "https://images.virtualsoft.tech/productos/Crown-CoinsT1726511270.png",
-    "https://images.virtualsoft.tech/productos/Rise-of-OlympusT1551372019.png",
-    "https://images.virtualsoft.tech/productos/3-Fortune-SoulsT1748379777.png",
-    "https://images.virtualsoft.tech/m/AviatorT1770135696.jpg",
-    "https://images.virtualsoft.tech/productos/Caishen-RichesT1590071165.png",
-    "https://images.virtualsoft.tech/productos/Diamonds-Power-Hold-and-WinT1737407487.gif",
-    "https://images.virtualsoft.tech/m/Big-Wild-Buffalo-2T1764263438.gif",
-    "https://images.virtualsoft.tech/productos/Big-Win-777T1731421101.gif",
-    "https://images.virtualsoft.tech/productos/7---Hot-FruitsT1634073927.png",
-    "https://images.virtualsoft.tech/productos/888-DragonsT1557785735.png",
-    "https://images.virtualsoft.tech/productos/AphroditeT1757427166.png",
-    "https://images.virtualsoft.tech/productos/Candy-LoopT1730904372.png",
-    "https://images.virtualsoft.tech/productos/Caramelo-Sortudo-1781729583.png",
-    "https://images.virtualsoft.tech/productos/Cash-Pig-2T1745962887.png",
-    "https://images.virtualsoft.tech/productos/Coin-DazzleT1759173588.gif",
-    "https://images.virtualsoft.tech/productos/Coin-Strike-Hold-and-WinT1737407157.gif",
-    "https://images.virtualsoft.tech/productos/Hell-Hot-100T1719442126.png",
-    "https://images.virtualsoft.tech/productos/JoxerT1758547520.png",
-    "https://images.virtualsoft.tech/productos/Lucky-PhoenixT1749571601.png",
-    "https://images.virtualsoft.tech/productos/Moon-Princess-100T1649715255.png",
-    "https://images.virtualsoft.tech/productos/Royal-CoinsT1731526135.gif",
-    "https://images.virtualsoft.tech/productos/Shining-Crown-Buy-BonusT1750184054.gif",
-    "https://images.virtualsoft.tech/productos/Super-777sT1757431820.png",
-    "https://images.virtualsoft.tech/productos/Wild-Spin--T1634074372.png",
-    "https://images.virtualsoft.tech/productos/Xmas-InvadersT1733495439.png",
-    "https://images.virtualsoft.tech/m/Gates-Of-AnubisT1764943507.gif"
-];
+  // 1. Lista de juegos
+    const juegos = [
+        { nombre: "Sugar Rush", url: "https://images.virtualsoft.tech/productos/sugar-rushT1731536549.gif" },
+        { nombre: "Gates of Olympus", url: "https://images.virtualsoft.tech/productos/Gates-of-OlympusT1746469136.png" },
+        { nombre: "Clover Super Pot", url: "https://images.virtualsoft.tech/m/Clover-Super-PotT1773091885.png" },
+        { nombre: "Cheesy Road", url: "https://images.virtualsoft.tech/productos/Cheesy-Road-1781709499.png" },
+        { nombre: "4 Pots Riches", url: "https://images.virtualsoft.tech/m/4-Pots-Riches-Hold-and-WinT1772724101.gif" },
+        { nombre: "Bonbon Pop 1000", url: "https://images.virtualsoft.tech/m/Bonbon-Pop-1000Te613ebea-fc34-43c1-88d5-a17379e09ae4.gif" },
+        { nombre: "Blue Wizard", url: "https://images.virtualsoft.tech/productos/Blue-WizardT1731591091.gif" },
+        { nombre: "Diamond Explosion 7s", url: "https://images.virtualsoft.tech/m/Diamond-Explosion-7sT1763051711.jpg" },
+        { nombre: "1000 Olympus Rivals", url: "https://images.virtualsoft.tech/m/1000-Olympus-RivalsT1768322798.gif" },
+        { nombre: "Golden Tree", url: "https://images.virtualsoft.tech/productos/Golden-TreeT1702649984.png" },
+        { nombre: "40 Shining Crown", url: "https://images.virtualsoft.tech/m/40-Shining-CrownT1765311061.png" },
+        { nombre: "Crown Coins", url: "https://images.virtualsoft.tech/productos/Crown-CoinsT1726511270.png" },
+        { nombre: "Rise of Olympus", url: "https://images.virtualsoft.tech/productos/Rise-of-OlympusT1551372019.png" },
+        { nombre: "3 Fortune Souls", url: "https://images.virtualsoft.tech/productos/3-Fortune-SoulsT1748379777.png" },
+        { nombre: "Aviator", url: "https://images.virtualsoft.tech/m/AviatorT1770135696.jpg" },
+        { nombre: "Caishen Riches", url: "https://images.virtualsoft.tech/productos/Caishen-RichesT1590071165.png" },
+        { nombre: "Diamonds Power", url: "https://images.virtualsoft.tech/productos/Diamonds-Power-Hold-and-WinT1737407487.gif" },
+        { nombre: "Big Wild Buffalo 2", url: "https://images.virtualsoft.tech/m/Big-Wild-Buffalo-2T1764263438.gif" },
+        { nombre: "Big Win 777", url: "https://images.virtualsoft.tech/productos/Big-Win-777T1731421101.gif" },
+        { nombre: "7 Hot Fruits", url: "https://images.virtualsoft.tech/productos/7---Hot-FruitsT1634073927.png" },
+        { nombre: "888 Dragons", url: "https://images.virtualsoft.tech/productos/888-DragonsT1557785735.png" },
+        { nombre: "Aphrodite", url: "https://images.virtualsoft.tech/productos/AphroditeT1757427166.png" },
+        { nombre: "Candy Loop", url: "https://images.virtualsoft.tech/productos/Candy-LoopT1730904372.png" },
+        { nombre: "Caramelo Sortudo", url: "https://images.virtualsoft.tech/productos/Caramelo-Sortudo-1781729583.png" },
+        { nombre: "Cash Pig 2", url: "https://images.virtualsoft.tech/productos/Cash-Pig-2T1745962887.png" },
+        { nombre: "Coin Dazzle", url: "https://images.virtualsoft.tech/productos/Coin-DazzleT1759173588.gif" },
+        { nombre: "Coin Strike", url: "https://images.virtualsoft.tech/productos/Coin-Strike-Hold-and-WinT1737407157.gif" },
+        { nombre: "Hell Hot 100", url: "https://images.virtualsoft.tech/productos/Hell-Hot-100T1719442126.png" },
+        { nombre: "Joxer", url: "https://images.virtualsoft.tech/productos/JoxerT1758547520.png" },
+        { nombre: "Lucky Phoenix", url: "https://images.virtualsoft.tech/productos/Lucky-PhoenixT1749571601.png" },
+        { nombre: "Moon Princess 100", url: "https://images.virtualsoft.tech/productos/Moon-Princess-100T1649715255.png" },
+        { nombre: "Royal Coins", url: "https://images.virtualsoft.tech/productos/Royal-CoinsT1731526135.gif" },
+        { nombre: "Shining Crown Bonus", url: "https://images.virtualsoft.tech/productos/Shining-Crown-Buy-BonusT1750184054.gif" },
+        { nombre: "Super 777s", url: "https://images.virtualsoft.tech/productos/Super-777sT1757431820.png" },
+        { nombre: "Wild Spin", url: "https://images.virtualsoft.tech/productos/Wild-Spin--T1634074372.png" },
+        { nombre: "Xmas Invaders", url: "https://images.virtualsoft.tech/productos/Xmas-InvadersT1733495439.png" },
+        { nombre: "Gates Of Anubis", url: "https://images.virtualsoft.tech/m/Gates-Of-AnubisT1764943507.gif" }
+    ];
 
-    for(let i = 0; i < 60; i++) {
-        const imgUrl = imagenes[i] || 'https://via.placeholder.com/150';
-        container.innerHTML += `
-        <div class="relative w-full aspect-[2/2] bg-[#141414] rounded-2xl overflow-hidden border border-white/5 group active:scale-[0.98] transition-transform">
-            <div class="absolute top-2 left-2 z-10 px-4 py-0.5 bg-red-600 text-[8px] font-black uppercase text-white rounded shadow-md">HOT</div>
-            
-            <div class="w-full h-[70%] flex items-center justify-center p-2">
-                <img src="${imgUrl}" class="w-full h-full object-contain">
-            </div>
-            
-            <button onclick="mostrarAlerta('${imgUrl}')" class="absolute bottom-2 right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-black shadow-lg z-20">
-                <i class="fas fa-play text-[10px]"></i>
-            </button>
-
-            <div class="w-full h-[30%] flex items-center px-3 text-[10px] text-gray-400 uppercase font-bold truncate">
-                Juego ${i + 1}
-            </div>
-        </div>`;
-    }
-
+    // 2. Función para mostrar el modal de alerta
     function mostrarAlerta(url) {
         const overlay = document.createElement('div');
+        overlay.id = "alerta-overlay";
         overlay.style.cssText = "position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.95); padding:20px;";
+        
         overlay.innerHTML = `
             <div class="w-full max-w-sm bg-[#1c1c1e] p-6 rounded-3xl text-center border border-white/10 shadow-2xl">
                 <div class="w-20 h-20 mx-auto mb-4 rounded-2xl overflow-hidden border border-white/10 shadow-lg">
@@ -337,58 +320,36 @@ function abrirWhatsApp() {
                 </div>
                 <h2 class="text-white font-black text-xl mb-1">Fondos Insuficientes</h2>
                 <p class="text-gray-400 text-xs mb-6">Recarga tu cuenta para jugar este título.</p>
-                <button onclick="this.parentElement.parentElement.remove()" class="w-full bg-primary py-3 rounded-xl font-black text-black uppercase text-sm">Cerrar</button>
+                <a href="https://wa.me/TU_NUMERO_AQUI" target="_blank" class="block w-full bg-[#25D366] py-3 mb-3 rounded-xl font-black text-white uppercase text-sm hover:bg-[#128C7E] transition-all">
+                    <i class="fab fa-whatsapp mr-2"></i>Recargar vía WhatsApp
+                </a>
+                <button onclick="document.getElementById('alerta-overlay').remove()" class="w-full bg-white/10 py-3 rounded-xl font-black text-white uppercase text-sm hover:bg-white/20 transition-all">
+                    Cerrar
+                </button>
             </div>
         `;
         document.body.appendChild(overlay);
     }
-</script>
 
-<!-- SECCIÓN BONOS (AJUSTADA A MÓVIL) -->
-<section class="max-w-[1450px] mx-auto w-full p-4 mt-6">
-    <h2 class="text-white font-black italic uppercase text-lg flex items-center gap-3 mb-6">
-        <span class="w-1.5 h-6 bg-primary rounded-full"></span> BONOS ACTIVOS
-    </h2>
-    
-    <!-- Grid de bonos: 1 columna en móvil, 3 en escritorio -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bg-[#1a1a1a] border border-white/5 rounded-2xl p-6 transition-all hover:border-primary/50">
-            <div class="text-primary font-black text-3xl mb-1">100%</div>
-            <div class="text-white font-bold text-sm">Hasta $500</div>
-            <p class="text-gray-500 text-[10px] uppercase mb-4 tracking-widest">en primer depósito</p>
-            <button onclick="reclamarBono('primer-deposito')" class="text-[10px] font-black uppercase text-primary">Reclamar →</button>
-        </div>
-
-        <div class="bg-[#1a1a1a] border border-white/5 rounded-2xl p-6 transition-all hover:border-primary/50">
-            <div class="text-primary font-black text-3xl mb-1">50%</div>
-            <div class="text-white font-bold text-sm">Cashback</div>
-            <p class="text-gray-500 text-[10px] uppercase mb-4 tracking-widest">todos los viernes</p>
-            <button onclick="reclamarBono('cashback')" class="text-[10px] font-black uppercase text-primary">Reclamar →</button>
-        </div>
-
-        <div class="bg-[#1a1a1a] border border-white/5 rounded-2xl p-6 transition-all hover:border-primary/50">
-            <div class="text-primary font-black text-3xl mb-1">20</div>
-            <div class="text-white font-bold text-sm">Giros gratis</div>
-            <p class="text-gray-500 text-[10px] uppercase mb-4 tracking-widest">sin depósito</p>
-            <button onclick="reclamarBono('giros-gratis')" class="text-[10px] font-black uppercase text-primary">Reclamar →</button>
-        </div>
-    </div>
-</section>
-   
-
-   
-
-    <!-- FOOTER -->
-    <footer class="bg-[#0f0f0f] border-t border-white/5 mt-16 py-12">
-        <div class="max-w-[1450px] mx-auto w-full p-4 grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div><div class="betonwin-logo text-xl mb-4" onclick="abrirSalon(); return false;">BET<span>ON</span>WIN</div><p class="text-xs text-gray-500">© 2024 Todos los derechos reservados.</p><p class="text-xs text-gray-600 mt-2">Juega con responsabilidad</p></div>
-            <div><h4 class="text-white font-bold uppercase text-xs tracking-widest mb-4">JUEGOS</h4><ul class="space-y-2 text-xs text-gray-500"><li><a href="#" class="hover:text-primary">Aviator</a></li><li><a href="#" class="hover:text-primary">Slots</a></li><li><a href="#" class="hover:text-primary">Ruleta</a></li><li><a href="#" class="hover:text-primary">FlipCard</a></li></ul></div>
-            <div><h4 class="text-white font-bold uppercase text-xs tracking-widest mb-4">INFORMACIÓN</h4><ul class="space-y-2 text-xs text-gray-500"><li><a href="#" class="hover:text-primary">Términos</a></li><li><a href="#" class="hover:text-primary">Ayuda</a></li></ul></div>
-            <div><h4 class="text-white font-bold uppercase text-xs tracking-widest mb-4">PAGOS</h4><ul class="space-y-2 text-xs text-gray-500"><li class="flex items-center gap-2">USDT (ERC20) • Banco Pichincha</li></ul></div>
-        </div>
-    </footer>
-
-    <script>
+    // 3. Generar las tarjetas en el HTML
+    const container = document.getElementById('juegos-container');
+    for(let i = 0; i < 60; i++) {
+        const juego = juegos[i] || { nombre: "Próximamente", url: 'https://via.placeholder.com/150' };
+        container.innerHTML += `
+            <div class="relative w-full aspect-[2/2] bg-[#141414] rounded-2xl overflow-hidden border border-white/5 group active:scale-[0.98] transition-transform">
+                <div class="absolute top-2 left-2 z-10 px-4 py-0.5 bg-red-600 text-[8px] font-black uppercase text-white rounded shadow-md">VERIFICADO</div>
+                <div class="w-full h-[70%] flex items-center justify-center p-2">
+                    <img src="${juego.url}" class="w-full h-full object-contain">
+                </div>
+                <button onclick="mostrarAlerta('${juego.url}')" class="absolute bottom-2 right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-black shadow-lg z-20">
+                    <i class="fas fa-play text-[10px]"></i>
+                </button>
+                <div class="w-full h-[30%] flex items-center px-3 text-[10px] text-gray-400 uppercase font-bold truncate">
+                     ${juego.nombre}
+                </div>
+            </div>`;
+    }
+ 
      // ============================================
 // PAÍSES, MONEDAS Y BANDERAS (50 PAÍSES)
 // ============================================
