@@ -156,16 +156,68 @@
         <i class="fas fa-crown mr-2"></i> MODO ADMIN
     </div>
 
-    <!-- CHAT INTELIGENTE -->
-    <div id="chat-button" onclick="toggleChat()">
-        <i class="fas fa-headset text-2xl"></i>
-    </div>
-    <div id="chat-modal">
-        <div class="chat-header"><span class="font-bold">💬 Soporte BETONWIN</span><button onclick="toggleChat()" class="text-gray-400 hover:text-white"><i class="fas fa-times"></i></button></div>
-        <div class="chat-mensajes" id="chat-mensajes"><div class="chat-mensaje soporte">¡Hola! ¿En qué podemos ayudarte? Puedes consultarme sobre recargas, depósitos, métodos de pago o tardanzas.</div></div>
-        <div class="chat-input-area"><input type="text" id="chat-input" placeholder="Escribe tu mensaje..." onkeypress="if(event.key==='Enter') enviarMensaje()"><button onclick="enviarMensaje()">Enviar</button></div>
-    </div>
+   <script>
+// BASE DE DATOS DE CONOCIMIENTO
+const baseDeDatos = [
+    { k: ["recarga", "depósito", "deposito", "fondos"], r: "💰 Para recargar, usa el botón RECARGAR. Aceptamos USDT (ERC20) y Banco Pichincha." },
+    { k: ["retiro", "retirar", "sacar"], r: "💸 Los retiros se procesan en 24h. Verifica tu cuenta en el perfil." },
+    { k: ["pago", "usdt", "cripto", "banco", "transferencia"], r: "💳 Aceptamos USDT (ERC20) y Banco Pichincha (Cuenta: 2214166379, Titular: ANTONIO PEREZ)." },
+    { k: ["tardanza", "demora", "tiempo", "cuanto tarda"], r: "⏱️ Los depósitos se acreditan en un máximo de 24 horas hábiles." },
+    { k: ["comprobante", "hash", "referencia"], r: "📄 Sube tu comprobante en la sección RECARGAS tras realizar tu pago." },
+    { k: ["problema", "error", "no funciona"], r: "🔧 Lamentamos el inconveniente. Contacta a un asesor por WhatsApp para soporte técnico." },
+    { k: ["bono", "promoción", "regalo"], r: "🎁 Tenemos bonos del 100% en primer depósito y 50% cashback los viernes." },
+    { k: ["cuenta", "perfil"], r: "👤 Edita tu perfil y verifica tu identidad en 'Mi Cuenta' en el menú superior." },
+    { k: ["contraseña", "olvidé", "password"], r: "🔑 Usa el botón '¿Olvidaste tu contraseña?' en la pantalla de login." },
+    { k: ["verificación", "kyc", "documentos"], r: "🆔 Sube tu identificación en 'Ajustes de cuenta' para validar tu perfil." },
+    { k: ["seguridad", "confiable"], r: "🛡️ BETONWIN opera bajo protocolos de encriptación SSL de grado bancario." },
+    { k: ["juegos", "casino", "slots", "poker"], r: "🎰 Contamos con más de 500 títulos. Explora el lobby principal." },
+    { k: ["idioma", "español"], r: "🌎 La plataforma está optimizada en español para tu comodidad." },
+    { k: ["límites", "apuestas"], r: "📊 Los límites de apuesta varían por juego; revisa la info en cada mesa." },
+    { k: ["historial", "transacciones"], r: "📜 Revisa tus movimientos en 'Historial de transacciones' en 'Mi Perfil'." },
+    { k: ["horario", "atención"], r: "⏰ Sistema de recargas 24/7. Validaciones manuales de 8am a 8pm." },
+    { k: ["amigos", "invitar"], r: "👥 ¡Pronto lanzaremos nuestro programa de referidos!" },
+    { k: ["celular", "iphone", "app"], r: "📱 Nuestra web es responsive y funciona perfecto en cualquier móvil." },
+    { k: ["responsable", "juego"], r: "⚠️ Juega con responsabilidad. Puedes configurar límites en 'Juego Responsable'." },
+    { k: ["hola", "saludo"], r: "¡Hola! Soy tu asistente BETONWIN. ¿En qué te ayudo con tus recargas?" }
+];
 
+function toggleChat() {
+    const chat = document.getElementById('chat-modal');
+    if (!chat) return;
+    chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+}
+
+function enviarMensaje() {
+    const input = document.getElementById('chat-input');
+    const chatMsgs = document.getElementById('chat-mensajes');
+    if (!input || !chatMsgs) return;
+    
+    const valor = input.value.trim();
+    if(!valor) return;
+
+    chatMsgs.innerHTML += `<div class="bg-primary text-black p-2 rounded-lg mb-2 ml-auto max-w-[80%] text-xs font-bold">${valor}</div>`;
+    input.value = '';
+
+    setTimeout(() => {
+        const msg = valor.toLowerCase();
+        const match = baseDeDatos.find(item => item.k.some(kw => msg.includes(kw)));
+        const respuesta = match ? match.r : "No comprendo. Por favor, contáctanos por WhatsApp.";
+
+        chatMsgs.innerHTML += `
+            <div class="bg-gray-800 text-white p-2 rounded-lg mb-2 max-w-[80%] text-xs">
+                ${respuesta}
+                <button onclick="abrirWhatsApp()" class="mt-2 w-full bg-[#25D366] text-white py-1.5 rounded text-[10px] font-bold">
+                    <i class="fab fa-whatsapp"></i> CHAT HUMANO
+                </button>
+            </div>`;
+        chatMsgs.scrollTop = chatMsgs.scrollHeight;
+    }, 500);
+}
+
+function abrirWhatsApp() {
+    window.open('https://api.whatsapp.com/send?phone=13235540514', '_blank');
+}
+</script>
     <!-- HERO SLIDER -->
     <section class="max-w-[1450px] mx-auto w-full p-4">
         <div class="grid grid-cols-12 gap-4 side-container">
