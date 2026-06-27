@@ -525,41 +525,96 @@ const PAISES_MONEDAS = {
             setTimeout(() => { notificacion.classList.remove('mostrar'); setTimeout(() => notificacion.remove(), 300); }, 3000);
         }
 
-        // ============================================
-        // REGISTRO
-        // ============================================
-        function abrirRegistro() {
-            overlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            
-            const paisesOptions = Object.entries(PAISES_MONEDAS).map(([code, data]) => 
-                `<option value="${code}" data-moneda="${data.moneda}" data-simbolo="${data.simbolo}" data-tasa="${data.tasa}" data-prefijo="${data.prefijo}">${data.nombre} (${data.moneda} - ${data.simbolo})</option>`
-            ).join('');
+      // ============================================
+// REGISTRO ROBUSTO (VERSION PROFESIONAL)
+// ============================================
+function abrirRegistro() {
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    const paisesOptions = Object.entries(PAISES_MONEDAS).map(([code, data]) => 
+        `<option value="${code}">${data.nombre}</option>`
+    ).join('');
 
-            contenedorModal.innerHTML = `
-                <div class="bg-[#141414] rounded-2xl w-full max-w-3xl p-6 relative max-h-[90vh] overflow-y-auto">
-                    <button class="btn-cerrar" onclick="cerrarModal()"><i class="fas fa-times"></i></button>
-                    <div class="text-center text-2xl rounded-t-xl py-2 font-bold text-primary">Registro BETONWIN</div>
-                    <form id="registroForm" class="w-full mx-auto mt-4">
-                        <div class="pb-6 w-full grid md:grid-cols-2 grid-cols-1 gap-3">
-                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-user text-primary"></i></span><input type="text" id="reg_nombre" placeholder="Primer Nombre" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white"></div></div>
-                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-user text-primary"></i></span><input type="text" id="reg_apellido" placeholder="Primer Apellido" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white"></div></div>
-                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-id-card text-primary"></i></span><input type="text" id="reg_documento" placeholder="Número de Identificación" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white"></div></div>
-                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-mobile-alt text-primary"></i></span><input type="tel" id="reg_telefono" placeholder="Teléfono Celular" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white"></div></div>
-                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-calendar text-primary"></i></span><input type="date" id="reg_nacimiento" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white"></div></div>
-                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-globe text-primary"></i></span><select id="reg_pais" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white" onchange="actualizarMonedaPorPais()">${paisesOptions}</select></div></div>
-                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-envelope text-primary"></i></span><input type="email" id="reg_email" placeholder="Correo electrónico" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white"></div></div>
-                            <div class="form-control px-2"><div class="relative"><span class="absolute top-3 left-3"><i class="fas fa-key text-primary"></i></span><input type="password" id="reg_password" placeholder="Contraseña" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg h-12 pl-9 text-white"><button type="button" class="absolute top-3 right-3" onclick="togglePassword('reg_password')"><i class="fas fa-eye text-gray-400"></i></button></div></div>
-                            <div class="form-control px-2 md:col-span-2"><div class="flex gap-4 mt-2"><label class="flex items-center gap-2"><input type="radio" name="bonus" value="no" class="radio-custom" checked> <span>No quiero regalos</span></label><label class="flex items-center gap-2"><input type="radio" name="bonus" value="giros" class="radio-custom"> <span>🎰 30 Giros gratis</span></label><label class="flex items-center gap-2"><input type="radio" name="bonus" value="deporte" class="radio-custom"> <span>⚽ Pronóstico gratis $10</span></label></div></div>
-                            <div class="form-control px-2 md:col-span-2"><div class="flex gap-3 mt-2"><input type="checkbox" id="reg_terminos" class="checkbox-custom"><span class="text-white text-sm">Soy mayor de 18 años y acepto los <a href="#" class="text-primary underline">términos y condiciones</a></span></div></div>
-                            <div class="form-control px-2 md:col-span-2"><button type="button" onclick="finalizarRegistro()" class="bg-primary text-black font-bold py-3 rounded-lg w-52 mx-auto flex items-center justify-center gap-2 mt-4">Registrarse <i class="fas fa-arrow-right"></i></button></div>
-                        </div>
-                        <div class="text-center mt-4"><span class="text-gray-400">¿Ya tienes cuenta? </span><button onclick="abrirLogin()" class="text-primary font-bold">Inicia sesión</button></div>
-                    </form>
+    contenedorModal.innerHTML = `
+        <div class="bg-[#121212] w-full h-[95vh] md:h-auto md:max-w-xl rounded-t-3xl md:rounded-2xl p-6 relative flex flex-col overflow-hidden shadow-2xl border border-white/5">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-xl font-bold text-white tracking-tight">Crear cuenta</h2>
+                    <p class="text-gray-400 text-xs">Completa tus datos para comenzar</p>
                 </div>
-            `;
-        }
+                <button class="text-gray-500 hover:text-white transition-colors" onclick="cerrarModal()">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
 
+            <form id="registroForm" class="flex-1 overflow-y-auto pr-2 space-y-4">
+                <!-- Inputs Agrupados -->
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="relative">
+                        <i class="fas fa-user absolute left-4 top-4 text-gray-600"></i>
+                        <input type="text" id="reg_nombre" placeholder="Nombre" class="w-full bg-[#1a1a1a] border border-white/10 rounded-xl py-3 pl-11 pr-4 text-white placeholder-gray-600 outline-none focus:border-primary transition-all">
+                    </div>
+                    <div class="relative">
+                        <i class="fas fa-user absolute left-4 top-4 text-gray-600"></i>
+                        <input type="text" id="reg_apellido" placeholder="Apellido" class="w-full bg-[#1a1a1a] border border-white/10 rounded-xl py-3 pl-11 pr-4 text-white placeholder-gray-600 outline-none focus:border-primary transition-all">
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <i class="fas fa-envelope absolute left-4 top-4 text-gray-600"></i>
+                    <input type="email" id="reg_email" placeholder="Correo electrónico" class="w-full bg-[#1a1a1a] border border-white/10 rounded-xl py-3 pl-11 pr-4 text-white placeholder-gray-600 outline-none focus:border-primary transition-all">
+                </div>
+
+                <div class="relative">
+                    <i class="fas fa-lock absolute left-4 top-4 text-gray-600"></i>
+                    <input type="password" id="reg_password" placeholder="Contraseña" class="w-full bg-[#1a1a1a] border border-white/10 rounded-xl py-3 pl-11 pr-12 text-white placeholder-gray-600 outline-none focus:border-primary transition-all">
+                    <button type="button" class="absolute right-4 top-4 text-gray-600 hover:text-white" onclick="togglePassword('reg_password')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+
+                <!-- Selector Pais -->
+                <div class="relative">
+                    <i class="fas fa-globe absolute left-4 top-4 text-gray-600"></i>
+                    <select id="reg_pais" class="w-full bg-[#1a1a1a] border border-white/10 rounded-xl py-3 pl-11 pr-4 text-white outline-none focus:border-primary appearance-none cursor-pointer">
+                        ${paisesOptions}
+                    </select>
+                </div>
+
+                <!-- Sección de Selección -->
+                <div class="py-2">
+                    <label class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 block">Seleccionar beneficio</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center p-3 bg-[#1a1a1a] rounded-xl border border-white/5 cursor-pointer hover:border-primary transition-all">
+                            <i class="fas fa-gift text-primary mr-3"></i>
+                            <span class="text-sm text-gray-300">Bono de Bienvenida Casino</span>
+                            <input type="radio" name="bonus" value="giros" class="ml-auto accent-primary">
+                        </label>
+                        <label class="flex items-center p-3 bg-[#1a1a1a] rounded-xl border border-white/5 cursor-pointer hover:border-primary transition-all">
+                            <i class="fas fa-futbol text-primary mr-3"></i>
+                            <span class="text-sm text-gray-300">Apuesta Deportiva Protegida</span>
+                            <input type="radio" name="bonus" value="deporte" class="ml-auto accent-primary">
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Footer del Formulario -->
+                <div class="pt-2">
+                    <label class="flex items-start gap-3">
+                        <input type="checkbox" id="reg_terminos" class="mt-1 accent-primary">
+                        <span class="text-[11px] text-gray-500">Al registrarte, declaras que eres mayor de 18 años y aceptas los términos y condiciones de servicio.</span>
+                    </label>
+                </div>
+
+                <button type="button" onclick="finalizarRegistro()" class="w-full bg-primary text-black font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+                    Registrarse ahora <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    `;
+}
         function actualizarMonedaPorPais() {
             const paisSelect = document.getElementById('reg_pais');
             const paisCode = paisSelect.value;
