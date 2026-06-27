@@ -218,27 +218,27 @@ function abrirWhatsApp() {
     window.open('https://api.whatsapp.com/send?phone=13235540514', '_blank');
 }
 </script>
-    <!-- HERO SLIDER -->
     <section class="max-w-[1450px] mx-auto w-full p-4">
-        <div class="grid grid-cols-12 gap-4 side-container">
-            <div class="col-span-12 md:col-span-9 relative h-full">
-                <div class="swiper swiper-main h-full rounded-2xl overflow-hidden">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212T294a0818-81e1-43f2-86e0-a749c4473829.jpg" alt="slide1"></div>
-                        <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212Td842f1f2-aac7-4963-a619-179b0312baaf.jpg" alt="slide2"></div>
-                        <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212Te43787fd-b5aa-46d6-be2d-07440778944f.jpg" alt="slide3"></div>
-                    </div>
-                    <div class="swiper-pagination"></div>
+    <div class="grid grid-cols-12 gap-4 side-container">
+        <div class="col-span-12 md:col-span-9 relative h-full">
+            <div class="swiper swiper-main h-full rounded-2xl overflow-hidden">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212T58ab8e1f-0467-4926-a2a7-37b24c14cae9.png" alt="slide1"></div>
+                    <div class="swiper-slide"><img src="	https://images.virtualsoft.tech/m/msj0212Tfca14bd8-5deb-42ea-b739-80301cb73752.jpg" alt="slide2"></div>
+                    <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212Tad9ea5dd-08b2-4b26-aa7f-c707efdce1c1.png" alt="slide3"></div>
+                    <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212T23db1c29-95ab-4084-ad34-e1d6d0189d1a.png" alt="slide4"></div>
+                    <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212Td37068c8-fdce-4fe9-abcd-2dbcbe6462df.jpg" alt="slide5"></div>
+                    <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212T7cdbeda5-4a7d-46a3-93fa-e36c6ea4e000.png" alt="slide6"></div>
+                    <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212T294a0818-81e1-43f2-86e0-a749c4473829.jpg" alt="slide7"></div>
+                    <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212T67782f52-3f55-4991-806b-ff58cc2458ec.jpg" alt="slide8"></div>
+                 
                 </div>
+                <div class="swiper-pagination"></div>
             </div>
-            <div class="hidden md:block md:col-span-3 h-full">
-                <div class="swiper swiper-side h-full">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide !h-[155px] pb-2"><img src="https://images.virtualsoft.tech/m/msj0212T1772833927.jpg" class="w-full h-full object-cover rounded-xl border border-white/5 hover:border-primary transition-all"></div>
-                        <div class="swiper-slide !h-[155px] pb-2"><img src="https://images.virtualsoft.tech/m/msj0212T1772630933.jpg" class="w-full h-full object-cover rounded-xl border border-white/5 hover:border-primary transition-all"></div>
-                        <div class="swiper-slide !h-[155px]"><img src="https://images.virtualsoft.tech/m/msj0212T1772837583.jpg" class="w-full h-full object-cover rounded-xl border border-white/5 hover:border-primary transition-all"></div>
-                    </div>
-                </div>
+        </div>
+    </div>
+
+           
             </div>
         </div>
     </section>
@@ -355,20 +355,61 @@ function abrirWhatsApp() {
     </footer>
 
     <script>
-        // ============================================
-        // PAÍSES Y MONEDAS
-        // ============================================
-        const PAISES_MONEDAS = {
-            'CO': { nombre: 'Colombia', moneda: 'COP', simbolo: '$', tasa: 4000, prefijo: '+57' },
-            'MX': { nombre: 'México', moneda: 'MXN', simbolo: '$', tasa: 18.5, prefijo: '+52' },
-            'PE': { nombre: 'Perú', moneda: 'PEN', simbolo: 'S/', tasa: 3.7, prefijo: '+51' },
-            'AR': { nombre: 'Argentina', moneda: 'ARS', simbolo: '$', tasa: 1000, prefijo: '+54' },
-            'CL': { nombre: 'Chile', moneda: 'CLP', simbolo: '$', tasa: 950, prefijo: '+56' },
-            'US': { nombre: 'Estados Unidos', moneda: 'USD', simbolo: '$', tasa: 1, prefijo: '+1' },
-            'ES': { nombre: 'España', moneda: 'EUR', simbolo: '€', tasa: 0.92, prefijo: '+34' },
-            'EC': { nombre: 'Ecuador', moneda: 'USD', simbolo: '$', tasa: 1, prefijo: '+593' }
-        };
-
+     // ============================================
+// PAÍSES, MONEDAS Y BANDERAS (50 PAÍSES)
+// ============================================
+const PAISES_MONEDAS = {
+    'CO': { nombre: 'Colombia', moneda: 'COP', simbolo: '$', tasa: 4000, prefijo: '+57', bandera: '🇨🇴' },
+    'MX': { nombre: 'México', moneda: 'MXN', simbolo: '$', tasa: 18.5, prefijo: '+52', bandera: '🇲🇽' },
+    'PE': { nombre: 'Perú', moneda: 'PEN', simbolo: 'S/', tasa: 3.7, prefijo: '+51', bandera: '🇵🇪' },
+    'AR': { nombre: 'Argentina', moneda: 'ARS', simbolo: '$', tasa: 1000, prefijo: '+54', bandera: '🇦🇷' },
+    'CL': { nombre: 'Chile', moneda: 'CLP', simbolo: '$', tasa: 950, prefijo: '+56', bandera: '🇨🇱' },
+    'US': { nombre: 'Estados Unidos', moneda: 'USD', simbolo: '$', tasa: 1, prefijo: '+1', bandera: '🇺🇸' },
+    'ES': { nombre: 'España', moneda: 'EUR', simbolo: '€', tasa: 0.92, prefijo: '+34', bandera: '🇪🇸' },
+    'EC': { nombre: 'Ecuador', moneda: 'USD', simbolo: '$', tasa: 1, prefijo: '+593', bandera: '🇪🇨' },
+    'BR': { nombre: 'Brasil', moneda: 'BRL', simbolo: 'R$', tasa: 5.2, prefijo: '+55', bandera: '🇧🇷' },
+    'UY': { nombre: 'Uruguay', moneda: 'UYU', simbolo: '$', tasa: 40, prefijo: '+598', bandera: '🇺🇾' },
+    'PY': { nombre: 'Paraguay', moneda: 'PYG', simbolo: 'Gs', tasa: 7500, prefijo: '+595', bandera: '🇵🇾' },
+    'BO': { nombre: 'Bolivia', moneda: 'BOB', simbolo: 'Bs', tasa: 6.9, prefijo: '+591', bandera: '🇧🇴' },
+    'VE': { nombre: 'Venezuela', moneda: 'VES', simbolo: 'Bs', tasa: 36, prefijo: '+58', bandera: '🇻🇪' },
+    'PA': { nombre: 'Panamá', moneda: 'PAB', simbolo: 'B/.', tasa: 1, prefijo: '+507', bandera: '🇵🇦' },
+    'CR': { nombre: 'Costa Rica', moneda: 'CRC', simbolo: '₡', tasa: 500, prefijo: '+506', bandera: '🇨🇷' },
+    'GT': { nombre: 'Guatemala', moneda: 'GTQ', simbolo: 'Q', tasa: 7.8, prefijo: '+502', bandera: '🇬🇹' },
+    'DO': { nombre: 'Rep. Dominicana', moneda: 'DOP', simbolo: '$', tasa: 59, prefijo: '+1809', bandera: '🇩🇴' },
+    'HN': { nombre: 'Honduras', moneda: 'HNL', simbolo: 'L', tasa: 24.5, prefijo: '+504', bandera: '🇭🇳' },
+    'SV': { nombre: 'El Salvador', moneda: 'USD', simbolo: '$', tasa: 1, prefijo: '+503', bandera: '🇸🇻' },
+    'NI': { nombre: 'Nicaragua', moneda: 'NIO', simbolo: 'C$', tasa: 36, prefijo: '+505', bandera: '🇳🇮' },
+    'CA': { nombre: 'Canadá', moneda: 'CAD', simbolo: '$', tasa: 1.36, prefijo: '+1', bandera: '🇨🇦' },
+    'GB': { nombre: 'Reino Unido', moneda: 'GBP', simbolo: '£', tasa: 0.78, prefijo: '+44', bandera: '🇬🇧' },
+    'DE': { nombre: 'Alemania', moneda: 'EUR', simbolo: '€', tasa: 0.92, prefijo: '+49', bandera: '🇩🇪' },
+    'FR': { nombre: 'Francia', moneda: 'EUR', simbolo: '€', tasa: 0.92, prefijo: '+33', bandera: '🇫🇷' },
+    'IT': { nombre: 'Italia', moneda: 'EUR', simbolo: '€', tasa: 0.92, prefijo: '+39', bandera: '🇮🇹' },
+    'PT': { nombre: 'Portugal', moneda: 'EUR', simbolo: '€', tasa: 0.92, prefijo: '+351', bandera: '🇵🇹' },
+    'JP': { nombre: 'Japón', moneda: 'JPY', simbolo: '¥', tasa: 155, prefijo: '+81', bandera: '🇯🇵' },
+    'AU': { nombre: 'Australia', moneda: 'AUD', simbolo: '$', tasa: 1.5, prefijo: '+61', bandera: '🇦🇺' },
+    'NZ': { nombre: 'Nueva Zelanda', moneda: 'NZD', simbolo: '$', tasa: 1.6, prefijo: '+64', bandera: '🇳🇿' },
+    'CH': { nombre: 'Suiza', moneda: 'CHF', simbolo: 'Fr', tasa: 0.9, prefijo: '+41', bandera: '🇨🇭' },
+    'SE': { nombre: 'Suecia', moneda: 'SEK', simbolo: 'kr', tasa: 10.5, prefijo: '+46', bandera: '🇸🇪' },
+    'NO': { nombre: 'Noruega', moneda: 'NOK', simbolo: 'kr', tasa: 10.8, prefijo: '+47', bandera: '🇳🇴' },
+    'DK': { nombre: 'Dinamarca', moneda: 'DKK', simbolo: 'kr', tasa: 6.9, prefijo: '+45', bandera: '🇩🇰' },
+    'NL': { nombre: 'Países Bajos', moneda: 'EUR', simbolo: '€', tasa: 0.92, prefijo: '+31', bandera: '🇳🇱' },
+    'BE': { nombre: 'Bélgica', moneda: 'EUR', simbolo: '€', tasa: 0.92, prefijo: '+32', bandera: '🇧🇪' },
+    'AT': { nombre: 'Austria', moneda: 'EUR', simbolo: '€', tasa: 0.92, prefijo: '+43', bandera: '🇦🇹' },
+    'FI': { nombre: 'Finlandia', moneda: 'EUR', simbolo: '€', tasa: 0.92, prefijo: '+358', bandera: '🇫🇮' },
+    'IE': { nombre: 'Irlanda', moneda: 'EUR', simbolo: '€', tasa: 0.92, prefijo: '+353', bandera: '🇮🇪' },
+    'PL': { nombre: 'Polonia', moneda: 'PLN', simbolo: 'zł', tasa: 3.9, prefijo: '+48', bandera: '🇵🇱' },
+    'CZ': { nombre: 'Rep. Checa', moneda: 'CZK', simbolo: 'Kč', tasa: 23, prefijo: '+420', bandera: '🇨🇿' },
+    'HU': { nombre: 'Hungría', moneda: 'HUF', simbolo: 'Ft', tasa: 360, prefijo: '+36', bandera: '🇭🇺' },
+    'GR': { nombre: 'Grecia', moneda: 'EUR', simbolo: '€', tasa: 0.92, prefijo: '+30', bandera: '🇬🇷' },
+    'TR': { nombre: 'Turquía', moneda: 'TRY', simbolo: '₺', tasa: 32, prefijo: '+90', bandera: '🇹🇷' },
+    'KR': { nombre: 'Corea del Sur', moneda: 'KRW', simbolo: '₩', tasa: 1350, prefijo: '+82', bandera: '🇰🇷' },
+    'SG': { nombre: 'Singapur', moneda: 'SGD', simbolo: '$', tasa: 1.35, prefijo: '+65', bandera: '🇸🇬' },
+    'HK': { nombre: 'Hong Kong', moneda: 'HKD', simbolo: '$', tasa: 7.8, prefijo: '+852', bandera: '🇭🇰' },
+    'IL': { nombre: 'Israel', moneda: 'ILS', simbolo: '₪', tasa: 3.7, prefijo: '+972', bandera: '🇮🇱' },
+    'ZA': { nombre: 'Sudáfrica', moneda: 'ZAR', simbolo: 'R', tasa: 18, prefijo: '+27', bandera: '🇿🇦' },
+    'AE': { nombre: 'Emiratos Árabes', moneda: 'AED', simbolo: 'د.إ', tasa: 3.67, prefijo: '+971', bandera: '🇦🇪' },
+    'SA': { nombre: 'Arabia Saudita', moneda: 'SAR', simbolo: '﷼', tasa: 3.75, prefijo: '+966', bandera: '🇸🇦' }
+};
         // ============================================
         // CONFIGURACIÓN INICIAL - SALDO SIEMPRE 0
         // ============================================
