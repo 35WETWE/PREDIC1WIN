@@ -1665,104 +1665,238 @@ function abrirLogin() {
         }
 
         // ============================================
-        // RECARGAS SIMULADAS CON VALIDACIÓN
-        // ============================================
-        function abrirRecargas() {
-            if (!usuarioActual?.email) { mostrarNotificacion('⚠️ Debes iniciar sesión', 'advertencia'); abrirLogin(); return; }
-            overlay.style.display = 'flex';
+// RECARGAS SIMULADAS CON VALIDACIÓN (SUAVE & AJUSTADO A PANTALLA)
+// ============================================
+function abrirRecargas() {
+    if (!usuarioActual?.email) { 
+        mostrarNotificacion('⚠️ Debes iniciar sesión', 'advertencia'); 
+        abrirLogin(); 
+        return; 
+    }
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    contenedorModal.innerHTML = `
+        <div class="bg-[#121212] w-full h-[100dvh] md:h-auto md:max-w-xl md:rounded-2xl p-5 relative flex flex-col overflow-hidden shadow-[0_15px_50px_rgba(0,0,0,0.7)] border border-white/5 transition-all">
             
-            contenedorModal.innerHTML = `
-                <div class="deposito-modal p-6">
-                    <button class="btn-cerrar" onclick="cerrarModal()"><i class="fas fa-times"></i></button>
-                    <h2 class="text-xl font-bold text-primary mb-4">💰 RECARGAR SALDO - ${usuarioActual.moneda}</h2>
-                    <p class="text-white mb-4">Saldo actual: ${usuarioActual.simbolo}0.00</p>
-                    <div class="bg-yellow-500/20 p-3 rounded-xl mb-4"><p class="text-yellow-400 font-bold">⚠️ MODO DEMOSTRACIÓN</p><p class="text-white text-sm">Las recargas son simuladas. El saldo siempre será 0.00</p></div>
-                    
-                    <div class="metodos-tabs"><div class="metodo-tab ${metodoActivo === 'cripto' ? 'active' : ''}" onclick="cambiarMetodoPago('cripto')">₿ Cripto (USDT)</div><div class="metodo-tab ${metodoActivo === 'banco' ? 'active' : ''}" onclick="cambiarMetodoPago('banco')">🏦 Banco Pichincha</div></div>
+            <button class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-all active:scale-90 z-50" onclick="cerrarModal()">
+                <i class="fas fa-times text-lg"></i>
+            </button>
 
-                    <div id="cripto-section" style="display: ${metodoActivo === 'cripto' ? 'block' : 'none'};">
-                        <div class="bg-[#242424] rounded-xl p-4"><div class="text-white font-bold mb-3">💰 Selecciona billetera:</div>
-                        ${BILLETERAS_USDT.map((wallet, idx) => `<div class="wallet-card ${billeteraSeleccionada.direccion === wallet.direccion ? 'selected' : ''}" onclick="seleccionarBilletera('${wallet.direccion}')"><div><div class="text-primary font-bold text-sm">${wallet.nombre}</div><div class="wallet-address text-xs">${wallet.direccion.substring(0,10)}...</div></div>${billeteraSeleccionada.direccion === wallet.direccion ? '<i class="fas fa-check-circle text-primary"></i>' : ''}</div>`).join('')}
-                        <div class="bg-[#1e1e1e] p-3 rounded-lg mb-3 text-primary font-mono text-sm break-all">${billeteraSeleccionada.direccion}</div>
-                        <button onclick="copiarTexto('${billeteraSeleccionada.direccion}')" class="w-full bg-gray-700 text-white py-2 rounded-lg mb-3">📋 Copiar dirección</button>
-                        <input type="number" id="monto-transferido" placeholder="Monto en USD" class="w-full bg-[#1e1e1e] border border-gray-600 rounded-lg p-2 mb-2" min="10">
-                        <input type="text" id="tx-hash" placeholder="Hash de transacción" class="w-full bg-[#1e1e1e] border border-gray-600 rounded-lg p-2 mb-2">
-                        <input type="text" id="nombre-titular" placeholder="Nombre del titular de la cuenta" class="w-full bg-[#1e1e1e] border border-gray-600 rounded-lg p-2 mb-2">
-                        <input type="file" id="comprobante-file" class="file-input mb-2" accept="image/*" onchange="previsualizarComprobante(this)">
-                        <div id="comprobante-preview" class="mb-2"></div>
-                        <button onclick="procesarRecargaConValidacion()" class="w-full bg-primary text-black font-bold py-3 rounded-lg">📤 Enviar comprobante</button></div>
-                    </div>
+            <div class="mb-4">
+                <h2 class="text-xl font-bold text-white tracking-wide">Cargar Fondos</h2>
+                <p class="text-gray-400 text-xs">Moneda asignada: <span class="text-primary font-semibold">${usuarioActual.moneda}</span></p>
+            </div>
 
-                    <div id="banco-section" style="display: ${metodoActivo === 'banco' ? 'block' : 'none'};">
-                        <div class="bg-gradient-to-br from-blue-900/20 to-transparent rounded-xl p-4 border border-blue-500/30">
-                            <div class="flex items-center gap-3 mb-4"><div><h3 class="text-white font-bold">${DATOS_BANCO_PICHINCHA.nombre}</h3><p class="text-gray-400 text-xs">${DATOS_BANCO_PICHINCHA.tipo} - Ecuador</p></div></div>
-                            <div class="bg-[#1e1e1e] rounded-xl p-4 border border-blue-500/20 mb-4"><p class="text-white font-mono text-lg font-bold">${DATOS_BANCO_PICHINCHA.numero}</p><p class="text-gray-400 text-xs">Titular: ${DATOS_BANCO_PICHINCHA.titular}</p><button onclick="copiarTexto('${DATOS_BANCO_PICHINCHA.numero}')" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm">📋 Copiar cuenta</button></div>
-                            <input type="number" id="monto-pichincha" placeholder="Monto en USD" class="w-full bg-[#0a0a0a] border border-gray-600 rounded-lg p-2 mb-2" min="10">
-                            <input type="text" id="referencia-pichincha" placeholder="Número de referencia" class="w-full bg-[#0a0a0a] border border-gray-600 rounded-lg p-2 mb-2">
-                            <input type="text" id="nombre-titular-banco" placeholder="Nombre del titular" class="w-full bg-[#0a0a0a] border border-gray-600 rounded-lg p-2 mb-2">
-                            <input type="file" id="comprobante-pichincha" class="file-input mb-2" accept="image/*" onchange="previsualizarComprobanteBanco(this)">
-                            <div id="preview-pichincha" class="mb-2"></div>
-                            <button onclick="procesarRecargaConValidacion()" class="w-full bg-primary text-black font-bold py-3 rounded-lg">📤 Enviar comprobante</button>
-                        </div>
+            <div class="flex-1 overflow-y-auto pr-1 space-y-4 scrollbar-none pb-4">
+                
+                <div class="bg-[#181818] rounded-xl p-4 border border-white/5 flex justify-between items-center">
+                    <div>
+                        <p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-0.5">Saldo Disponible</p>
+                        <p class="text-2xl font-black text-white">${usuarioActual.simbolo}0.00</p>
                     </div>
-                    <p class="text-center text-xs text-gray-500 mt-4">⏱️ Modo demostración - El saldo no se modifica. Tu comprobante será validado.</p>
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+                        <i class="fas fa-wallet text-primary text-base"></i>
+                    </div>
                 </div>
-            `;
+
+                <div class="bg-amber-500/10 border border-amber-500/20 p-3.5 rounded-xl flex gap-3">
+                    <i class="fas fa-info-circle text-amber-500 text-base mt-0.5"></i>
+                    <div>
+                        <p class="text-xs font-bold text-amber-400 uppercase tracking-wide">Entorno de Demostración</p>
+                        <p class="text-gray-400 text-[11px] leading-relaxed mt-0.5">Las transacciones son simuladas con fines de verificación. El saldo base permanecerá sin variaciones.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-[#181818] p-1 rounded-xl flex gap-1">
+                    <button class="metodo-tab flex-1 py-3 text-xs font-bold uppercase tracking-wider rounded-lg flex items-center justify-center gap-2 transition-all ${metodoActivo === 'cripto' ? 'bg-[#222] text-primary shadow-sm' : 'text-gray-400 hover:text-white'}" onclick="cambiarMetodoPago('cripto')">
+                        <i class="fab fa-bitcoin text-sm"></i> Cripto (USDT)
+                    </button>
+                    <button class="metodo-tab flex-1 py-3 text-xs font-bold uppercase tracking-wider rounded-lg flex items-center justify-center gap-2 transition-all ${metodoActivo === 'banco' ? 'bg-[#222] text-primary shadow-sm' : 'text-gray-400 hover:text-white'}" onclick="cambiarMetodoPago('banco')">
+                        <i class="fas fa-university text-sm"></i> Banco Pichincha
+                    </button>
+                </div>
+
+                <div id="cripto-section" class="space-y-3.5" style="display: ${metodoActivo === 'cripto' ? 'block' : 'none'};">
+                    <div class="bg-[#181818] rounded-xl p-4 border border-white/5 space-y-3">
+                        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest block">Seleccionar Dirección de Red</label>
+                        
+                        <div class="space-y-2">
+                            ${BILLETERAS_USDT.map((wallet) => {
+                                const isSelected = billeteraSeleccionada.direccion === wallet.direccion;
+                                return `
+                                    <div class="flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all border ${isSelected ? 'bg-primary/5 border-primary/40 shadow-sm' : 'bg-[#1e1e1e] border-transparent hover:border-white/10'}" onclick="seleccionarBilletera('${wallet.direccion}')">
+                                        <div>
+                                            <p class="text-xs font-bold text-white">${wallet.nombre}</p>
+                                            <p class="text-[11px] text-gray-500 font-mono mt-0.5">${wallet.direccion.substring(0,14)}...</p>
+                                        </div>
+                                        ${isSelected ? '<i class="fas fa-check-circle text-primary text-base"></i>' : '<div class="w-4 h-4 rounded-full border border-white/10"></div>'}
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+
+                        <div class="bg-black/40 p-3 rounded-xl border border-white/5 flex items-center justify-between gap-2 mt-2">
+                            <span class="text-xs text-gray-300 font-mono break-all select-all">${billeteraSeleccionada.direccion}</span>
+                            <button onclick="copiarTexto('${billeteraSeleccionada.direccion}')" class="bg-white/5 hover:bg-white/10 text-gray-300 px-3 py-1.5 rounded-lg text-[11px] font-bold shrink-0 transition-colors">Copiar</button>
+                        </div>
+
+                        <div class="space-y-2.5 pt-2">
+                            <input type="number" id="monto-transferido" placeholder="Monto enviado (USD)" class="w-full bg-[#1e1e1e] border border-white/5 focus:border-primary/30 rounded-xl py-3 px-4 text-white text-sm outline-none transition-all placeholder-gray-600 font-medium" min="10">
+                            <input type="text" id="tx-hash" placeholder="Hash de la transacción (TxID)" class="w-full bg-[#1e1e1e] border border-white/5 focus:border-primary/30 rounded-xl py-3 px-4 text-white text-sm outline-none transition-all placeholder-gray-600 font-medium">
+                            <input type="text" id="nombre-titular" placeholder="Nombre completo del titular" class="w-full bg-[#1e1e1e] border border-white/5 focus:border-primary/30 rounded-xl py-3 px-4 text-white text-sm outline-none transition-all placeholder-gray-600 font-medium">
+                            
+                            <div class="relative bg-[#1e1e1e] border border-dashed border-white/10 rounded-xl p-4 text-center cursor-pointer hover:border-primary/30 transition-colors">
+                                <input type="file" id="comprobante-file" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" accept="image/*" onchange="previsualizarComprobante(this)">
+                                <i class="fas fa-cloud-upload-alt text-gray-500 text-lg mb-1"></i>
+                                <p class="text-xs text-gray-400 font-semibold">Adjuntar captura del recibo</p>
+                            </div>
+                            <div id="comprobante-preview" class="flex justify-center mt-2"></div>
+                        </div>
+
+                        <button onclick="procesarRecargaConValidacion()" class="w-full bg-gradient-to-r from-yellow-400 to-primary text-black font-black text-xs uppercase tracking-widest py-3.5 rounded-xl shadow-lg shadow-primary/10 hover:brightness-105 active:scale-[0.99] transition-all mt-2">
+                            Notificar Depósito
+                        </button>
+                    </div>
+                </div>
+
+                <div id="banco-section" class="space-y-3.5" style="display: ${metodoActivo === 'banco' ? 'block' : 'none'};">
+                    <div class="bg-[#181818] rounded-xl p-4 border border-white/5 space-y-3">
+                        
+                        <div class="bg-gradient-to-br from-blue-600/5 to-transparent rounded-xl p-4 border border-blue-500/10">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h3 class="text-sm font-bold text-white">${DATOS_BANCO_PICHINCHA.nombre}</h3>
+                                    <p class="text-gray-500 text-[11px] font-medium mt-0.5">${DATOS_BANCO_PICHINCHA.tipo}</p>
+                                </div>
+                                <span class="bg-blue-500/10 text-blue-400 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md border border-blue-500/10">Ecuador</span>
+                            </div>
+                            
+                            <div class="bg-black/30 p-3 rounded-lg flex items-center justify-between border border-white/5">
+                                <div>
+                                    <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Número de Cuenta</p>
+                                    <p class="text-white font-mono font-bold text-base mt-0.5">${DATOS_BANCO_PICHINCHA.numero}</p>
+                                    <p class="text-gray-400 text-[11px] mt-0.5 font-medium">Titular: ${DATOS_BANCO_PICHINCHA.titular}</p>
+                                </div>
+                                <button onclick="copiarTexto('${DATOS_BANCO_PICHINCHA.numero}')" class="bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-colors">Copiar</button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2.5">
+                            <input type="number" id="monto-pichincha" placeholder="Monto depositado (USD)" class="w-full bg-[#1e1e1e] border border-white/5 focus:border-primary/30 rounded-xl py-3 px-4 text-white text-sm outline-none transition-all placeholder-gray-600 font-medium" min="10">
+                            <input type="text" id="referencia-pichincha" placeholder="Número de comprobante / Referencia" class="w-full bg-[#1e1e1e] border border-white/5 focus:border-primary/30 rounded-xl py-3 px-4 text-white text-sm outline-none transition-all placeholder-gray-600 font-medium">
+                            <input type="text" id="nombre-titular-banco" placeholder="Nombre completo del depositante" class="w-full bg-[#1e1e1e] border border-white/5 focus:border-primary/30 rounded-xl py-3 px-4 text-white text-sm outline-none transition-all placeholder-gray-600 font-medium">
+                            
+                            <div class="relative bg-[#1e1e1e] border border-dashed border-white/10 rounded-xl p-4 text-center cursor-pointer hover:border-primary/30 transition-colors">
+                                <input type="file" id="comprobante-pichincha" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" accept="image/*" onchange="previsualizarComprobanteBanco(this)">
+                                <i class="fas fa-cloud-upload-alt text-gray-500 text-lg mb-1"></i>
+                                <p class="text-xs text-gray-400 font-semibold">Adjuntar comprobante de transferencia</p>
+                            </div>
+                            <div id="preview-pichincha" class="flex justify-center mt-2"></div>
+                        </div>
+
+                        <button onclick="procesarRecargaConValidacion()" class="w-full bg-gradient-to-r from-yellow-400 to-primary text-black font-black text-xs uppercase tracking-widest py-3.5 rounded-xl shadow-lg shadow-primary/10 hover:brightness-105 active:scale-[0.99] transition-all mt-2">
+                            Verificar Transferencia
+                        </button>
+                    </div>
+                </div>
+
+                <p class="text-center text-[10px] text-gray-600 font-medium">La validación se ejecuta de forma asíncrona mediante capas seguras de datos.</p>
+            </div>
+        </div>
+    `;
+}
+
+async function procesarRecargaConValidacion() {
+    const fileInput = document.getElementById('comprobante-file') || document.getElementById('comprobante-pichincha');
+    const file = fileInput?.files[0];
+    
+    if (!file) {
+        mostrarNotificacion('❌ Por favor, adjunte el comprobante correspondiente', 'error');
+        return;
+    }
+    
+    mostrarNotificacion('🔍 Analizando estructura del recibo...', 'info');
+    
+    const validacion = await validarComprobante(file);
+    
+    if (!validacion.valido) {
+        mostrarNotificacion(validacion.mensaje, 'error');
+        return;
+    }
+    
+    mostrarNotificacion('✅ Comprobante verificado con éxito', 'exito');
+    
+    setTimeout(() => {
+        mostrarNotificacion(`📄 Operación en demostración completada. Su saldo se mantiene en ${usuarioActual.simbolo}0.00`, 'info');
+        cerrarModal();
+    }, 2000);
+}
+
+function cambiarMetodoPago(metodo) {
+    metodoActivo = metodo;
+    const tabs = document.querySelectorAll('.metodo-tab');
+    
+    tabs.forEach(tab => {
+        tab.classList.remove('bg-[#222]', 'text-primary', 'shadow-sm');
+        tab.classList.add('text-gray-400');
+    });
+
+    const secCripto = document.getElementById('cripto-section');
+    const secBanco = document.getElementById('banco-section');
+
+    if (metodo === 'cripto') {
+        if(tabs[0]) {
+            tabs[0].classList.add('bg-[#222]', 'text-primary', 'shadow-sm');
+            tabs[0].classList.remove('text-gray-400');
         }
-
-        async function procesarRecargaConValidacion() {
-            const fileInput = document.getElementById('comprobante-file') || document.getElementById('comprobante-pichincha');
-            const file = fileInput?.files[0];
-            
-            if (!file) {
-                mostrarNotificacion('❌ Debes subir un comprobante de pago', 'error');
-                return;
-            }
-            
-            mostrarNotificacion('🔍 Validando comprobante...', 'info');
-            
-            const validacion = await validarComprobante(file);
-            
-            if (!validacion.valido) {
-                mostrarNotificacion(validacion.mensaje, 'error');
-                return;
-            }
-            
-            mostrarNotificacion('✅ Comprobante validado correctamente', 'exito');
-            
-            setTimeout(() => {
-                mostrarNotificacion(`📄 Comprobante recibido - En modo demostración, el saldo sigue en ${usuarioActual.simbolo}0.00`, 'info');
-                cerrarModal();
-            }, 2000);
+        if(secCripto) secCripto.style.display = 'block';
+        if(secBanco) secBanco.style.display = 'none';
+    } else {
+        if(tabs[1]) {
+            tabs[1].classList.add('bg-[#222]', 'text-primary', 'shadow-sm');
+            tabs[1].classList.remove('text-gray-400');
         }
+        if(secCripto) secCripto.style.display = 'none';
+        if(secBanco) secBanco.style.display = 'block';
+    }
+}
 
-        function cambiarMetodoPago(metodo) {
-            metodoActivo = metodo;
-            const tabs = document.querySelectorAll('.metodo-tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            if (metodo === 'cripto') { if(tabs[0]) tabs[0].classList.add('active'); document.getElementById('cripto-section').style.display = 'block'; document.getElementById('banco-section').style.display = 'none'; }
-            else { if(tabs[1]) tabs[1].classList.add('active'); document.getElementById('cripto-section').style.display = 'none'; document.getElementById('banco-section').style.display = 'block'; }
-        }
+function seleccionarBilletera(direccion) {
+    billeteraSeleccionada = BILLETERAS_USDT.find(w => w.direccion === direccion);
+    abrirRecargas(); // Re-renderizado limpio para actualizar estados visuales suavemente
+}
 
-        function seleccionarBilletera(direccion) {
-            billeteraSeleccionada = BILLETERAS_USDT.find(w => w.direccion === direccion);
-            document.querySelectorAll('.wallet-card').forEach((card, idx) => { if (BILLETERAS_USDT[idx].direccion === direccion) card.classList.add('selected'); else card.classList.remove('selected'); });
-        }
+function copiarTexto(texto) { 
+    navigator.clipboard.writeText(texto); 
+    mostrarNotificacion('✅ Enlace copiado exitosamente', 'exito'); 
+}
 
-        function copiarTexto(texto) { navigator.clipboard.writeText(texto); mostrarNotificacion('✅ Copiado al portapapeles', 'exito'); }
+function previsualizarComprobante(input) {
+    const preview = document.getElementById('comprobante-preview');
+    if (input.files && input.files[0]) { 
+        const reader = new FileReader(); 
+        reader.onload = function(e) { 
+            preview.innerHTML = `<div class="relative mt-2"><img src="${e.target.result}" class="max-h-24 rounded-lg border border-white/10 shadow-md shadow-black"><p class="text-[9px] text-gray-500 font-semibold text-center mt-1">Recibo Cargado Correctamente</p></div>`; 
+        }; 
+        reader.readAsDataURL(input.files[0]); 
+    } else { 
+        preview.innerHTML = ''; 
+    }
+}
 
-        function previsualizarComprobante(input) {
-            const preview = document.getElementById('comprobante-preview');
-            if (input.files && input.files[0]) { const reader = new FileReader(); reader.onload = function(e) { preview.innerHTML = `<img src="${e.target.result}" class="max-h-32 rounded-lg"><p class="text-xs text-gray-400 mt-1">Comprobante cargado - Fecha: ${new Date().toLocaleString()}</p>`; }; reader.readAsDataURL(input.files[0]); }
-            else { preview.innerHTML = ''; }
-        }
-
-        function previsualizarComprobanteBanco(input) {
-            const preview = document.getElementById('preview-pichincha');
-            if (input.files && input.files[0]) { const reader = new FileReader(); reader.onload = function(e) { preview.innerHTML = `<img src="${e.target.result}" class="max-h-32 rounded-lg"><p class="text-xs text-gray-400 mt-1">Comprobante cargado - Fecha: ${new Date().toLocaleString()}</p>`; }; reader.readAsDataURL(input.files[0]); }
-            else { preview.innerHTML = ''; }
-        }
-
+function previsualizarComprobanteBanco(input) {
+    const preview = document.getElementById('preview-pichincha');
+    if (input.files && input.files[0]) { 
+        const reader = new FileReader(); 
+        reader.onload = function(e) { 
+            preview.innerHTML = `<div class="relative mt-2"><img src="${e.target.result}" class="max-h-24 rounded-lg border border-white/10 shadow-md shadow-black"><p class="text-[9px] text-gray-500 font-semibold text-center mt-1">Recibo Cargado Correctamente</p></div>`; 
+        }; 
+        reader.readAsDataURL(input.files[0]); 
+    } else { 
+        preview.innerHTML = ''; 
+    }
+}
         // ============================================
         // RULETA Y FLIPCARD (BLOQUEADAS)
         // ============================================
