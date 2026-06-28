@@ -748,7 +748,7 @@ function abrirWhatsApp() {
 </div>
 
 <script>
-    // 1. Lista de juegos (Ampliación a 200 URLs)
+  // 1. Lista de juegos (Array completo de 200 URLs)
 const juegos = [
     { nombre: "Sugar Rush", url: "https://images.virtualsoft.tech/productos/sugar-rushT1731536549.gif" },
     { nombre: "Gates of Olympus", url: "https://images.virtualsoft.tech/productos/Gates-of-OlympusT1746469136.png" },
@@ -1038,7 +1038,7 @@ SALDO: 0.00            </span>
 
   // 3. Generar tarjetas (Ajuste para que las imágenes sean grandes y llenen el ancho)
 const container = document.getElementById('juegos-container');
-for(let i = 0; i < 60; i++) {
+for(let i = 0; i < 200; i++) {
     const juego = juegos[i] || { nombre: "Próximamente", url: 'https://via.placeholder.com/150' };
     
     container.innerHTML += `
