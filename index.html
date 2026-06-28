@@ -113,36 +113,49 @@
     word-wrap: break-word;
 }
 
+<style>
 /* Scrollbar invisible pero funcional */
 #chat-mensajes::-webkit-scrollbar { display: none; }
-    </style>
-<meta property="og:title" content="BETONWIN - Casino Profesional" data-id="th-modified"><meta property="og:image" content="https://www.coinbeti.com/og-image.jpg" data-id="th-modified"><meta property="og:url" content="https://www.coinbeti.com/" data-id="th-modified"><meta property="og:type" content="website" data-id="th-modified"><meta name="description" content="index" data-id="th-modified"><meta property="og:description" content="index" data-id="th-modified"><script defer data-domain="www.coinbeti.com" src="https://analytics.tiiny.site/js/plausible.js"></script></head>
+</style>
+
+<meta property="og:title" content="BETONWIN - Casino Profesional" data-id="th-modified">
+<meta property="og:image" content="https://www.coinbeti.com/og-image.jpg" data-id="th-modified">
+<meta property="og:url" content="https://www.coinbeti.com/" data-id="th-modified">
+<meta property="og:type" content="website" data-id="th-modified">
+<meta name="description" content="index" data-id="th-modified">
+<meta property="og:description" content="index" data-id="th-modified">
+<script defer data-domain="www.coinbeti.com" src="https://analytics.tiiny.site/js/plausible.js"></script>
+</head>
 <body>
-<header class="bg-[#0b0b0b] w-full border-b border-amber-500/10 sticky top-0 z-[200] px-3 py-2 flex flex-col gap-2 shadow-[0_5px_15px_rgba(0,0,0,0.5)]" style="animation: casinoGlow 5s ease-in-out infinite;">
+
+<header class="bg-[#0b0b0b] w-full border-b border-amber-500/10 sticky top-0 z-[200] px-2 py-2 flex flex-col gap-1 shadow-[0_5px_15px_rgba(0,0,0,0.5)]" style="animation: casinoGlow 5s ease-in-out infinite;">
     
     <div class="w-full flex items-center justify-between flex-nowrap gap-2 min-w-0">
         
-        <div class="shrink-0 select-none">
-            <div class="betonwin-logo-gold text-[18px] xs:text-[20px] sm:text-2xl" onclick="abrirSalon(); return false;">
+        <div class="shrink-0 select-none cursor-pointer flex items-center pl-1" onclick="abrirLogin(); return false;">
+            <div class="betonwin-logo-gold text-[16px] xs:text-[18px] sm:text-2xl font-black tracking-wider whitespace-nowrap">
                 BET<span>ON</span>WIN
             </div>
         </div>
         
-        <div id="user-header-area" class="flex items-center gap-1.5 sm:gap-3 shrink-0 flex-nowrap min-w-0 justify-end">
+        <div id="user-header-area" class="flex items-center gap-1 shrink-0 flex-nowrap min-w-0 justify-end pr-1">
             
-            <button onclick="abrirLogin()" class="text-gray-400 text-[10px] sm:text-[11px] font-bold px-1.5 py-1 hover:text-white tracking-wider transition-colors uppercase shrink-0">
+            <button onclick="abrirLogin()" class="text-gray-400 text-[9px] xs:text-[10px] sm:text-[11px] font-bold px-1 py-1 hover:text-white tracking-wider transition-colors uppercase shrink-0">
                 INICIAR
             </button>
             
-            <button onclick="abrirRegistro()" class="bg-gradient-to-r from-amber-400 to-amber-600 text-black text-[10px] font-black px-2.5 py-1.5 rounded uppercase hover:brightness-110 active:scale-95 transition-all shrink-0">
+            <button onclick="abrirRegistro()" class="bg-gradient-to-r from-amber-400 to-amber-600 text-black text-[9px] xs:text-[10px] font-black px-2 py-1.5 rounded uppercase hover:brightness-110 active:scale-95 transition-all shrink-0 whitespace-nowrap">
                 REGISTRARSE
             </button>
             
             <img src="https://images.icon-icons.com/389/PNG/96/Seven_96x96-32_37885.png" 
-                 class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-amber-500/30 cursor-pointer hover:scale-105 transition-transform shrink-0 object-contain bg-zinc-900/40 p-0.5" 
+                 class="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 rounded-full border border-amber-500/30 cursor-pointer hover:scale-105 transition-transform shrink-0 object-contain bg-zinc-900/40 p-0.5" 
                  onclick="abrirPerfil()" alt="Perfil">
         </div>
     </div>
+</header>
+
+</body>
 
     <nav class="w-full flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.12em] text-gray-400 overflow-x-auto nav-casino-scroll pb-1.5 whitespace-nowrap scroll-smooth touch-pan-x justify-start md:justify-center">
         <a href="#" class="nav-item-premium active text-amber-400">CASINO</a>
