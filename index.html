@@ -617,122 +617,190 @@ function abrirWhatsApp() {
     })();
 </script>
 
-    <!-- BUSCADOR Y CATEGORÍAS -->
-    <section class="max-w-[1450px] mx-auto w-full p-4 mt-8">
-        <div class="buscador-container">
-            <i class="fas fa-search"></i>
-            <input type="text" id="buscador-juegos" class="buscador-input" placeholder="Buscar juego..." onkeyup="filtrarJuegos(this.value)">
+    <section class="max-w-[1450px] mx-auto w-full p-4 mt-8 space-y-8">
+    
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-zinc-900/40 backdrop-blur-md p-4 rounded-xl border border-zinc-700/50">
+        <div class="buscador-container relative w-full md:w-96">
+            <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"></i>
+            <input type="text" id="buscador-juegos" class="buscador-input w-full pl-10 pr-4 py-2.5 rounded-lg bg-black/40 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 transition-all" placeholder="Buscar juego..." onkeyup="filtrarJuegos(this.value)">
         </div>
         
-        <div class="categorias-container">
-            <button class="categoria-btn active" onclick="filtrarCategoria('todos', this)">Todos</button>
-            <button class="categoria-btn" onclick="filtrarCategoria('slots', this)">Slots</button>
-            <button class="categoria-btn" onclick="filtrarCategoria('crash', this)">Crash</button>
-            <button class="categoria-btn" onclick="filtrarCategoria('nuevos', this)">Nuevos</button>
-            <button class="categoria-btn" onclick="filtrarCategoria('populares', this)">Populares</button>
-            <button class="categoria-btn" onclick="filtrarCategoria('favoritos', this)">Favoritos</button>
+        <div class="categorias-container flex flex-wrap justify-center gap-2">
+            <button class="categoria-btn active px-4 py-2 rounded-lg text-xs font-bold uppercase bg-emerald-600 text-white transition-all" onclick="filtrarCategoria('todos', this)">Todos</button>
+            <button class="categoria-btn px-4 py-2 rounded-lg text-xs font-bold uppercase bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all" onclick="filtrarCategoria('slots', this)">Slots</button>
+            <button class="categoria-btn px-4 py-2 rounded-lg text-xs font-bold uppercase bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all" onclick="filtrarCategoria('crash', this)">Crash</button>
+            <button class="categoria-btn px-4 py-2 rounded-lg text-xs font-bold uppercase bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all" onclick="filtrarCategoria('nuevos', this)">Nuevos</button>
+            <button class="categoria-btn px-4 py-2 rounded-lg text-xs font-bold uppercase bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all" onclick="filtrarCategoria('populares', this)">Populares</button>
+            <button class="categoria-btn px-4 py-2 rounded-lg text-xs font-bold uppercase bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all" onclick="filtrarCategoria('favoritos', this)">Favoritos</button>
         </div>
+    </div>
 
-        <section class="max-w-[1450px] mx-auto w-full p-4 mt-8">
-    <div class="border border-emerald-500/20 shadow-[0_0_25px_rgba(0,0,0,0.8)] relative overflow-hidden bg-black/50 backdrop-blur-md rounded-xl grid grid-cols-1 sm:grid-cols-3 gap-3 p-3">
+    <div class="border border-emerald-500/20 shadow-[0_0_30px_rgba(0,0,0,0.9)] relative overflow-hidden bg-black/60 backdrop-blur-md rounded-xl grid grid-cols-1 sm:grid-cols-3 gap-3 p-3">
         
-        <button onclick="abrirAnimacionCanvas('en-linea')" class="stat-item flex flex-col justify-center items-center p-3 rounded-lg bg-black/60 border border-emerald-500/20 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-emerald-400/50 hover:shadow-emerald-500/10 group relative overflow-hidden z-10 cursor-pointer w-full">
-            <div class="mb-1.5 w-7 h-7 flex items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 animate-pulse">
-                <img src="https://images.icon-icons.com/1675/PNG/96/3890943-bag-cash-currency-dollar-money-sack_111183.png" alt="Usuarios" class="w-4 h-4 drop-shadow-md">
+        <button onclick="abrirModalAnimacion('saco-dinero', 'https://images.icon-icons.com/1675/PNG/96/3890943-bag-cash-currency-dollar-money-sack_111183.png')" class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-emerald-500/20 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-emerald-400/50 hover:shadow-emerald-500/10 group relative overflow-hidden z-10 cursor-pointer w-full">
+            <div class="mb-2 w-10 h-10 flex items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 animate-pulse">
+                <img src="https://images.icon-icons.com/1675/PNG/96/3890943-bag-cash-currency-dollar-money-sack_111183.png" alt="Usuarios" class="w-5 h-5 drop-shadow-md">
             </div>
 
-            <div class="flex items-center gap-1.5 mb-0.5">
-                <span class="flex h-1.5 w-1.5 relative">
+            <div class="flex items-center gap-2 mb-1">
+                <span class="flex h-2 w-2 relative">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
-                <div class="valor font-sans text-xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 group-hover:brightness-125 transition-all duration-300 tracking-tight" id="stats-jugadores" style="text-shadow: 0 2px 3px rgba(0,0,0,0.8), 0 0 6px rgba(52,211,153,0.3);">8,987</div>
+                <div class="valor font-sans text-2xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 group-hover:brightness-125 transition-all duration-300 tracking-tight" style="text-shadow: 0 4px 4px rgba(0,0,0,0.8), 0 0 8px rgba(52,211,153,0.3);">8,987</div>
             </div>
 
-            <div class="etiqueta tracking-widest font-black uppercase text-[8px] text-zinc-400 group-hover:text-emerald-300 transition-colors flex items-center gap-1">
+            <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-zinc-400 group-hover:text-emerald-300 transition-colors">
                 EN LÍNEA
             </div>
         </button>
 
-        <button onclick="abrirAnimacionCanvas('bote')" class="stat-item flex flex-col justify-center items-center p-3 rounded-lg bg-black/60 border border-amber-500/20 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-amber-400/50 hover:shadow-amber-500/10 group relative overflow-hidden z-10 cursor-pointer w-full">
-            <div class="mb-1.5 w-7 h-7 flex items-center justify-center rounded-lg bg-amber-500/10 border border-amber-500/30 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 animate-pulse">
-                <img src="https://images.icon-icons.com/1713/PNG/96/iconfinder-youtubelivevideowebinarconference-3993869_112660.png" alt="Bote" class="w-4 h-4 drop-shadow-md">
+        <button onclick="abrirModalAnimacion('bote-vivo', 'https://images.icon-icons.com/1713/PNG/96/iconfinder-youtubelivevideowebinarconference-3993869_112660.png')" class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-amber-500/20 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-amber-400/50 hover:shadow-amber-500/10 group relative overflow-hidden z-10 cursor-pointer w-full">
+            <div class="mb-2 w-10 h-10 flex items-center justify-center rounded-xl bg-amber-500/10 border border-amber-500/30 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 animate-pulse">
+                <img src="https://images.icon-icons.com/1713/PNG/96/iconfinder-youtubelivevideowebinarconference-3993869_112660.png" alt="Bote" class="w-5 h-5 drop-shadow-md">
             </div>
 
-            <div class="valor font-sans text-xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 group-hover:brightness-125 transition-all duration-300 tracking-tight mb-0.5" id="stats-bote" style="text-shadow: 0 2px 3px rgba(0,0,0,0.8), 0 0 6px rgba(251,191,36,0.3);">$12,504.82</div>
+            <div class="valor font-sans text-2xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 group-hover:brightness-125 transition-all duration-300 tracking-tight mb-1" style="text-shadow: 0 4px 4px rgba(0,0,0,0.8), 0 0 8px rgba(251,191,36,0.3);">$12,504.82</div>
             
-            <div class="etiqueta tracking-widest font-black uppercase text-[8px] text-amber-500/70 group-hover:text-amber-400 transition-colors flex items-center gap-1">
+            <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-amber-500/70 group-hover:text-amber-400 transition-colors">
                 BOTE ACUMULADO
             </div>
         </button>
 
-        <button onclick="abrirAnimacionCanvas('ganadores')" class="stat-item flex flex-col justify-center items-center p-3 rounded-lg bg-black/60 border border-cyan-500/20 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-cyan-400/50 hover:shadow-cyan-500/10 group relative overflow-hidden z-10 cursor-pointer w-full">
-            <div class="mb-1.5 w-7 h-7 flex items-center justify-center rounded-lg bg-cyan-500/10 border border-cyan-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 animate-pulse">
-                <img src="https://images.icon-icons.com/4188/PNG/96/crown_game_sports_console_controller_sport_video_play_gaming_icon_262443.png" alt="Ganadores" class="w-4 h-4 drop-shadow-md">
+        <button onclick="abrirModalAnimacion('ganadores-corona', 'https://images.icon-icons.com/4188/PNG/96/crown_game_sports_console_controller_sport_video_play_gaming_icon_262443.png')" class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-cyan-500/20 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-cyan-400/50 hover:shadow-cyan-500/10 group relative overflow-hidden z-10 cursor-pointer w-full">
+            <div class="mb-2 w-10 h-10 flex items-center justify-center rounded-xl bg-cyan-500/10 border border-cyan-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 animate-pulse">
+                <img src="https://images.icon-icons.com/4188/PNG/96/crown_game_sports_console_controller_sport_video_play_gaming_icon_262443.png" alt="Ganadores" class="w-5 h-5 drop-shadow-md">
             </div>
 
-            <div class="valor font-sans text-xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-100 group-hover:brightness-125 transition-all duration-300 tracking-tight mb-0.5 flex items-center justify-center gap-1" id="stats-ganadores" style="text-shadow: 0 2px 3px rgba(0,0,0,0.8), 0 0 8px rgba(6,182,212,0.3);">10,092</div>
+            <div class="valor font-sans text-2xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-100 group-hover:brightness-125 transition-all duration-300 tracking-tight mb-1 flex items-center justify-center" style="text-shadow: 0 4px 4px rgba(0,0,0,0.8), 0 0 10px rgba(6,182,212,0.3);">10,092</div>
             
-            <div class="etiqueta tracking-widest font-black uppercase text-[8px] text-zinc-400 group-hover:text-cyan-300 transition-colors flex items-center gap-1">
+            <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-zinc-400 group-hover:text-cyan-300 transition-colors">
                 GANADORES DE HOY
             </div>
         </button>
-
     </div>
-    
-    <div id="modal-canvas" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-zinc-900 border border-zinc-700 rounded-2xl p-6 max-w-2xl w-full relative shadow-2xl">
-            <button onclick="cerrarAnimacionCanvas()" class="absolute top-4 right-4 text-zinc-400 hover:text-white text-xl font-bold bg-zinc-800 hover:bg-zinc-700 w-8 h-8 rounded-full flex items-center justify-center transition-colors">×</button>
+
+    <div id="animacion-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-2xl p-4 transition-all duration-500">
+        <div class="relative w-full max-w-lg rounded-3xl border-2 border-emerald-500/40 bg-gradient-to-br from-zinc-950 via-zinc-900/60 to-black p-8 shadow-[0_0_80px_rgba(16,185,129,0.3)] flex flex-col items-center overflow-hidden">
             
-            <h3 class="text-white font-black text-lg mb-4 tracking-wider uppercase" id="modal-titulo">Animación de Estadísticas</h3>
-            
-            <div class="w-full h-80 flex items-center justify-center bg-black/40 rounded-xl border border-zinc-800 overflow-hidden" id="modal-contenido">
-                <iframe id="canva-iframe" class="w-full h-full hidden" src="" allowfullscreen="allowfullscreen"></iframe>
-                <p class="text-zinc-500 font-mono text-sm" id="modal-placeholder">Cargando animación...</p>
+            <div class="absolute -top-12 -left-12 h-32 w-32 rounded-full bg-emerald-500/20 blur-3xl"></div>
+            <div class="absolute -bottom-12 -right-12 h-32 w-32 rounded-full bg-cyan-500/20 blur-3xl"></div>
+
+            <button onclick="cerrarModalAnimacion()" class="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-700 bg-zinc-900 text-zinc-400 transition-all duration-300 hover:rotate-90 hover:border-emerald-500 hover:bg-emerald-600/30 hover:text-white shadow-inner z-20">
+                ✕
+            </button>
+
+            <h4 class="text-xs font-black tracking-[0.3em] text-emerald-400 uppercase mb-8 mt-2 bg-emerald-950/60 border border-emerald-500/30 px-5 py-2 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.2)] text-center" id="modal-titulo-animacion">ANIMACIÓN EXCLUSIVA</h4>
+
+            <div class="relative flex h-64 w-64 items-center justify-center">
+                <div class="absolute inset-0 animate-[spin_7s_linear_infinite] rounded-full border-2 border-dashed border-emerald-400/60"></div>
+                
+                <div class="absolute inset-3 animate-[spin_4s_linear_infinite_reverse] rounded-full border border-solid border-cyan-400/40"></div>
+                
+                <div class="absolute inset-4 animate-[ping_2.5s_ease-in-out_infinite] rounded-full bg-emerald-500/10"></div>
+                <div class="absolute inset-8 animate-[ping_2s_ease-in-out_infinite_reverse] rounded-full bg-cyan-500/10"></div>
+
+                <img id="icono-animado-dinamico" src="" alt="Icono Robusto" class="h-24 w-24 drop-shadow-[0_0_25px_rgba(52,211,153,0.9)] scale-up-center z-10 filter brightness-110">
+            </div>
+
+            <div class="mt-12 flex w-full justify-center relative">
+                <div class="absolute inset-0 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent blur-md"></div>
+                <div class="h-1 w-56 animate-pulse rounded-full bg-gradient-to-r from-transparent via-emerald-400 to-transparent"></div>
             </div>
         </div>
     </div>
 </section>
 
+<style>
+    @keyframes escalaAparecer {
+        0% { transform: scale(0); opacity: 0; }
+        60% { transform: scale(1.2); opacity: 0.8; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    .scale-up-center {
+        animation: escalaAparecer 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+</style>
+
 <script>
-    function abrirAnimacionCanvas(tipo) {
-        const modal = document.getElementById('modal-canvas');
-        const titulo = document.getElementById('modal-titulo');
-        const iframe = document.getElementById('canva-iframe');
-        const placeholder = document.getElementById('modal-placeholder');
-        
-        // Configuraciones según la tarjeta que se oprimió
-        if (tipo === 'en-linea') {
-            titulo.innerText = "Estadística: Usuarios en Línea";
-            // Reemplaza este enlace por el enlace "Embed" de tu diseño de Canva
-            iframe.src = "https://www.canva.com/design/YOUR_DESIGN_ID/view?embed"; 
-        } else if (tipo === 'bote') {
-            titulo.innerText = "Estadística: Bote Acumulado";
-            iframe.src = "https://www.canva.com/design/YOUR_DESIGN_ID_2/view?embed";
-        } else if (tipo === 'ganadores') {
-            titulo.innerText = "Estadística: Ganadores del Día";
-            iframe.src = "https://www.canva.com/design/YOUR_DESIGN_ID_3/view?embed";
+    function abrirModalAnimacion(tipo, urlIcono) {
+        const contenedorModal = document.getElementById('animacion-modal');
+        const tituloModal = document.getElementById('modal-titulo-animacion');
+        const imgIcono = document.getElementById('icono-animado-dinamico');
+
+        if(tipo === 'saco-dinero') {
+            tituloModal.innerText = "¡USUARIOS EN LÍNEA ACTIVOS!";
+        } else if (tipo === 'bote-vivo') {
+            tituloModal.innerText = "¡BOTE ACUMULADO EN VIVO!";
+        } else if (tipo === 'ganadores-corona') {
+            tituloModal.innerText = "¡RÉCORD DE GANADORES HOY!";
         }
-        
-        // Mostrar el modal y activar el iframe
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        setTimeout(() => {
-            iframe.classList.remove('hidden');
-            placeholder.classList.add('hidden');
-        }, 300);
+
+        // Se inyecta la imagen central
+        imgIcono.src = urlIcono;
+
+        // Se muestra la ventana de forma robusta y elegante
+        contenedorModal.classList.remove('hidden');
+        contenedorModal.classList.add('flex');
     }
 
-    function cerrarAnimacionCanvas() {
-        const modal = document.getElementById('modal-canvas');
-        const iframe = document.getElementById('canva-iframe');
-        const placeholder = document.getElementById('modal-placeholder');
-        
-        modal.classList.add('hidden');
-        iframe.classList.add('hidden');
-        iframe.src = ""; // Detiene la reproducción al cerrar
-        placeholder.classList.remove('hidden');
+    function cerrarModalAnimacion() {
+        const contenedorModal = document.getElementById('animacion-modal');
+        contenedorModal.classList.add('hidden');
+        contenedorModal.classList.remove('flex');
     }
+
+    // Funciones de buscador y filtrado de categorías (puedes agregar tu lógica aquí)
+    function filtrarJuegos(texto) {
+        console.log("Buscando: ", texto);
+    }
+
+    function filtrarCategoria(categoria, boton) {
+        // Remover la clase activa de todos los botones
+        const botones = document.querySelectorAll('.categoria-btn');
+        botones.forEach(btn => btn.classList.remove('bg-emerald-600', 'text-white'));
+        botones.forEach(btn => btn.classList.add('bg-zinc-800', 'text-zinc-300'));
+        
+        // Agregar la clase activa al botón presionado
+        boton.classList.remove('bg-zinc-800', 'text-zinc-300');
+        boton.classList.add('bg-emerald-600', 'text-white');
+        
+        console.log("Filtrado por categoría: ", categoria);
+    }
+</script>
+<script>
+    function abrirModalAnimacion(tipo, urlIcono) {
+        const contenedorModal = document.getElementById('animacion-modal');
+        const tituloModal = document.getElementById('modal-titulo-animacion');
+        const imgIcono = document.getElementById('icono-animado-dinamico');
+
+        // Modifica el texto superior del holograma dependiendo de la tarjeta
+        if(tipo === 'saco-dinero') {
+            tituloModal.innerText = "¡USUARIOS EN LÍNEA ACTIVOS!";
+        } else if (tipo === 'bote-vivo') {
+            tituloModal.innerText = "¡BOTE ACUMULADO EN VIVO!";
+        } else if (tipo === 'ganadores-corona') {
+            tituloModal.innerText = "¡RÉCORD DE GANADORES HOY!";
+        }
+
+        // Se inyecta la imagen central grande
+        imgIcono.src = urlIcono;
+
+        // Muestra la ventana modal de golpe pero de forma fluida
+        contenedorModal.classList.remove('hidden');
+        contenedorModal.classList.add('flex');
+    }
+
+    function cerrarModalAnimacion() {
+        const contenedorModal = document.getElementById('animacion-modal');
+        
+        // Cierra la interfaz
+        contenedorModal.classList.add('hidden');
+        contenedorModal.classList.remove('flex');
+    }
+</script>
+   
+   
 </script>
     <!-- ESTILOS DE ANIMACIÓN CYBERPUNK -->
     <style>
