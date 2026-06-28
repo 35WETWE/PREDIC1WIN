@@ -633,53 +633,107 @@ function abrirWhatsApp() {
             <button class="categoria-btn" onclick="filtrarCategoria('favoritos', this)">Favoritos</button>
         </div>
 
-        <div class="border border-emerald-500/20 shadow-[0_0_35px_rgba(0,0,0,0.9)] relative overflow-hidden bg-black/40 backdrop-blur-md rounded-2xl grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+        <section class="max-w-[1450px] mx-auto w-full p-4 mt-8">
+    <div class="border border-emerald-500/20 shadow-[0_0_25px_rgba(0,0,0,0.8)] relative overflow-hidden bg-black/50 backdrop-blur-md rounded-xl grid grid-cols-1 sm:grid-cols-3 gap-3 p-3">
+        
+        <button onclick="abrirAnimacionCanvas('en-linea')" class="stat-item flex flex-col justify-center items-center p-3 rounded-lg bg-black/60 border border-emerald-500/20 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-emerald-400/50 hover:shadow-emerald-500/10 group relative overflow-hidden z-10 cursor-pointer w-full">
+            <div class="mb-1.5 w-7 h-7 flex items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 animate-pulse">
+                <img src="https://images.icon-icons.com/1675/PNG/96/3890943-bag-cash-currency-dollar-money-sack_111183.png" alt="Usuarios" class="w-4 h-4 drop-shadow-md">
+            </div>
+
+            <div class="flex items-center gap-1.5 mb-0.5">
+                <span class="flex h-1.5 w-1.5 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                </span>
+                <div class="valor font-sans text-xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 group-hover:brightness-125 transition-all duration-300 tracking-tight" id="stats-jugadores" style="text-shadow: 0 2px 3px rgba(0,0,0,0.8), 0 0 6px rgba(52,211,153,0.3);">8,987</div>
+            </div>
+
+            <div class="etiqueta tracking-widest font-black uppercase text-[8px] text-zinc-400 group-hover:text-emerald-300 transition-colors flex items-center gap-1">
+                EN LÍNEA
+            </div>
+        </button>
+
+        <button onclick="abrirAnimacionCanvas('bote')" class="stat-item flex flex-col justify-center items-center p-3 rounded-lg bg-black/60 border border-amber-500/20 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-amber-400/50 hover:shadow-amber-500/10 group relative overflow-hidden z-10 cursor-pointer w-full">
+            <div class="mb-1.5 w-7 h-7 flex items-center justify-center rounded-lg bg-amber-500/10 border border-amber-500/30 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 animate-pulse">
+                <img src="https://images.icon-icons.com/1713/PNG/96/iconfinder-youtubelivevideowebinarconference-3993869_112660.png" alt="Bote" class="w-4 h-4 drop-shadow-md">
+            </div>
+
+            <div class="valor font-sans text-xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 group-hover:brightness-125 transition-all duration-300 tracking-tight mb-0.5" id="stats-bote" style="text-shadow: 0 2px 3px rgba(0,0,0,0.8), 0 0 6px rgba(251,191,36,0.3);">$12,504.82</div>
             
-            <div class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-emerald-500/20 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-emerald-400/50 hover:shadow-emerald-500/10 group relative overflow-hidden z-10">
-                <div class="mb-2 w-8 h-8 flex items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                    <img src="https://images.icon-icons.com/1675/PNG/96/3890943-bag-cash-currency-dollar-money-sack_111183.png" alt="Usuarios" class="w-5 h-5 drop-shadow-md">
-                </div>
+            <div class="etiqueta tracking-widest font-black uppercase text-[8px] text-amber-500/70 group-hover:text-amber-400 transition-colors flex items-center gap-1">
+                BOTE ACUMULADO
+            </div>
+        </button>
 
-                <div class="flex items-center gap-2 mb-1">
-                    <span class="flex h-2 w-2 relative">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                    </span>
-                    <div class="valor font-sans text-2xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 group-hover:brightness-125 transition-all duration-300 tracking-tight" id="stats-jugadores" style="text-shadow: 0 4px 4px rgba(0,0,0,0.8), 0 0 5px rgba(52,211,153,0.3);">8,987</div>
-                </div>
-
-                <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-zinc-400 group-hover:text-emerald-300 transition-colors flex items-center gap-1.5">
-                    EN LÍNEA
-                </div>
+        <button onclick="abrirAnimacionCanvas('ganadores')" class="stat-item flex flex-col justify-center items-center p-3 rounded-lg bg-black/60 border border-cyan-500/20 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-cyan-400/50 hover:shadow-cyan-500/10 group relative overflow-hidden z-10 cursor-pointer w-full">
+            <div class="mb-1.5 w-7 h-7 flex items-center justify-center rounded-lg bg-cyan-500/10 border border-cyan-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 animate-pulse">
+                <img src="https://images.icon-icons.com/4188/PNG/96/crown_game_sports_console_controller_sport_video_play_gaming_icon_262443.png" alt="Ganadores" class="w-4 h-4 drop-shadow-md">
             </div>
 
-            <div class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-amber-500/20 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-amber-400/50 hover:shadow-amber-500/10 group relative overflow-hidden z-10">
-                <div class="mb-2 w-8 h-8 flex items-center justify-center rounded-lg bg-amber-500/10 border border-amber-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                    <img src="https://images.icon-icons.com/1713/PNG/96/iconfinder-youtubelivevideowebinarconference-3993869_112660.png" alt="Bote" class="w-5 h-5 drop-shadow-md">
-                </div>
-
-                <div class="valor font-sans text-2xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 group-hover:brightness-125 transition-all duration-300 tracking-tight mb-0.5" id="stats-bote" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 5px rgba(251,191,36,0.3);">$12,504.82</div>
-                
-                <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-amber-500/70 group-hover:text-amber-400 transition-colors flex items-center gap-1.5">
-                    BOTE ACUMULADO
-                </div>
+            <div class="valor font-sans text-xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-100 group-hover:brightness-125 transition-all duration-300 tracking-tight mb-0.5 flex items-center justify-center gap-1" id="stats-ganadores" style="text-shadow: 0 2px 3px rgba(0,0,0,0.8), 0 0 8px rgba(6,182,212,0.3);">10,092</div>
+            
+            <div class="etiqueta tracking-widest font-black uppercase text-[8px] text-zinc-400 group-hover:text-cyan-300 transition-colors flex items-center gap-1">
+                GANADORES DE HOY
             </div>
+        </button>
 
-            <div class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-cyan-500/20 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-cyan-400/50 hover:shadow-cyan-500/10 group relative overflow-hidden z-10">
-                <div class="mb-2 w-8 h-8 flex items-center justify-center rounded-lg bg-cyan-500/10 border border-cyan-500/30 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300">
-                    <img src="https://images.icon-icons.com/4188/PNG/96/crown_game_sports_console_controller_sport_video_play_gaming_icon_262443.png" alt="Ganadores" class="w-5 h-5 drop-shadow-md">
-                </div>
-
-                <div class="valor font-sans text-2xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 group-hover:brightness-125 transition-all duration-300 tracking-tight mb-0.5 flex items-center justify-center gap-1.5" id="stats-ganadores" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 5px rgba(6,182,212,0.3);">10,092</div>
-                
-                <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-zinc-400 group-hover:text-cyan-300 transition-colors flex items-center gap-1.5">
-                    GANADORES DE HOY
-                </div>
+    </div>
+    
+    <div id="modal-canvas" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-zinc-900 border border-zinc-700 rounded-2xl p-6 max-w-2xl w-full relative shadow-2xl">
+            <button onclick="cerrarAnimacionCanvas()" class="absolute top-4 right-4 text-zinc-400 hover:text-white text-xl font-bold bg-zinc-800 hover:bg-zinc-700 w-8 h-8 rounded-full flex items-center justify-center transition-colors">×</button>
+            
+            <h3 class="text-white font-black text-lg mb-4 tracking-wider uppercase" id="modal-titulo">Animación de Estadísticas</h3>
+            
+            <div class="w-full h-80 flex items-center justify-center bg-black/40 rounded-xl border border-zinc-800 overflow-hidden" id="modal-contenido">
+                <iframe id="canva-iframe" class="w-full h-full hidden" src="" allowfullscreen="allowfullscreen"></iframe>
+                <p class="text-zinc-500 font-mono text-sm" id="modal-placeholder">Cargando animación...</p>
             </div>
-
         </div>
-    </section>
+    </div>
+</section>
 
+<script>
+    function abrirAnimacionCanvas(tipo) {
+        const modal = document.getElementById('modal-canvas');
+        const titulo = document.getElementById('modal-titulo');
+        const iframe = document.getElementById('canva-iframe');
+        const placeholder = document.getElementById('modal-placeholder');
+        
+        // Configuraciones según la tarjeta que se oprimió
+        if (tipo === 'en-linea') {
+            titulo.innerText = "Estadística: Usuarios en Línea";
+            // Reemplaza este enlace por el enlace "Embed" de tu diseño de Canva
+            iframe.src = "https://www.canva.com/design/YOUR_DESIGN_ID/view?embed"; 
+        } else if (tipo === 'bote') {
+            titulo.innerText = "Estadística: Bote Acumulado";
+            iframe.src = "https://www.canva.com/design/YOUR_DESIGN_ID_2/view?embed";
+        } else if (tipo === 'ganadores') {
+            titulo.innerText = "Estadística: Ganadores del Día";
+            iframe.src = "https://www.canva.com/design/YOUR_DESIGN_ID_3/view?embed";
+        }
+        
+        // Mostrar el modal y activar el iframe
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        setTimeout(() => {
+            iframe.classList.remove('hidden');
+            placeholder.classList.add('hidden');
+        }, 300);
+    }
+
+    function cerrarAnimacionCanvas() {
+        const modal = document.getElementById('modal-canvas');
+        const iframe = document.getElementById('canva-iframe');
+        const placeholder = document.getElementById('modal-placeholder');
+        
+        modal.classList.add('hidden');
+        iframe.classList.add('hidden');
+        iframe.src = ""; // Detiene la reproducción al cerrar
+        placeholder.classList.remove('hidden');
+    }
+</script>
     <!-- ESTILOS DE ANIMACIÓN CYBERPUNK -->
     <style>
         @keyframes cyberScan {
