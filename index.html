@@ -156,18 +156,64 @@
 </header>
 
 </body>
+<style>
+/* Scrollbar invisible pero funcional */
+#chat-mensajes::-webkit-scrollbar { display: none; }
 
-    <nav class="w-full flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.12em] text-gray-400 overflow-x-auto nav-casino-scroll pb-1.5 whitespace-nowrap scroll-smooth touch-pan-x justify-start md:justify-center">
-        <a href="#" class="nav-item-premium active text-amber-400">CASINO</a>
-        <a href="#" onclick="abrirLogin(); return false;" class="nav-item-premium hover:text-white">POKER EN VIVO</a>
-        <a href="#" onclick="abrirLogin(); return false;" class="nav-item-premium hover:text-white">PROMOCIONES</a>
-        <a href="#" onclick="abrirLogin(); return false;" class="nav-item-premium hover:text-white">DEPORTES</a>
-        <a href="#" onclick="abrirLogin(); return false;" class="nav-item-premium hover:text-white">EN VIVO</a>
-        <a href="#" onclick="abrirLogin(); return false;" class="nav-item-premium hover:text-white">TORNEOS</a>
-        <a href="#" onclick="abrirLogin(); return false;" class="nav-item-premium hover:text-white text-amber-500 font-extrabold flex items-center gap-1"><i class="fas fa-crown text-[9px]"></i> VIP</a>
-        <a href="#" onclick="abrirLogin(); return false;" class="nav-item-premium hover:text-white">RULETA</a>
-        <a href="#" onclick="abrirLogin(); return false;" class="nav-item-premium hover:text-white">FLIPCARD</a>
-    </nav>
+/* Animaciones de colores para los iconos */
+@keyframes bounceIcon {
+    0%, 100% { transform: translateY(000); }
+    50% { transform: translateY(-1px); }
+}
+
+.animate-dice { animation: bounceIcon 2.5s infinite; color: #fbbf24; } /* Ámbar */
+.animate-home { animation: bounceIcon 2.6s infinite; color: #fbbf24; } /* Verde Esmeralda */
+.animate-gift { animation: bounceIcon 2.2s infinite; color: #eab308; } /* Rosa Pastel */
+.animate-futbol { animation: bounceIcon 2.8s infinite; color: #eab308; } /* Azul Celeste */
+.animate-live { animation: bounceIcon 2.4s infinite; color: #eab308; } /* Lila */
+.animate-trophy { animation: bounceIcon 2.6s infinite; color: #eab308; } /* Naranja */
+.animate-crown { animation: bounceIcon 2s infinite; color: #eab308; } /* Amarillo Oro */
+.animate-roulette { animation: bounceIcon 2.9s infinite; color: #eab308; } /* Rojo Carmesí */
+.animate-flipcard { animation: bounceIcon 2.3s infinite; color: #eab308; } /* Verde */
+</style>
+
+<nav class="w-full flex items-center gap-5 text-[11px] font-black uppercase tracking-[0.12em] text-gray-400 overflow-x-auto nav-casino-scroll pb-1.5 whitespace-nowrap scroll-smooth touch-pan-x justify-start md:justify-center">
+    
+    <a href="#" class="nav-item-premium active text-amber-400 flex items-center gap-1.5 hover:text-amber-300 transition-colors">
+        <i class="fas fa-dice text-[10px] animate-dice"></i> CASINO
+    </a>
+    
+    <a href="#" onclick="abrirFlipCard(); return false;" class="nav-item-premium hover:text-white flex items-center gap-1.5 transition-colors">
+        <i class="fas fa-home text-[10px] animate-home"></i> INICIO
+    </a>
+    
+    <a href="#" onclick="abrirFlipCard(); return false;" class="nav-item-premium hover:text-white flex items-center gap-1.5 transition-colors">
+        <i class="fas fa-gift text-[10px] animate-gift"></i> PROMOCIONES
+    </a>
+    
+    <a href="#" onclick="abrirFlipCard(); return false;" class="nav-item-premium hover:text-white flex items-center gap-1.5 transition-colors">
+        <i class="fas fa-futbol text-[10px] animate-futbol"></i> DEPORTES
+    </a>
+    
+    <a href="#" onclick="abrirFlipCard(); return false;" class="nav-item-premium hover:text-white flex items-center gap-1.5 transition-colors">
+        <i class="fas fa-headset text-[10px] animate-live"></i> CASINO EN VIVO
+    </a>
+    
+    <a href="#" onclick="abrirFlipCard(); return false;" class="nav-item-premium hover:text-white flex items-center gap-1.5 transition-colors">
+        <i class="fas fa-trophy text-[10px] animate-trophy"></i> TORNEOS
+    </a>
+    
+    <a href="#" onclick="abrirFlipCard(); return false;" class="nav-item-premium hover:text-white text-amber-500 font-extrabold flex items-center gap-1.5 transition-colors">
+        <i class="fas fa-crown text-[10px] animate-crown"></i> VIP
+    </a>
+    
+    <a href="#" onclick="abrirFlipCard(); return false;" class="nav-item-premium hover:text-white flex items-center gap-1.5 transition-colors">
+        <i class="fas fa-dharmachakra text-[10px] animate-roulette"></i> RULETA
+    </a>
+    
+    
+    
+</nav>
 </header>
 
 <div id="modal-overlay" class="fixed inset-0 z-[300] hidden bg-black/80 backdrop-blur-md items-center justify-center p-4">
