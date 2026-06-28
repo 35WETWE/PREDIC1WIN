@@ -152,9 +152,7 @@
         </div>
     </div>
 
-    <div id="admin-badge" class="admin-badge" style="display: none;">
-        <i class="fas fa-crown mr-2"></i> MODO ADMIN
-    </div>
+    
 
    <script>
 // BASE DE DATOS DE CONOCIMIENTO
@@ -218,30 +216,114 @@ function abrirWhatsApp() {
     window.open('https://api.whatsapp.com/send?phone=13235540514', '_blank');
 }
 </script>
-    <section class="max-w-[1450px] mx-auto w-full p-4">
+
+<style>
+    .gold-carousel-container {
+        perspective: 1200px;
+    }
+    .swiper-main {
+        background: #0d0d0d;
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.03);
+        transform: translateZ(0);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .swiper-main:hover {
+        border-color: rgba(212, 175, 55, 0.3);
+        box-shadow: 0 30px 70px -10px rgba(0, 0, 0, 0.95), 0 0 50px rgba(212, 175, 55, 0.06);
+    }
+    /* Puntos de navegación estilizados en Oro Premium */
+    .swiper-main .swiper-pagination-bullet {
+        background: rgba(255, 255, 255, 0.2) !important;
+        opacity: 1;
+        width: 7px;
+        height: 7px;
+        transition: all 0.4s ease;
+    }
+    .swiper-main .swiper-pagination-bullet-active {
+        background: linear-gradient(135deg, #ffe07d, #d4af37) !important;
+        width: 26px;
+        border-radius: 6px;
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    }
+</style>
+
+<section class="max-w-[1450px] mx-auto w-full p-4 gold-carousel-container">
     <div class="grid grid-cols-12 gap-4 side-container">
-        <div class="col-span-12 md:col-span-9 relative h-full">
+        <div class="col-span-12 md:col-span-9 relative h-[230px] sm:h-[380px] md:h-[450px]">
+            
+            <div class="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent z-10 pointer-events-none"></div>
+            
             <div class="swiper swiper-main h-full rounded-2xl overflow-hidden">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212T58ab8e1f-0467-4926-a2a7-37b24c14cae9.png" alt="slide1"></div>
-                    <div class="swiper-slide"><img src="	https://images.virtualsoft.tech/m/msj0212Tfca14bd8-5deb-42ea-b739-80301cb73752.jpg" alt="slide2"></div>
-                    <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212Tad9ea5dd-08b2-4b26-aa7f-c707efdce1c1.png" alt="slide3"></div>
-                    <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212T23db1c29-95ab-4084-ad34-e1d6d0189d1a.png" alt="slide4"></div>
-                    <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212Td37068c8-fdce-4fe9-abcd-2dbcbe6462df.jpg" alt="slide5"></div>
-                    <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212T7cdbeda5-4a7d-46a3-93fa-e36c6ea4e000.png" alt="slide6"></div>
-                    <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212T294a0818-81e1-43f2-86e0-a749c4473829.jpg" alt="slide7"></div>
-                    <div class="swiper-slide"><img src="https://images.virtualsoft.tech/m/msj0212T67782f52-3f55-4991-806b-ff58cc2458ec.jpg" alt="slide8"></div>
-                 
+                    <div class="swiper-slide h-full w-full overflow-hidden rounded-2xl">
+                        <img src="https://images.virtualsoft.tech/m/msj0212T58ab8e1f-0467-4926-a2a7-37b24c14cae9.png" alt="slide1" class="w-full h-full object-cover rounded-2xl select-none transform scale-100 hover:scale-[1.02] transition-transform duration-700">
+                    </div>
+                    <div class="swiper-slide h-full w-full overflow-hidden rounded-2xl">
+                        <img src="https://images.virtualsoft.tech/m/msj0212Tfca14bd8-5deb-42ea-b739-80301cb73752.jpg" alt="slide2" class="w-full h-full object-cover rounded-2xl select-none transform scale-100 hover:scale-[1.02] transition-transform duration-700">
+                    </div>
+                    <div class="swiper-slide h-full w-full overflow-hidden rounded-2xl">
+                        <img src="https://images.virtualsoft.tech/m/msj0212Tad9ea5dd-08b2-4b26-aa7f-c707efdce1c1.png" alt="slide3" class="w-full h-full object-cover rounded-2xl select-none transform scale-100 hover:scale-[1.02] transition-transform duration-700">
+                    </div>
+                    <div class="swiper-slide h-full w-full overflow-hidden rounded-2xl">
+                        <img src="https://images.virtualsoft.tech/m/msj0212T23db1c29-95ab-4084-ad34-e1d6d0189d1a.png" alt="slide4" class="w-full h-full object-cover rounded-2xl select-none transform scale-100 hover:scale-[1.02] transition-transform duration-700">
+                    </div>
+                    <div class="swiper-slide h-full w-full overflow-hidden rounded-2xl">
+                        <img src="https://images.virtualsoft.tech/m/msj0212Td37068c8-fdce-4fe9-abcd-2dbcbe6462df.jpg" alt="slide5" class="w-full h-full object-cover rounded-2xl select-none transform scale-100 hover:scale-[1.02] transition-transform duration-700">
+                    </div>
+                    <div class="swiper-slide h-full w-full overflow-hidden rounded-2xl">
+                        <img src="https://images.virtualsoft.tech/m/msj0212T7cdbeda5-4a7d-46a3-93fa-e36c6ea4e000.png" alt="slide6" class="w-full h-full object-cover rounded-2xl select-none transform scale-100 hover:scale-[1.02] transition-transform duration-700">
+                    </div>
+                    <div class="swiper-slide h-full w-full overflow-hidden rounded-2xl">
+                        <img src="https://images.virtualsoft.tech/m/msj0212T294a0818-81e1-43f2-86e0-a749c4473829.jpg" alt="slide7" class="w-full h-full object-cover rounded-2xl select-none transform scale-100 hover:scale-[1.02] transition-transform duration-700">
+                    </div>
+                    <div class="swiper-slide h-full w-full overflow-hidden rounded-2xl">
+                        <img src="https://images.virtualsoft.tech/m/msj0212T67782f52-3f55-4991-806b-ff58cc2458ec.jpg" alt="slide8" class="w-full h-full object-cover rounded-2xl select-none transform scale-100 hover:scale-[1.02] transition-transform duration-700">
+                    </div>
                 </div>
-                <div class="swiper-pagination"></div>
+                <div class="swiper-pagination !bottom-5"></div>
             </div>
         </div>
     </div>
+</section>
 
-           
-            </div>
-        </div>
-    </section>
+<script>
+    (function() {
+        function iniciarCarrusel3D() {
+            if (typeof Swiper !== 'undefined') {
+                new Swiper('.swiper-main', {
+                    loop: true,
+                    grabCursor: true,
+                    speed: 1000,
+                    effect: 'creative',
+                    creativeEffect: {
+                        prev: {
+                            shadow: true,
+                            translate: ['-20%', 0, -200],
+                            rotate: [0, 0, -5],
+                        },
+                        next: {
+                            translate: ['100%', 0, 0],
+                        },
+                    },
+                    autoplay: {
+                        delay: 4500,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    slidesPerView: 1,
+                    spaceBetween: 0
+                });
+            } else {
+                setTimeout(iniciarCarrusel3D, 50);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", iniciarCarrusel3D);
+    })();
+</script>
 
     <!-- BUSCADOR Y CATEGORÍAS -->
     <section class="max-w-[1450px] mx-auto w-full p-4 mt-8">
