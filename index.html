@@ -119,35 +119,41 @@
 <meta property="og:title" content="BETONWIN - Casino Profesional" data-id="th-modified"><meta property="og:image" content="https://www.coinbeti.com/og-image.jpg" data-id="th-modified"><meta property="og:url" content="https://www.coinbeti.com/" data-id="th-modified"><meta property="og:type" content="website" data-id="th-modified"><meta name="description" content="index" data-id="th-modified"><meta property="og:description" content="index" data-id="th-modified"><script defer data-domain="www.coinbeti.com" src="https://analytics.tiiny.site/js/plausible.js"></script></head>
 <body>
 
-    <!-- HEADER -->
-    <header class="bg-[#0b0b0b] w-full flex items-center justify-between px-4 md:px-8 border-b border-amber-500/10 sticky top-0 z-[200] py-3 gap-4" style="animation: casinoGlow 5s ease-in-out infinite;">
+   <!-- HEADER -->
+<header class="bg-[#0b0b0b] w-full border-b border-amber-500/10 sticky top-0 z-[200] py-2 md:py-3 px-4 md:px-8 flex flex-col gap-2" style="animation: casinoGlow 5s ease-in-out infinite;">
     
-    <div class="flex items-center shrink-0">
-        <div class="betonwin-logo-gold" onclick="abrirSalon(); return false;">
-            BET<span>ON</span>WIN
+    <!-- Fila Superior: Logo + Botones (Distribución fija perfecta en smartphones) -->
+    <div class="w-full flex items-center justify-between gap-2">
+        <!-- Logo Responsivo (Más compacto en móvil) -->
+        <div class="flex items-center shrink-0">
+            <div class="betonwin-logo-gold text-xl sm:text-2xl" onclick="abrirSalon(); return false;">
+                BET<span>ON</span>WIN
+            </div>
+        </div>
+        
+        <!-- Área de Autenticación Compacta Móvil -->
+        <div id="user-header-area" class="flex items-center gap-2 sm:gap-3 shrink-0">
+            <button onclick="abrirLogin()" class="text-gray-400 text-[10px] sm:text-[11px] font-bold px-1.5 py-1 hover:text-white tracking-wider transition-colors uppercase">
+                INICIAR
+            </button>
+            <button onclick="abrirRegistro()" class="relative overflow-hidden bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 text-black text-[10px] sm:text-[11px] font-black px-3 sm:px-5 py-2 rounded-lg sm:rounded-xl uppercase tracking-wider shadow-[0_4px_12px_rgba(212,175,55,0.15)] hover:brightness-110 active:scale-[0.97] transition-all">
+                REGISTRARSE
+            </button>
         </div>
     </div>
-    
-    <nav class="flex items-center gap-5 md:gap-7 text-[11px] font-black uppercase tracking-[0.15em] text-gray-400 overflow-x-auto nav-casino-scroll py-1 whitespace-nowrap scroll-smooth flex-1 justify-start md:justify-center px-2">
+
+    <!-- Fila Inferior: Menú de Categorías Deslizable por toque en iPhone/Android -->
+    <nav class="w-full flex items-center gap-4 sm:gap-6 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.12em] text-gray-400 overflow-x-auto nav-casino-scroll py-1.5 whitespace-nowrap scroll-smooth touch-pan-x justify-start md:justify-center">
         <a href="#" class="nav-item-premium active text-amber-400">CASINO</a>
         <a href="#" onclick="abrirPokerEnVivo(); return false;" class="nav-item-premium hover:text-white">POKER EN VIVO</a>
         <a href="#" onclick="abrirPromociones(); return false;" class="nav-item-premium hover:text-white">PROMOCIONES</a>
         <a href="#" onclick="abrirDeportes(); return false;" class="nav-item-premium hover:text-white">DEPORTES</a>
         <a href="#" onclick="abrirJuegoEnVivo(); return false;" class="nav-item-premium hover:text-white">EN VIVO</a>
         <a href="#" onclick="abrirTorneos(); return false;" class="nav-item-premium hover:text-white">TORNEOS</a>
-        <a href="#" onclick="abrirVIP(); return false;" class="nav-item-premium hover:text-white text-amber-500 font-extrabold flex items-center gap-1"><i class="fas fa-crown text-[10px]"></i> VIP</a>
+        <a href="#" onclick="abrirVIP(); return false;" class="nav-item-premium hover:text-white text-amber-500 font-extrabold flex items-center gap-1"><i class="fas fa-crown text-[9px]"></i> VIP</a>
         <a href="#" onclick="abrirRuleta(); return false;" class="nav-item-premium hover:text-white">RULETA</a>
         <a href="#" onclick="abrirFlipCard(); return false;" class="nav-item-premium hover:text-white">FLIPCARD</a>
     </nav>
-    
-    <div id="user-header-area" class="flex items-center gap-3 shrink-0">
-        <button onclick="abrirLogin()" class="text-gray-400 text-[11px] font-bold px-2 hover:text-white tracking-widest transition-colors uppercase">
-            INICIAR
-        </button>
-        <button onclick="abrirRegistro()" class="relative overflow-hidden bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 text-black text-[11px] font-black px-4 md:px-6 py-2.5 rounded-xl uppercase tracking-wider shadow-[0_4px_15px_rgba(212,175,55,0.2)] hover:brightness-110 active:scale-[0.98] transition-all">
-            REGISTRARSE
-        </button>
-    </div>
 </header>
 
 <div id="modal-overlay" class="fixed inset-0 z-[300] hidden bg-black/80 backdrop-blur-md items-center justify-center p-4">
@@ -157,16 +163,18 @@
 <div id="game-modal-overlay" class="fixed inset-0 z-[400] hidden bg-black/95 flex-col items-center justify-center w-screen h-[100dvh] overflow-hidden">
     <div class="w-full h-full relative flex flex-col">
         
-        <div class="w-full bg-[#0d0d0d] border-b border-white/5 px-4 py-2 flex justify-between items-center z-50 shrink-0">
-            <div class="text-xs font-bold text-amber-400 flex items-center gap-2">
-                <i class="fas fa-gamepad animate-pulse"></i> SALA DE JUEGO EN VIVO
+        <!-- Barra superior adaptada a pantallas móviles -->
+        <div class="w-full bg-[#0d0d0d] border-b border-white/5 px-4 py-2.5 flex justify-between items-center z-50 shrink-0">
+            <div class="text-[11px] font-bold text-amber-400 flex items-center gap-2 tracking-wide">
+                <i class="fas fa-gamepad animate-pulse"></i> SALA EN VIVO
             </div>
-            <button class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-all active:scale-90" onclick="cerrarJuegoModal()">
-                <i class="fas fa-times text-base"></i>
+            <button class="w-7 h-7 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-all active:scale-90" onclick="cerrarJuegoModal()">
+                <i class="fas fa-times text-sm"></i>
             </button>
         </div>
         
-        <iframe id="game-iframe" class="w-full flex-1 bg-black border-none" allow="accelerometer; autoplay; clipboard-read; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <!-- Iframe adaptable y compatible con Safari iOS y WebView Android -->
+        <iframe id="game-iframe" class="w-full flex-1 bg-black border-none h-full" allow="accelerometer; autoplay; clipboard-read; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 </div>
 
@@ -176,13 +184,12 @@
         100% { background-position: 200% center; }
     }
     @keyframes casinoGlow {
-        0%, 100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.1), inset 0 0 5px rgba(212, 175, 55, 0.05); }
-        50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.25), inset 0 0 10px rgba(212, 175, 55, 0.1); }
+        0%, 100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.08), inset 0 0 5px rgba(212, 175, 55, 0.03); }
+        50% { box-shadow: 0 0 18px rgba(212, 175, 55, 0.18), inset 0 0 8px rgba(212, 175, 55, 0.06); }
     }
     .betonwin-logo-gold {
         font-family: 'Montserrat', sans-serif;
         font-weight: 900;
-        font-size: 24px;
         letter-spacing: -0.5px;
         background: linear-gradient(90deg, #b38728, #fbf5b7, #daaf37, #fbf5b7, #b38728);
         background-size: 200% auto;
@@ -198,14 +205,22 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
-    .betonwin-logo-gold:hover {
-        transform: scale(1.04) rotate(-1deg);
+    
+    /* Ocultar barra de scroll de forma nativa en iOS, Android y Navegadores Desktop */
+    .nav-casino-scroll::-webkit-scrollbar { 
+        display: none !important; 
+        width: 0 !important;
+        height: 0 !important;
     }
-    .nav-casino-scroll::-webkit-scrollbar { display: none; }
-    .nav-casino-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    .nav-casino-scroll { 
+        -ms-overflow-style: none !important; 
+        scrollbar-width: none !important; 
+        -webkit-overflow-scrolling: touch; /* Impulso de scroll fluido en iPhones antiguos */
+    }
+    
     .nav-item-premium { position: relative; transition: color 0.3s ease; }
     .nav-item-premium::after {
-        content: ''; position: absolute; bottom: -6px; left: 50%; width: 0; height: 2px;
+        content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 2px;
         background: linear-gradient(90deg, #ffe07d, #d4af37); transition: all 0.3s ease;
         transform: translateX(-50%); box-shadow: 0 0 8px #d4af37;
     }
