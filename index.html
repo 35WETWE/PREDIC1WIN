@@ -254,12 +254,46 @@ function abrirWhatsApp() {
             <button class="categoria-btn" onclick="filtrarCategoria('populares', this)">Populares</button>
             <button class="categoria-btn" onclick="filtrarCategoria('favoritos', this)">Favoritos</button>
         </div>
-        <div class="stats-container">
-            <div class="stat-item"><div class="valor" id="stats-jugadores">6.1K</div><div class="etiqueta">Jugadores Online</div></div>
-            <div class="stat-item"><div class="valor" id="stats-bote">$12.5K</div><div class="etiqueta">Bote Acumulado</div></div>
-            <div class="stat-item"><div class="valor" id="stats-ganadores">954</div><div class="etiqueta">Ganadores Hoy</div></div>
+        
+        <!-- CONTENEDOR DE ESTADÍSTICAS MEJORADO CON ANIMACIONES PREMIUM -->
+        <div class="stats-container border border-yellow-500/10 shadow-[0_0_25px_rgba(0,0,0,0.8)] relative overflow-hidden">
+            <!-- Destello de luz de fondo -->
+            <div class="absolute -inset-full top-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform rotate-45 transition-all duration-1000 animate-[shimmer_4s_infinite] pointer-events-none"></div>
+
+            <!-- Item: Jugadores Online -->
+            <div class="stat-item flex flex-col justify-center items-center p-3 rounded-xl bg-black/30 backdrop-blur-sm border border-white/5 transition-all duration-300 hover:border-yellow-500/30 group">
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="flex h-2.5 w-2.5 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                    </span>
+                    <div class="valor text-white group-hover:text-primary transition-colors duration-300" id="stats-jugadores" style="text-shadow: 0 0 10px rgba(255,255,255,0.1);">6.1K</div>
+                </div>
+                <div class="etiqueta tracking-widest font-semibold flex items-center gap-1"><i class="fas fa-users text-gray-500 text-[10px]"></i> Jugadores Online</div>
+            </div>
+
+            <!-- Item: Bote Acumulado (Efecto Neón Oro Vivo) -->
+            <div class="stat-item flex flex-col justify-center items-center p-3 rounded-xl bg-gradient-to-b from-yellow-500/5 to-transparent border border-primary/20 shadow-[inset_0_0_15px_rgba(250,204,21,0.05)] transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 group animate-[pulse_3s_infinite]">
+                <div class="valor text-primary font-black tracking-normal scale-105 filter drop-shadow-[0_0_8px_rgba(250,204,21,0.4)] group-hover:brightness-125 transition-all" id="stats-bote">$12,504.82</div>
+                <div class="etiqueta text-primary/70 tracking-widest font-bold flex items-center gap-1 animate-pulse"><i class="fas fa-trophy text-primary text-[10px]"></i> Bote Acumulado</div>
+            </div>
+
+            <!-- Item: Ganadores Hoy -->
+            <div class="stat-item flex flex-col justify-center items-center p-3 rounded-xl bg-black/30 backdrop-blur-sm border border-white/5 transition-all duration-300 hover:border-yellow-500/30 group">
+                <div class="valor text-white group-hover:text-primary transition-colors duration-300 mb-1" id="stats-ganadores" style="text-shadow: 0 0 10px rgba(255,255,255,0.1);">954</div>
+                <div class="etiqueta tracking-widest font-semibold flex items-center gap-1"><i class="fas fa-coins text-gray-500 text-[10px]"></i> Ganadores Hoy</div>
+            </div>
         </div>
     </section>
+
+    <!-- ESTILOS ADICIONALES PARA LAS ANIMACIONES (Agrega esto dentro de tus etiquetas <style> si deseas optimizar el destello) -->
+    <style>
+        @keyframes shimmer {
+            0% { left: -150%; }
+            50% { left: 150%; }
+            100% { left: 150%; }
+        }
+    </style>
 <!-- GRID DE JUEGOS (2 COLUMNAS PARA IPHONE) -->
 <div class="grid grid-cols-2 gap-3 p-3" id="juegos-container">
     <!-- Generado por JS -->
