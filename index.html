@@ -120,38 +120,97 @@
 <body>
 
     <!-- HEADER -->
-    <header class="bg-[#141414] w-full flex items-center justify-between px-6 border-b border-white/5 sticky top-0 z-[200] py-2 flex-wrap">
-        <div class="flex items-center gap-4 md:gap-10">
-            <div class="betonwin-logo" onclick="abrirSalon(); return false;">BET<span>ON</span>WIN</div>
-        </div>
-        <nav class="flex gap-4 md:gap-6 text-[11px] font-bold uppercase tracking-widest text-gray-400">
-            <a href="#" class="text-primary border-b-2 border-primary pb-1">CASINO</a>
-            <a href="#" onclick="abrirPokerEnVivo(); return false;" class="hover:text-white">POKER EN VIVO</a>
-            <a href="#" onclick="abrirPromociones(); return false;" class="hover:text-white">PROMOCIONES</a>
-            <a href="#" onclick="abrirDeportes(); return false;" class="hover:text-white">DEPORTES</a>
-            <a href="#" onclick="abrirJuegoEnVivo(); return false;" class="hover:text-white">EN VIVO</a>
-            <a href="#" onclick="abrirTorneos(); return false;" class="hover:text-white">TORNEOS</a>
-            <a href="#" onclick="abrirVIP(); return false;" class="hover:text-white">VIP</a>
-            <a href="#" onclick="abrirRuleta(); return false;" class="hover:text-white">RULETA</a>
-            <a href="#" onclick="abrirFlipCard(); return false;" class="hover:text-white">FLIPCARD</a>
-        </nav>
-        <div id="user-header-area" class="flex items-center gap-2 md:gap-4">
-            <button onclick="abrirLogin()" class="text-gray-400 text-[11px] font-bold px-2 hover:text-white">INICIAR</button>
-            <button onclick="abrirRegistro()" class="bg-primary text-black text-[11px] font-black px-3 md:px-5 py-2 rounded-md uppercase hover:bg-yellow-500">REGISTRARSE</button>
-        </div>
-    </header>
-
-    <div id="modal-overlay">
-        <div id="contenedor-modal" class="w-full max-w-6xl transform transition-all p-4 relative"></div>
-    </div>
-
-    <div id="game-modal-overlay" class="game-modal-overlay">
-        <div class="game-modal-content">
-            <button class="btn-cerrar-juego" onclick="cerrarJuegoModal()"><i class="fas fa-times"></i></button>
-            <iframe id="game-iframe" class="game-iframe" allow="accelerometer; autoplay; clipboard-read; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <header class="bg-[#0b0b0b] w-full flex items-center justify-between px-4 md:px-8 border-b border-amber-500/10 sticky top-0 z-[200] py-3 gap-4" style="animation: casinoGlow 5s ease-in-out infinite;">
+    
+    <div class="flex items-center shrink-0">
+        <div class="betonwin-logo-gold" onclick="abrirSalon(); return false;">
+            BET<span>ON</span>WIN
         </div>
     </div>
+    
+    <nav class="flex items-center gap-5 md:gap-7 text-[11px] font-black uppercase tracking-[0.15em] text-gray-400 overflow-x-auto nav-casino-scroll py-1 whitespace-nowrap scroll-smooth flex-1 justify-start md:justify-center px-2">
+        <a href="#" class="nav-item-premium active text-amber-400">CASINO</a>
+        <a href="#" onclick="abrirPokerEnVivo(); return false;" class="nav-item-premium hover:text-white">POKER EN VIVO</a>
+        <a href="#" onclick="abrirPromociones(); return false;" class="nav-item-premium hover:text-white">PROMOCIONES</a>
+        <a href="#" onclick="abrirDeportes(); return false;" class="nav-item-premium hover:text-white">DEPORTES</a>
+        <a href="#" onclick="abrirJuegoEnVivo(); return false;" class="nav-item-premium hover:text-white">EN VIVO</a>
+        <a href="#" onclick="abrirTorneos(); return false;" class="nav-item-premium hover:text-white">TORNEOS</a>
+        <a href="#" onclick="abrirVIP(); return false;" class="nav-item-premium hover:text-white text-amber-500 font-extrabold flex items-center gap-1"><i class="fas fa-crown text-[10px]"></i> VIP</a>
+        <a href="#" onclick="abrirRuleta(); return false;" class="nav-item-premium hover:text-white">RULETA</a>
+        <a href="#" onclick="abrirFlipCard(); return false;" class="nav-item-premium hover:text-white">FLIPCARD</a>
+    </nav>
+    
+    <div id="user-header-area" class="flex items-center gap-3 shrink-0">
+        <button onclick="abrirLogin()" class="text-gray-400 text-[11px] font-bold px-2 hover:text-white tracking-widest transition-colors uppercase">
+            INICIAR
+        </button>
+        <button onclick="abrirRegistro()" class="relative overflow-hidden bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 text-black text-[11px] font-black px-4 md:px-6 py-2.5 rounded-xl uppercase tracking-wider shadow-[0_4px_15px_rgba(212,175,55,0.2)] hover:brightness-110 active:scale-[0.98] transition-all">
+            REGISTRARSE
+        </button>
+    </div>
+</header>
 
+<div id="modal-overlay" class="fixed inset-0 z-[300] hidden bg-black/80 backdrop-blur-md items-center justify-center p-4">
+    <div id="contenedor-modal" class="w-full max-w-6xl transform transition-all relative"></div>
+</div>
+
+<div id="game-modal-overlay" class="fixed inset-0 z-[400] hidden bg-black/95 flex-col items-center justify-center w-screen h-[100dvh] overflow-hidden">
+    <div class="w-full h-full relative flex flex-col">
+        
+        <div class="w-full bg-[#0d0d0d] border-b border-white/5 px-4 py-2 flex justify-between items-center z-50 shrink-0">
+            <div class="text-xs font-bold text-amber-400 flex items-center gap-2">
+                <i class="fas fa-gamepad animate-pulse"></i> SALA DE JUEGO EN VIVO
+            </div>
+            <button class="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-all active:scale-90" onclick="cerrarJuegoModal()">
+                <i class="fas fa-times text-base"></i>
+            </button>
+        </div>
+        
+        <iframe id="game-iframe" class="w-full flex-1 bg-black border-none" allow="accelerometer; autoplay; clipboard-read; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+
+<style>
+    @keyframes goldShimmer {
+        0% { background-position: -200% center; }
+        100% { background-position: 200% center; }
+    }
+    @keyframes casinoGlow {
+        0%, 100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.1), inset 0 0 5px rgba(212, 175, 55, 0.05); }
+        50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.25), inset 0 0 10px rgba(212, 175, 55, 0.1); }
+    }
+    .betonwin-logo-gold {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900;
+        font-size: 24px;
+        letter-spacing: -0.5px;
+        background: linear-gradient(90deg, #b38728, #fbf5b7, #daaf37, #fbf5b7, #b38728);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: goldShimmer 4s linear infinite;
+        text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+        cursor: pointer;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .betonwin-logo-gold span {
+        background: linear-gradient(135deg, #ffffff 30%, #a1a1a1 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .betonwin-logo-gold:hover {
+        transform: scale(1.04) rotate(-1deg);
+    }
+    .nav-casino-scroll::-webkit-scrollbar { display: none; }
+    .nav-casino-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    .nav-item-premium { position: relative; transition: color 0.3s ease; }
+    .nav-item-premium::after {
+        content: ''; position: absolute; bottom: -6px; left: 50%; width: 0; height: 2px;
+        background: linear-gradient(90deg, #ffe07d, #d4af37); transition: all 0.3s ease;
+        transform: translateX(-50%); box-shadow: 0 0 8px #d4af37;
+    }
+    .nav-item-premium:hover::after, .nav-item-premium.active::after { width: 100%; }
+</style>
     
 
    <script>
