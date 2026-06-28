@@ -619,7 +619,11 @@ function abrirWhatsApp() {
 
     <!-- BUSCADOR Y CATEGORÍAS -->
     <section class="max-w-[1450px] mx-auto w-full p-4 mt-8">
-        <div class="buscador-container"><i class="fas fa-search"></i><input type="text" id="buscador-juegos" class="buscador-input" placeholder="Buscar juego..." onkeyup="filtrarJuegos(this.value)"></div>
+        <div class="buscador-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="buscador-juegos" class="buscador-input" placeholder="Buscar juego..." onkeyup="filtrarJuegos(this.value)">
+        </div>
+        
         <div class="categorias-container">
             <button class="categoria-btn active" onclick="filtrarCategoria('todos', this)">Todos</button>
             <button class="categoria-btn" onclick="filtrarCategoria('slots', this)">Slots</button>
@@ -628,44 +632,51 @@ function abrirWhatsApp() {
             <button class="categoria-btn" onclick="filtrarCategoria('populares', this)">Populares</button>
             <button class="categoria-btn" onclick="filtrarCategoria('favoritos', this)">Favoritos</button>
         </div>
-       <!-- CONTENEDOR DE ESTADÍSTICAS MEJORADO CON ANIMACIONES HACK PREMIUM -->
-        <div class="stats-container border border-emerald-500/20 shadow-[0_0_35px_rgba(0,0,0,0.9)] relative overflow-hidden bg-black/40 backdrop-blur-md rounded-2xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-2">
-            <!-- Línea de escaneo láser global de fondo (Hack Aesthetic) -->
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent animate-[cyberScan_4s_infinite_linear] pointer-events-none z-0"></div>
 
-            <!-- Item: Jugadores Online -->
-            <div class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-emerald-500/10 transition-all duration-300 hover:border-emerald-400/40 hover:shadow-[0_0_15px_rgba(16,185,129,0.15)] group relative overflow-hidden z-10">
-                <div class="absolute top-1 right-2 text-[7px] font-mono text-emerald-500/30 tracking-widest">---------------------------------------------------</div>
-<div class="flex items-center gap-2 mb-1">
-                    <span class="flex h-0 w-2 relative">
-                
+        <div class="border border-emerald-500/20 shadow-[0_0_35px_rgba(0,0,0,0.9)] relative overflow-hidden bg-black/40 backdrop-blur-md rounded-2xl grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+            
+            <div class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-emerald-500/20 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-emerald-400/50 hover:shadow-emerald-500/10 group relative overflow-hidden z-10">
+                <div class="mb-2 w-8 h-8 flex items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                    <img src="https://images.icon-icons.com/1675/PNG/96/3890943-bag-cash-currency-dollar-money-sack_111183.png" alt="Usuarios" class="w-5 h-5 drop-shadow-md">
+                </div>
+
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="flex h-2 w-2 relative">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
-                    <div class="valor font-mono text-xl font-black text-emerald-400 group-hover:text-emerald-300 transition-colors duration-300" id="stats-jugadores" style="text-shadow: 0 0 12px rgba(17,8365,55);">6124</div>
+                    <div class="valor font-sans text-2xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 group-hover:brightness-125 transition-all duration-300 tracking-tight" id="stats-jugadores" style="text-shadow: 0 4px 4px rgba(0,0,0,0.8), 0 0 8px rgba(52,211,153,0.3);">8,987</div>
                 </div>
-                <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-gray-400 group-hover:text-white transition-colors flex items-center gap-1.9">
-                   <i class="fas fa-microchip text-yellow-500 text-[10px]"  >EN  LINEA</i> 
+
+                <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-zinc-400 group-hover:text-emerald-300 transition-colors flex items-center gap-1.5">
+                    EN LÍNEA
                 </div>
             </div>
 
-            <!-- Item: Bote Acumulado (Efecto Matrix Matrix Oro) -->
-            <div class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-yellow-500/20 shadow-[inset_0_0_15px_rgba(250,204,21,0.02)] transition-all duration-300 hover:scale-[1.02] hover:border-yellow-400/50 hover:shadow-[0_0_20px_rgba(250,204,21,0.2)] group relative overflow-hidden z-10">
-                <div class="absolute top-1 right-2 text-[7px] font-mono text-yellow-500/30 tracking-widest">---------------------------------------------------</div>
-                <div class="valor font-mono text-xl font-black text-yellow-400 group-hover:brightness-125 transition-all mb-1 tracking-wide" id="stats-bote" style="text-shadow: 0 0 12px rgba(250,204,21,0.5);">$12,504.82</div>
-                <div class="etiqueta text-yellow-500/70 tracking-widest font-black uppercase text-[9px] flex items-center gap-1.5 group-hover:text-yellow-400 transition-colors">
-                    <i class="fas fa-microchip text-yellow-500 text-[10px]"></i> BOTE ACUMULADO
+            <div class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-amber-500/20 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-amber-400/50 hover:shadow-amber-500/10 group relative overflow-hidden z-10">
+                <div class="mb-2 w-8 h-8 flex items-center justify-center rounded-lg bg-amber-500/10 border border-amber-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                    <img src="https://images.icon-icons.com/1713/PNG/96/iconfinder-youtubelivevideowebinarconference-3993869_112660.png" alt="Bote" class="w-5 h-5 drop-shadow-md">
+                </div>
+
+                <div class="valor font-sans text-2xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 group-hover:brightness-125 transition-all duration-300 tracking-tight mb-0.5" id="stats-bote" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(251,191,36,0.3);">$12,504.82</div>
+                
+                <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-amber-500/70 group-hover:text-amber-400 transition-colors flex items-center gap-1.5">
+                    BOTE ACUMULADO
                 </div>
             </div>
 
-            <!-- Item: Ganadores Hoy -->
-            <div class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-emerald-500/10 transition-all duration-300 hover:border-emerald-400/40 hover:shadow-[0_0_15px_rgba(16,185,129,0.15)] group relative overflow-hidden z-10">
-                <div class="absolute top-1 right-2 text-[7px] font-mono text-emerald-500/30 tracking-widest">---------------------------------------------------</div>
-                <div class="valor font-mono text-xl font-black text-emerald-400 group-hover:text-emerald-300 transition-all duration-300 mb-1 flex items-center justify-center gap-1.5" id="stats-ganadores" style="text-shadow: 0 0 12px rgba(52,211,153,0.5);">954</div>
-                <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-gray-400 group-hover:text-white transition-colors flex items-center gap-1.5">
-                    <i class="fas fa-microchip text-yellow-500 text-[10px]">GANADORES DE HOY</i> 
+            <div class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-cyan-500/20 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-cyan-400/50 hover:shadow-cyan-500/10 group relative overflow-hidden z-10">
+                <div class="mb-2 w-8 h-8 flex items-center justify-center rounded-lg bg-cyan-500/10 border border-cyan-500/30 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300">
+                    <img src="https://images.icon-icons.com/4188/PNG/96/crown_game_sports_console_controller_sport_video_play_gaming_icon_262443.png" alt="Ganadores" class="w-5 h-5 drop-shadow-md">
+                </div>
+
+                <div class="valor font-sans text-2xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 group-hover:brightness-125 transition-all duration-300 tracking-tight mb-0.5 flex items-center justify-center gap-1.5" id="stats-ganadores" style="text-shadow: 0 2px 4px rgba(0,0,0,0.8), 0 0 10px rgba(6,182,212,0.3);">10,092</div>
+                
+                <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-zinc-400 group-hover:text-cyan-300 transition-colors flex items-center gap-1.5">
+                    GANADORES DE HOY
                 </div>
             </div>
+
         </div>
     </section>
 
