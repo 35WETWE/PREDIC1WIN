@@ -119,25 +119,37 @@
 <meta property="og:title" content="BETONWIN - Casino Profesional" data-id="th-modified"><meta property="og:image" content="https://www.coinbeti.com/og-image.jpg" data-id="th-modified"><meta property="og:url" content="https://www.coinbeti.com/" data-id="th-modified"><meta property="og:type" content="website" data-id="th-modified"><meta name="description" content="index" data-id="th-modified"><meta property="og:description" content="index" data-id="th-modified"><script defer data-domain="www.coinbeti.com" src="https://analytics.tiiny.site/js/plausible.js"></script></head>
 <body>
 <!-- HEADER PROFESIONAL REESTRUCTURADO -->
-<header class="bg-[#0b0b0b] w-full border-b border-amber-500/10 sticky top-0 z-[200] px-3 py-2 flex flex-col gap-2 shadow-[0_5px_15px_rgba(0,0,0,0.5)]" style="animation: casinoGlow 5s ease-in-out infinite;">
+<header class="bg-[#0b0b0b] w-full border-b border-amber-500/10 sticky top-0 z-[200] px-2.5 py-2 flex flex-col gap-2 shadow-[0_5px_15px_rgba(0,0,0,0.5)] animate-[casinoGlow_5s_ease-in-out_infinite]">
     
-    <!-- Fila 1: Logo y Perfil (Sin solapamientos en iPhone/Android) -->
-    <div class="w-full flex items-center justify-between flex-nowrap gap-1">
-        <div class="betonwin-logo-gold text-[19px] sm:text-2xl shrink-0 select-none" onclick="abrirSalon(); return false;">
+    <!-- Fila 1: Logo y Perfil (Estructura fija blindada contra desbordes) -->
+    <div class="w-full flex items-center justify-between flex-nowrap gap-1 min-w-0">
+        
+        <!-- Logo (Ajustado para dar espacio al saldo en móviles) -->
+        <div class="betonwin-logo-gold text-[17px] xs:text-[19px] sm:text-2xl shrink-0 select-none" onclick="abrirSalon(); return false;">
             BET<span>ON</span>WIN
         </div>
         
-        <!-- Área de usuario: Botones + Icono Perfil MOD (Siempre visible dentro de la pantalla) -->
-        <div id="user-header-area" class="flex items-center gap-1.5 sm:gap-3 shrink-0 flex-nowrap">
-            <button onclick="abrirLogin()" class="text-gray-400 text-[10px] sm:text-[11px] font-bold px-1 py-1 hover:text-white tracking-wider transition-colors uppercase shrink-0">
-                INICIAR
-            </button>
-            <button onclick="abrirRegistro()" class="bg-gradient-to-r from-amber-400 to-amber-600 text-black text-[10px] font-black px-2.5 py-1.5 rounded uppercase hover:brightness-110 active:scale-95 transition-all shrink-0">
-                REGISTRARSE
-            </button>
-            <!-- ICONO DE PERFIL MOD -->
+        <!-- Área de usuario: Soporta tanto Botones de Login como Saldo + Recargar de forma compacta -->
+        <div id="user-header-area" class="flex items-center gap-1.5 sm:gap-3 shrink-0 flex-nowrap min-w-0">
+            
+            <!-- EJEMPLO ESTADO LOGUEADO (Saldo compacto + Recargar Mini) -->
+            <!-- Si tu script inyecta el saldo aquí, estas clases garantizan que no empujen el perfil -->
+            <div class="flex items-center gap-1.5 flex-nowrap">
+                <!-- Contenedor del Saldo -->
+                <div class="bg-zinc-900/80 border border-white/5 rounded-lg px-2 py-1 flex flex-col items-end justify-center shrink-0">
+                    <span class="text-[8px] text-gray-500 font-bold uppercase tracking-wider leading-none">SALDO</span>
+                    <span id="header-balance" class="text-[11px] sm:text-xs text-emerald-400 font-black leading-none mt-0.5">$0.00</span>
+                </div>
+                
+                <!-- Botón Recargar (Ultra compacto en móviles) -->
+                <button onclick="abrirDepositar()" class="bg-gradient-to-r from-emerald-500 to-green-600 text-white text-[10px] sm:text-[11px] font-black px-2 sm:px-3 py-1.5 rounded-lg uppercase hover:brightness-110 active:scale-95 transition-all shrink-0 shadow-[0_0_10px_rgba(16,185,129,0.2)]">
+                    <span class="inline sm:hidden">+</span><span class="hidden sm:inline">RECARGAR</span>
+                </button>
+            </div>
+
+            <!-- ICONO DE PERFIL MOD (Anclado con tamaño fijo, NUNCA se sale) -->
             <img src="https://images.icon-icons.com/966/PNG/96/Security_icon-icons.com_74703.png" 
-                 class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-amber-500/30 cursor-pointer hover:scale-105 transition-transform shrink-0 object-contain" 
+                 class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-amber-500/40 cursor-pointer hover:scale-105 transition-transform shrink-0 object-contain bg-zinc-900/50 p-0.5" 
                  onclick="abrirPerfil()" alt="Perfil">
         </div>
     </div>
@@ -173,6 +185,62 @@
         <iframe id="game-iframe" class="w-full flex-1 bg-black border-none" allow="accelerometer; autoplay; clipboard-read; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 </div>
+
+<!-- COMPONENTE DE ESTILOS PROTEGIDO -->
+<style>
+    @keyframes goldShimmer {
+        0% { background-position: -200% center; }
+        100% { background-position: 200% center; }
+    }
+    @keyframes casinoGlow {
+        0%, 100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.08), inset 0 0 5px rgba(212, 175, 55, 0.03); }
+        50% { box-shadow: 0 0 18px rgba(212, 175, 55, 0.18), inset 0 0 8px rgba(212, 175, 55, 0.06); }
+    }
+    
+    .betonwin-logo-gold {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900;
+        letter-spacing: -0.5px;
+        background: linear-gradient(90deg, #b38728, #fbf5b7, #daaf37, #fbf5b7, #b38728);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: goldShimmer 4s linear infinite;
+        text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+        cursor: pointer;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .betonwin-logo-gold span {
+        background: linear-gradient(135deg, #ffffff 30%, #a1a1a1 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .nav-casino-scroll::-webkit-scrollbar { 
+        display: none !important; 
+        width: 0 !important;
+        height: 0 !important;
+    }
+    .nav-casino-scroll { 
+        -ms-overflow-style: none !important; 
+        scrollbar-width: none !important; 
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .nav-item-premium { position: relative; transition: color 0.3s ease; }
+    .nav-item-premium::after {
+        content: ''; position: absolute; bottom: -4px; left: 50%; width: 0; height: 2px;
+        background: linear-gradient(90deg, #ffe07d, #d4af37); transition: all 0.3s ease;
+        transform: translateX(-50%); box-shadow: 0 0 8px #d4af37;
+    }
+    .nav-item-premium:hover::after, .nav-item-premium.active::after { width: 100%; }
+    
+    /* Soporte adicional para pantallas extremadamente delgadas (iPhone SE antiguo) */
+    @media (max-width: 340px) {
+        .betonwin-logo-gold { font-size: 15px !important; }
+        #header-balance { font-size: 10px !important; }
+    }
+</style>
 
 <!-- COMPONENTE DE ESTILOS PROTEGIDO -->
 <style>
