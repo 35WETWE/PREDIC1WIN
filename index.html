@@ -254,37 +254,111 @@ function abrirWhatsApp() {
             <button class="categoria-btn" onclick="filtrarCategoria('populares', this)">Populares</button>
             <button class="categoria-btn" onclick="filtrarCategoria('favoritos', this)">Favoritos</button>
         </div>
-        
-        <!-- CONTENEDOR DE ESTADÍSTICAS MEJORADO CON ANIMACIONES PREMIUM -->
-        <div class="stats-container border border-yellow-500/10 shadow-[0_0_25px_rgba(0,0,0,0.8)] relative overflow-hidden">
-            <!-- Destello de luz de fondo -->
-            <div class="absolute -inset-full top-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform rotate-45 transition-all duration-1000 animate-[shimmer_4s_infinite] pointer-events-none"></div>
+       <!-- CONTENEDOR DE ESTADÍSTICAS MEJORADO CON ANIMACIONES HACK PREMIUM -->
+        <div class="stats-container border border-emerald-500/20 shadow-[0_0_35px_rgba(0,0,0,0.9)] relative overflow-hidden bg-black/40 backdrop-blur-md rounded-2xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-2">
+            <!-- Línea de escaneo láser global de fondo (Hack Aesthetic) -->
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.03] to-transparent animate-[cyberScan_4s_infinite_linear] pointer-events-none z-0"></div>
 
             <!-- Item: Jugadores Online -->
-            <div class="stat-item flex flex-col justify-center items-center p-3 rounded-xl bg-black/30 backdrop-blur-sm border border-white/5 transition-all duration-300 hover:border-yellow-500/30 group">
-                <div class="flex items-center gap-2 mb-1">
-                    <span class="flex h-2.5 w-2.5 relative">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+            <div class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-emerald-500/10 transition-all duration-300 hover:border-emerald-400/40 hover:shadow-[0_0_15px_rgba(16,185,129,0.15)] group relative overflow-hidden z-10">
+                <div class="absolute top-1 right-2 text-[7px] font-mono text-emerald-500/30 tracking-widest">-----------------------------------------------------------</div>
+<div class="flex items-center gap-2 mb-1">
+                    <span class="flex h-0 w-2 relative">
+                
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
-                    <div class="valor text-white group-hover:text-primary transition-colors duration-300" id="stats-jugadores" style="text-shadow: 0 0 10px rgba(255,255,255,0.1);">6.1K</div>
+                    <div class="valor font-mono text-xl font-black text-emerald-400 group-hover:text-emerald-300 transition-colors duration-300" id="stats-jugadores" style="text-shadow: 0 0 12px rgba(17,8365,55);">6124</div>
                 </div>
-                <div class="etiqueta tracking-widest font-semibold flex items-center gap-1"><i class="fas fa-users text-gray-500 text-[10px]"></i> Jugadores Online</div>
+                <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-gray-400 group-hover:text-white transition-colors flex items-center gap-1.9">
+                   <i class="fas fa-microchip text-yellow-500 text-[10px]"  >EN  LINEA</i> 
+                </div>
             </div>
 
-            <!-- Item: Bote Acumulado (Efecto Neón Oro Vivo) -->
-            <div class="stat-item flex flex-col justify-center items-center p-3 rounded-xl bg-gradient-to-b from-yellow-500/5 to-transparent border border-primary/20 shadow-[inset_0_0_15px_rgba(250,204,21,0.05)] transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 group animate-[pulse_3s_infinite]">
-                <div class="valor text-primary font-black tracking-normal scale-105 filter drop-shadow-[0_0_8px_rgba(250,204,21,0.4)] group-hover:brightness-125 transition-all" id="stats-bote">$12,504.82</div>
-                <div class="etiqueta text-primary/70 tracking-widest font-bold flex items-center gap-1 animate-pulse"><i class="fas fa-trophy text-primary text-[10px]"></i> Bote Acumulado</div>
+            <!-- Item: Bote Acumulado (Efecto Matrix Matrix Oro) -->
+            <div class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-yellow-500/20 shadow-[inset_0_0_15px_rgba(250,204,21,0.02)] transition-all duration-300 hover:scale-[1.02] hover:border-yellow-400/50 hover:shadow-[0_0_20px_rgba(250,204,21,0.2)] group relative overflow-hidden z-10">
+                <div class="absolute top-1 right-2 text-[7px] font-mono text-yellow-500/30 tracking-widest">-----------------------------------------------------------</div>
+                <div class="valor font-mono text-xl font-black text-yellow-400 group-hover:brightness-125 transition-all mb-1 tracking-wide" id="stats-bote" style="text-shadow: 0 0 12px rgba(250,204,21,0.5);">$12,504.82</div>
+                <div class="etiqueta text-yellow-500/70 tracking-widest font-black uppercase text-[9px] flex items-center gap-1.5 group-hover:text-yellow-400 transition-colors">
+                    <i class="fas fa-microchip text-yellow-500 text-[10px]"></i> BOTE ACUMULADO
+                </div>
             </div>
 
             <!-- Item: Ganadores Hoy -->
-            <div class="stat-item flex flex-col justify-center items-center p-3 rounded-xl bg-black/30 backdrop-blur-sm border border-white/5 transition-all duration-300 hover:border-yellow-500/30 group">
-                <div class="valor text-white group-hover:text-primary transition-colors duration-300 mb-1" id="stats-ganadores" style="text-shadow: 0 0 10px rgba(255,255,255,0.1);">954</div>
-                <div class="etiqueta tracking-widest font-semibold flex items-center gap-1"><i class="fas fa-coins text-gray-500 text-[10px]"></i> Ganadores Hoy</div>
+            <div class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-emerald-500/10 transition-all duration-300 hover:border-emerald-400/40 hover:shadow-[0_0_15px_rgba(16,185,129,0.15)] group relative overflow-hidden z-10">
+                <div class="absolute top-1 right-2 text-[7px] font-mono text-emerald-500/30 tracking-widest">-----------------------------------------------------------</div>
+                <div class="valor font-mono text-xl font-black text-emerald-400 group-hover:text-emerald-300 transition-all duration-300 mb-1 flex items-center justify-center gap-1.5" id="stats-ganadores" style="text-shadow: 0 0 12px rgba(52,211,153,0.5);">954</div>
+                <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-gray-400 group-hover:text-white transition-colors flex items-center gap-1.5">
+                    <i class="fas fa-microchip text-yellow-500 text-[10px]">GANADORES DE HOY</i> 
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- ESTILOS DE ANIMACIÓN CYBERPUNK -->
+    <style>
+        @keyframes cyberScan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+    </style>
+
+    <!-- SCRIPT DEL MOTOR DE OPERACIONES EN VIVO (SUBIDA REALISTA) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // --- ENGINE 1: GANADORES HOY ---
+            const elGanadores = document.getElementById("stats-ganadores");
+            if (elGanadores) {
+                let valGanadores = parseInt(elGanadores.textContent.replace(/\D/g, '')) || 954;
+                setInterval(() => {
+                    valGanadores += Math.floor(Math.random() * 3) + 1; // Sube de 1 a 3 ganadores
+                    elGanadores.textContent = valGanadores;
+                }, Math.floor(Math.random() * 2000) + 1500);
+            }
+
+            // --- ENGINE 2: JUGADORES ONLINE (SUBE Y BAJA DINÁMICO) ---
+            const elJugadores = document.getElementById("stats-jugadores");
+            if (elJugadores) {
+                let valJugadores = parseInt(elJugadores.textContent.replace(/\D/g, '')) || 6124;
+                setInterval(() => {
+                    // Simula variación real: Más probabilidad de subir que de bajar
+                    const cambio = Math.random() > 0.35 ? (Math.floor(Math.random() * 4) + 1) : -(Math.floor(Math.random() * 3) + 1);
+                    valJugadores += cambio;
+                    elJugadores.innerHTML = `<span class="flex h-2 w-2 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span></span> ${valJugadores}`;
+                }, Math.floor(Math.random() * 3000) + 2000);
+            }
+
+            // --- ENGINE 3: BOTE ACUMULADO (SUBIDA DE CENTAVOS CONTINUA) ---
+            const elBote = document.getElementById("stats-bote");
+            if (elBote) {
+                let valBote = parseFloat(elBote.textContent.replace(/[^0-9.]/g, '')) || 12504.82;
+                setInterval(() => {
+                    valBote += parseFloat((Math.random() * 0.45 + 0.05).toFixed(2)); // Suma centavos en vivo de forma agresiva
+                    elBote.textContent = `$${valBote.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                }, Math.floor(Math.random() * 1200) + 800);
+            }
+        });
+    </script>
+
+    <!-- AGREGA ESTAS ANIMACIONES EN TU ETIQUETA <style> -->
+    <style>
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
 
     <!-- ESTILOS ADICIONALES PARA LAS ANIMACIONES (Agrega esto dentro de tus etiquetas <style> si deseas optimizar el destello) -->
     <style>
