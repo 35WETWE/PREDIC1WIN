@@ -1,16 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title data-id="th-modified">BETONWIN - Casino Profesional</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Coinbeti | ¡Juega, Gana y Retira al Instante! 🔥</title>
+    
+    <meta name="description" content="El casino online más pro. Gira la ruleta, slots y flipcards desde tu iPhone o Android. Retiros rápidos y garantizados. ¡Tu suerte empieza hoy! 💰">
+    
+    <script src="https://cdn.tailwindcss.com/"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&amp;display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
 
     <script>
@@ -124,8 +128,8 @@
 <meta property="og:type" content="website" data-id="th-modified">
 <meta name="description" content="index" data-id="th-modified">
 <meta property="og:description" content="index" data-id="th-modified">
-<script defer data-domain="www.coinbeti.com" src="https://analytics.tiiny.site/js/plausible.js"></script>
-</head>
+
+<script defer="" data-domain="www.coinbeti.com" src="https://analytics.tiiny.site/js/plausible.js"></script></head>
 <body>
 
 <header class="bg-[#0b0b0b] w-full border-b border-amber-500/10 sticky top-0 z-[200] px-2 py-2 flex flex-col gap-1 shadow-[0_5px_15px_rgba(0,0,0,0.5)]" style="animation: casinoGlow 5s ease-in-out infinite;">
@@ -148,14 +152,12 @@
                 REGISTRARSE
             </button>
             
-            <img src="https://images.icon-icons.com/389/PNG/96/Seven_96x96-32_37885.png" 
-                 class="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 rounded-full border border-amber-500/30 cursor-pointer hover:scale-105 transition-transform shrink-0 object-contain bg-zinc-900/40 p-0.5" 
-                 onclick="abrirPerfil()" alt="Perfil">
+            <img src="https://images.icon-icons.com/389/PNG/96/Seven_96x96-32_37885.png" class="w-6 h-6 xs:w-7 xs:h-7 sm:w-8 sm:h-8 rounded-full border border-amber-500/30 cursor-pointer hover:scale-105 transition-transform shrink-0 object-contain bg-zinc-900/40 p-0.5" onclick="abrirPerfil()" alt="Perfil">
         </div>
     </div>
 </header>
 
-</body>
+
 <style>
 /* Scrollbar invisible pero funcional */
 #chat-mensajes::-webkit-scrollbar { display: none; }
@@ -214,7 +216,7 @@
     
     
 </nav>
-</header>
+
 
 <div id="modal-overlay" class="fixed inset-0 z-[300] hidden bg-black/80 backdrop-blur-md items-center justify-center p-4">
     <div id="contenedor-modal" class="w-full max-w-6xl transform transition-all relative"></div>
@@ -230,7 +232,7 @@
                 <i class="fas fa-times text-base"></i>
             </button>
         </div>
-        <iframe id="game-iframe" class="w-full flex-1 bg-black border-none" allow="accelerometer; autoplay; clipboard-read; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe id="game-iframe" class="w-full flex-1 bg-black border-none" allow="accelerometer; autoplay; clipboard-read; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
     </div>
 </div>
 
@@ -801,7 +803,7 @@ function abrirWhatsApp() {
 </script>
    
    
-</script>
+
     <!-- ESTILOS DE ANIMACIÓN CYBERPUNK -->
     <style>
         @keyframes cyberScan {
@@ -1620,7 +1622,7 @@ function abrirLogin() {
             } else { mostrarNotificacion('❌ Usuario no encontrado', 'error'); }
         }
 
-        // ============================================
+       // ============================================
         // PERFIL Y RETIROS
         // ============================================
         function abrirPerfil() {
@@ -1628,28 +1630,55 @@ function abrirLogin() {
             overlay.style.display = 'flex';
             const retirosPendientes = usuarioActual.retirosPendientes || [];
             contenedorModal.innerHTML = `
-                <div class="bg-[#141414] rounded-2xl w-full max-w-md p-6 relative max-h-[90vh] overflow-y-auto">
+                <div class="bg-[#141414] rounded-2xl w-[92%] max-w-md p-5 sm:p-6 relative max-h-[85vh] overflow-y-auto my-auto box-border shadow-2xl">
                     <button class="btn-cerrar" onclick="cerrarModal()"><i class="fas fa-times"></i></button>
-                    <h2 class="text-2xl font-black text-primary mb-4">MI PERFIL</h2>
-                    <p class="text-gray-400">ID: <span class="text-white">${usuarioActual.id}</span></p>
-                    <p class="text-gray-400 mt-2">Nombre: <span class="text-white">${usuarioActual.nombre} ${usuarioActual.apellido}</span></p>
-                    <p class="text-gray-400 mt-2">Email: <span class="text-white">${usuarioActual.email}</span></p>
-                    <p class="text-gray-400 mt-2">País: <span class="text-white">${PAISES_MONEDAS[usuarioActual.pais]?.nombre || 'Colombia'}</span></p>
-                    <p class="text-gray-400 mt-2">Moneda: <span class="text-primary font-bold">${usuarioActual.moneda} (${usuarioActual.simbolo})</span></p>
-                    <p class="text-gray-400 mt-2">Saldo: <span class="text-primary text-2xl font-bold">${usuarioActual.simbolo}0.00</span></p>
+                    <h2 class="text-2xl font-black text-primary mb-4"><i class="fas fa-user-circle mr-2"></i>MI PERFIL</h2>
+                    <p class="text-gray-400 text-sm sm:text-base">ID: <span class="text-white">${usuarioActual.id}</span></p>
+                    <p class="text-gray-400 mt-2 text-sm sm:text-base">Nombre: <span class="text-white">${usuarioActual.nombre} ${usuarioActual.apellido}</span></p>
+                    <p class="text-gray-400 mt-2 text-sm sm:text-base">Email: <span class="text-white">${usuarioActual.email}</span></p>
+                    <p class="text-gray-400 mt-2 text-sm sm:text-base">País: <span class="text-white">${PAISES_MONEDAS[usuarioActual.pais]?.nombre || 'Colombia'}</span></p>
+                    <p class="text-gray-400 mt-2 text-sm sm:text-base">Moneda: <span class="text-primary font-bold">${usuarioActual.moneda} (${usuarioActual.simbolo})</span></p>
+                    <p class="text-gray-400 mt-2 text-sm sm:text-base">Saldo: <span class="text-primary text-2xl font-bold">${usuarioActual.simbolo}0.00</span></p>
                     
                     <div class="border-t border-white/10 my-4 pt-4">
-                        <h3 class="text-primary font-bold mb-3">💰 RETIRAR SALDO</h3>
-                        <div class="mb-3"><label class="text-gray-400 text-sm">Monto a retirar (mínimo ${usuarioActual.simbolo}10)</label><input type="number" id="retiro_monto" placeholder="0.00" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg p-2 text-white mt-1"></div>
-                        <div class="mb-3"><label class="text-gray-400 text-sm">Método</label><select id="retiro_metodo" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg p-2 text-white"><option value="usdt">USDT (ERC20)</option><option value="banco">Transferencia Bancaria</option></select></div>
-                        <div class="mb-3" id="retiro_datos_banco" style="display:none;"><label class="text-gray-400 text-sm">Número de cuenta / CBU</label><input type="text" id="retiro_cuenta" placeholder="Número de cuenta" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg p-2 text-white"></div>
-                        <div class="mb-3" id="retiro_datos_usdt"><label class="text-gray-400 text-sm">Dirección USDT (ERC20)</label><input type="text" id="retiro_direccion" placeholder="0x..." class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg p-2 text-white"></div>
-                        <button onclick="solicitarRetiro()" class="w-full bg-primary text-black font-bold py-2 rounded-lg mt-2">📤 SOLICITAR RETIRO</button>
+                        <h3 class="text-primary font-bold mb-3 text-sm sm:text-base"><i class="fas fa-wallet mr-2"></i>RETIRAR SALDO</h3>
+                        <div class="mb-3">
+                            <label class="text-gray-400 text-xs sm:text-sm">Monto a retirar (mínimo ${usuarioActual.simbolo}10)</label>
+                            <input type="number" id="retiro_monto" placeholder="0.00" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg p-2 text-white mt-1 text-sm appearance-none">
+                        </div>
+                        <div class="mb-3">
+                            <label class="text-gray-400 text-xs sm:text-sm">Método</label>
+                            <select id="retiro_metodo" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg p-2 text-white text-sm">
+                                <option value="usdt">USDT (ERC20)</option>
+                                <option value="banco">Transferencia Bancaria</option>
+                            </select>
+                        </div>
+                        <div class="mb-3" id="retiro_datos_banco" style="display:none;">
+                            <label class="text-gray-400 text-xs sm:text-sm">Número de cuenta / CBU</label>
+                            <input type="text" id="retiro_cuenta" placeholder="Número de cuenta" class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg p-2 text-white text-sm">
+                        </div>
+                        <div class="mb-3" id="retiro_datos_usdt">
+                            <label class="text-gray-400 text-xs sm:text-sm">Dirección USDT (ERC20)</label>
+                            <input type="text" id="retiro_direccion" placeholder="0x..." class="w-full bg-[#0a0a0a] border border-white/10 rounded-lg p-2 text-white text-sm">
+                        </div>
+                        <button onclick="solicitarRetiro()" class="w-full bg-primary text-black font-bold py-2.5 rounded-lg mt-2 text-sm transition-all active:scale-[0.98]">
+                            <i class="fas fa-paper-plane mr-2"></i>SOLICITAR RETIRO
+                        </button>
                     </div>
                     
-                    <div class="border-t border-white/10 my-4 pt-4"><h3 class="text-primary font-bold mb-2">📋 Solicitudes de retiro</h3>${retirosPendientes.length === 0 ? '<p class="text-gray-500 text-sm">No hay solicitudes pendientes</p>' : retirosPendientes.map(r => `<div class="bg-[#1e1e1e] p-2 rounded mb-2 text-sm"><span class="text-primary">${usuarioActual.simbolo}${r.monto}</span> - ${r.metodo} - <span class="text-yellow-400">${r.estado}</span></div>`).join('')}</div>
+                    <div class="border-t border-white/10 my-4 pt-4">
+                        <h3 class="text-primary font-bold mb-2 text-sm sm:text-base"><i class="fas fa-list-alt mr-2"></i>Solicitudes de retiro</h3>
+                        ${retirosPendientes.length === 0 ? '<p class="text-gray-500 text-xs sm:text-sm">No hay solicitudes pendientes</p>' : retirosPendientes.map(r => `<div class="bg-[#1e1e1e] p-2 rounded mb-2 text-xs sm:text-sm flex justify-between items-center"><span class="text-primary font-bold">${usuarioActual.simbolo}${r.monto}</span> <span class="text-gray-400">${r.metodo}</span> <span class="text-yellow-400 font-medium"><i class="fas fa-clock mr-1"></i>${r.estado}</span></div>`).join('')}
+                    </div>
                     
-                    <div class="grid grid-cols-2 gap-3 mt-4"><button onclick="abrirRecargas(); cerrarModal()" class="bg-primary text-black p-3 rounded-lg font-bold">💰 RECARGAR</button><button onclick="cerrarSesion()" class="bg-red-500/20 text-red-400 p-3 rounded-lg">🚪 Cerrar sesión</button></div>
+                    <div class="grid grid-cols-2 gap-3 mt-4">
+                        <button onclick="abrirRecargas(); cerrarModal()" class="bg-primary text-black p-3 rounded-lg font-bold text-xs sm:text-sm transition-all active:scale-[0.98]">
+                            <i class="fas fa-coins mr-1.5"></i>RECARGAR
+                        </button>
+                        <button onclick="cerrarSesion()" class="bg-red-500/20 text-red-400 p-3 rounded-lg text-xs sm:text-sm transition-all active:scale-[0.98] flex items-center justify-center">
+                            <i class="fas fa-sign-out-alt mr-1.5"></i>Cerrar sesión
+                        </button>
+                    </div>
                 </div>
             `;
             
@@ -1666,9 +1695,9 @@ function abrirLogin() {
 
         function solicitarRetiro() {
             const monto = parseFloat(document.getElementById('retiro_monto')?.value);
-            if (!monto || monto < 10) { mostrarNotificacion(`❌ Monto mínimo ${usuarioActual.simbolo}10`, 'error'); return; }
-            if (monto > 0) { mostrarNotificacion('❌ Saldo insuficiente para retirar', 'error'); return; }
-            mostrarNotificacion(`❌ No puedes retirar porque tu saldo es 0.00`, 'error');
+            if (!monto || monto < 10) { mostrarNotificacion(`<i class="fas fa-exclamation-circle mr-1"></i> Monto mínimo ${usuarioActual.simbolo}10`, 'error'); return; }
+            if (monto > 0) { mostrarNotificacion('<i class="fas fa-exclamation-circle mr-1"></i> Saldo insuficiente para retirar', 'error'); return; }
+            mostrarNotificacion(`<i class="fas fa-exclamation-circle mr-1"></i> No puedes retirar porque tu saldo es 0.00`, 'error');
         }
 
         // ============================================
@@ -2627,19 +2656,119 @@ function previsualizarComprobanteBanco(input) {
         preview.innerHTML = ''; 
     }
 }
-        // ============================================
-        // RULETA Y FLIPCARD (BLOQUEADAS)
+      // ============================================
+        // RULETA Y FLIPCARD (SUPER ALERTAS ANIMADAS)
         // ============================================
         function abrirRuleta() {
-            if (!usuarioActual?.email) { mostrarNotificacion('⚠️ Debes iniciar sesión', 'advertencia'); abrirLogin(); return; }
-            mostrarNotificacion(`💰 No tienes saldo para jugar a la ruleta.`, 'advertencia');
-            abrirRecargas();
+            if (!usuarioActual?.email) { 
+                Swal.fire({
+                    title: '<span style="color: #f59e0b; font-family: \'Poppins\', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;"><i class="fas fa-lock mr-2"></i> Acceso Restringido</span>',
+                    html: '<p style="color: #fff; font-size: 15px; font-weight: 600;">Debes iniciar sesión para poder girar la ruleta.</p>',
+                    background: 'rgba(15, 15, 15, 0.95)',
+                    backdrop: 'rgba(0, 0, 0, 0.8) blur(8px)',
+                    confirmButtonText: '<i class="fas fa-sign-in-alt"></i> Iniciar Sesión',
+                    confirmButtonColor: '#f59e0b',
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancelar',
+                    cancelButtonColor: '#333',
+                    showClass: {
+                        popup: 'animate__animated animate__backInDown animate__fast' // Animación de entrada brutal
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__backOutUp animate__fast' // Animación de salida fluida
+                    },
+                    customClass: {
+                        popup: 'border border-amber-500/30 rounded-2xl shadow-[0_20px_50px_rgba(245,158,11,0.3)]'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        abrirLogin(); 
+                    }
+                });
+                return; 
+            }
+            
+            // Si está logueado pero no tiene saldo
+            Swal.fire({
+                title: '<span style="color: #eab308; font-family: \'Poppins\', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;"><i class="fas fa-coins mr-2 animate-bounce"></i> Saldo Insuficiente</span>',
+                html: '<p style="color: #fff; font-size: 15px; font-weight: 600;">Debes realizar una recarga para poder activar las funciones de la ruleta.</p>',
+                background: 'rgba(15, 15, 15, 0.95)',
+                backdrop: 'rgba(0, 0, 0, 0.8) blur(8px)',
+                confirmButtonText: '<i class="fas fa-wallet"></i> Cargar Saldo',
+                confirmButtonColor: '#eab308',
+                showCancelButton: true,
+                cancelButtonText: 'Volver',
+                cancelButtonColor: '#333',
+                showClass: {
+                    popup: 'animate__animated animate__jackInTheBox animate__fast' // Efecto sorpresa tipo casino
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__zoomOut animate__fast'
+                },
+                customClass: {
+                    popup: 'border border-yellow-500/30 rounded-2xl shadow-[0_20px_50px_rgba(234,179,8,0.3)]'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    abrirRecargas();
+                }
+            });
         }
         
         function abrirFlipCard() {
-            if (!usuarioActual?.email) { mostrarNotificacion('⚠️ Debes iniciar sesión', 'advertencia'); abrirLogin(); return; }
-            mostrarNotificacion(`💰 No tienes saldo para jugar a FlipCard.`, 'advertencia');
-            abrirRecargas();
+            if (!usuarioActual?.email) { 
+                Swal.fire({
+                    title: '<span style="color: #f59e0b; font-family: \'Poppins\', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;"><i class="fas fa-lock mr-2"></i> Acceso Restringido</span>',
+                    html: '<p style="color: #fff; font-size: 15px; font-weight: 600;">Debes iniciar sesión para continuar a Betonwin.</p>',
+                    background: 'rgba(15, 15, 15, 0.95)',
+                    backdrop: 'rgba(0, 0, 0, 0.8) blur(8px)',
+                    confirmButtonText: '<i class="fas fa-sign-in-alt"></i> Iniciar Sesión',
+                    confirmButtonColor: '#f59e0b',
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancelar',
+                    cancelButtonColor: '#333',
+                    showClass: {
+                        popup: 'animate__animated animate__backInDown animate__fast'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__backOutUp animate__fast'
+                    },
+                    customClass: {
+                        popup: 'border border-amber-500/30 rounded-2xl shadow-[0_20px_50px_rgba(245,158,11,0.3)]'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        abrirLogin(); 
+                    }
+                });
+                return; 
+            }
+            
+            // Si está logueado pero no tiene saldo
+            Swal.fire({
+                title: '<span style="color: #eab308; font-family: \'Poppins\', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;"><i class="fas fa-coins mr-2 animate-bounce"></i> Saldo Insuficiente</span>',
+                html: '<p style="color: #fff; font-size: 15px; font-weight: 600;">Debes realizar una recarga para poder activar las funciones de Coinbeti.com.</p>',
+                background: 'rgba(15, 15, 15, 0.95)',
+                backdrop: 'rgba(0, 0, 0, 0.8) blur(8px)',
+                confirmButtonText: '<i class="fas fa-wallet"></i> Cargar Saldo',
+                confirmButtonColor: '#eab308',
+                showCancelButton: true,
+                cancelButtonText: 'Volver',
+                cancelButtonColor: '#333',
+                showClass: {
+                    popup: 'animate__animated animate__jackInTheBox animate__fast'
+                },
+                hideClass: {
+                    popup: 'animated__animated animate__zoomOut animate__fast'
+                },
+                customClass: {
+                    popup: 'border border-yellow-500/30 rounded-2xl shadow-[0_20px_50px_rgba(234,179,8,0.3)]'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    abrirRecargas();
+                }
+            });
         }
         
         function cerrarJuegoModal() {
@@ -2647,7 +2776,6 @@ function previsualizarComprobanteBanco(input) {
             gameModalOverlay.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-
        // ============================================
 // FUNCIONES AUXILIARES ROBUSTAS
 // ============================================
@@ -2771,9 +2899,144 @@ function cargarUsuario() {
         } catch(e) { console.error("Error al cargar usuario"); }
     } 
 }
+// ============================================
+// SISTEMA DE AUDIO NATIVO OPTIMIZADO (FONDO FIJO)
+// ============================================
+const AudioCasino = {
+    ctx: null,
+    oscFondo: null,
+    gainFondo: null,
 
+    init() {
+        if (!this.ctx) {
+            this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+    },
+
+    // Inicia un hilo de sonido ambiental continuo e infinito sin trabar el navegador
+    initMúsicaFondo() {
+        this.init();
+        if (this.oscFondo) return; // Evitar duplicados
+
+        this.oscFondo = this.ctx.createOscillator();
+        this.gainFondo = this.ctx.createGain();
+
+        this.oscFondo.type = 'sine';
+        // Tono muy bajo, gordo y sutil para simular el ambiente eléctrico de un casino (90Hz)
+        this.oscFondo.frequency.setValueAtTime(90, this.ctx.currentTime); 
+
+        // Volumen inicial en cero absoluto para evitar bloqueos del navegador
+        this.gainFondo.gain.setValueAtTime(0, this.ctx.currentTime);
+
+        this.oscFondo.connect(this.gainFondo);
+        this.gainFondo.connect(this.ctx.destination);
+        this.oscFondo.start(0);
+
+        // Subida de volumen progresiva y súper suave (fade-in) para que el navegador lo acepte
+        this.gainFondo.gain.linearRampToValueAtTime(0.015, this.ctx.currentTime + 3.0);
+    },
+
+    // Sonido sutil para botones y clics normales
+    playClick() {
+        this.init();
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(600, this.ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(150, this.ctx.currentTime + 0.1);
+
+        gain.gain.setValueAtTime(0.1, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.1);
+
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.1);
+    },
+
+    // Alerta de éxito: Arpegio ascendente tipo premio
+    playExito() {
+        this.init();
+        const notas = [523.25, 659.25, 783.99, 1046.50]; 
+        notas.forEach((nota, i) => {
+            setTimeout(() => {
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(nota, this.ctx.currentTime);
+
+                gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.3);
+
+                osc.start();
+                osc.stop(this.ctx.currentTime + 0.3);
+            }, i * 80);
+        });
+    },
+
+    // Alerta de error / bloqueo: Tono grave descendente
+    playError() {
+        this.init();
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(180, this.ctx.currentTime);
+        osc.frequency.linearRampToValueAtTime(70, this.ctx.currentTime + 0.3);
+
+        gain.gain.setValueAtTime(0.15, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.3);
+
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.3);
+    },
+
+    // Alerta informativa o advertencia
+    playInfo() {
+        this.init();
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(440, this.ctx.currentTime);
+        osc.frequency.setValueAtTime(554, this.ctx.currentTime + 0.1);
+
+        gain.gain.setValueAtTime(0.1, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.25);
+
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.25);
+    }
+};
+
+// Capturador de interacciones globales corregido
+document.addEventListener('click', () => {
+    // Si el AudioContext estaba pausado por restricciones del navegador, lo despierta
+    if (AudioCasino.ctx && AudioCasino.ctx.state === 'suspended') {
+        AudioCasino.ctx.resume();
+    }
+    
+    // Ejecuta el clic mecánico normal
+    AudioCasino.playClick(); 
+    
+    // Fuerza el inicio del bucle infinito de sonido de fondo en el primer clic real del usuario
+    if (!window.fondoIniciado) {
+        AudioCasino.initMúsicaFondo();
+        window.fondoIniciado = true;
+    }
+}, { once: false });
 // Inicialización
 cargarUsuario();
+
+
 
         window.intentarJugar = intentarJugar;
         window.abrirRecargas = abrirRecargas;
@@ -2809,5 +3072,6 @@ cargarUsuario();
         window.cerrarJuegoModal = cerrarJuegoModal;
         window.abrirWhatsApp = abrirWhatsApp;
     </script>
-</body>
-</html>
+
+
+</body></html>
