@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+<!DOCTYPE html><html lang="es"><head>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <meta charset="UTF-8">
@@ -129,7 +127,7 @@
 <meta name="description" content="index" data-id="th-modified">
 <meta property="og:description" content="index" data-id="th-modified">
 
-<script defer="" data-domain="www.coinbeti.com" src="https://analytics.tiiny.site/js/plausible.js"></script></head>
+<script defer="" data-domain="www.coinbeti.com" src="https://analytics.tiiny.net/js/plausible.js"></script></head>
 <body>
 
 <header class="bg-[#0b0b0b] w-full border-b border-amber-500/10 sticky top-0 z-[200] px-2 py-2 flex flex-col gap-1 shadow-[0_5px_15px_rgba(0,0,0,0.5)]" style="animation: casinoGlow 5s ease-in-out infinite;">
@@ -619,100 +617,324 @@ function abrirWhatsApp() {
     })();
 </script>
 
-    <section class="max-w-[700px] mx-auto w-full p-4 mt-8 space-y-8">
+ <section class="max-w-[700px] mx-auto w-full p-4 mt-4 space-y-6">
     
-    <div class="flex flex-col md:flex-row justify-between items-center gap-4 bg-zinc-900/40 backdrop-blur-md p-4 rounded-xl border border-zinc-700/50">
-        <div class="buscador-container relative w-full md:w-96">
+    <!-- Buscador y Categorías -->
+    <div class="flex flex-col gap-4 bg-zinc-900/40 backdrop-blur-md p-4 rounded-xl border border-zinc-700/50">
+        <div class="buscador-container relative w-full">
             <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"></i>
-            <input type="text" id="buscador-juegos" class="buscador-input w-full pl-10 pr-4 py-2.5 rounded-lg bg-black/40 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 transition-all" placeholder="Buscar juego..." onkeyup="filtrarJuegos(this.value)">
+            <input type="text" id="buscador-juegos" class="buscador-input w-full pl-10 pr-4 py-2.5 rounded-lg bg-black/40 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 transition-all text-sm" placeholder="Buscar juego..." onkeyup="filtrarJuegos(this.value)">
         </div>
         
-        <div class="categorias-container flex flex-wrap justify-center gap-2">
-            <button class="categoria-btn active px-4 py-2 rounded-lg text-xs font-bold uppercase bg-emerald-600 text-white transition-all" onclick="filtrarCategoria('todos', this)">Todos</button>
-            <button class="categoria-btn px-4 py-2 rounded-lg text-xs font-bold uppercase bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all" onclick="filtrarCategoria('slots', this)">Slots</button>
-            <button class="categoria-btn px-4 py-2 rounded-lg text-xs font-bold uppercase bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all" onclick="filtrarCategoria('crash', this)">Crash</button>
-            <button class="categoria-btn px-4 py-2 rounded-lg text-xs font-bold uppercase bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all" onclick="filtrarCategoria('nuevos', this)">Nuevos</button>
-            <button class="categoria-btn px-4 py-2 rounded-lg text-xs font-bold uppercase bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all" onclick="filtrarCategoria('populares', this)">Otros</button>
-            <button class="categoria-btn px-4 py-2 rounded-lg text-xs font-bold uppercase bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all" onclick="filtrarCategoria('favoritos', this)">Team</button>
+        <div class="categorias-container flex flex-row overflow-x-auto no-scrollbar justify-start sm:justify-center gap-2 pb-1 snap-x">
+            <button class="categoria-btn active px-3 py-2 rounded-lg text-[10px] font-bold uppercase bg-emerald-600 text-white transition-all snap-center whitespace-nowrap" onclick="filtrarCategoria('todos', this)">Todos</button>
+            <button class="categoria-btn px-3 py-2 rounded-lg text-[10px] font-bold uppercase bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all snap-center whitespace-nowrap" onclick="filtrarCategoria('slots', this)">Slots</button>
+            <button class="categoria-btn px-3 py-2 rounded-lg text-[10px] font-bold uppercase bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all snap-center whitespace-nowrap" onclick="filtrarCategoria('crash', this)">Crash</button>
+            <button class="categoria-btn px-3 py-2 rounded-lg text-[10px] font-bold uppercase bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all snap-center whitespace-nowrap" onclick="filtrarCategoria('nuevos', this)">Nuevos</button>
+            <button class="categoria-btn px-3 py-2 rounded-lg text-[10px] font-bold uppercase bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all snap-center whitespace-nowrap" onclick="filtrarCategoria('populares', this)">Otros</button>
+            <button class="categoria-btn px-3 py-2 rounded-lg text-[10px] font-bold uppercase bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-all snap-center whitespace-nowrap" onclick="filtrarCategoria('favoritos', this)">Team</button>
         </div>
     </div>
 
-    <div class="border border-emerald-500/20 shadow-[0_0_30px_rgba(0,0,0,0.9)] relative overflow-hidden bg-black/60 backdrop-blur-md rounded-xl grid grid-cols-1 sm:grid-cols-3 gap-3 p-3">
-        
-        <button onclick="abrirModalAnimacion('saco-dinero', 'https://images.icon-icons.com/1675/PNG/96/3890943-bag-cash-currency-dollar-money-sack_111183.png')" class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-emerald-500/20 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-emerald-400/50 hover:shadow-emerald-500/10 group relative overflow-hidden z-10 cursor-pointer w-full">
-            <div class="mb-2 w-10 h-10 flex items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 animate-pulse">
-                <img src="https://images.icon-icons.com/1675/PNG/96/3890943-bag-cash-currency-dollar-money-sack_111183.png" alt="Usuarios" class="w-5 h-5 drop-shadow-md">
-            </div>
+    <!-- Carrusel de Imágenes (Animación lenta y suave) -->
+    <div class="relative w-full overflow-hidden bg-black/20 py-3 border-y border-zinc-800/60 rounded-2xl cursor-grab">
+        <div id="carrusel-track" class="flex gap-3 w-max animate-carrusel-loop will-change-transform">
+            <!-- Inyectado por JS -->
+        </div>
+    </div>
 
-            <div class="flex items-center gap-2 mb-1">
+    <!-- Tarjetas de estadísticas -->
+    <div class="border border-emerald-500/20 shadow-[0_0_30px_rgba(0,0,0,0.9)] relative overflow-hidden bg-black/60 backdrop-blur-md rounded-xl grid grid-cols-1 sm:grid-cols-3 gap-3 p-3">
+        <button onclick="abrirModalAnimacion('Saco de Dinero', 'https://images.icon-icons.com/1675/PNG/96/3890943-bag-cash-currency-dollar-money-sack_111183.png')" class="stat-item flex flex-col justify-center items-center p-3 rounded-xl bg-black/60 border border-emerald-500/20 shadow-xl transition-all w-full">
+            <div class="mb-1.5 w-9 h-9 flex items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/30 animate-pulse">
+                <img src="https://images.icon-icons.com/1675/PNG/96/3890943-bag-cash-currency-dollar-money-sack_111183.png" alt="Usuarios" class="w-4 h-4 drop-shadow-md">
+            </div>
+            <div class="flex items-center gap-2 mb-0.5">
                 <span class="flex h-2 w-2 relative">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
-                <div class="valor font-sans text-2xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 group-hover:brightness-125 transition-all duration-300 tracking-tight" style="text-shadow: 0 4px 4px rgba(0,0,0,0.8), 0 0 8px rgba(52,211,153,0.3);">8,987</div>
+                <div class="valor font-sans text-xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 tracking-tight" style="text-shadow: 0 4px 4px rgba(0,0,0,0.8), 0 0 8px rgba(52,211,153,0.3);">8,987</div>
             </div>
-
-            <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-zinc-400 group-hover:text-emerald-300 transition-colors">
-                EN LÍNEA
-            </div>
+            <div class="etiqueta tracking-widest font-black uppercase text-[8px] text-zinc-400">EN LÍNEA</div>
         </button>
 
-        <button onclick="abrirModalAnimacion('bote-vivo', 'https://images.icon-icons.com/1713/PNG/96/iconfinder-youtubelivevideowebinarconference-3993869_112660.png')" class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-amber-500/20 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-amber-400/50 hover:shadow-amber-500/10 group relative overflow-hidden z-10 cursor-pointer w-full">
-            <div class="mb-2 w-10 h-10 flex items-center justify-center rounded-xl bg-amber-500/10 border border-amber-500/30 group-hover:scale-110 group-hover:-rotate-3 transition-all duration-300 animate-pulse">
-                <img src="https://images.icon-icons.com/1713/PNG/96/iconfinder-youtubelivevideowebinarconference-3993869_112660.png" alt="Bote" class="w-5 h-5 drop-shadow-md">
+        <button onclick="abrirModalAnimacion('Bote En Vivo', 'https://images.icon-icons.com/1713/PNG/96/iconfinder-youtubelivevideowebinarconference-3993869_112660.png')" class="stat-item flex flex-col justify-center items-center p-3 rounded-xl bg-black/60 border border-amber-500/20 shadow-xl transition-all w-full">
+            <div class="mb-1.5 w-9 h-9 flex items-center justify-center rounded-xl bg-amber-500/10 border border-amber-500/30 animate-pulse">
+                <img src="https://images.icon-icons.com/1713/PNG/96/iconfinder-youtubelivevideowebinarconference-3993869_112660.png" alt="Bote" class="w-4 h-4 drop-shadow-md">
             </div>
-
-            <div class="valor font-sans text-2xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 group-hover:brightness-125 transition-all duration-300 tracking-tight mb-1" style="text-shadow: 0 4px 4px rgba(0,0,0,0.8), 0 0 8px rgba(251,191,36,0.3);">$12,504.82</div>
-            
-            <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-amber-500/70 group-hover:text-amber-400 transition-colors">
-                BOTE ACUMULADO
-            </div>
+            <div class="valor font-sans text-xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-200 to-zinc-400 tracking-tight mb-0.5" style="text-shadow: 0 4px 4px rgba(0,0,0,0.8), 0 0 8px rgba(251,191,36,0.3);">$12,504.82</div>
+            <div class="etiqueta tracking-widest font-black uppercase text-[8px] text-amber-500/70">BOTE ACUMULADO</div>
         </button>
 
-        <button onclick="abrirModalAnimacion('ganadores-corona', 'https://images.icon-icons.com/4188/PNG/96/crown_game_sports_console_controller_sport_video_play_gaming_icon_262443.png')" class="stat-item flex flex-col justify-center items-center p-4 rounded-xl bg-black/60 border border-cyan-500/20 shadow-xl transition-all duration-300 hover:scale-[1.03] hover:border-cyan-400/50 hover:shadow-cyan-500/10 group relative overflow-hidden z-10 cursor-pointer w-full">
-            <div class="mb-2 w-10 h-10 flex items-center justify-center rounded-xl bg-cyan-500/10 border border-cyan-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 animate-pulse">
-                <img src="https://images.icon-icons.com/4188/PNG/96/crown_game_sports_console_controller_sport_video_play_gaming_icon_262443.png" alt="Ganadores" class="w-5 h-5 drop-shadow-md">
+        <button onclick="abrirModalAnimacion('Ganadores Corona', 'https://images.icon-icons.com/4188/PNG/96/crown_game_sports_console_controller_sport_video_play_gaming_icon_262443.png')" class="stat-item flex flex-col justify-center items-center p-3 rounded-xl bg-black/60 border border-cyan-500/20 shadow-xl transition-all w-full">
+            <div class="mb-1.5 w-9 h-9 flex items-center justify-center rounded-xl bg-cyan-500/10 border border-cyan-500/30 animate-pulse">
+                <img src="https://images.icon-icons.com/4188/PNG/96/crown_game_sports_console_controller_sport_video_play_gaming_icon_262443.png" alt="Ganadores" class="w-4 h-4 drop-shadow-md">
             </div>
-
-            <div class="valor font-sans text-2xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-100 group-hover:brightness-125 transition-all duration-300 tracking-tight mb-1 flex items-center justify-center" style="text-shadow: 0 4px 4px rgba(0,0,0,0.8), 0 0 10px rgba(6,182,212,0.3);">10,092</div>
-            
-            <div class="etiqueta tracking-widest font-black uppercase text-[9px] text-zinc-400 group-hover:text-cyan-300 transition-colors">
-                GANADORES DE HOY
-            </div>
+            <div class="valor font-sans text-xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-100 tracking-tight mb-0.5 flex items-center justify-center" style="text-shadow: 0 4px 4px rgba(0,0,0,0.8), 0 0 10px rgba(6,182,212,0.3);">10,092</div>
+            <div class="etiqueta tracking-widest font-black uppercase text-[8px] text-zinc-400">GANADORES DE HOY</div>
         </button>
     </div>
 
+    <!-- Modal -->
     <div id="animacion-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-2xl p-4 transition-all duration-500">
-        <div class="relative w-full max-w-lg rounded-3xl border-2 border-emerald-500/40 bg-gradient-to-br from-zinc-950 via-zinc-900/60 to-black p-8 shadow-[0_0_80px_rgba(16,185,129,0.3)] flex flex-col items-center overflow-hidden">
-            
-            <div class="absolute -top-12 -left-12 h-32 w-32 rounded-full bg-emerald-500/20 blur-3xl"></div>
-            <div class="absolute -bottom-12 -right-12 h-32 w-32 rounded-full bg-cyan-500/20 blur-3xl"></div>
-
-            <button onclick="cerrarModalAnimacion()" class="absolute right-6 top-6 flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-700 bg-zinc-900 text-zinc-400 transition-all duration-300 hover:rotate-90 hover:border-emerald-500 hover:bg-emerald-600/30 hover:text-white shadow-inner z-20">
-                ✕
-            </button>
-
-            <h4 class="text-xs font-black tracking-[0.3em] text-emerald-400 uppercase mb-8 mt-2 bg-emerald-950/60 border border-emerald-500/30 px-5 py-2 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.2)] text-center" id="modal-titulo-animacion">ANIMACIÓN EXCLUSIVA</h4>
-
-            <div class="relative flex h-64 w-64 items-center justify-center">
+        <div class="relative w-full max-w-sm rounded-3xl border-2 border-emerald-500/40 bg-gradient-to-br from-zinc-950 via-zinc-900/60 to-black p-6 shadow-[0_0_80px_rgba(16,185,129,0.3)] flex flex-col items-center overflow-hidden">
+            <button onclick="cerrarModalAnimacion()" class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-xl border border-zinc-700 bg-zinc-900 text-zinc-400 z-20">✕</button>
+            <h4 class="text-[10px] font-black tracking-[0.2em] text-emerald-400 uppercase mb-6 mt-2 bg-emerald-950/60 border border-emerald-500/30 px-4 py-1.5 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.2)] text-center" id="modal-titulo-animacion">ANIMACIÓN EXCLUSIVA</h4>
+            <div class="relative flex h-48 w-48 items-center justify-center">
                 <div class="absolute inset-0 animate-[spin_7s_linear_infinite] rounded-full border-2 border-dashed border-emerald-400/60"></div>
-                
                 <div class="absolute inset-3 animate-[spin_4s_linear_infinite_reverse] rounded-full border border-solid border-cyan-400/40"></div>
-                
-                <div class="absolute inset-4 animate-[ping_2.5s_ease-in-out_infinite] rounded-full bg-emerald-500/10"></div>
-                <div class="absolute inset-8 animate-[ping_2s_ease-in-out_infinite_reverse] rounded-full bg-cyan-500/10"></div>
-
-                <img id="icono-animado-dinamico" src="" alt="Icono Robusto" class="h-24 w-24 drop-shadow-[0_0_25px_rgba(52,211,153,0.9)] scale-up-center z-10 filter brightness-110">
+                <img id="icono-animado-dinamico" src="" alt="Icono" class="h-16 w-16 drop-shadow-[0_0_25px_rgba(52,211,153,0.9)] z-10">
             </div>
-
-            <div class="mt-12 flex w-full justify-center relative">
-                <div class="absolute inset-0 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent blur-md"></div>
-                <div class="h-1 w-56 animate-pulse rounded-full bg-gradient-to-r from-transparent via-emerald-400 to-transparent"></div>
+            <div class="mt-6 flex w-full justify-center relative">
+                <div class="h-1 w-40 rounded-full bg-gradient-to-r from-transparent via-emerald-400 to-transparent animate-pulse"></div>
             </div>
         </div>
     </div>
-</section>
 
+    <style>
+        @keyframes scrollHaciaDerecha {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-carrusel-loop {
+            /* 80 segundos para una velocidad muy lenta y premium */
+            animation: scrollHaciaDerecha 80s linear infinite;
+        }
+        /* Pausa la animación al pasar el mouse */
+        .animate-carrusel-loop:hover {
+            animation-play-state: paused;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+
+    <script>
+        const misImagenesJuegos = [
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/sugar-rushT1731536549.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Gates-of-OlympusT1746469136.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Clover-Super-PotT1773091885.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Cheesy-Road-1781709499.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/4-Pots-Riches-Hold-and-WinT1772724101.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Bonbon-Pop-1000Te613ebea-fc34-43c1-88d5-a17379e09ae4.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Blue-WizardT1731591091.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Diamond-Explosion-7sT1763051711.jpg" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/1000-Olympus-RivalsT1768322798.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Golden-TreeT1702649984.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/40-Shining-CrownT1765311061.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Crown-CoinsT1726511270.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Rise-of-OlympusT1551372019.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/3-Fortune-SoulsT1748379777.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/AviatorT1770135696.jpg" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Caishen-RichesT1590071165.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Diamonds-Power-Hold-and-WinT1737407487.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Big-Wild-Buffalo-2T1764263438.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Win-777T1731421101.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/7---Hot-FruitsT1634073927.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/888-DragonsT1557785735.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/AphroditeT1757427166.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Candy-LoopT1730904372.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Caramelo-Sortudo-1781729583.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Cash-Pig-2T1745962887.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Coin-DazzleT1759173588.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Coin-Strike-Hold-and-WinT1737407157.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hell-Hot-100T1719442126.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/JoxerT1758547520.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Lucky-PhoenixT1749571601.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Moon-Princess-100T1649715255.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Royal-CoinsT1731526135.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Shining-Crown-Buy-BonusT1750184054.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Super-777sT1757431820.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Wild-Spin--T1634074372.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Xmas-InvadersT1733495439.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Gates-Of-AnubisT1764943507.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/10-Burning-HeartT1752004576.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Raices-DoradasT1773091088.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Batalla-RunicaT1773091025.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/BalloonT1731418662.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/John-Hunter-and-the-book-of-tutT1741627917.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Aztec-GemsT1741879999.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Honey-Honey-HoneyT1572531723.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Greek-GodsT1576265207.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Ancient-EgyptT1558545359.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Magic-CrystalsT1560369940.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Da-Vincis-TreasureT1650644995.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Glorious-RomeT1650645294.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Gold-RushT1650639612.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Diamonds-are-Forever-3-LinesT1650644973.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Gold-TrainT1650645329.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Great-ReefT1650911697.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/The-Great-Chicken-EscapeT1568303463.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hercules-and-PegasusT1650300116.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hercules-Son-of-ZeusT1560370955.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Three-Star-FortuneT1593555022.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/The-Wild-MachineT1584113087.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Triple-DragonsT1650645080.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Vegas-MagicT1650910536.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Treasure-HorseT1650640005.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Safari-KingT1557419421.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Wild-GladiatorT1650639842.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Pandas-FortuneT1560366889.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Lucky-DragonsT1650645415.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Chilli-HeatT1741877133.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Panther-QueenT1650645360.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Aladdin-and-the-SorcererT1650639511.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Peking-LuckT1650639733.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Pirate-GoldT1558640777.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Diamond-StrikeT1555427521.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Lucky-LightningT1624281126.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Heart-of-RioT1623362077.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Pandas-Fortune-2T1623160829.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Cash-BonanzaT1650924697.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Day-of-DeadT1650924991.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/John-Hunter-and-the-Quest-for-Bermuda-RichesT1650925170.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Mystic-ChiefT1650924775.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Piggy-Bank-BillsT1634316823.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Star-Pirates-CodeT1635371253.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Bounty-GoldT1637074670.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Master-JokerT1650299178.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Christmas-Big-Bass-BonanzaT1639518989.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Colossal-Cash-ZoneT1644009024.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Crystal-Caverns-MegawaysT1741881409.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Gates-of-ValhallaT1699030804.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Gold-PartyT1741628633.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Magicians-SecretsT1641506969.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Book-of-FallenT1637879549.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Smugglers-CoveT1639169075.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Wild-DepthsT1650925560.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Super-XT1637790697.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/-Pizza-Pizza-PizzaT1670875510.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-JuanT1741880955.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Bigger-Bass-Blizzard-Christmas-CatchT1741878494.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Bomb-BonanzaT1657598681.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Buffalo-King-MegawaysT0a3b905d-8470-4578-a170-ddda50570992.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Candy-BlitzT1741626407.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Cash-BoxT1690473794.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Cash-PatrolT1656625709.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Chicken-ChaseT1650395510.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/CleocatraT1741872738.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Extra-Juicy-MegawaysT1741628121.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Eye-of-cleopatraT1650633727.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Eye-of-the-StormT1650911843.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Fire-Strike-2T1651789390.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Fish-EyeT1674669848.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Curse-of-the-Werewolf-MegawaysT1613514478.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Cyclops-SmashT1694534619.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Cyclops-SmashT1694534619.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Diamond-CascadeT1692033854.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Forge-of-OlympusT1692890991.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Diamonds-Of-EgyptT1684177119.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Down-the-RailsT1661792381.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Dragon-HeroT1741879142.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Drill-that-Gold-T1649365607.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Fury-of-Odin-MegawaysT1670264080.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Heist-for-the-Golden-NuggetsT1690214583.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hellvis-WildT1690216230.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hot-FiestaT1650919919.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hot-PepperT1670876464.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/John-Hunter-and-the-Book-of-Tut-RespinT1665596822.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Jungle-GorillaT1605294394.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Little-GemT1653689122.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Lobster-Bob-s-Crazy-Crab-ShackT1692033428.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/MochimonT1741628378.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Mammoth-Gold-MegawayT1674157514.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/North-GuardiansT1651789426.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Pinup-GirlsT1673890044.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Piggy-BankersT1692890890.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Power-of-Merlin-MegawaysT1690473523.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Power-of-Thor-MegawaysT1619123075.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Pub-KingsT1692890920.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Rabbit-GardenT1684256517.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Shield-of-SpartaT1668632515.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/The-Great-Stick-UpT1653689090.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Spirit-of-AdventureT1651006831.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/The-Dog-House-MegawaysT1741630770.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/The-Dragon-TigerT1666112736.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Castle-of-FireT1709053667.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Timber-StacksT1703859828.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Candy-Jar-ClustersT1703010741.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Lokis-RichesT1709669793.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Trees-of-TreasureT1712845678.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Strawberry-CocktailT1710267179.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Beware-the-Deep-MegawaysT1712846269.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Bass-Secrets-of-the-Golden-LakeT1712845850.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Fire-PortalsT1712846182.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Bass-HalloweenT1714674389.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Blade---FangsT1714674358.png" },
+ 
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Year-of-the-Dragon-KingT1714674417.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Bass-Day-at-the-RacesT1717001687.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Burger-Load-it-up-with-Xtra-cheeseT1717001933.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Dwarf---DragonT1716397312.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hand-of-Midas-2T1719441791.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hot-to-burn-MultiplerT1719441722.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Pot-of-FortuneT1717001898.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Starlight-Princess-PachiT1717000574.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Buffalo-King-Untamed-MegawaysT556ecc28-687f-49c8-af81-8abf39ce84fe.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Rise-of-PyramidsT1719948728.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Sweet-KingdomT1719935754.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Crank-It-UpT1720502869.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Samurai-CodeT1720502966.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Dragon-Gold-88T1722950579.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Money-StacksT1722950186.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Heart-of-CleopatraT1719948896.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hot-to-Burn-–-7-Deadly-Free-SpinsT1724261415.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Irish-Cash-ChipsT1724266011.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Jackpot-HunterT1724265385.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Running-SushiT1724246856.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Sumo-Supreme-MegawaysT1724273760.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Yeti-QuestT1731419229.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Bass-Vegas-Double-Down-DeluxeT1725901545.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Gem-ElevatorT1725376668.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Joker’s-Jewels-HotT1726512728.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Mustang-Gold-MegawaysT1725376697.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Angel-vs-SinnerT1727799705.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Mystery-MiceT1727799652.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Oodles-of-NoodlesT1727961694.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Bass-Halloween-2T1728323904.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Candy-Blitz-BombsT1728323767.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/7-Clovers-of-FortuneT1730223529.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Badge-BlitzT1732032809.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Chests-of-Cai-ShenT1729628668.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Fangtastic-FreespinsT1730224343.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Fortune-Hit’n-RollT1729628636.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Heroic-SpinsT1732033225.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Congo-Cash-XLT1727799746.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Release-the-Kraken-MegawaysT1729706550.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/The-Dog-House---Muttley-CrewT1732032337.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Bass-Xmas-XtremeT1732655676.png" }
+];
+
+        function inicializarCarrusel() {
+            const track = document.getElementById('carrusel-track');
+            if (!track) return;
+            // Duplicar para efecto infinito
+            const lista = [...misImagenesJuegos, ...misImagenesJuegos];
+            track.innerHTML = lista.map(juego => `
+                <div class="w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-md">
+                    <img src="${juego.url}" alt="${juego.nombre}" class="w-full h-full object-cover" loading="lazy" onerror="this.src='https://via.placeholder.com/150'">
+                </div>
+            `).join('');
+        }
+
+        function abrirModalAnimacion(titulo, imgUrl) {
+            document.getElementById('modal-titulo-animacion').innerText = titulo.toUpperCase();
+            document.getElementById('icono-animado-dinamico').src = imgUrl;
+            document.getElementById('animacion-modal').classList.replace('hidden', 'flex');
+        }
+
+        function cerrarModalAnimacion() {
+            document.getElementById('animacion-modal').classList.replace('flex', 'hidden');
+        }
+
+        function filtrarCategoria(cat, btn) {
+            document.querySelectorAll('.categoria-btn').forEach(b => b.classList.remove('active', 'bg-emerald-600', 'text-white'));
+            btn.classList.add('active', 'bg-emerald-600', 'text-white');
+        }
+
+        document.addEventListener('DOMContentLoaded', inicializarCarrusel);
+    </script>
+</section>
 <style>
     @keyframes escalaAparecer {
         0% { transform: scale(0); opacity: 0; }
@@ -720,7 +942,7 @@ function abrirWhatsApp() {
         100% { transform: scale(1); opacity: 1; }
     }
     .scale-up-center {
-        animation: escalaAparecer 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        animation: escalaAparecer 0.5s cubic-bezier(0.64, 1.56, 0.64, 1);
     }
 </style>
 
@@ -883,200 +1105,200 @@ function abrirWhatsApp() {
 </div>
 
 <script>
-  // 1. Lista de juegos (Array completo de 200 URLs)
+  // 1. Lista de juegos (Array completo de 191 URLs)
 const juegos = [
-    { nombre: "Sugar Rush", url: "https://images.virtualsoft.tech/productos/sugar-rushT1731536549.gif" },
-    { nombre: "Gates of Olympus", url: "https://images.virtualsoft.tech/productos/Gates-of-OlympusT1746469136.png" },
-    { nombre: "Clover Super Pot", url: "https://images.virtualsoft.tech/m/Clover-Super-PotT1773091885.png" },
-    { nombre: "Cheesy Road", url: "https://images.virtualsoft.tech/productos/Cheesy-Road-1781709499.png" },
-    { nombre: "4 Pots Riches", url: "https://images.virtualsoft.tech/m/4-Pots-Riches-Hold-and-WinT1772724101.gif" },
-    { nombre: "Bonbon Pop 1000", url: "https://images.virtualsoft.tech/m/Bonbon-Pop-1000Te613ebea-fc34-43c1-88d5-a17379e09ae4.gif" },
-    { nombre: "Blue Wizard", url: "https://images.virtualsoft.tech/productos/Blue-WizardT1731591091.gif" },
-    { nombre: "Diamond Explosion 7s", url: "https://images.virtualsoft.tech/m/Diamond-Explosion-7sT1763051711.jpg" },
-    { nombre: "1000 Olympus Rivals", url: "https://images.virtualsoft.tech/m/1000-Olympus-RivalsT1768322798.gif" },
-    { nombre: "Golden Tree", url: "https://images.virtualsoft.tech/productos/Golden-TreeT1702649984.png" },
-    { nombre: "40 Shining Crown", url: "https://images.virtualsoft.tech/m/40-Shining-CrownT1765311061.png" },
-    { nombre: "Crown Coins", url: "https://images.virtualsoft.tech/productos/Crown-CoinsT1726511270.png" },
-    { nombre: "Rise of Olympus", url: "https://images.virtualsoft.tech/productos/Rise-of-OlympusT1551372019.png" },
-    { nombre: "3 Fortune Souls", url: "https://images.virtualsoft.tech/productos/3-Fortune-SoulsT1748379777.png" },
-    { nombre: "Aviator", url: "https://images.virtualsoft.tech/m/AviatorT1770135696.jpg" },
-    { nombre: "Caishen Riches", url: "https://images.virtualsoft.tech/productos/Caishen-RichesT1590071165.png" },
-    { nombre: "Diamonds Power", url: "https://images.virtualsoft.tech/productos/Diamonds-Power-Hold-and-WinT1737407487.gif" },
-    { nombre: "Big Wild Buffalo 2", url: "https://images.virtualsoft.tech/m/Big-Wild-Buffalo-2T1764263438.gif" },
-    { nombre: "Big Win 777", url: "https://images.virtualsoft.tech/productos/Big-Win-777T1731421101.gif" },
-    { nombre: "7 Hot Fruits", url: "https://images.virtualsoft.tech/productos/7---Hot-FruitsT1634073927.png" },
-    { nombre: "888 Dragons", url: "https://images.virtualsoft.tech/productos/888-DragonsT1557785735.png" },
-    { nombre: "Aphrodite", url: "https://images.virtualsoft.tech/productos/AphroditeT1757427166.png" },
-    { nombre: "Candy Loop", url: "https://images.virtualsoft.tech/productos/Candy-LoopT1730904372.png" },
-    { nombre: "Caramelo Sortudo", url: "https://images.virtualsoft.tech/productos/Caramelo-Sortudo-1781729583.png" },
-    { nombre: "Cash Pig 2", url: "https://images.virtualsoft.tech/productos/Cash-Pig-2T1745962887.png" },
-    { nombre: "Coin Dazzle", url: "https://images.virtualsoft.tech/productos/Coin-DazzleT1759173588.gif" },
-    { nombre: "Coin Strike", url: "https://images.virtualsoft.tech/productos/Coin-Strike-Hold-and-WinT1737407157.gif" },
-    { nombre: "Hell Hot 100", url: "https://images.virtualsoft.tech/productos/Hell-Hot-100T1719442126.png" },
-    { nombre: "Joxer", url: "https://images.virtualsoft.tech/productos/JoxerT1758547520.png" },
-    { nombre: "Lucky Phoenix", url: "https://images.virtualsoft.tech/productos/Lucky-PhoenixT1749571601.png" },
-    { nombre: "Moon Princess 100", url: "https://images.virtualsoft.tech/productos/Moon-Princess-100T1649715255.png" },
-    { nombre: "Royal Coins", url: "https://images.virtualsoft.tech/productos/Royal-CoinsT1731526135.gif" },
-    { nombre: "Shining Crown Bonus", url: "https://images.virtualsoft.tech/productos/Shining-Crown-Buy-BonusT1750184054.gif" },
-    { nombre: "Super 777s", url: "https://images.virtualsoft.tech/productos/Super-777sT1757431820.png" },
-    { nombre: "Wild Spin", url: "https://images.virtualsoft.tech/productos/Wild-Spin--T1634074372.png" },
-    { nombre: "Xmas Invaders", url: "https://images.virtualsoft.tech/productos/Xmas-InvadersT1733495439.png" },
-    { nombre: "Gates Of Anubis", url: "https://images.virtualsoft.tech/m/Gates-Of-AnubisT1764943507.gif" },
-    { nombre: "Buffalo Blitz", url: "https://images.virtualsoft.tech/productos/Buffalo-BlitzT1731591011.png" },
-    { nombre: "Book of Dead", url: "https://images.virtualsoft.tech/productos/Book-of-DeadT1551372099.png" },
-    { nombre: "Starburst", url: "https://images.virtualsoft.tech/productos/StarburstT1551372105.png" },
-    { nombre: "Gonzo's Quest", url: "https://images.virtualsoft.tech/productos/GonzoT1551372055.png" },
-    { nombre: "Mega Moolah", url: "https://images.virtualsoft.tech/productos/Mega-MoolahT1551372077.png" },
-    { nombre: "Thunderstruck II", url: "https://images.virtualsoft.tech/productos/ThunderstruckT1551372088.png" },
-    { nombre: "Wolf Gold", url: "https://images.virtualsoft.tech/productos/Wolf-GoldT1634074111.png" },
-    { nombre: "Reactoonz", url: "https://images.virtualsoft.tech/productos/ReactoonzT1649715333.png" },
-    { nombre: "Bonanza", url: "https://images.virtualsoft.tech/productos/BonanzaT1649715444.png" },
-    { nombre: "Jammin Jars", url: "https://images.virtualsoft.tech/productos/Jammin-JarsT1649715555.png" },
-    { nombre: "The Dog House", url: "https://images.virtualsoft.tech/productos/The-Dog-HouseT1746469222.png" },
-    { nombre: "Sweet Bonanza", url: "https://images.virtualsoft.tech/productos/Sweet-BonanzaT1746469333.png" },
-    { nombre: "Divine Fortune", url: "https://images.virtualsoft.tech/productos/Divine-FortuneT1634074222.png" },
-    { nombre: "Immortal Romance", url: "https://images.virtualsoft.tech/productos/Immortal-RomanceT1551372066.png" },
-    { nombre: "Extra Chilli", url: "https://images.virtualsoft.tech/productos/Extra-ChilliT1649715666.png" },
-    { nombre: "Vikings Go Berzerk", url: "https://images.virtualsoft.tech/productos/VikingsT1649715777.png" },
-    { nombre: "Blood Suckers", url: "https://images.virtualsoft.tech/productos/Blood-SuckersT1551372044.png" },
-    { nombre: "Twin Spin", url: "https://images.virtualsoft.tech/productos/Twin-SpinT1551372033.png" },
-    { nombre: "Dead or Alive", url: "https://images.virtualsoft.tech/productos/Dead-or-AliveT1551372022.png" },
-    { nombre: "Jungle Jim", url: "https://images.virtualsoft.tech/productos/Jungle-JimT1551372011.png" },
-    { nombre: "Break da Bank", url: "https://images.virtualsoft.tech/productos/Break-da-BankT1551372000.png" },
-    { nombre: "Jurassic Park", url: "https://images.virtualsoft.tech/productos/Jurassic-ParkT1551371999.png" },
-    { nombre: "Terminator 2", url: "https://images.virtualsoft.tech/productos/Terminator-2T1551371988.png" },
-    { nombre: "Game of Thrones", url: "https://images.virtualsoft.tech/productos/Game-of-ThronesT1551371977.png" },
-    { nombre: "Avalon", url: "https://images.virtualsoft.tech/productos/AvalonT1551371966.png" },
-    { nombre: "Hitman", url: "https://images.virtualsoft.tech/productos/HitmanT1551371955.png" },
-    { nombre: "Tomb Raider", url: "https://images.virtualsoft.tech/productos/Tomb-RaiderT1551371944.png" },
-    { nombre: "Mermaids Millions", url: "https://images.virtualsoft.tech/productos/MermaidsT1551371933.png" },
-    { nombre: "Ladies Nite", url: "https://images.virtualsoft.tech/productos/Ladies-NiteT1551371922.png" },
-    { nombre: "Burning Wins", url: "https://images.virtualsoft.tech/productos/Burning-WinsT1737407111.png" },
-    { nombre: "Sevens & Fruits", url: "https://images.virtualsoft.tech/productos/Sevens-FruitsT1737407222.png" },
-    { nombre: "Imperial Fruits", url: "https://images.virtualsoft.tech/productos/Imperial-FruitsT1737407333.png" },
-    { nombre: "Book of Gold", url: "https://images.virtualsoft.tech/productos/Book-of-GoldT1737407444.png" },
-    { nombre: "Solar Queen", url: "https://images.virtualsoft.tech/productos/Solar-QueenT1737407555.png" },
-    { nombre: "Buffalo Power", url: "https://images.virtualsoft.tech/productos/Buffalo-PowerT1737407666.png" },
-    { nombre: "Wolf Power", url: "https://images.virtualsoft.tech/productos/Wolf-PowerT1737407777.png" },
-    { nombre: "Rise of Egypt", url: "https://images.virtualsoft.tech/productos/Rise-of-EgyptT1737407888.png" },
-    { nombre: "Legend of Cleopatra", url: "https://images.virtualsoft.tech/productos/Legend-CleopatraT1737407999.png" },
-    { nombre: "Rome Caesar's Glory", url: "https://images.virtualsoft.tech/productos/Rome-CaesarT1737408111.png" },
-    { nombre: "Voodoo Magic", url: "https://images.virtualsoft.tech/productos/Voodoo-MagicT1737408222.png" },
-    { nombre: "Pirate Gold", url: "https://images.virtualsoft.tech/productos/Pirate-GoldT1737408333.png" },
-    { nombre: "Wild West Gold", url: "https://images.virtualsoft.tech/productos/Wild-West-GoldT1737408444.png" },
-    { nombre: "Caishen's Gold", url: "https://images.virtualsoft.tech/productos/Caishens-GoldT1737408555.png" },
-    { nombre: "Monkey Warrior", url: "https://images.virtualsoft.tech/productos/Monkey-WarriorT1737408666.png" },
-    { nombre: "Da Vinci's Treasure", url: "https://images.virtualsoft.tech/productos/Da-VinciT1737408777.png" },
-    { nombre: "Peking Luck", url: "https://images.virtualsoft.tech/productos/Peking-LuckT1737408888.png" },
-    { nombre: "Madame Destiny", url: "https://images.virtualsoft.tech/productos/Madame-DestinyT1737408999.png" },
-    { nombre: "Great Rhino", url: "https://images.virtualsoft.tech/productos/Great-RhinoT1737409111.png" },
-    { nombre: "Diamond Strike", url: "https://images.virtualsoft.tech/productos/Diamond-StrikeT1737409222.png" },
-    { nombre: "Fire Strike", url: "https://images.virtualsoft.tech/productos/Fire-StrikeT1737409333.png" },
-    { nombre: "Hot Safari", url: "https://images.virtualsoft.tech/productos/Hot-SafariT1737409444.png" },
-    { nombre: "Gold Rush", url: "https://images.virtualsoft.tech/productos/Gold-RushT1737409555.png" },
-    { nombre: "Aztec Gems", url: "https://images.virtualsoft.tech/productos/Aztec-GemsT1737409666.png" },
-    { nombre: "Joker's Jewels", url: "https://images.virtualsoft.tech/productos/Jokers-JewelsT1737409777.png" },
-    { nombre: "Triple Tigers", url: "https://images.virtualsoft.tech/productos/Triple-TigersT1737409888.png" },
-    { nombre: "888 Gold", url: "https://images.virtualsoft.tech/productos/888-GoldT1737409999.png" },
-    { nombre: "Irish Charms", url: "https://images.virtualsoft.tech/productos/Irish-CharmsT1737410111.png" },
-    { nombre: "Diamonds are Forever", url: "https://images.virtualsoft.tech/productos/Diamonds-ForeverT1737410222.png" },
-    { nombre: "Spooky Fortune", url: "https://images.virtualsoft.tech/productos/Spooky-FortuneT1737410333.png" },
-    { nombre: "Fruity Fortune", url: "https://images.virtualsoft.tech/productos/Fruity-FortuneT1737410444.png" },
-    { nombre: "Gold Vein", url: "https://images.virtualsoft.tech/productos/Gold-VeinT1737410555.png" },
-    { nombre: "Wild Jelly", url: "https://images.virtualsoft.tech/productos/Wild-JellyT1737410666.png" },
-    { nombre: "Neon Classic", url: "https://images.virtualsoft.tech/productos/Neon-ClassicT1737410777.png" },
-    { nombre: "Lucky Respin", url: "https://images.virtualsoft.tech/productos/Lucky-RespinT1737410888.png" },
-    { nombre: "Mega Hot 40", url: "https://images.virtualsoft.tech/productos/Mega-Hot-40T1737410999.png" },
-    { nombre: "Super Dice", url: "https://images.virtualsoft.tech/productos/Super-DiceT1737411111.png" },
-    { nombre: "Magic Stars", url: "https://images.virtualsoft.tech/productos/Magic-StarsT1737411222.png" },
-    { nombre: "Miami Beach", url: "https://images.virtualsoft.tech/productos/Miami-BeachT1737411333.png" },
-    { nombre: "Joker Expand", url: "https://images.virtualsoft.tech/productos/Joker-ExpandT1737411444.png" },
-    { nombre: "Sunny Fruits", url: "https://images.virtualsoft.tech/productos/Sunny-FruitsT1737411555.png" },
-    { nombre: "Sevens On Fire", url: "https://images.virtualsoft.tech/productos/Sevens-On-FireT1737411666.png" },
-    { nombre: "Burning Classics", url: "https://images.virtualsoft.tech/productos/Burning-ClassicsT1737411777.png" },
-    { nombre: "Fruit Nova", url: "https://images.virtualsoft.tech/productos/Fruit-NovaT1737411888.png" },
-    { nombre: "Book of Spells", url: "https://images.virtualsoft.tech/productos/Book-of-SpellsT1737411999.png" },
-    { nombre: "Lord of Luck", url: "https://images.virtualsoft.tech/productos/Lord-of-LuckT1737412111.png" },
-    { nombre: "Diamond Flash", url: "https://images.virtualsoft.tech/productos/Diamond-FlashT1737412222.png" },
-    { nombre: "Fancy Fruits", url: "https://images.virtualsoft.tech/productos/Fancy-FruitsT1737412333.png" },
-    { nombre: "Wild Rubies", url: "https://images.virtualsoft.tech/productos/Wild-RubiesT1737412444.png" },
-    { nombre: "Night Wolves", url: "https://images.virtualsoft.tech/productos/Night-WolvesT1737412555.png" },
-    { nombre: "Books & Pearls", url: "https://images.virtualsoft.tech/productos/Books-and-PearlsT1737412666.png" },
-    { nombre: "King of The Jungle", url: "https://images.virtualsoft.tech/productos/King-JungleT1737412777.png" },
-    { nombre: "Ramses Book", url: "https://images.virtualsoft.tech/productos/Ramses-BookT1737412888.png" },
-    { nombre: "Sticky Diamonds", url: "https://images.virtualsoft.tech/productos/Sticky-DiamondsT1737412999.png" },
-    { nombre: "Golden Touch", url: "https://images.virtualsoft.tech/productos/Golden-TouchT1737413111.png" },
-    { nombre: "Ancient Riches", url: "https://images.virtualsoft.tech/productos/Ancient-RichesT1737413222.png" },
-    { nombre: "Pharaoh's Ring", url: "https://images.virtualsoft.tech/productos/Pharaohs-RingT1737413333.png" },
-    { nombre: "Tropical Holliday", url: "https://images.virtualsoft.tech/productos/Tropical-HollidayT1737413444.png" },
-    { nombre: "Sinbad", url: "https://images.virtualsoft.tech/productos/SinbadT1737413555.png" },
-    { nombre: "The Mummy", url: "https://images.virtualsoft.tech/productos/The-MummyT1737413666.png" },
-    { nombre: "Gladiator", url: "https://images.virtualsoft.tech/productos/GladiatorT1737413777.png" },
-    { nombre: "Rocky", url: "https://images.virtualsoft.tech/productos/RockyT1737413888.png" },
-    { nombre: "Pink Panther", url: "https://images.virtualsoft.tech/productos/Pink-PantherT1737413999.png" },
-    { nombre: "Little Britain", url: "https://images.virtualsoft.tech/productos/Little-BritainT1737414111.png" },
-    { nombre: "Baywatch", url: "https://images.virtualsoft.tech/productos/BaywatchT1737414222.png" },
-    { nombre: "Superman", url: "https://images.virtualsoft.tech/productos/SupermanT1737414333.png" },
-    { nombre: "Batman", url: "https://images.virtualsoft.tech/productos/BatmanT1737414444.png" },
-    { nombre: "Green Lantern", url: "https://images.virtualsoft.tech/productos/Green-LanternT1737414555.png" },
-    { nombre: "Wonder Woman", url: "https://images.virtualsoft.tech/productos/Wonder-WomanT1737414666.png" },
-    { nombre: "The Flash", url: "https://images.virtualsoft.tech/productos/The-FlashT1737414777.png" },
-    { nombre: "Justice League", url: "https://images.virtualsoft.tech/productos/Justice-LeagueT1737414888.png" },
-    { nombre: "Man of Steel", url: "https://images.virtualsoft.tech/productos/Man-of-SteelT1737414999.png" },
-    { nombre: "Matrix", url: "https://images.virtualsoft.tech/productos/MatrixT1737415111.png" },
-    { nombre: "King Kong", url: "https://images.virtualsoft.tech/productos/King-KongT1737415222.png" },
-    { nombre: "Untamed Wolf Pack", url: "https://images.virtualsoft.tech/productos/Untamed-WolfT1737415333.png" },
-    { nombre: "Untamed Giant Panda", url: "https://images.virtualsoft.tech/productos/Untamed-PandaT1737415444.png" },
-    { nombre: "Untamed Crowned Eagle", url: "https://images.virtualsoft.tech/productos/Untamed-EagleT1737415555.png" },
-    { nombre: "Untamed Bengal Tiger", url: "https://images.virtualsoft.tech/productos/Untamed-TigerT1737415666.png" },
-    { nombre: "Avalon II", url: "https://images.virtualsoft.tech/productos/Avalon-IIT1737415777.png" },
-    { nombre: "Thunderstruck", url: "https://images.virtualsoft.tech/productos/Thunderstruck-1T1737415888.png" },
-    { nombre: "Girls with Guns", url: "https://images.virtualsoft.tech/productos/Girls-GunsT1737415999.png" },
-    { nombre: "Hitman II", url: "https://images.virtualsoft.tech/productos/Hitman-IIT1737416111.png" },
-    { nombre: "Sqin", url: "https://images.virtualsoft.tech/productos/SqinT1737416222.png" },
-    { nombre: "Lucky Koi", url: "https://images.virtualsoft.tech/productos/Lucky-KoiT1737416333.png" },
-    { nombre: "Bikini Party", url: "https://images.virtualsoft.tech/productos/Bikini-PartyT1737416444.png" },
-    { nombre: "SunTide", url: "https://images.virtualsoft.tech/productos/SunTideT1737416555.png" },
-    { nombre: "Wild Orient", url: "https://images.virtualsoft.tech/productos/Wild-OrientT1737416666.png" },
-    { nombre: "Dragon Dance", url: "https://images.virtualsoft.tech/productos/Dragon-DanceT1737416777.png" },
-    { nombre: "Bar Bar Black Sheep", url: "https://images.virtualsoft.tech/productos/Bar-SheepT1737416888.png" },
-    { nombre: "Pretty Kitty", url: "https://images.virtualsoft.tech/productos/Pretty-KittyT1737416999.png" },
-    { nombre: "Reel Spinner", url: "https://images.virtualsoft.tech/productos/Reel-SpinnerT1737417111.png" },
-    { nombre: "Pung Wan", url: "https://images.virtualsoft.tech/productos/Pung-WanT1737417222.png" },
-    { nombre: "Huangdi", url: "https://images.virtualsoft.tech/productos/HuangdiT1737417333.png" },
-    { nombre: "Life of Riches", url: "https://images.virtualsoft.tech/productos/Life-RichesT1737417444.png" },
-    { nombre: "Chibeasties", url: "https://images.virtualsoft.tech/productos/ChibeastiesT1737417555.png" },
-    { nombre: "Vikings Go To Hell", url: "https://images.virtualsoft.tech/productos/Vikings-HellT1737417666.png" },
-    { nombre: "Golden Fish Tank", url: "https://images.virtualsoft.tech/productos/Golden-TankT1737417777.png" },
-    { nombre: "Holmes", url: "https://images.virtualsoft.tech/productos/HolmesT1737417888.png" },
-    { nombre: "Winter Berries", url: "https://images.virtualsoft.tech/productos/Winter-BerriesT1737417999.png" },
-    { nombre: "Big Blox", url: "https://images.virtualsoft.tech/productos/Big-BloxT1737418111.png" },
-    { nombre: "Double Dragons", url: "https://images.virtualsoft.tech/productos/Double-DragonsT1737418222.png" },
-    { nombre: "Rainbow Riches", url: "https://images.virtualsoft.tech/productos/Rainbow-RichesT1737418333.png" },
-    { nombre: "Monopoly", url: "https://images.virtualsoft.tech/productos/MonopolyT1737418444.png" },
-    { nombre: "Cleopatra", url: "https://images.virtualsoft.tech/productos/CleopatraT1737418555.png" },
-    { nombre: "Da Vinci Diamonds", url: "https://images.virtualsoft.tech/productos/Da-Vinci-DiamondsT1737418666.png" },
-    { nombre: "Siberian Storm", url: "https://images.virtualsoft.tech/productos/Siberian-StormT1737418777.png" },
-    { nombre: "Family Guy", url: "https://images.virtualsoft.tech/productos/Family-GuyT1737418888.png" },
-    { nombre: "Ghostbusters", url: "https://images.virtualsoft.tech/productos/GhostbustersT1737418999.png" },
-    { nombre: "Wolf Run", url: "https://images.virtualsoft.tech/productos/Wolf-RunT1737419111.png" },
-    { nombre: "Kitty Glitter", url: "https://images.virtualsoft.tech/productos/Kitty-GlitterT1737419222.png" },
-    { nombre: "Panda Manga", url: "https://images.virtualsoft.tech/productos/Panda-MangaT1737419333.png" },
-    { nombre: "Lucky Larry", url: "https://images.virtualsoft.tech/productos/Lucky-LarryT1737419444.png" },
-    { nombre: "Matsuri", url: "https://images.virtualsoft.tech/productos/MatsuriT1737419555.png" },
-    { nombre: "Gemix", url: "https://images.virtualsoft.tech/productos/GemixT1737419666.png" },
-    { nombre: "Reactoonz 2", url: "https://images.virtualsoft.tech/productos/Reactoonz-2T1737419777.png" },
-    { nombre: "Coils of Cash", url: "https://images.virtualsoft.tech/productos/Coils-CashT1737419888.png" },
-    { nombre: "Golden Ticket", url: "https://images.virtualsoft.tech/productos/Golden-TicketT1737419999.png" },
-    { nombre: "Golden Ticket 2", url: "https://images.virtualsoft.tech/productos/Golden-Ticket-2T1737420111.png" },
-    { nombre: "Fire Joker", url: "https://images.virtualsoft.tech/productos/Fire-JokerT1737420222.png" },
-    { nombre: "Legacy of Dead", url: "https://images.virtualsoft.tech/productos/Legacy-of-DeadT1737420333.png" },
-    { nombre: "Riches of Midgard", url: "https://images.virtualsoft.tech/productos/Riches-MidgardT1737420444.png" },
-    { nombre: "Pucker Up Prince", url: "https://images.virtualsoft.tech/productos/Pucker-PrinceT1737420555.png" },
-    { nombre: "The Equalizer", url: "https://images.virtualsoft.tech/productos/The-EqualizerT1737420666.png" },
-    { nombre: "Wild Plunder", url: "https://images.virtualsoft.tech/productos/Wild-PlunderT1737420777.png" },
-    { nombre: "Vegas High Roller", url: "https://images.virtualsoft.tech/productos/Vegas-RollerT1737420888.png" },
-    { nombre: "Black Gold 2", url: "https://images.virtualsoft.tech/productos/Black-Gold-2T1737420999.png" }
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/sugar-rushT1731536549.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Gates-of-OlympusT1746469136.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Clover-Super-PotT1773091885.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Cheesy-Road-1781709499.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/4-Pots-Riches-Hold-and-WinT1772724101.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Bonbon-Pop-1000Te613ebea-fc34-43c1-88d5-a17379e09ae4.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Blue-WizardT1731591091.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Diamond-Explosion-7sT1763051711.jpg" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/1000-Olympus-RivalsT1768322798.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Golden-TreeT1702649984.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/40-Shining-CrownT1765311061.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Crown-CoinsT1726511270.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Rise-of-OlympusT1551372019.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/3-Fortune-SoulsT1748379777.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/AviatorT1770135696.jpg" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Caishen-RichesT1590071165.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Diamonds-Power-Hold-and-WinT1737407487.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Big-Wild-Buffalo-2T1764263438.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Win-777T1731421101.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/7---Hot-FruitsT1634073927.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/888-DragonsT1557785735.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/AphroditeT1757427166.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Candy-LoopT1730904372.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Caramelo-Sortudo-1781729583.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Cash-Pig-2T1745962887.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Coin-DazzleT1759173588.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Coin-Strike-Hold-and-WinT1737407157.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hell-Hot-100T1719442126.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/JoxerT1758547520.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Lucky-PhoenixT1749571601.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Moon-Princess-100T1649715255.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Royal-CoinsT1731526135.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Shining-Crown-Buy-BonusT1750184054.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Super-777sT1757431820.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Wild-Spin--T1634074372.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Xmas-InvadersT1733495439.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Gates-Of-AnubisT1764943507.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/10-Burning-HeartT1752004576.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Raices-DoradasT1773091088.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Batalla-RunicaT1773091025.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/BalloonT1731418662.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/John-Hunter-and-the-book-of-tutT1741627917.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Aztec-GemsT1741879999.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Honey-Honey-HoneyT1572531723.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Greek-GodsT1576265207.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Ancient-EgyptT1558545359.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Magic-CrystalsT1560369940.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Da-Vincis-TreasureT1650644995.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Glorious-RomeT1650645294.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Gold-RushT1650639612.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Diamonds-are-Forever-3-LinesT1650644973.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Gold-TrainT1650645329.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Great-ReefT1650911697.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/The-Great-Chicken-EscapeT1568303463.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hercules-and-PegasusT1650300116.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hercules-Son-of-ZeusT1560370955.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Three-Star-FortuneT1593555022.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/The-Wild-MachineT1584113087.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Triple-DragonsT1650645080.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Vegas-MagicT1650910536.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Treasure-HorseT1650640005.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Safari-KingT1557419421.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Wild-GladiatorT1650639842.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Pandas-FortuneT1560366889.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Lucky-DragonsT1650645415.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Chilli-HeatT1741877133.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Panther-QueenT1650645360.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Aladdin-and-the-SorcererT1650639511.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Peking-LuckT1650639733.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Pirate-GoldT1558640777.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Diamond-StrikeT1555427521.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Lucky-LightningT1624281126.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Heart-of-RioT1623362077.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Pandas-Fortune-2T1623160829.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Cash-BonanzaT1650924697.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Day-of-DeadT1650924991.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/John-Hunter-and-the-Quest-for-Bermuda-RichesT1650925170.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Mystic-ChiefT1650924775.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Piggy-Bank-BillsT1634316823.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Star-Pirates-CodeT1635371253.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Bounty-GoldT1637074670.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Master-JokerT1650299178.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Christmas-Big-Bass-BonanzaT1639518989.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Colossal-Cash-ZoneT1644009024.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Crystal-Caverns-MegawaysT1741881409.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Gates-of-ValhallaT1699030804.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Gold-PartyT1741628633.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Magicians-SecretsT1641506969.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Book-of-FallenT1637879549.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Smugglers-CoveT1639169075.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Wild-DepthsT1650925560.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Super-XT1637790697.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/-Pizza-Pizza-PizzaT1670875510.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-JuanT1741880955.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Bigger-Bass-Blizzard-Christmas-CatchT1741878494.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Bomb-BonanzaT1657598681.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Buffalo-King-MegawaysT0a3b905d-8470-4578-a170-ddda50570992.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Candy-BlitzT1741626407.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Cash-BoxT1690473794.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Cash-PatrolT1656625709.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Chicken-ChaseT1650395510.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/CleocatraT1741872738.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Extra-Juicy-MegawaysT1741628121.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Eye-of-cleopatraT1650633727.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Eye-of-the-StormT1650911843.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Fire-Strike-2T1651789390.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Fish-EyeT1674669848.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Curse-of-the-Werewolf-MegawaysT1613514478.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Cyclops-SmashT1694534619.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Cyclops-SmashT1694534619.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Diamond-CascadeT1692033854.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Forge-of-OlympusT1692890991.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Diamonds-Of-EgyptT1684177119.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Down-the-RailsT1661792381.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Dragon-HeroT1741879142.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Drill-that-Gold-T1649365607.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Fury-of-Odin-MegawaysT1670264080.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Heist-for-the-Golden-NuggetsT1690214583.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hellvis-WildT1690216230.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hot-FiestaT1650919919.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hot-PepperT1670876464.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/John-Hunter-and-the-Book-of-Tut-RespinT1665596822.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Jungle-GorillaT1605294394.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Little-GemT1653689122.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Lobster-Bob-s-Crazy-Crab-ShackT1692033428.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/MochimonT1741628378.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Mammoth-Gold-MegawayT1674157514.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/North-GuardiansT1651789426.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Pinup-GirlsT1673890044.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Piggy-BankersT1692890890.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Power-of-Merlin-MegawaysT1690473523.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Power-of-Thor-MegawaysT1619123075.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Pub-KingsT1692890920.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Rabbit-GardenT1684256517.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Shield-of-SpartaT1668632515.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/The-Great-Stick-UpT1653689090.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Spirit-of-AdventureT1651006831.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/The-Dog-House-MegawaysT1741630770.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/The-Dragon-TigerT1666112736.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Castle-of-FireT1709053667.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Timber-StacksT1703859828.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Candy-Jar-ClustersT1703010741.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Lokis-RichesT1709669793.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Trees-of-TreasureT1712845678.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Strawberry-CocktailT1710267179.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Beware-the-Deep-MegawaysT1712846269.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Bass-Secrets-of-the-Golden-LakeT1712845850.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Fire-PortalsT1712846182.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Bass-HalloweenT1714674389.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Blade---FangsT1714674358.png" },
+ 
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Year-of-the-Dragon-KingT1714674417.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Bass-Day-at-the-RacesT1717001687.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Burger-Load-it-up-with-Xtra-cheeseT1717001933.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Dwarf---DragonT1716397312.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hand-of-Midas-2T1719441791.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hot-to-burn-MultiplerT1719441722.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Pot-of-FortuneT1717001898.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Starlight-Princess-PachiT1717000574.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/m/Buffalo-King-Untamed-MegawaysT556ecc28-687f-49c8-af81-8abf39ce84fe.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Rise-of-PyramidsT1719948728.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Sweet-KingdomT1719935754.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Crank-It-UpT1720502869.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Samurai-CodeT1720502966.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Dragon-Gold-88T1722950579.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Money-StacksT1722950186.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Heart-of-CleopatraT1719948896.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Hot-to-Burn-–-7-Deadly-Free-SpinsT1724261415.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Irish-Cash-ChipsT1724266011.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Jackpot-HunterT1724265385.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Running-SushiT1724246856.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Sumo-Supreme-MegawaysT1724273760.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Yeti-QuestT1731419229.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Bass-Vegas-Double-Down-DeluxeT1725901545.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Gem-ElevatorT1725376668.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Joker’s-Jewels-HotT1726512728.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Mustang-Gold-MegawaysT1725376697.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Angel-vs-SinnerT1727799705.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Mystery-MiceT1727799652.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Oodles-of-NoodlesT1727961694.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Bass-Halloween-2T1728323904.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Candy-Blitz-BombsT1728323767.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/7-Clovers-of-FortuneT1730223529.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Badge-BlitzT1732032809.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Chests-of-Cai-ShenT1729628668.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Fangtastic-FreespinsT1730224343.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Fortune-Hit’n-RollT1729628636.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Heroic-SpinsT1732033225.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Congo-Cash-XLT1727799746.gif" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Release-the-Kraken-MegawaysT1729706550.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/The-Dog-House---Muttley-CrewT1732032337.png" },
+    { nombre: "", url: "https://images.virtualsoft.tech/productos/Big-Bass-Xmas-XtremeT1732655676.png" }
 ];
 
 
@@ -1148,7 +1370,7 @@ SALDO: 0.00            </span>
             <p class="text-gray-400 text-xs leading-relaxed max-w-[220px] mb-6">Por favor, recarga tu cuenta para comenzar a realizar apuestas en la plataforma.</p>
             
             <!-- Botón de WhatsApp con destello de Luz Dorada Reflejada -->
-            <a href="https://wa.me/TU_NUMERO_AQUI" target="_blank" 
+            <a href="https://wa.me/19292233662" target="_blank" 
                class="relative overflow-hidden block w-full bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 py-3.5 mb-2.5 rounded-xl font-bold text-black uppercase text-xs tracking-wider shadow-[0_4px_20px_rgba(245,158,11,0.2)] active:scale-95 transition-all">
                 
                 <!-- Efecto reflejo interno flotante -->
@@ -1173,8 +1395,8 @@ SALDO: 0.00            </span>
 
   // 3. Generar tarjetas (Ajuste para que las imágenes sean grandes y llenen el ancho)
 const container = document.getElementById('juegos-container');
-for(let i = 0; i < 200; i++) {
-    const juego = juegos[i] || { nombre: "Próximamente", url: 'https://via.placeholder.com/150' };
+for(let i = 0; i < 192; i++) {
+    const juego = juegos[i] || { nombre: "", url: 'https://images.virtualsoft.tech/productos/Ruleta-VIPT1731511505.gif' };
     
     container.innerHTML += `
         <div class="relative w-full aspect-[4/3] bg-[#0f0f0f] rounded-2xl border border-white/10 overflow-hidden group hover:border-primary/50 transition-all duration-300 flex flex-col shadow-[0_10px_30px_rgba(0,0,0,0.6)]">
@@ -1578,10 +1800,10 @@ function abrirLogin() {
             </div>
 
             <div class="grid grid-cols-2 gap-3">
-                <a href="#" class="flex items-center justify-center gap-2 bg-[#0088cc] hover:opacity-90 text-white font-semibold py-3 rounded-xl transition-all">
+                <a href="https://t.me/aviatorpka" class="flex items-center justify-center gap-2 bg-[#0088cc] hover:opacity-90 text-white font-semibold py-3 rounded-xl transition-all">
                     <i class="fab fa-telegram-plane"></i> 
                 </a>
-                <a href="#" class="flex items-center justify-center gap-2 bg-[#25d366] hover:opacity-90 text-white font-semibold py-3 rounded-xl transition-all">
+                <a href="https://wa.me/593984848702" class="flex items-center justify-center gap-2 bg-[#25d366] hover:opacity-90 text-white font-semibold py-3 rounded-xl transition-all">
                     <i class="fab fa-whatsapp"></i> 
                 </a>
             </div>
@@ -2423,238 +2645,132 @@ function abrirLogin() {
             });
         }
 
-        // ============================================
-// RECARGAS SIMULADAS CON VALIDACIÓN (SUAVE & AJUSTADO A PANTALLA)
+     // ============================================
+// CONFIGURACIÓN DE LOS 16 MÉTODOS
 // ============================================
+const DATOS_METODOS = [
+    { id: 1, nombre: 'Pichincha', tipo: 'Banco', info: 'Pago Interno', img: 'https://images.icon-icons.com/107/PNG/96/ecuador_18286.png' },
+    { id: 2, nombre: 'Guayaquil', tipo: 'Banco', info: 'Pago Interno', img: 'https://upload.wikimedia.org/wikipedia/commons/8/8c/Logo_Banco_Guayaquil_Actual.png' },
+    { id: 3, nombre: 'Bancolombia', tipo: 'Banco', info: 'Pago Interno', img: 'https://s.yimg.com/ny/api/res/1.2/DpBEQyOgQTGYKtq2lboyHA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTM3Mw--/https://media.zenfs.com/es/valora_628/ce127b42a3716b09c9902441d9d3d321' },
+    { id: 4, nombre: 'Nequi', tipo: 'Wallet', info: 'Pago Interno', img: 'https://files.v1.distcdn.net/v1/objects/d744366e-2ee4-4357-849c-43dc786397a9' },
+    { id: 5, nombre: 'Spin Oxxo', tipo: 'Wallet', info: 'Pago Interno', img: 'Pago Internohttps://files.v1.distcdn.net/v1/objects/c7893ba8-565d-41df-b23d-fd3e1c8981ec' },
+    { id: 6, nombre: 'Yape', tipo: 'Wallet', info: 'Pago Interno', img: 'https://files.v1.distcdn.net/v1/objects/4f772e42-7f18-4d15-b7c3-9eb0e097d3ff' },
+    { id: 7, nombre: 'Plin', tipo: 'Wallet', info: 'Pago Interno', img: 'https://files.v1.distcdn.net/v1/objects/7c6924ed-1a00-42f3-bf0e-6d4cfc56400a' },
+    { id: 8, nombre: 'BBva', tipo: 'Banco', info: 'Pago Interno', img: 'https://images.icon-icons.com/2699/PNG/96/bbva_logo_icon_169509.png' },
+    { id: 9, nombre: 'Banregio', tipo: 'Banco', info: 'Pago Interno', img: 'https://images.icon-icons.com/2699/PNG/96/santanderbank_logo_icon_168851.png' },
+    { id: 10, nombre: 'Pago Móvil', tipo: 'Wallet', info: 'Pago Interno', img: 'https://files.v1.distcdn.net/v1/objects/9a678116-fb23-459f-8429-cd8af8b75cfc' },
+    { id: 11, nombre: 'Mastercard', tipo: 'Banco', info: 'Pago Interno', img: 'https://images.icon-icons.com/674/PNG/96/Mastercard_icon-icons.com_60554.png' },
+    { id: 12, nombre: 'Visa', tipo: 'Banco', info: 'Pago Interno', img: 'https://images.icon-icons.com/48/PNG/96/visa_folder_file_10331.png' },
+    { id: 13, nombre: 'USDT TRC20', tipo: 'Cripto', info: 'Pago Interno', img: 'https://images.icon-icons.com/3006/PNG/96/usdt_cryptocurrencies_icon_188337.png' },
+    { id: 14, nombre: 'Bitcoin', tipo: 'Cripto', info: 'Pago Interno', img: 'https://images.icon-icons.com/130/PNG/96/bitcoin_e-commerce_business_20554.png' },
+    { id: 15, nombre: 'Binance', tipo: 'Cripto', info: 'Pago Interno', img: 'https://images.icon-icons.com/3053/PNG/96/binance_macos_bigsur_icon_190342.png' },
+    { id: 16, nombre: 'Ethereum', tipo: 'Cripto', info: 'Pago Interno', img: 'https://images.icon-icons.com/3768/PNG/96/eth_ethereum_coin_money_icon_231564.png' }
+];
+
+// FUNCIÓN DE NOTIFICACIÓN ANIMADA (La que ya tienes pero mejorada)
+function mostrarNotificacionAnimada(mensaje, tipo) {
+    const toast = document.createElement('div');
+    toast.className = `fixed top-5 right-5 z-[9999] p-4 rounded-xl text-white font-bold shadow-2xl animate__animated animate__fadeInRight ${tipo === 'error' ? 'bg-red-600' : 'bg-primary'}`;
+    toast.innerHTML = mensaje;
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.classList.replace('animate__fadeInRight', 'animate__fadeOutRight');
+        setTimeout(() => toast.remove(), 500);
+    }, 3000);
+}
+
+// FUNCIÓN APERTURA
 function abrirRecargas() {
-    if (!usuarioActual?.email) { 
-        mostrarNotificacion('⚠️ Debes iniciar sesión', 'advertencia'); 
-        abrirLogin(); 
-        return; 
-    }
     overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    
+    renderMenu();
+}
+
+function renderMenu() {
     contenedorModal.innerHTML = `
-        <div class="bg-[#121212] w-full h-[100dvh] md:h-auto md:max-w-xl md:rounded-2xl p-5 relative flex flex-col overflow-hidden shadow-[0_15px_50px_rgba(0,0,0,0.7)] border border-white/5 transition-all">
-            
-            <button class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white flex items-center justify-center transition-all active:scale-90 z-50" onclick="cerrarModal()">
-                <i class="fas fa-times text-lg"></i>
-            </button>
-
-            <div class="mb-4">
-                <h2 class="text-xl font-bold text-white tracking-wide">Cargar Fondos</h2>
-                <p class="text-gray-400 text-xs">Moneda asignada: <span class="text-primary font-semibold">${usuarioActual.moneda}</span></p>
+        <div class="bg-[#121212] w-full h-full md:h-auto md:max-w-lg p-6 rounded-t-3xl md:rounded-2xl border border-white/10 shadow-2xl animate__animated animate__slideInUp">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-white font-bold text-lg">Seleccionar Método</h2>
+                <button onclick="cerrarModal()" class="w-10 h-10 rounded-full bg-white/5 active:scale-90 transition-all"><i class="fas fa-times text-gray-400"></i></button>
             </div>
-
-            <div class="flex-1 overflow-y-auto pr-1 space-y-4 scrollbar-none pb-4">
-                
-                <div class="bg-[#181818] rounded-xl p-4 border border-white/5 flex justify-between items-center">
-                    <div>
-                        <p class="text-[10px] uppercase tracking-widest text-gray-500 font-bold mb-0.5">Saldo Disponible</p>
-                        <p class="text-2xl font-black text-white">${usuarioActual.simbolo}0.00</p>
-                    </div>
-                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
-                        <i class="fas fa-wallet text-primary text-base"></i>
-                    </div>
-                </div>
-
-                <div class="bg-amber-500/10 border border-amber-500/20 p-3.5 rounded-xl flex gap-3">
-                    <i class="fas fa-info-circle text-amber-500 text-base mt-0.5"></i>
-                    <div>
-                        <p class="text-xs font-bold text-amber-400 uppercase tracking-wide">Entorno de Demostración</p>
-                        <p class="text-gray-400 text-[11px] leading-relaxed mt-0.5">Las transacciones son simuladas con fines de verificación. El saldo base permanecerá sin variaciones.</p>
-                    </div>
-                </div>
-                
-                <div class="bg-[#181818] p-1 rounded-xl flex gap-1">
-                    <button class="metodo-tab flex-1 py-3 text-xs font-bold uppercase tracking-wider rounded-lg flex items-center justify-center gap-2 transition-all ${metodoActivo === 'cripto' ? 'bg-[#222] text-primary shadow-sm' : 'text-gray-400 hover:text-white'}" onclick="cambiarMetodoPago('cripto')">
-                        <i class="fab fa-bitcoin text-sm"></i> Cripto (USDT)
+            <div class="grid grid-cols-4 gap-4 pb-10">
+                ${DATOS_METODOS.map(m => `
+                    <button onclick="verDetalle(${m.id})" class="flex flex-col items-center group active:scale-90 transition-all">
+                        <div class="w-16 h-16 bg-[#181818] rounded-2xl border border-white/5 flex items-center justify-center p-2 group-hover:border-primary transition-colors">
+                            <img src="${m.img}" class="w-full h-full object-contain" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3050/3050239.png'">
+                        </div>
+                        <span class="text-[9px] text-gray-400 uppercase font-bold mt-2 text-center">${m.nombre}</span>
                     </button>
-                    <button class="metodo-tab flex-1 py-3 text-xs font-bold uppercase tracking-wider rounded-lg flex items-center justify-center gap-2 transition-all ${metodoActivo === 'banco' ? 'bg-[#222] text-primary shadow-sm' : 'text-gray-400 hover:text-white'}" onclick="cambiarMetodoPago('banco')">
-                        <i class="fas fa-university text-sm"></i> Banco Pichincha
-                    </button>
-                </div>
-
-                <div id="cripto-section" class="space-y-3.5" style="display: ${metodoActivo === 'cripto' ? 'block' : 'none'};">
-                    <div class="bg-[#181818] rounded-xl p-4 border border-white/5 space-y-3">
-                        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest block">Seleccionar Dirección de Red</label>
-                        
-                        <div class="space-y-2">
-                            ${BILLETERAS_USDT.map((wallet) => {
-                                const isSelected = billeteraSeleccionada.direccion === wallet.direccion;
-                                return `
-                                    <div class="flex items-center justify-between p-3 rounded-xl cursor-pointer transition-all border ${isSelected ? 'bg-primary/5 border-primary/40 shadow-sm' : 'bg-[#1e1e1e] border-transparent hover:border-white/10'}" onclick="seleccionarBilletera('${wallet.direccion}')">
-                                        <div>
-                                            <p class="text-xs font-bold text-white">${wallet.nombre}</p>
-                                            <p class="text-[11px] text-gray-500 font-mono mt-0.5">${wallet.direccion.substring(0,14)}...</p>
-                                        </div>
-                                        ${isSelected ? '<i class="fas fa-check-circle text-primary text-base"></i>' : '<div class="w-4 h-4 rounded-full border border-white/10"></div>'}
-                                    </div>
-                                `;
-                            }).join('')}
-                        </div>
-
-                        <div class="bg-black/40 p-3 rounded-xl border border-white/5 flex items-center justify-between gap-2 mt-2">
-                            <span class="text-xs text-gray-300 font-mono break-all select-all">${billeteraSeleccionada.direccion}</span>
-                            <button onclick="copiarTexto('${billeteraSeleccionada.direccion}')" class="bg-white/5 hover:bg-white/10 text-gray-300 px-3 py-1.5 rounded-lg text-[11px] font-bold shrink-0 transition-colors">Copiar</button>
-                        </div>
-
-                        <div class="space-y-2.5 pt-2">
-                            <input type="number" id="monto-transferido" placeholder="Monto enviado (USD)" class="w-full bg-[#1e1e1e] border border-white/5 focus:border-primary/30 rounded-xl py-3 px-4 text-white text-sm outline-none transition-all placeholder-gray-600 font-medium" min="10">
-                            <input type="text" id="tx-hash" placeholder="Hash de la transacción (TxID)" class="w-full bg-[#1e1e1e] border border-white/5 focus:border-primary/30 rounded-xl py-3 px-4 text-white text-sm outline-none transition-all placeholder-gray-600 font-medium">
-                            <input type="text" id="nombre-titular" placeholder="Nombre completo del titular" class="w-full bg-[#1e1e1e] border border-white/5 focus:border-primary/30 rounded-xl py-3 px-4 text-white text-sm outline-none transition-all placeholder-gray-600 font-medium">
-                            
-                            <div class="relative bg-[#1e1e1e] border border-dashed border-white/10 rounded-xl p-4 text-center cursor-pointer hover:border-primary/30 transition-colors">
-                                <input type="file" id="comprobante-file" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" accept="image/*" onchange="previsualizarComprobante(this)">
-                                <i class="fas fa-cloud-upload-alt text-gray-500 text-lg mb-1"></i>
-                                <p class="text-xs text-gray-400 font-semibold">Adjuntar captura del recibo</p>
-                            </div>
-                            <div id="comprobante-preview" class="flex justify-center mt-2"></div>
-                        </div>
-
-                        <button onclick="procesarRecargaConValidacion()" class="w-full bg-gradient-to-r from-yellow-400 to-primary text-black font-black text-xs uppercase tracking-widest py-3.5 rounded-xl shadow-lg shadow-primary/10 hover:brightness-105 active:scale-[0.99] transition-all mt-2">
-                            Notificar Depósito
-                        </button>
-                    </div>
-                </div>
-
-                <div id="banco-section" class="space-y-3.5" style="display: ${metodoActivo === 'banco' ? 'block' : 'none'};">
-                    <div class="bg-[#181818] rounded-xl p-4 border border-white/5 space-y-3">
-                        
-                        <div class="bg-gradient-to-br from-blue-600/5 to-transparent rounded-xl p-4 border border-blue-500/10">
-                            <div class="flex justify-between items-start mb-3">
-                                <div>
-                                    <h3 class="text-sm font-bold text-white">${DATOS_BANCO_PICHINCHA.nombre}</h3>
-                                    <p class="text-gray-500 text-[11px] font-medium mt-0.5">${DATOS_BANCO_PICHINCHA.tipo}</p>
-                                </div>
-                                <span class="bg-blue-500/10 text-blue-400 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md border border-blue-500/10">Ecuador</span>
-                            </div>
-                            
-                            <div class="bg-black/30 p-3 rounded-lg flex items-center justify-between border border-white/5">
-                                <div>
-                                    <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Número de Cuenta</p>
-                                    <p class="text-white font-mono font-bold text-base mt-0.5">${DATOS_BANCO_PICHINCHA.numero}</p>
-                                    <p class="text-gray-400 text-[11px] mt-0.5 font-medium">Titular: ${DATOS_BANCO_PICHINCHA.titular}</p>
-                                </div>
-                                <button onclick="copiarTexto('${DATOS_BANCO_PICHINCHA.numero}')" class="bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-colors">Copiar</button>
-                            </div>
-                        </div>
-
-                        <div class="space-y-2.5">
-                            <input type="number" id="monto-pichincha" placeholder="Monto depositado (USD)" class="w-full bg-[#1e1e1e] border border-white/5 focus:border-primary/30 rounded-xl py-3 px-4 text-white text-sm outline-none transition-all placeholder-gray-600 font-medium" min="10">
-                            <input type="text" id="referencia-pichincha" placeholder="Número de comprobante / Referencia" class="w-full bg-[#1e1e1e] border border-white/5 focus:border-primary/30 rounded-xl py-3 px-4 text-white text-sm outline-none transition-all placeholder-gray-600 font-medium">
-                            <input type="text" id="nombre-titular-banco" placeholder="Nombre completo del depositante" class="w-full bg-[#1e1e1e] border border-white/5 focus:border-primary/30 rounded-xl py-3 px-4 text-white text-sm outline-none transition-all placeholder-gray-600 font-medium">
-                            
-                            <div class="relative bg-[#1e1e1e] border border-dashed border-white/10 rounded-xl p-4 text-center cursor-pointer hover:border-primary/30 transition-colors">
-                                <input type="file" id="comprobante-pichincha" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" accept="image/*" onchange="previsualizarComprobanteBanco(this)">
-                                <i class="fas fa-cloud-upload-alt text-gray-500 text-lg mb-1"></i>
-                                <p class="text-xs text-gray-400 font-semibold">Adjuntar comprobante de transferencia</p>
-                            </div>
-                            <div id="preview-pichincha" class="flex justify-center mt-2"></div>
-                        </div>
-
-                        <button onclick="procesarRecargaConValidacion()" class="w-full bg-gradient-to-r from-yellow-400 to-primary text-black font-black text-xs uppercase tracking-widest py-3.5 rounded-xl shadow-lg shadow-primary/10 hover:brightness-105 active:scale-[0.99] transition-all mt-2">
-                            Verificar Transferencia
-                        </button>
-                    </div>
-                </div>
-
-                <p class="text-center text-[10px] text-gray-600 font-medium">La validación se ejecuta de forma asíncrona mediante capas seguras de datos.</p>
+                `).join('')}
             </div>
         </div>
     `;
 }
 
-async function procesarRecargaConValidacion() {
-    const fileInput = document.getElementById('comprobante-file') || document.getElementById('comprobante-pichincha');
-    const file = fileInput?.files[0];
+function verDetalle(id) {
+    const m = DATOS_METODOS.find(x => x.id === id);
+    contenedorModal.innerHTML = `
+        <div class="bg-[#121212] w-full max-w-sm p-6 rounded-2xl border border-white/10 animate__animated animate__fadeInRight">
+            <button onclick="renderMenu()" class="text-gray-400 mb-6 active:translate-x-[-5px] transition-transform"><i class="fas fa-arrow-left"></i> Volver al Menú</button>
+            
+            <div class="text-center">
+                <img src="${m.img}" class="w-20 h-20 mx-auto rounded-full border-2 border-primary p-1 mb-4">
+                <h3 class="text-white font-black text-xl">${m.nombre}</h3>
+                <div class="bg-black/40 p-4 my-4 rounded-xl border border-white/5">
+                    <p class="text-primary font-mono font-bold text-lg" id="cuenta-text">${m.info}</p>
+                </div>
+            </div>
+
+            <div class="flex gap-3 mb-6">
+                <a href="https://wa.me/593984848702" class="flex-1 py-3 bg-[#25D366]/10 text-[#25D366] text-center rounded-xl font-bold active:scale-95 transition-all"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://t.me/aviatorpka" class="flex-1 py-3 bg-[#0088cc]/10 text-[#0088cc] text-center rounded-xl font-bold active:scale-95 transition-all"><i class="fab fa-telegram"></i> Telegram</a>
+            </div>
+
+            <input type="number" id="monto-user" placeholder="Monto (USD)" class="w-full bg-[#1e1e1e] border border-white/5 p-4 rounded-xl text-white mb-3">
+            <input type="file" id="file-input" class="hidden" onchange="previewImg(event)">
+            
+            <button onclick="document.getElementById('file-input').click()" class="w-full py-4 bg-[#1e1e1e] text-gray-400 rounded-xl mb-4 active:scale-[0.98] transition-all"><i class="fas fa-camera"></i> Adjuntar Comprobante</button>
+            <div id="img-preview" class="mb-4"></div>
+            
+            <button onclick="confirmarPago('${m.nombre}')" class="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-black font-black py-4 rounded-xl uppercase tracking-widest active:scale-[0.98] transition-all animate-pulse">Notificar Pago</button>
+        </div>
+    `;
+}
+
+function previewImg(e) {
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+        document.getElementById('img-preview').innerHTML = `<img src="${ev.target.result}" class="w-full h-32 object-cover rounded-xl border-2 border-primary animate__animated animate__zoomIn">`;
+    }
+    reader.readAsDataURL(e.target.files[0]);
+}
+
+function confirmarPago(metodo) {
+    const monto = document.getElementById('monto-user').value;
+    const img = document.getElementById('img-preview').innerHTML;
     
-    if (!file) {
-        mostrarNotificacion('❌ Por favor, adjunte el comprobante correspondiente', 'error');
+    if(!monto || !img) {
+        mostrarNotificacionAnimada('<i class="fas fa-exclamation-triangle"></i> ¡Faltan datos por completar!', 'error');
         return;
     }
-    
-    mostrarNotificacion('🔍 Analizando estructura del recibo...', 'info');
-    
-    const validacion = await validarComprobante(file);
-    
-    if (!validacion.valido) {
-        mostrarNotificacion(validacion.mensaje, 'error');
-        return;
-    }
-    
-    mostrarNotificacion('✅ Comprobante verificado con éxito', 'exito');
-    
-    setTimeout(() => {
-        mostrarNotificacion(`📄 Operación en demostración completada. Su saldo se mantiene en ${usuarioActual.simbolo}0.00`, 'info');
-        cerrarModal();
-    }, 2000);
-}
 
-function cambiarMetodoPago(metodo) {
-    metodoActivo = metodo;
-    const tabs = document.querySelectorAll('.metodo-tab');
-    
-    tabs.forEach(tab => {
-        tab.classList.remove('bg-[#222]', 'text-primary', 'shadow-sm');
-        tab.classList.add('text-gray-400');
-    });
-
-    const secCripto = document.getElementById('cripto-section');
-    const secBanco = document.getElementById('banco-section');
-
-    if (metodo === 'cripto') {
-        if(tabs[0]) {
-            tabs[0].classList.add('bg-[#222]', 'text-primary', 'shadow-sm');
-            tabs[0].classList.remove('text-gray-400');
-        }
-        if(secCripto) secCripto.style.display = 'block';
-        if(secBanco) secBanco.style.display = 'none';
-    } else {
-        if(tabs[1]) {
-            tabs[1].classList.add('bg-[#222]', 'text-primary', 'shadow-sm');
-            tabs[1].classList.remove('text-gray-400');
-        }
-        if(secCripto) secCripto.style.display = 'none';
-        if(secBanco) secBanco.style.display = 'block';
-    }
-}
-
-function seleccionarBilletera(direccion) {
-    billeteraSeleccionada = BILLETERAS_USDT.find(w => w.direccion === direccion);
-    abrirRecargas(); // Re-renderizado limpio para actualizar estados visuales suavemente
-}
-
-function copiarTexto(texto) { 
-    navigator.clipboard.writeText(texto); 
-    mostrarNotificacion('✅ Enlace copiado exitosamente', 'exito'); 
-}
-
-function previsualizarComprobante(input) {
-    const preview = document.getElementById('comprobante-preview');
-    if (input.files && input.files[0]) { 
-        const reader = new FileReader(); 
-        reader.onload = function(e) { 
-            preview.innerHTML = `<div class="relative mt-2"><img src="${e.target.result}" class="max-h-24 rounded-lg border border-white/10 shadow-md shadow-black"><p class="text-[9px] text-gray-500 font-semibold text-center mt-1">Recibo Cargado Correctamente</p></div>`; 
-        }; 
-        reader.readAsDataURL(input.files[0]); 
-    } else { 
-        preview.innerHTML = ''; 
-    }
-}
-
-function previsualizarComprobanteBanco(input) {
-    const preview = document.getElementById('preview-pichincha');
-    if (input.files && input.files[0]) { 
-        const reader = new FileReader(); 
-        reader.onload = function(e) { 
-            preview.innerHTML = `<div class="relative mt-2"><img src="${e.target.result}" class="max-h-24 rounded-lg border border-white/10 shadow-md shadow-black"><p class="text-[9px] text-gray-500 font-semibold text-center mt-1">Recibo Cargado Correctamente</p></div>`; 
-        }; 
-        reader.readAsDataURL(input.files[0]); 
-    } else { 
-        preview.innerHTML = ''; 
-    }
+    Swal.fire({
+        background: '#121212',
+        color: '#red',
+        html: `
+            <div class="animate__animated animate__bounceIn">
+                <div class="text-yellow-500 text-5xl mb-4"><i class="fas fa-check-circle"></i></div>
+                <h2 class="text-xl font-bold">¡Pago Notificado!</h2>
+                <div class="mt-6 border-t border-white/10 pt-4 text-left space-y-2">
+                    <p class="text-xs text-gray-400 uppercase font-bold">Método: ${metodo}</p>
+                    <p class="text-3xl font-black text-white">$${monto}</p>
+                    <div class="mt-4">${img}</div>
+                </div>
+            </div>
+        `,
+        confirmButtonText: 'Cerrar',
+        confirmButtonColor: '#red'
+    }).then(() => cerrarModal());
 }
       // ============================================
         // RULETA Y FLIPCARD (SUPER ALERTAS ANIMADAS)
@@ -3036,7 +3152,33 @@ document.addEventListener('click', () => {
 // Inicialización
 cargarUsuario();
 
+// 1. Bloqueo de Clic Derecho
+    document.addEventListener('contextmenu', event => event.preventDefault());
 
+    // 2. Bloqueo de atajos de teclado
+    document.addEventListener('keydown', function(event) {
+        // F12
+        if (event.key === 'F12') {
+            event.preventDefault();
+        }
+        
+        // Bloqueo de combinaciones con Ctrl
+        if (event.ctrlKey) {
+            if (
+                event.key === 'u' || // Ver código fuente (Ctrl+U)
+                event.key === 'U' || 
+                event.key === 's' || // Guardar página (Ctrl+S)
+                event.key === 'S' ||
+                event.key === 'p' || // Imprimir (Ctrl+P)
+                event.key === 'P' ||
+                (event.shiftKey && (event.key === 'I' || event.key === 'i' || event.key === 'J' || event.key === 'j' || event.key === 'C' || event.key === 'c')) // Inspeccionar
+            ) {
+                event.preventDefault();
+                event.stopPropagation();
+                return false;
+            }
+        }
+    });
 
         window.intentarJugar = intentarJugar;
         window.abrirRecargas = abrirRecargas;
@@ -3071,7 +3213,8 @@ cargarUsuario();
         window.abrirFlipCard = abrirFlipCard;
         window.cerrarJuegoModal = cerrarJuegoModal;
         window.abrirWhatsApp = abrirWhatsApp;
-    </script>
+
+</script>
 
 
 </body></html>
