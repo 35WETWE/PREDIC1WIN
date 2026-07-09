@@ -210,6 +210,11 @@
     <a href="#" onclick="abrirFlipCard(); return false;" class="nav-item-premium hover:text-white flex items-center gap-1.5 transition-colors">
         <i class="fas fa-dharmachakra text-[10px] animate-roulette"></i> RULETA
     </a>
+
+    <a href="https://aviatorl.tiiny.site/" target="_blank" rel="noopener noreferrer" class="nav-item-premium hover:text-white flex items-center gap-1.5 transition-colors text-sky-400">
+        <i class="fas fa-plane text-[10px] animate-plane"></i> AVIATOR
+    </a>
+</nav>
     
     
     
@@ -3133,87 +3138,93 @@ const AudioCasino = {
     }
 };
 
-// Capturador de interacciones globales corregido
+// Capturador de interacciones globales
 document.addEventListener('click', () => {
-    // Si el AudioContext estaba pausado por restricciones del navegador, lo despierta
     if (AudioCasino.ctx && AudioCasino.ctx.state === 'suspended') {
         AudioCasino.ctx.resume();
     }
-    
-    // Ejecuta el clic mecánico normal
     AudioCasino.playClick(); 
     
-    // Fuerza el inicio del bucle infinito de sonido de fondo en el primer clic real del usuario
     if (!window.fondoIniciado) {
         AudioCasino.initMúsicaFondo();
         window.fondoIniciado = true;
     }
 }, { once: false });
-// Inicialización
+
+// Inicialización de la aplicación
 cargarUsuario();
 
 // 1. Bloqueo de Clic Derecho
-    document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('contextmenu', event => event.preventDefault());
 
-    // 2. Bloqueo de atajos de teclado
-    document.addEventListener('keydown', function(event) {
-        // F12
-        if (event.key === 'F12') {
+// 2. Bloqueo de atajos de teclado para inspección
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'F12') {
+        event.preventDefault();
+    }
+    
+    if (event.ctrlKey) {
+        if (
+            event.key === 'u' || event.key === 'U' || 
+            event.key === 's' || event.key === 'S' ||
+            event.key === 'p' || event.key === 'P' ||
+            (event.shiftKey && (event.key === 'I' || event.key === 'i' || event.key === 'J' || event.key === 'j' || event.key === 'C' || event.key === 'c'))
+        ) {
             event.preventDefault();
+            event.stopPropagation();
+            return false;
         }
-        
-        // Bloqueo de combinaciones con Ctrl
-        if (event.ctrlKey) {
-            if (
-                event.key === 'u' || // Ver código fuente (Ctrl+U)
-                event.key === 'U' || 
-                event.key === 's' || // Guardar página (Ctrl+S)
-                event.key === 'S' ||
-                event.key === 'p' || // Imprimir (Ctrl+P)
-                event.key === 'P' ||
-                (event.shiftKey && (event.key === 'I' || event.key === 'i' || event.key === 'J' || event.key === 'j' || event.key === 'C' || event.key === 'c')) // Inspeccionar
-            ) {
-                event.preventDefault();
-                event.stopPropagation();
-                return false;
-            }
-        }
-    });
+    }
+});
 
-        window.intentarJugar = intentarJugar;
-        window.abrirRecargas = abrirRecargas;
-        window.abrirLogin = abrirLogin;
-        window.abrirRegistro = abrirRegistro;
-        window.abrirPerfil = abrirPerfil;
-        window.cerrarModal = cerrarModal;
-        window.finalizarLogin = finalizarLogin;
-        window.finalizarRegistro = finalizarRegistro;
-        window.cerrarSesion = cerrarSesion;
-        window.cambiarMetodoPago = cambiarMetodoPago;
-        window.seleccionarBilletera = seleccionarBilletera;
-        window.copiarTexto = copiarTexto;
-        window.procesarRecargaConValidacion = procesarRecargaConValidacion;
-        window.reclamarBono = reclamarBono;
-        window.actualizarMonedaPorPais = actualizarMonedaPorPais;
-        window.togglePassword = togglePassword;
-        window.solicitarRetiro = solicitarRetiro;
-        window.filtrarJuegos = filtrarJuegos;
-        window.filtrarCategoria = filtrarCategoria;
-        window.toggleFavorito = toggleFavorito;
-        window.abrirPokerEnVivo = abrirPokerEnVivo;
-        window.abrirPromociones = abrirPromociones;
-        window.abrirDeportes = abrirDeportes;
-        window.abrirJuegoEnVivo = abrirJuegoEnVivo;
-        window.abrirTorneos = abrirTorneos;
-        window.abrirVIP = abrirVIP;
-        window.abrirSalon = abrirSalon;
-        window.toggleChat = toggleChat;
-        window.enviarMensaje = enviarMensaje;
-        window.abrirRuleta = abrirRuleta;
-        window.abrirFlipCard = abrirFlipCard;
-        window.cerrarJuegoModal = cerrarJuegoModal;
-        window.abrirWhatsApp = abrirWhatsApp;
+// Función para abrir Aviator
+function abrirAviator() {
+    const iframeJuego = document.getElementById('iframe-juego-id');
+    if (iframeJuego) {
+        iframeJuego.src = "https://aviatorl.tiiny.site/";
+    }
+    
+    const modal = document.getElementById('modal-aviator');
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+}
 
+// Asignaciones de funciones globales al objeto window
+window.intentarJugar = intentarJugar;
+window.abrirRecargas = abrirRecargas;
+window.abrirLogin = abrirLogin;
+window.abrirRegistro = abrirRegistro;
+window.abrirPerfil = abrirPerfil;
+window.cerrarModal = cerrarModal;
+window.finalizarLogin = finalizarLogin;
+window.finalizarRegistro = finalizarRegistro;
+window.cerrarSesion = cerrarSesion;
+window.cambiarMetodoPago = cambiarMetodoPago;
+window.seleccionarBilletera = seleccionarBilletera;
+window.copiarTexto = copiarTexto;
+window.procesarRecargaConValidacion = procesarRecargaConValidacion;
+window.reclamarBono = reclamarBono;
+window.actualizarMonedaPorPais = actualizarMonedaPorPais;
+window.togglePassword = togglePassword;
+window.solicitarRetiro = solicitarRetiro;
+window.filtrarJuegos = filtrarJuegos;
+window.filtrarCategoria = filtrarCategoria;
+window.toggleFavorito = toggleFavorito;
+window.abrirPokerEnVivo = abrirPokerEnVivo;
+window.abrirPromociones = abrirPromociones;
+window.abrirDeportes = abrirDeportes;
+window.abrirJuegoEnVivo = abrirJuegoEnVivo;
+window.abrirTorneos = abrirTorneos;
+window.abrirVIP = abrirVIP;
+window.abrirSalon = abrirSalon;
+window.toggleChat = toggleChat;
+window.enviarMensaje = enviarMensaje;
+window.abrirRuleta = abrirRuleta;
+window.abrirFlipCard = abrirFlipCard;
+window.cerrarJuegoModal = cerrarJuegoModal;
+window.abrirWhatsApp = abrirWhatsApp;
+window.abrirAviator = abrirAviator;
 </script>
 
 
