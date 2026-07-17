@@ -5,60 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Aviator Predictor</title>
     <style>
+        * { box-sizing: border-box; }
         :root { --primary: #000; }
-        body { margin: 0; padding: 0; font-family: sans-serif; display: flex; justify-content: center; min-height: 100vh; background-image: url('https://th.bing.com/th/id/OIP.DpeXCzBmCwnk0f6CJmGUFwHaNK?w=184&h=328&c=7&r=0&o=7&pid=1.7&rm=3'); background-size: cover; background-position: center; background-attachment: fixed; }
-        .main-container { width: 100%; max-width: 470px; height: 100vh; background: transparent; display: none; flex-direction: column; }
-        .app-header { background: var(--primary); padding: 15px; color: white; text-align: center; font-weight: 740; text-transform: uppercase; letter-spacing: 1.2px; }
-        .content { flex: 1; padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        body { margin: 0; padding: 0; font-family: sans-serif; display: flex; justify-content: center; min-height: 100vh; background-image: url('https://th.bing.com/th/id/OIP.DpeXCzBmCwnk0f6CJmGUFwHaNK?w=184&h=328&c=7&r=0&o=7&pid=1.7&rm=3'); background-size: cover; background-position: center; }
+        .main-container { width: 100%; max-width: 470px; min-height: 100vh; background: rgba(0,0,0,0.5); display: none; flex-direction: column; }
+        .app-header { background: var(--primary); padding: 15px; color: white; text-align: center; font-weight: bold; }
+        .content { flex: 1; padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%; }
         
-        @keyframes pulse {
-            0% { box-shadow: 0 0 10px rgba(0,0,0,0.8); }
-            50% { box-shadow: 0 0 20px rgba(0,0,0,1); }
-            100% { box-shadow: 0 0 10px rgba(0,0,0,0.8); }
-        }
+        /* Ajuste de cuadrícula para que no se vea grande */
+        .casino-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; width: 100%; max-width: 400px; margin: 0 auto; }
+        .casino-btn { aspect-ratio: 1 / 1; border: 2px solid #fff; border-radius: 8px; cursor: pointer; background: #fff; padding: 5px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .casino-btn.selected { border-color: #ff007f; transform: scale(1.05); }
+        .casino-btn img { width: 100%; height: 100%; object-fit: contain; }
 
-        .result-container {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 10px 25px;
-            border-radius: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            animation: pulse 2s infinite;
-            margin: 20px 0;
-        }
+        .next-btn { background: #fff; color: red; border: none; padding: 15px; width: 100%; max-width: 400px; border-radius: 12px; font-weight: bold; cursor: pointer; }
+        .next-btn:disabled { background: #555; color: #ccc; }
 
-        #result-display { font-size: 50px; font-weight: 900; text-shadow: 2px 2px 4px #000; transition: color 0.3s ease; }
-        .color-azul { color: #00bfff; }
-        .color-morado { color: #bf00ff; }
-        .color-rosa { color: #ff007f; }
+        #analysis-box { width: 100%; max-width: 400px; text-align: center; }
+        #analysis-gif { width: 100%; height: auto; max-height: 180px; border-radius: 10px; border: 2px solid #333; }
+        #analysis-log { width: 100%; background: #fff; color: red; padding: 10px; border-radius: 10px; font-weight: bold; margin-top: 5px; }
+
+        .contact-row { display: flex; gap: 10px; width: 100%; max-width: 400px; }
+        .contact-btn { flex: 1; padding: 10px; border-radius: 10px; background: #fff; color: red; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 5px; font-size: 14px; }
         
-        .casino-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; width: 100%; }
-        .casino-btn { aspect-ratio: 1 / 1; border: 2px solid #fffff; border-radius: 5px; cursor: pointer; background: #fff; padding: 2px; display: flex; align-items: center; justify-content: center; }
-        .casino-btn.selected { border-color: #ff007f; transform: scale(1.1); box-shadow: 0 0 8px #ff007f; }
-        .casino-btn img { width: 100%; height: 80%; object-fit: contain; }
-
-        .next-btn { background: #fff; color: red; border: 2px solid #000; padding: 15px; width: 100%; border-radius: 12px; font-weight: 740; cursor: pointer; }
-        .next-btn:disabled { background: #000; border-color: #000; }
-
-        #analysis-box { width: 100%; text-align: center; margin-top: 10px; }
-        #analysis-gif { width: 100%; height: 200px; border-radius: 10px; border: 2px solid #333; }
-        #analysis-log { 
-            width: 100%; background: #fffff; color: red; padding: 10px; border-radius: 10px; 
-            font-weight: bold; border: 1px solid #000; margin-top: 5px; box-sizing: border-box; 
-        }
-
-        /* Botones contacto con iconos */
-        .contact-row { display: flex; gap: 10px; width: 100%; margin-top: 10px; }
-        .contact-btn { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid #fff; font-weight: bold; cursor: pointer; text-decoration: none; text-align: center; color: red; display: flex; align-items: center; justify-content: center; gap: 8px; background: #fff; }
-        .contact-btn img { width: 20px; height: 20px; }
-
         #login-screen { position: fixed; inset: 0; background: #000; display: flex; justify-content: center; align-items: center; z-index: 9999; padding: 20px; }
-        .login-box { width: 100%; max-width: 350px; background: pink; padding: 30px; border-radius: 20px; text-align: center; }
-        .login-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 2px solid #000; box-sizing: border-box; }
-        .social-btn { width: 55px; height: 50px; border: 1px solid #ccc; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; margin: 5px; }
+        .login-box { width: 100%; max-width: 350px; background: pink; padding: 25px; border-radius: 20px; text-align: center; }
+        .login-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 2px solid #000; }
+        .social-btn { width: 50px; height: 50px; border: 1px solid #ccc; border-radius: 10px; cursor: pointer; margin: 5px; background: #fff; }
     </style>
 </head>
 <body>
-
 <div id="login-screen">
     <div class="login-box">
         <!-- GIF ahora con ancho al 100% para que sea grande -->
