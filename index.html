@@ -12,7 +12,6 @@
         .app-header { background: var(--primary); padding: 15px; color: white; text-align: center; font-weight: bold; }
         .content { flex: 1; padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%; }
         
-        /* Ajuste de cuadrícula para que no se vea grande */
         .casino-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; width: 100%; max-width: 400px; margin: 0 auto; }
         .casino-btn { aspect-ratio: 1 / 1; border: 2px solid #fff; border-radius: 8px; cursor: pointer; background: #fff; padding: 5px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .casino-btn.selected { border-color: #ff007f; transform: scale(1.05); }
@@ -26,46 +25,42 @@
         #analysis-log { width: 100%; background: #fff; color: red; padding: 10px; border-radius: 10px; font-weight: bold; margin-top: 5px; }
 
         .contact-row { display: flex; gap: 10px; width: 100%; max-width: 400px; }
-        .contact-btn { flex: 1; padding: 10px; border-radius: 10px; background: #fff; color: red; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 5px; font-size: 14px; }
+        .contact-btn { flex: 1; padding: 10px; border-radius: 10px; background: #fff; color: red; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
+        .contact-btn img { width: 20px; height: 20px; }
         
         #login-screen { position: fixed; inset: 0; background: #000; display: flex; justify-content: center; align-items: center; z-index: 9999; padding: 20px; }
         .login-box { width: 100%; max-width: 350px; background: pink; padding: 25px; border-radius: 20px; text-align: center; }
         .login-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 2px solid #000; }
-        .social-btn { width: 50px; height: 50px; border: 1px solid #ccc; border-radius: 10px; cursor: pointer; margin: 5px; background: #fff; }
+        .social-btn { width: 50px; height: 50px; border: 1px solid #ccc; border-radius: 10px; cursor: pointer; margin: 5px; background: #fff; display: flex; align-items: center; justify-content: center; }
+
+        .color-azul { color: #00bfff; }
+        .color-morado { color: #bc13fe; }
+        .color-rosa { color: #ff007f; }
+        #result-display { font-size: 50px; font-weight: 900; }
     </style>
 </head>
 <body>
+
 <div id="login-screen">
     <div class="login-box">
-        <!-- GIF ahora con ancho al 100% para que sea grande -->
-        <img src="https://media.tenor.com/wFUdrz9-f84AAAAM/uuaviatorpka-aviatorpkauu.gif" 
-             alt="Logo" 
-             style="width: 100%; height: auto; margin-bottom: 10px; border-radius: 10px; display: block;">
-        
+        <img src="https://media.tenor.com/wFUdrz9-f84AAAAM/uuaviatorpka-aviatorpkauu.gif" style="width: 100%; height: auto; margin-bottom: 10px; border-radius: 10px; display: block;">
         <h2 style="color:#000; margin-top: 0;">INICIAR SESIÓN</h2>
         <input type="text" id="user" class="login-input" placeholder="Usuario">
         <input type="password" id="pass" class="login-input" placeholder="Contraseña">
-        <button onclick="login()" class="next-btn">INGRESAR</button>
-        
+        <button onclick="login()" class="next-btn" style="background:#000; color:#fff;">INGRESAR</button>
         <div style="margin-top: 20px; display: flex; justify-content: center;">
             <button class="social-btn" id="btn-google"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" width="24"></button>
             <button class="social-btn" id="btn-apple" style="background:#000;"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" width="20" style="filter:invert(1);"></button>
-            <button class="social-btn" id="btn-phone" style="background:#fff;"><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" width="24" style="filter:invert(1);"></button>
+            <button class="social-btn" id="btn-phone"><img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" width="24"></button>
         </div>
         <p id="login-msg" style="color:red;"></p>
     </div>
 </div>
 
 <div class="main-container" id="app">
-    <div class="app-header">
-        <span onclick="location.reload()" style="float: left; cursor: pointer;">✖️</span> 
-        AVIATOR PREDICTOR
-        <span onclick="window.close()" style="float: right; cursor: pointer;"></span>
-    </div>
+    <div class="app-header">AVIATOR PREDICTOR</div>
     <div class="content">
-        <div class="result-container">
-            <div id="result-display" class="color-azul">1.00x</div>
-        </div>
+        <div id="result-display" class="color-azul">1.00x</div>
         
         <div class="casino-grid" id="grid">
             <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
@@ -83,33 +78,23 @@
         <button class="next-btn" id="btn" onclick="runSequence()" disabled>Siguiente Ronda</button>
         
         <div id="analysis-box">
-            <img id="analysis-gif" src="https://media.tenor.com/N02aeghYzkoAAAAM/entrada-confirmada.gif" alt="Analizando">
+            <img id="analysis-gif" src="https://media.tenor.com/N02aeghYzkoAAAAM/entrada-confirmada.gif">
             <div id="analysis-log">Predictor</div>
         </div>
 
         <div class="contact-row">
-            <a href="#" class="contact-btn btn-tele"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"> TELEGRAM</a>
-            <a href="#" class="contact-btn btn-wapp"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"> WHATSAPP</a>
+            <a href="#" class="contact-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"> TELEGRAM</a>
+            <a href="#" class="contact-btn"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"> WHATSAPP</a>
         </div>
     </div>
 </div>
-
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider, OAuthProvider } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-    const app = initializeApp({ apiKey: "AIzaSyB0bBiBSkHFBoj-JolMIB_A45COlpDB6eQ", authDomain: "predictor-db1e8.firebaseapp.com", projectId: "predictor-db1e8", storageBucket: "predictor-db1e8.firebasestorage.app", messagingSenderId: "492639008991", appId: "1:492639008991:web:a0beaab02247a7465a516a" });
-    const auth = getAuth(app);
-    document.getElementById("btn-google").onclick = () => signInWithPopup(auth, new GoogleAuthProvider()).then(() => location.reload());
-    document.getElementById("btn-apple").onclick = () => signInWithPopup(auth, new OAuthProvider('apple.com')).then(() => location.reload());
-    document.getElementById("btn-phone").onclick = () => alert("Autenticación por teléfono en proceso.");
-</script>
 
 <script>
     const misSenales = [1.50, 2.20, 5.00, 1.10, 3.50, 8.00, 15.00, 1.25, 4.00, 2.50];
     let roundCounter = 0;
 
     function login() {
-        if(document.getElementById("user").value === "AVIATORPKA" && document.getElementById("pass").value === "2832092023893") {
+        if(document.getElementById("user").value === "AVIATORPKA" && document.getElementById("pass").value === "AVIATORPKA") {
             document.getElementById("login-screen").style.display = "none";
             document.getElementById("app").style.display = "flex";
         } else { document.getElementById("login-msg").innerText = "Credenciales incorrectas"; }
@@ -133,10 +118,7 @@
             d.innerText = val.toFixed(2) + "x";
             d.className = val < 2.00 ? 'color-azul' : (val < 10.00 ? 'color-morado' : 'color-rosa');
             
-            if (val < target) {
-                log.innerText = "Analizando: " + val.toFixed(2) + "x...";
-            }
-            
+            if (val < target) log.innerText = "Analizando: " + val.toFixed(2) + "x...";
             if(val >= target) { 
                 d.innerText = target.toFixed(2) + "x";
                 log.innerText = target.toFixed(2) + "x se fue";
@@ -147,32 +129,10 @@
         }, 150);
     }
 
-  // Inicialización de la aplicación
-cargarUsuario();
-
-// 1. Bloqueo de Clic Derecho
-document.addEventListener('contextmenu', event => event.preventDefault());
-
-// 2. Bloqueo de atajos de teclado para inspección
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'F12') {
-        event.preventDefault();
-    }
-    
-    if (event.ctrlKey) {
-        if (
-            event.key === 'u' || event.key === 'U' || 
-            event.key === 's' || event.key === 'S' ||
-            event.key === 'p' || event.key === 'P' ||
-            (event.shiftKey && (event.key === 'I' || event.key === 'i' || event.key === 'J' || event.key === 'j' || event.key === 'C' || event.key === 'c'))
-        ) {
-            event.preventDefault();
-            event.stopPropagation();
-            return false;
-        }
-    }
-});
-
+    document.addEventListener('contextmenu', event => event.preventDefault());
+    document.addEventListener('keydown', e => {
+        if(e.key === 'F12' || (e.ctrlKey && ['u','s','p','i','j','c'].includes(e.key.toLowerCase()))) e.preventDefault();
+    });
 </script>
 </body>
 </html>
