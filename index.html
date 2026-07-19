@@ -86,15 +86,92 @@
             <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157380024-78169a5a-68bd-4a96-b234-d773ddd3cff5.png"></div>
         </div>
         
-        <button class="next-btn" id="btn" onclick="iniciarSecuencia()" disabled>Siguiente Ronda</button>
-        
-        <div id="analysis-box">
-            <img id="analysis-gif" src="https://media.tenor.com/N02aeghYzkoAAAAM/entrada-confirmada.gif">
-            <div id="analysis-log">P R E D I C T O R </div>
-        </div>
+    
+
+<style>
+    /* Estilos Premium para los Botones y Log */
+    .btn-amarillo {
+        background: linear-gradient(to bottom, #F5CF27, #d4a900);
+        color: #000;
+        border: none;
+        padding: 15px;
+        width: 100%;
+        max-width: 400px;
+        border-radius: 12px;
+        font-weight: 900;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        box-shadow: 0 4px 15px rgba(245, 207, 39, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+    }
+    
+    /* Cómo se ve el botón cuando está bloqueado (disabled) */
+    .btn-amarillo:disabled {
+        background: #1a1a1a;
+        color: #555;
+        box-shadow: none;
+        border: 2px solid #333;
+        cursor: not-allowed;
+    }
+
+    .log-elegante {
+        background: #111;
+        color: #F5CF27;
+        padding: 12px;
+        border-radius: 10px;
+        font-weight: 900;
+        margin-top: 15px;
+        border: 1px solid #333;
+        letter-spacing: 3px;
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+    }
+
+    .btn-salir {
+        background: transparent;
+        color: #fff;
+        border: 2px solid #333;
+        padding: 12px;
+        border-radius: 50px;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 15px;
+        transition: all 0.3s ease;
+    }
+    .btn-salir:hover {
+        border-color: #F5CF27;
+        color: #F5CF27;
+        background: rgba(245, 207, 39, 0.05);
+    }
+</style>
+
+<!-- HTML Modificado -->
+<button class="btn-amarillo" id="btn" onclick="iniciarSecuencia()" disabled>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+    SIGUIENTE RONDA
+</button>
+
+<div id="analysis-box" style="margin-top: 25px; width: 100%; max-width: 400px; text-align: center;">
+    <img id="analysis-gif" src="https://media.tenor.com/N02aeghYzkoAAAAM/entrada-confirmada.gif" style="width: 100%; border-radius: 12px; border: 2px solid #333; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
+    
+    <div id="analysis-log" class="log-elegante">
+        P R E D I C T O R
+    </div>
+    
+    <div onclick="location.reload()" class="btn-salir">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+        CERRAR SESIÓN
     </div>
 </div>
-
 <script>
     const misSenales = [3.38, 1.52, 9.99, 2.07, 3.65, 1.03];
     
