@@ -13,17 +13,17 @@
         .content { flex: 1; padding: 5px; display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
         
         #history-bar { display: flex; gap: 5px; margin-bottom: 10px; width: 100%; justify-content: center; }
-        .hist-box { width: 40px; height: 25px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #000; border: 1px solid #FF0000; }
+        .hist-box { width: 40px; height: 25px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #FF0000; border: 1px solid #000; }
         
         .casino-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; width: 100%; max-width: 400px; margin: 0 auto; }
         .casino-btn { aspect-ratio: 1 / 1; border: 2px solid #000; border-radius: 8px; cursor: pointer; background: #fffff; padding: 5px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .casino-btn.selected { border-color: #FF0000; transform: scale(1.05); }
         .casino-btn img { width: 100%; height: 100%; object-fit: contain; }
 
-        .next-btn { background: #FF0000; color: white; border: none; padding: 15px; width: 100%; max-width: 400px; border-radius: 12px; font-weight: bold; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .next-btn { background: #FF0000; color: red; border: none; padding: 15px; width: 100%; max-width: 400px; border-radius: 12px; font-weight: bold; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
         /* EFECTO RAYO DENTRO DEL CONTENEDOR */
-        .gif-wrapper { position: relative; display: inline-block; width: 100%; overflow: hidden; border-radius: 10px; border: 2px solid #520402; }
+        .gif-wrapper { position: relative; display: inline-block; width: 100%; overflow: hidden; border-radius: 10px; border: 2px solid #FF0000; }
         .lightning-active::after {
             content: '';
             position: absolute;
@@ -40,9 +40,9 @@
 
         #analysis-box { width: 100%; max-width: 400px; text-align: center; }
         #analysis-gif { width: 100%; height: auto; max-height: 180px; display: block; }
-        #analysis-log { width: 100%; background: #FF0000; color: white; padding: 10px; border-radius: 10px; font-weight: bold; margin-top: 5px; }
+        #analysis-log { width: 100%; background: #FF0000; color: black; padding: 10px; border-radius: 10px; font-weight: bold; margin-top: 5px; }
 
-        #login-screen { position: fixed; inset: 0; background: #fffff; display: flex; justify-content: center; align-items: center; z-index: 9999; padding: 20px; }
+        #login-screen { position: fixed; inset: 0; background: #FF000080; display: flex; justify-content: center; align-items: center; z-index: 9999; padding: 20px; }
         .login-box { width: 100%; max-width: 350px; background: pink; padding: 25px; border-radius: 20px; text-align: center; }
         .login-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 2px solid #000; }
         .color-azul { color: #00bfff; }
@@ -81,26 +81,26 @@
 <div id="login-screen">
     <div class="login-box">
         <img src="https://media.tenor.com/wFUdrz9-f84AAAAM/uuaviatorpka-aviatorpkauu.gif" style="width: 100%; height: auto; margin-bottom: 10px; border-radius: 10px; display: block;">
-        <h2 style="color:#000; margin-top: 0;">INICIAR SESIÓN</h2>
+        <h2 style="color:#FF0000; margin-top: 0;">INICIAR SESIÓN</h2>
         <input type="text" id="user" class="login-input" placeholder="Usuario">
         <input type="password" id="pass" class="login-input" placeholder="Contraseña">
         
         <!-- Botón Ingresar con icono de puerta -->
         <button onclick="login()" class="next-btn" style="background:#FF0000; color:#000; width: 100%; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="25" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
                 <polyline points="10 17 15 12 10 7"></polyline>
                 <line x1="15" y1="12" x2="3" y2="12"></line>
             </svg>
-            INGRESAR
+            𝐈𝐍𝐆𝐑𝐄𝐒𝐀𝐑
         </button>
         
         <!-- Botones de contacto -->
         <a href="https://t.me/APKPREDICTOR" target="_blank" class="next-btn" style="background:#0088cc; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="20" style="filter:invert(1);"> TELEGRAM
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="20" style="filter:invert(1);"> 𝗧𝗘𝗟𝗘𝗚𝗥𝗔𝗠
         </a>
         <a href="https://wa.me/593995224036" target="_blank" class="next-btn" style="background:#25d366; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" style="filter:invert(1);"> WHATSAPP
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" style="filter:invert(1);"> 𝗪𝗛𝗔𝗧𝗦𝗔𝗣𝗣
         </a>
 
         <p id="login-msg" style="color:red; margin-top: 10px;"></p>
@@ -111,7 +111,7 @@
     <div class="app-header">𝐀 𝐏 𝐊 𝐏 𝐑 𝐄 𝐃 𝐈 𝐂 𝐓 𝐎 𝐑</div>
     <div class="content">
         <div id="history-bar"></div>
-        <div id="result-display" class="color-azul">𝟭.𝟬𝟬𝘅</div>
+        <div id="result-display" class="color-azul">𝟭.𝟬𝟬x</div>
         <div class="casino-grid" id="grid">
             <!-- (Tus botones aquí) -->
             <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
@@ -139,14 +139,15 @@
 </div>
 
 <script>
-    const misSenales = [3.38, 1.52, 9.99, 2.07, 3.65, 1.03];
+    const misSenales = [6.94, 6.78, 4.59, 2.22, 1.67, 3.21, 1.44];
     const gifsRonda = [
-        "https://www.image2url.com/r2/default/images/1784324317210-d3534e4c-aef6-47d4-bbf2-efc6bdb334cf.png", 
-        "https://www.image2url.com/r2/default/images/1784324676379-7ea47be5-c447-4c33-aece-d963d8ec740c.png", 
-        "https://www.image2url.com/r2/default/images/1784324742377-a0b02c7e-789a-46f1-9de4-39deda028b57.png", 
-        "https://www.image2url.com/r2/default/images/1784324791080-e15afdee-d802-427e-8781-9eaa83a6748e.png", 
-        "https://www.image2url.com/r2/default/images/1784324900633-741a89c1-9fe6-4233-bb7a-11140f2f0961.png", 
-        "https://www.image2url.com/r2/default/images/1784325191245-711cdf1b-13c2-4aaf-b275-80ab622ee50a.png"
+        "https://www.image2url.com/r2/default/images/1784580046737-f9f9a26c-0d23-4a63-b2da-ae9f94dedb74.png", 
+        "https://www.image2url.com/r2/default/images/1784580135872-6830afab-7342-49f9-9da6-dcecc83d2cbd.png", 
+        "https://www.image2url.com/r2/default/images/1784580229810-2e72f932-1f03-4bb9-8746-80c6a79a0c52.png", 
+        "https://www.image2url.com/r2/default/images/1784580323948-ee5b7e54-5d23-406f-a07a-f1de7e5dfd9a.png", 
+        "https://www.image2url.com/r2/default/images/1784580663721-5294a5e7-c5a7-4079-88b9-db7dc8a31a4f.png", 
+        "https://www.image2url.com/r2/default/images/1784580804372-09d31108-7029-44cf-88d1-88c50770b80b.png",
+        "https://www.image2url.com/r2/default/images/1784581046735-b0b542e7-dc07-4ae3-8f66-c6ff27aa8354.png"
     ];
     let roundCounter = 0;
 
@@ -200,7 +201,7 @@
                 let box = document.createElement('div');
                 box.className = 'hist-box';
                 box.style.backgroundColor = target < 2.00 ? '#00bfff' : (target < 10.00 ? '#bc13fe' : '#ff007f');
-                box.innerText = target.toFixed(2) + "x";
+                box.innerText = target.toFixed(2) + "✖";
                 bar.prepend(box);
                 if(bar.children.length > 5) bar.removeChild(bar.lastChild);
                 clearInterval(loop); 
