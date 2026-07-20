@@ -7,7 +7,7 @@
     <style>
         * { box-sizing: border-box; }
         :root { --primary: #fffff; }
-        body { margin: 0; padding: 0; font-family: sans-serif; display: flex; justify-content: center; min-height: 100vh; background-image: url('https://th.bing.com/th/id/OIP.DpeXCzBmCwnk0f6CJmGUFwHaNK?w=184&h=328&c=7&r=0&o=7&pid=1.7&rm=3'); background-size: cover; background-position: center; }
+        body { margin: 0; padding: 0; font-family: sans-serif; display: flex; justify-content: center; min-height: 100vh; background-image: url('https://media.tenor.com/69TGJF8dxZIAAAAM/fondo-de-pantalla.gif'); background-size: cover; background-position: center; }
         .main-container { width: 100%; max-width: 470px; min-height: 100vh; background: rgba(0,0,0,0.5); display: none; flex-direction: column; }
         .app-header { background: var(--primary); padding: 15px; color: orange; text-align: center; font-weight: bold; }
         .content { flex: 1; padding: 5px; display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
@@ -52,6 +52,28 @@
         .btn-amarillo { background: linear-gradient(to bottom, #F5CF27, #000); color: #FF0000; border: none; padding: 15px; width: 100%; max-width: 400px; border-radius: 12px; font-weight: 900; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(245, 207, 39, 0.4); text-transform: uppercase; }
         .btn-amarillo:disabled { background: #1a1a1a; color: #555; border: 2px solid #333; }
         .btn-salir { background: transparent; color: #fff; border: 2px solid #333; padding: 12px; border-radius: 50px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; }
+   
+    .app-header {
+    /* Mantenemos tu diseño limpio */
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 15px;
+    
+    /* Animación sutil de entrada */
+    opacity: 0;
+    animation: fadeInSlide 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
     </style>
 </head>
 <body>
@@ -86,7 +108,7 @@
 </div>
 
 <div class="main-container" id="app">
-    <div class="app-header">𝗔 𝗣 𝗞 𝗥 𝗘 𝗗 𝗜 𝗖 𝗧 𝗢 𝗥</div>
+    <div class="app-header">𝐀 𝐏 𝐊 𝐏 𝐑 𝐄 𝐃 𝐈 𝐂 𝐓 𝐎 𝐑</div>
     <div class="content">
         <div id="history-bar"></div>
         <div id="result-display" class="color-azul">𝟭.𝟬𝟬𝘅</div>
