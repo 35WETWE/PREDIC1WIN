@@ -6,41 +6,52 @@
     <title>Aviator Predictor</title>
     <style>
         * { box-sizing: border-box; }
-        :root { --primary: #000; }
+        :root { --primary: #fffff; }
         body { margin: 0; padding: 0; font-family: sans-serif; display: flex; justify-content: center; min-height: 100vh; background-image: url('https://th.bing.com/th/id/OIP.DpeXCzBmCwnk0f6CJmGUFwHaNK?w=184&h=328&c=7&r=0&o=7&pid=1.7&rm=3'); background-size: cover; background-position: center; }
         .main-container { width: 100%; max-width: 470px; min-height: 100vh; background: rgba(0,0,0,0.5); display: none; flex-direction: column; }
         .app-header { background: var(--primary); padding: 15px; color: orange; text-align: center; font-weight: bold; }
-        .content { flex: 1; padding: 5px; display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%; }
+        .content { flex: 1; padding: 5px; display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
         
-        /* Historial Cuadrado */
         #history-bar { display: flex; gap: 5px; margin-bottom: 10px; width: 100%; justify-content: center; }
-        .hist-box { width: 40px; height: 25px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #000; border: 1px solid #fff; }
+        .hist-box { width: 40px; height: 25px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #000; border: 1px solid #FF0000; }
         
         .casino-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; width: 100%; max-width: 400px; margin: 0 auto; }
-        .casino-btn { aspect-ratio: 1 / 1; border: 2px solid #F5CF27; border-radius: 8px; cursor: pointer; background: #fffff; padding: 5px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .casino-btn.selected { border-color: #F5CF27; transform: scale(1.05); }
+        .casino-btn { aspect-ratio: 1 / 1; border: 2px solid #000; border-radius: 8px; cursor: pointer; background: #fffff; padding: 5px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .casino-btn.selected { border-color: #FF0000; transform: scale(1.05); }
         .casino-btn img { width: 100%; height: 100%; object-fit: contain; }
 
-        .next-btn { background: #ff007f; color: white; border: none; padding: 15px; width: 100%; max-width: 400px; border-radius: 12px; font-weight: bold; cursor: pointer; }
-        .next-btn:disabled { background: #520402; color: #red; }
+        .next-btn { background: #FF0000; color: white; border: none; padding: 15px; width: 100%; max-width: 400px; border-radius: 12px; font-weight: bold; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+        /* EFECTO RAYO DENTRO DEL CONTENEDOR */
+        .gif-wrapper { position: relative; display: inline-block; width: 100%; overflow: hidden; border-radius: 10px; border: 2px solid #520402; }
+        .lightning-active::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+            animation: rayo-interno 0.5s linear infinite;
+            pointer-events: none;
+            z-index: 10;
+        }
+        @keyframes rayo-interno {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
 
         #analysis-box { width: 100%; max-width: 400px; text-align: center; }
-        #analysis-gif { width: 100%; height: auto; max-height: 180px; border-radius: 10px; border: 2px solid #520402; }
+        #analysis-gif { width: 100%; height: auto; max-height: 180px; display: block; }
         #analysis-log { width: 100%; background: #000; color: red; padding: 10px; border-radius: 10px; font-weight: bold; margin-top: 5px; }
 
-        .contact-row { display: flex; gap: 10px; width: 100%; max-width: 400px; }
-        .contact-btn { flex: 1; padding: 10px; border-radius: 10px; background: #E67F6C; color: red; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
-        .contact-btn img { width: 20px; height: 20px; }
-        
         #login-screen { position: fixed; inset: 0; background: #000; display: flex; justify-content: center; align-items: center; z-index: 9999; padding: 20px; }
         .login-box { width: 100%; max-width: 350px; background: pink; padding: 25px; border-radius: 20px; text-align: center; }
         .login-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 2px solid #000; }
-        .social-btn { width: 50px; height: 50px; border: 1px solid #ccc; border-radius: 10px; cursor: pointer; margin: 5px; background: #fff; display: flex; align-items: center; justify-content: center; }
-
         .color-azul { color: #00bfff; }
         .color-morado { color: #bc13fe; }
         .color-rosa { color: #ff007f; }
-        #result-display { font-size: 50px; font-weight: 900; margin: 10px 0; }
+        #result-display { font-size: 50px; font-weight: 900; margin: 10px 0; color: white; }
+        .btn-amarillo { background: linear-gradient(to bottom, #F5CF27, #d4a900); color: #000; border: none; padding: 15px; width: 100%; max-width: 400px; border-radius: 12px; font-weight: 900; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(245, 207, 39, 0.4); text-transform: uppercase; }
+        .btn-amarillo:disabled { background: #1a1a1a; color: #555; border: 2px solid #333; }
+        .btn-salir { background: transparent; color: #fff; border: 2px solid #333; padding: 12px; border-radius: 50px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -52,10 +63,17 @@
         <input type="text" id="user" class="login-input" placeholder="Usuario">
         <input type="password" id="pass" class="login-input" placeholder="Contraseña">
         
-        <!-- Botón Ingresar -->
-        <button onclick="login()" class="next-btn" style="background:#000; color:#fff; width: 100%; margin-bottom: 10px;">INGRESAR</button>
+        <!-- Botón Ingresar con icono de puerta -->
+        <button onclick="login()" class="next-btn" style="background:#FF0000; color:#000; width: 100%; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                <polyline points="10 17 15 12 10 7"></polyline>
+                <line x1="15" y1="12" x2="3" y2="12"></line>
+            </svg>
+            INGRESAR
+        </button>
         
-        <!-- Botones de contacto con la misma clase .next-btn -->
+        <!-- Botones de contacto -->
         <a href="https://t.me/APKPREDICTOR" target="_blank" class="next-btn" style="background:#0088cc; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="20" style="filter:invert(1);"> TELEGRAM
         </a>
@@ -72,8 +90,8 @@
     <div class="content">
         <div id="history-bar"></div>
         <div id="result-display" class="color-azul">𝟭.𝟬𝟬𝘅</div>
-        
         <div class="casino-grid" id="grid">
+            <!-- (Tus botones aquí) -->
             <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
             <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156718063-9d7f327c-3f38-4c54-a4af-8b6902096337.png"></div>
             <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156777400-140ec198-b410-4c90-963e-b6a7b3b8ffe5.png"></div>
@@ -86,101 +104,28 @@
             <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157380024-78169a5a-68bd-4a96-b234-d773ddd3cff5.png"></div>
         </div>
         
-    
+        <button class="btn-amarillo" id="btn" onclick="iniciarSecuencia()" disabled>SIGUIENTE RONDA</button>
 
-<style>
-    /* Estilos Premium para los Botones y Log */
-    .btn-amarillo {
-        background: linear-gradient(to bottom, #F5CF27, #d4a900);
-        color: #000;
-        border: none;
-        padding: 15px;
-        width: 100%;
-        max-width: 400px;
-        border-radius: 12px;
-        font-weight: 900;
-        font-size: 16px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        box-shadow: 0 4px 15px rgba(245, 207, 39, 0.4);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.3s ease;
-    }
-    
-    /* Cómo se ve el botón cuando está bloqueado (disabled) */
-    .btn-amarillo:disabled {
-        background: #1a1a1a;
-        color: #555;
-        box-shadow: none;
-        border: 2px solid #333;
-        cursor: not-allowed;
-    }
-
-    .log-elegante {
-        background: #111;
-        color: #F5CF27;
-        padding: 12px;
-        border-radius: 10px;
-        font-weight: 900;
-        margin-top: 15px;
-        border: 1px solid #333;
-        letter-spacing: 3px;
-        box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
-    }
-
-    .btn-salir {
-        background: transparent;
-        color: #fff;
-        border: 2px solid #333;
-        padding: 12px;
-        border-radius: 50px;
-        font-weight: bold;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        margin-top: 15px;
-        transition: all 0.3s ease;
-    }
-    .btn-salir:hover {
-        border-color: #F5CF27;
-        color: #F5CF27;
-        background: rgba(245, 207, 39, 0.05);
-    }
-</style>
-
-<!-- HTML Modificado -->
-<button class="btn-amarillo" id="btn" onclick="iniciarSecuencia()" disabled>
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-    SIGUIENTE RONDA
-</button>
-
-<div id="analysis-box" style="margin-top: 25px; width: 100%; max-width: 400px; text-align: center;">
-    <img id="analysis-gif" src="https://media.tenor.com/N02aeghYzkoAAAAM/entrada-confirmada.gif" style="width: 100%; border-radius: 12px; border: 2px solid #333; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
-    
-    <div id="analysis-log" class="log-elegante">
-        P R E D I C T O R
-    </div>
-    
-    <div onclick="location.reload()" class="btn-salir">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
-        CERRAR SESIÓN
+        <div id="analysis-box">
+            <div id="gif-container" class="gif-wrapper">
+                <img id="analysis-gif" src="https://media.tenor.com/N02aeghYzkoAAAAM/entrada-confirmada.gif">
+            </div>
+            <div id="analysis-log">P R E D I C T O R</div>
+            <div onclick="location.reload()" class="btn-salir">CERRAR SESIÓN</div>
+        </div>
     </div>
 </div>
+
 <script>
     const misSenales = [3.38, 1.52, 9.99, 2.07, 3.65, 1.03];
-    
-    // AQUÍ PONES TUS 10 URLs EN ORDEN:
     const gifsRonda = [
-        "https://www.image2url.com/r2/default/images/1784324317210-d3534e4c-aef6-47d4-bbf2-efc6bdb334cf.png", "https://www.image2url.com/r2/default/images/1784324676379-7ea47be5-c447-4c33-aece-d963d8ec740c.png", "https://www.image2url.com/r2/default/images/1784324742377-a0b02c7e-789a-46f1-9de4-39deda028b57.png", "https://www.image2url.com/r2/default/images/1784324791080-e15afdee-d802-427e-8781-9eaa83a6748e.png", "https://www.image2url.com/r2/default/images/1784324900633-741a89c1-9fe6-4233-bb7a-11140f2f0961.png", 
-        "https://www.image2url.com/r2/default/images/1784325191245-711cdf1b-13c2-4aaf-b275-80ab622ee50a.png", "URL_7", "URL_8", "URL_9", "URL_10"
+        "https://www.image2url.com/r2/default/images/1784324317210-d3534e4c-aef6-47d4-bbf2-efc6bdb334cf.png", 
+        "https://www.image2url.com/r2/default/images/1784324676379-7ea47be5-c447-4c33-aece-d963d8ec740c.png", 
+        "https://www.image2url.com/r2/default/images/1784324742377-a0b02c7e-789a-46f1-9de4-39deda028b57.png", 
+        "https://www.image2url.com/r2/default/images/1784324791080-e15afdee-d802-427e-8781-9eaa83a6748e.png", 
+        "https://www.image2url.com/r2/default/images/1784324900633-741a89c1-9fe6-4233-bb7a-11140f2f0961.png", 
+        "https://www.image2url.com/r2/default/images/1784325191245-711cdf1b-13c2-4aaf-b275-80ab622ee50a.png"
     ];
-    
     let roundCounter = 0;
 
     function login() {
@@ -198,18 +143,21 @@
 
     function iniciarSecuencia() {
         document.getElementById('btn').disabled = true;
-        let d = document.getElementById('result-display');
-        let count = 3;
+        let imgElement = document.getElementById('analysis-gif');
+        let container = document.getElementById('gif-container');
         
-        // Al iniciar, cambiamos el GIF según el roundCounter
-        document.getElementById('analysis-gif').src = gifsRonda[roundCounter % gifsRonda.length];
+        imgElement.src = gifsRonda[roundCounter % gifsRonda.length];
+        container.classList.add('lightning-active');
 
+        let count = 3;
+        let d = document.getElementById('result-display');
         let timer = setInterval(() => {
             d.innerText = count;
             count--;
-            if(count < 0) {
-                clearInterval(timer);
-                correrPrediccion();
+            if(count < 0) { 
+                clearInterval(timer); 
+                container.classList.remove('lightning-active');
+                correrPrediccion(); 
             }
         }, 800);
     }
@@ -219,16 +167,13 @@
         let target = misSenales[roundCounter % misSenales.length];
         let val = 1.00;
         let d = document.getElementById('result-display');
-        
         let loop = setInterval(() => {
             val += 0.08; 
             d.innerText = val.toFixed(2) + "x";
             d.className = val < 2.00 ? 'color-azul' : (val < 10.00 ? 'color-morado' : 'color-rosa');
-            
             if(val >= target) { 
                 d.innerText = target.toFixed(2) + "x";
                 log.innerText = target.toFixed(2) + "x se fue";
-                
                 let bar = document.getElementById('history-bar');
                 let box = document.createElement('div');
                 box.className = 'hist-box';
@@ -236,25 +181,12 @@
                 box.innerText = target.toFixed(2) + "x";
                 bar.prepend(box);
                 if(bar.children.length > 5) bar.removeChild(bar.lastChild);
-
                 clearInterval(loop); 
                 document.getElementById('btn').disabled = false; 
-                roundCounter++; // Aumenta el contador para la siguiente ronda
+                roundCounter++;
             }
         }, 120);
     }
-  // Desactivar clic derecho
-    document.addEventListener('contextmenu', event => event.preventDefault());
-
-    // Desactivar combinaciones de teclas (F12, Ctrl+U, Ctrl+Shift+I)
-    document.addEventListener('keydown', event => {
-        if (event.keyCode === 123 || // F12
-            (event.ctrlKey && event.shiftKey && (event.keyCode === 73 || event.keyCode === 74 || event.keyCode === 67)) || // Ctrl+Shift+I/J/C
-            (event.ctrlKey && event.keyCode === 85)) { // Ctrl+U
-            event.preventDefault();
-            return false;
-        }
-    });
 </script>
 </body>
 </html>
