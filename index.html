@@ -738,14 +738,14 @@ ${infoRedGlobal}
                 btnRonda.disabled = true; // Espera selección de casino
                 btnRonda.innerText = "SIGUIENTE RONDA";
                 btnRonda.style.background = "linear-gradient(to bottom, #F5CF27, #000)";
-                btnRonda.style.color = "#FF0000";
+                btnRonda.style.color = "#F5CF27";
             } else {
                 window.esDueño = false;
                 let btnRonda = document.getElementById("btn");
                 btnRonda.disabled = true;
-                btnRonda.innerText = "🚨ACCESO RESTRINGIDO🚨";
+                btnRonda.innerText = "ACCESO RESTRINGIDO";
                 btnRonda.style.background = "#FF0000";
-                btnRonda.style.color = "#FF0000";
+                btnRonda.style.color = "#000";
             }
         } else {
             document.getElementById("login-msg").innerText = "Por favor ingresa tus datos";
