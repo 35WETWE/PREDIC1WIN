@@ -425,6 +425,20 @@
     cursor: pointer;
     text-decoration: underline;
 }
+   /* Estilo base para el botón y su SVG */
+.next-btn {
+    position: relative;
+    overflow: hidden; /* Esto evita que cualquier elemento animado se salga visualmente del botón */
+}
+
+.next-btn svg {
+    transition: transform 0.3s ease-in-out; /* Controla la velocidad y suavidad */
+}
+
+/* Animación al pasar el mouse por encima del botón */
+.next-btn:hover svg {
+    transform: translateX(5px); /* Mueve la flecha 5 píxeles a la derecha dentro de su espacio */
+}
     </style>
 </head>
 <body>
@@ -527,20 +541,19 @@
             <input type="text" id="user" class="login-input" placeholder="Usuario" required>
             <input type="password" id="pass" class="login-input" placeholder="Contraseña" required>
             
-            <button type="submit" class="next-btn" style="background:#FF0000; color:#fff; width: 100%; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; border:none; cursor:pointer; border-radius: 12px; padding: 12px;">
+            <button type="submit" class="next-btn" style="background:#FFF000; color:#000; width: 100%; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; border:none; cursor:pointer; border-radius: 12px; padding: 12px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-                    <polyline points="10 17 15 12 10 7"></polyline>
-                    <line x1="15" y1="12" x2="3" y2="12"></line>
+                    <path d="M19.4587 16.0316C19.3223 16.2405 19.0035 16.6291 18.536 16.5502C18.3075 16.51 9.01113 14.5581 8.9881 14.5563C8.92261 14.538 8.93142 14.3931 9.05009 14.4078L19.3967 15.885C19.4622 15.896 19.4977 15.9729 19.4587 16.0316ZM19.1098 12.5275L17.7142 13.2679C17.7142 13.2679 17.39 13.0646 17.7548 12.8941C17.8488 12.8502 18.0631 12.7237 18.2366 12.6302C18.3323 12.5789 18.3252 12.4342 18.2242 12.392L17.1863 11.9613C17.3618 11.8166 17.6345 11.7304 17.8948 11.8111C18.0453 11.8586 18.6758 12.1335 19.0902 12.3131C19.2178 12.3683 19.1877 12.4873 19.1098 12.5275ZM15.8205 13.5173C15.6717 13.6274 14.6915 13.438 14.6915 13.438C14.6915 13.438 15.7762 12.4408 16.8079 12.3131C17.1147 12.2751 17.7355 12.5239 17.7355 12.5239C17.7355 12.5239 16.3518 13.1215 15.8205 13.5173ZM26.4048 13.4641C25.9461 12.425 25.6096 11.5379 25.4892 11.3255C25.1385 10.7115 24.6161 10.7444 24.168 10.8252C22.9725 11.0376 22.5066 11.2557 20.3991 11.8349C20.0892 11.9229 19.5047 12.1006 19.1824 11.9852C18.3288 11.6828 18.0702 11.4409 17.6611 11.4885C17.027 11.5636 15.7235 12.1978 14.3085 13.268C13.8657 13.5979 13.9169 13.9916 13.839 14.2518C13.8231 14.3086 13.8586 14.3636 13.9152 14.3709C14.1206 14.3929 16.3663 14.5949 16.4691 14.6096C16.4354 14.5913 16.4177 14.5582 16.4177 14.5234C16.4177 14.4922 16.4319 14.4611 16.4638 14.4446C17.1049 14.0872 19.4321 12.8117 20.8383 12.2381C22.7617 11.4482 23.2258 11.3639 23.8102 11.3071C23.9466 11.2943 24.1379 11.3034 24.2778 11.3125C24.3911 11.3217 24.4903 11.3931 24.5257 11.5013C24.7914 12.3077 25.5688 14.1294 25.9797 14.7323C25.9797 14.7323 25.9072 14.8753 25.769 14.8826C25.661 14.8845 25.4413 14.6737 25.3049 14.5491C25.2749 14.5234 25.2323 14.5198 25.1969 14.5417C22.891 16.0134 21.228 16.6549 20.9889 16.7427C20.9694 16.7501 20.9482 16.7501 20.9287 16.741L19.7509 16.2865C19.7509 16.2865 19.7952 16.2479 19.905 16.0207C19.9279 15.9676 19.9404 15.9071 19.9387 15.8687C19.9297 15.6744 19.7492 15.6303 19.6677 15.6193C19.3542 15.579 10.9363 14.2943 8.82515 14.0799C7.92897 13.9865 7.07714 14.4611 6.70872 14.9578L6.71052 14.9705L7.90593 16.2596C7.93257 16.2889 7.97332 16.2963 8.00697 16.2797L8.94742 15.832C8.94742 15.832 9.07661 16.2443 8.95623 16.3139C8.17521 16.7574 7.41893 17.1533 6.68749 17.5509C6.39347 17.7122 6.40058 18.0158 6.30494 18.4435C6.26494 18.6225 6.24475 18.7863 6.24475 18.7863C6.24475 18.7863 7.8847 17.9358 8.88894 17.4392C8.92429 17.4227 8.96334 17.43 8.99159 17.4593C9.13509 17.6188 9.18229 17.6554 9.27964 17.7562C9.3222 17.802 9.31158 17.8734 9.2584 17.9028C9.02107 18.0329 8.77671 18.1667 8.58895 18.2821C8.44014 18.3738 8.59141 18.6799 8.59141 18.6799L11.3206 17.3421C11.3206 17.3421 11.4907 17.5161 11.1895 17.7086C10.7238 18.011 6.42001 20.2816 6.04987 20.2908C5.07407 20.3164 3.23214 18.416 2.56619 18.1265C2.00478 17.8826 1.40082 18.2804 0.580842 18.7789C0.357626 18.9163 0.49402 19.248 0.49402 19.248L1.68242 18.625C1.68242 18.625 1.82943 18.8009 1.6647 18.9071C1.08907 19.2847 0.256776 19.6622 0.129196 19.7576C-0.0585706 19.8968 0.0136547 20.5493 0.0136547 20.5493L1.13798 20.01C1.17163 19.9935 1.21419 19.999 1.23002 20.0155L3.63942 22.3892C3.77942 22.3526 3.91041 22.3123 4.08576 22.2335L2.07558 20.0214C2.03492 19.9756 2.04724 19.9023 2.10042 19.8749C2.30581 19.7667 2.55206 19.6879 2.89916 19.9627C3.19138 20.1919 4.21325 21.0477 5.20156 20.9561C5.53103 20.9268 5.53633 21.0312 5.53633 21.0312C5.53633 21.0312 5.11654 21.2401 4.61883 21.5223C4.37267 21.6635 4.57276 22.0356 4.57276 22.0356C7.11961 20.9543 10.2562 19.6091 10.6954 19.413C10.7273 19.4001 10.7591 19.4056 10.7858 19.4257L11.5225 20.0306C11.627 20.1992 16.8659 18.1155 18.4811 17.2706C18.5714 17.2248 19.3931 17.2633 19.7898 17.2596C19.9723 17.2596 19.9652 17.3421 19.9652 17.3421C19.9652 17.3421 6.85393 22.7503 3.63762 22.6256L3.63241 22.6293L2.94693 22.9335C3.34901 23.2084 3.25337 23.683 3.93705 23.3165C3.97771 23.4137 4.02557 23.5164 4.07515 23.6262C4.20803 23.9251 4.20803 23.9269 5.07758 23.6207C7.5376 22.7594 18.6014 19.3379 21.0792 18.2767C22.4784 17.6793 24.4124 16.8546 25.6185 16.0812C26.8086 15.3206 27.0512 14.9284 26.4048 13.4641Z"></path><
+              <polyline points=""></polyline>
+                   
                 </svg>
                 𝐈𝐍𝐆𝐑𝐄𝐒𝐀
             </button>
         </form>
-
-        <a href="https://t.me/AVIATORQR" target="_blank" class="next-btn" style="background:#0088cc; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; max-width: 100%; border-radius: 12px; padding: 10px;">
+        <a href="https://t.me/AVIATORDOIT" target="_blank" class="next-btn" style="background:#0088cc; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; max-width: 100%; border-radius: 12px; padding: 10px;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="20" style="filter:invert(1);" alt="Telegram"> 𝗧𝗘𝗟𝗘𝗚𝗥𝗔𝗠
         </a>
-        <a href="https://wa.me/593995224036" target="_blank" class="next-btn" style="background:#25d366; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%; border-radius: 12px; padding: 10px;">
+        <a href="https://wa.me/19292233662" target="_blank" class="next-btn" style="background:#25d366; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%; border-radius: 12px; padding: 10px;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" style="filter:invert(1);" alt="WhatsApp"> 𝗪𝗛𝗔𝗧𝗦𝗔𝗣𝗣
         </a>
 
