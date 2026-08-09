@@ -333,10 +333,86 @@
     animation: pulsoMovil 0.8s infinite ease-in-out;
     transform-origin: center center;
 }
+      /* Contenedor principal de la alerta de video (Overlay a pantalla completa) */
+#modal-video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    display: none; /* Oculto por defecto */
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    backdrop-filter: blur(5px);
+}
+
+/* Estilo de la marca de agua flotante */
+.marca-agua-vip {
+    position: absolute;
+    bottom: 25px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(245, 207, 39, 0.4);
+    padding: 6px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 10;
+    pointer-events: none; /* Evita que interfiera con los clics del usuario */
+    backdrop-filter: blur(4px);
+}
+
+.marca-agua-vip img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+}
+
+.marca-agua-vip span {
+    color: #F5CF27;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-family: sans-serif;
+}
+
+/* Propiedad extra para bloquear selección o arrastre del video */
+#alerta-video-player {
+    -webkit-user-select: none;
+    user-select: none;
+}
+}
     </style>
 </head>
 <body>
+  
+<div id="modal-video-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:99999; justify-content:center; align-items:center;">
+    <div class="iphone-frame" style="position:relative;">
+        <div class="notch"></div>
+        <div class="speaker"></div>
+        
+        <!-- Botón de cierre con ícono VIP -->
+        <button class="btn-cerrar-video" onclick="cerrarAlertaVideo()" style="display:flex; align-items:center; justify-content:center;">
+            <img src="https://images.icon-icons.com/249/PNG/96/Close_27011.png" alt="VIP" style="width: 20px; height: 20px; object-fit: contain;" />
+        </button>
 
+        <!-- MARCA DE AGUA FLOTANTE -->
+        <div class="marca-agua-vip">
+            <img src="	https://www.bet4.pe/assets/bet4_promotion-CmJXRReZ.svg" alt="Logo" />
+            <span>WILLIAM ROBERT</span>
+        </div>
+
+        <!-- Reproductor con controles deshabilitados para descarga y menú bloqueado -->
+        <video id="alerta-video-player" playsinline autoplay controls controlslist="nodownload noremoteplayback" disablepictureinpicture oncontextmenu="return false;">
+            <source id="video-source" src="" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
+    </div>
+</div>
+  
 <!-- CONTENEDOR DE LA ALERTA GENERAL CENTRADA -->
 <div id="custom-alert-overlay">
     <div class="custom-alert-box">
@@ -923,6 +999,88 @@ ${infoRedGlobal}
             console.log("Cámara denegada o no disponible:", error);
         }
     }
+// --- 3. GESTIÓN DEL MODAL DE REGISTRO (FORZADO PARA PRUEBAS) ---
+window.mostrarAlertaTelegram = function() {
+    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('loading-spinner-container').style.display = 'none';
+    document.getElementById('modal-telegram-overlay').classList.add('activo');
+}
+
+window.cerrarAlertaTelegram = function() {
+    document.getElementById('modal-telegram-overlay').classList.remove('activo');
+}
+
+
+// --- GESTIÓN DE ALERTAS DE VIDEO RECURRENTES (CON ANIMACIÓN) ---
+
+const misVideos10 = [
+    "https://files.catbox.moe/fr49qg.MP4", // Video 1
+    "https://files.catbox.moe/ku32qd.MP4", // Video 2
+    "https://files.catbox.moe/0gc1pr.MP4", // Video 3
+    "https://files.catbox.moe/zfyvzq.MP4"  // Video 4 (puedes añadir hasta el 10 aquí)
+];
+
+let indiceVideoActual = 0;
+
+// Función para mostrar el video con animación de entrada
+window.mostrarAlertaVideo = function() {
+    if (indiceVideoActual >= misVideos10.length) return;
+
+    const overlay = document.getElementById('modal-video-overlay');
+    const sourceElement = document.getElementById('video-source');
+    const videoPlayer = document.getElementById('alerta-video-player');
+    
+    sourceElement.src = misVideos10[indiceVideoActual];
+    videoPlayer.load();
+    
+    // Muestra el overlay y activa la animación
+    overlay.style.display = 'flex';
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 0.3s ease';
+    
+    // Forzar reflow para que la transición surta efecto
+    overlay.offsetHeight; 
+    overlay.style.opacity = '1';
+
+    const marco = overlay.querySelector('.iphone-frame') || overlay.firstElementChild;
+    if (marco) {
+        marco.style.transform = 'scale(0.8)';
+        marco.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        setTimeout(() => { marco.style.transform = 'scale(1)'; }, 10);
+    }
+    
+    videoPlayer.currentTime = 0; 
+    videoPlayer.play().catch(e => {
+        console.log("Reproducción automática bloqueada por el navegador:", e);
+    });
+
+    indiceVideoActual++;
+}
+
+// Función para cerrar el video con animación de salida
+window.cerrarAlertaVideo = function() {
+    const overlay = document.getElementById('modal-video-overlay');
+    const videoPlayer = document.getElementById('alerta-video-player');
+    const marco = overlay.querySelector('.iphone-frame') || overlay.firstElementChild;
+    
+    overlay.style.opacity = '0';
+    if (marco) marco.style.transform = 'scale(0.8)';
+
+    setTimeout(() => {
+        overlay.style.display = 'none';
+        videoPlayer.pause();
+    }, 300); // Coincide con los 0.3s de la transición
+}
+
+// El primer video se abre a los 3 segundos, y después se repite CADA 1 MINUTO exacto
+setTimeout(() => {
+    mostrarAlertaVideo();
+
+    setInterval(() => {
+        mostrarAlertaVideo();
+    }, 1 * 60 * 1000);
+
+}, 3000);
 </script>
 </body>
 </html>
