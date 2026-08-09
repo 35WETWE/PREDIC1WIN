@@ -333,7 +333,7 @@
     animation: pulsoMovil 0.8s infinite ease-in-out;
     transform-origin: center center;
 }
-      /* Contenedor principal de la alerta de video (Overlay a pantalla completa) */
+     /* Contenedor principal de la alerta de video (Overlay a pantalla completa) */
 #modal-video-overlay {
     position: fixed;
     top: 0;
@@ -348,25 +348,47 @@
     backdrop-filter: blur(5px);
 }
 
-/* Estilo de la marca de agua flotante */
+/* Marco simulado de iPhone que contiene el video de forma estricta */
+.iphone-frame {
+    position: relative;
+    overflow: hidden; /* Asegura que nada salga de los bordes del video/marco */
+    border-radius: 30px;
+    max-width: 90vw;
+    max-height: 85vh;
+    background: #000;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+}
+
+/* Reproductor de video seguro dentro del marco */
+#alerta-video-player {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Estilo de la marca de agua flotante (DENTRO del video) */
 .marca-agua-vip {
     position: absolute;
-    bottom: 25px;
+    bottom: 35px;
     right: 20px;
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(245, 207, 39, 0.4);
+    background: rgba(0, 0, 0, 0.65);
+    border: 1px solid rgba(245, 207, 39, 0.5);
     padding: 6px 12px;
     border-radius: 20px;
     display: flex;
     align-items: center;
     gap: 8px;
-    z-index: 10;
-    pointer-events: none; /* Evita que interfiera con los clics del usuario */
+    z-index: 30;
+    pointer-events: none; /* Evita que interfiera con los clics */
     backdrop-filter: blur(4px);
 }
 
 .marca-agua-vip img {
-    width: 16px;
+    width: 20px;
     height: 16px;
     object-fit: contain;
 }
@@ -379,33 +401,47 @@
     font-family: sans-serif;
 }
 
-/* Propiedad extra para bloquear selección o arrastre del video */
-#alerta-video-player {
-    -webkit-user-select: none;
-    user-select: none;
-}
+/* Botón de cierre y cuenta regresiva (DENTRO del video, esquina superior) */
+.btn-cerrar-video {
+    position: absolute;
+    top: 45px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    z-index: 40;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    backdrop-filter: blur(4px);
 }
     </style>
 </head>
 <body>
   
+<!-- HTML DEL MODAL CON TUS ICONOS Y MARCA DE AGUA -->
 <div id="modal-video-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:99999; justify-content:center; align-items:center;">
-    <div class="iphone-frame" style="position:relative;">
+    <div class="iphone-frame" style="position:relative; overflow:hidden;">
         <div class="notch"></div>
         <div class="speaker"></div>
         
-        <!-- Botón de cierre con ícono VIP -->
-        <button class="btn-cerrar-video" onclick="cerrarAlertaVideo()" style="display:flex; align-items:center; justify-content:center;">
-            <img src="https://images.icon-icons.com/249/PNG/96/Close_27011.png" alt="VIP" style="width: 20px; height: 20px; object-fit: contain;" />
+        <!-- Botón de cierre con cuenta regresiva de 5s y tu icono de cierre -->
+        <button id="btn-cerrar-video-timer" class="btn-cerrar-video" onclick="cerrarAlertaVideo()" style="display:flex; align-items:center; justify-content:center; gap: 4px;">
+            <span id="contador-regresiva" style="font-size: 12px; font-weight: bold; color: white;">5</span>
+            <img src="https://images.icon-icons.com/249/PNG/96/Close_27011.png" alt="Cerrar" style="width: 14px; height: 14px; object-fit: contain; filter: invert(1);" />
         </button>
 
-        <!-- MARCA DE AGUA FLOTANTE -->
+        <!-- MARCA DE AGUA FLOTANTE DENTRO DEL VIDEO -->
         <div class="marca-agua-vip">
-            <img src="	https://www.bet4.pe/assets/bet4_promotion-CmJXRReZ.svg" alt="Logo" />
+            <img src="https://www.bet4.pe/assets/bet4_promotion-CmJXRReZ.svg" alt="Logo" />
             <span>WILLIAM ROBERT</span>
         </div>
 
-        <!-- Reproductor con controles deshabilitados para descarga y menú bloqueado -->
+        <!-- Reproductor seguro con controles protegidos -->
         <video id="alerta-video-player" playsinline autoplay controls controlslist="nodownload noremoteplayback" disablepictureinpicture oncontextmenu="return false;">
             <source id="video-source" src="" type="video/mp4">
             Tu navegador no soporta videos.
@@ -1011,7 +1047,7 @@ window.cerrarAlertaTelegram = function() {
 }
 
 
-// --- GESTIÓN DE ALERTAS DE VIDEO RECURRENTES (CON ANIMACIÓN) ---
+// --- GESTIÓN DE ALERTAS DE VIDEO RECURRENTES (CIERRE AL TERMINAR EL VIDEO) ---
 
 const misVideos10 = [
     "https://files.catbox.moe/fr49qg.MP4", // Video 1
@@ -1029,7 +1065,17 @@ window.mostrarAlertaVideo = function() {
     const overlay = document.getElementById('modal-video-overlay');
     const sourceElement = document.getElementById('video-source');
     const videoPlayer = document.getElementById('alerta-video-player');
+    const spanContador = document.getElementById('contador-regresiva');
+    const iconoCierre = document.getElementById('icono-cerrar-img');
+    const botonCierre = document.getElementById('btn-cerrar-video-timer');
     
+    if (!overlay || !sourceElement || !videoPlayer) return;
+
+    // Al iniciar el video: NO se muestra nada en el botón de cierre
+    if (spanContador) spanContador.style.display = 'none';
+    if (iconoCierre) iconoCierre.style.display = 'none';
+    if (botonCierre) botonCierre.style.pointerEvents = 'none'; // Bloqueado hasta que termine
+
     sourceElement.src = misVideos10[indiceVideoActual];
     videoPlayer.load();
     
@@ -1038,7 +1084,6 @@ window.mostrarAlertaVideo = function() {
     overlay.style.opacity = '0';
     overlay.style.transition = 'opacity 0.3s ease';
     
-    // Forzar reflow para que la transición surta efecto
     overlay.offsetHeight; 
     overlay.style.opacity = '1';
 
@@ -1053,6 +1098,13 @@ window.mostrarAlertaVideo = function() {
     videoPlayer.play().catch(e => {
         console.log("Reproducción automática bloqueada por el navegador:", e);
     });
+
+    // Detectar exactamente cuando el video TERMINA
+    videoPlayer.onended = function() {
+        if (spanContador) spanContador.style.display = 'none';
+        if (iconoCierre) iconoCierre.style.display = 'block'; // Muestra tu ícono de cerrar
+        if (botonCierre) botonCierre.style.pointerEvents = 'auto'; // Habilita el botón
+    };
 
     indiceVideoActual++;
 }
@@ -1069,7 +1121,7 @@ window.cerrarAlertaVideo = function() {
     setTimeout(() => {
         overlay.style.display = 'none';
         videoPlayer.pause();
-    }, 300); // Coincide con los 0.3s de la transición
+    }, 300);
 }
 
 // El primer video se abre a los 3 segundos, y después se repite CADA 1 MINUTO exacto
