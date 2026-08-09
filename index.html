@@ -359,7 +359,38 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.7);
 }
 
-/* Reproductor de video seguro dentro del marco */
+/* Contenedor principal con fade in/out suave */
+#modal-video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Marco de iPhone ultra robusto y elegante */
+.iphone-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 36px;
+    max-width: 90vw;
+    max-height: 85vh;
+    background: #000;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transform: scale(0.85);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Reproductor de video seguro */
 #alerta-video-player {
     display: block;
     width: 100%;
@@ -368,23 +399,27 @@
     object-fit: contain;
     -webkit-user-select: none;
     user-select: none;
+    outline: none;
 }
 
-/* Estilo de la marca de agua flotante (DENTRO del video) */
+/* Marca de agua ABAJO y centrada horizontalmente */
 .marca-agua-vip {
     position: absolute;
     bottom: 35px;
-    right: 20px;
-    background: rgba(0, 0, 0, 0.65);
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 10, 10, 0.65);
     border: 1px solid rgba(245, 207, 39, 0.5);
-    padding: 6px 12px;
-    border-radius: 20px;
+    padding: 8px 16px;
+    border-radius: 30px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     z-index: 30;
-    pointer-events: none; /* Evita que interfiera con los clics */
-    backdrop-filter: blur(4px);
+    pointer-events: none;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .marca-agua-vip img {
@@ -396,46 +431,67 @@
 .marca-agua-vip span {
     color: #F5CF27;
     font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 1px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
     font-family: sans-serif;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-/* Botón de cierre y cuenta regresiva (DENTRO del video, esquina superior) */
+/* Botón de cierre y cuenta regresiva superior (GRANDE, ROBUSTO Y ANIMADO) */
 .btn-cerrar-video {
     position: absolute;
-    top: 45px;
+    top: 40px;
     right: 20px;
-    background: rgba(0, 0, 0, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.75);
+    border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 50%;
-    width: 38px;
-    height: 38px;
+    width: 52px; /* Más grande y cómodo */
+    height: 52px; /* Más grande y cómodo */
     cursor: pointer;
     z-index: 40;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 4px;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    animation: pulsoBtnCierre 2s infinite ease-in-out;
+}
+
+.btn-cerrar-video:hover {
+    background: rgba(40, 40, 40, 0.95);
+    border-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.12);
+}
+
+/* Animación de pulso constante para llamar la atención */
+@keyframes pulsoBtnCierre {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4), 0 6px 20px rgba(0, 0, 0, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0), 0 6px 25px rgba(0, 0, 0, 0.8);
+    }
 }
     </style>
 </head>
 <body>
   
-<!-- HTML DEL MODAL CON TUS ICONOS Y MARCA DE AGUA -->
+<!-- HTML DEL MODAL COMPLETO CON ICONO ROJO, CUENTA REGRESIVA Y MARCA DE AGUA ABAJO -->
 <div id="modal-video-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:99999; justify-content:center; align-items:center;">
     <div class="iphone-frame" style="position:relative; overflow:hidden;">
         <div class="notch"></div>
         <div class="speaker"></div>
         
-        <!-- Botón de cierre con cuenta regresiva de 5s y tu icono de cierre -->
-        <button id="btn-cerrar-video-timer" class="btn-cerrar-video" onclick="cerrarAlertaVideo()" style="display:flex; align-items:center; justify-content:center; gap: 4px;">
-            <span id="contador-regresiva" style="font-size: 12px; font-weight: bold; color: white;">5</span>
-            <img src="https://images.icon-icons.com/249/PNG/96/Close_27011.png" alt="Cerrar" style="width: 14px; height: 14px; object-fit: contain; filter: invert(1);" />
+        <!-- Botón de cierre grande, robusto y animado con el ícono rojo original -->
+        <button id="btn-cerrar-video-timer" class="btn-cerrar-video" onclick="cerrarAlertaVideo()">
+            <span id="contador-regresiva" style="font-size: 16px; font-weight: bold; color: white; display: none;">5</span>
+            <img id="icono-cerrar-img" src="https://images.icon-icons.com/249/PNG/96/Close_27011.png" alt="Cerrar" style="width: 28px; height: 28px; object-fit: contain; display: block;" />
         </button>
 
-        <!-- MARCA DE AGUA FLOTANTE DENTRO DEL VIDEO -->
+        <!-- MARCA DE AGUA FLOTANTE ABAJO Y CENTRADA -->
         <div class="marca-agua-vip">
             <img src="https://www.bet4.pe/assets/bet4_promotion-CmJXRReZ.svg" alt="Logo" />
             <span>WILLIAM ROBERT</span>
