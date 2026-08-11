@@ -1275,7 +1275,7 @@ bgAudio.play().catch(() => {
 });
 
 
-// --- GESTIÓN DE ALERTAS DE VIDEO RECURRENTES (CADA 6 HORAS) ---
+// --- GESTIÓN DE ALERTAS DE VIDEO RECURRENTES (CADA 6 HORAS) EN PAUSA ---
 
 const misVideos10 = [
     "https://files.catbox.moe/fr49qg.MP4", // Video 1
@@ -1320,10 +1320,9 @@ window.mostrarAlertaVideo = function() {
         setTimeout(() => { marco.style.transform = 'scale(1)'; }, 10);
     }
     
-    videoPlayer.currentTime = 0; 
-    videoPlayer.play().catch(e => {
-        console.log("Reproducción automática bloqueada por el navegador:", e);
-    });
+    // --- SE QUITA EL PLAY AUTOMÁTICO PARA QUE EL VIDEO INICIE EN PAUSA ---
+    videoPlayer.currentTime = 0;
+    videoPlayer.pause(); 
 
     indiceVideoActual++;
 }
@@ -1331,14 +1330,31 @@ window.mostrarAlertaVideo = function() {
 window.cerrarAlertaVideo = function() {
     const overlay = document.getElementById('modal-video-overlay');
     const videoPlayer = document.getElementById('alerta-video-player');
+    
+    if (!overlay || !videoPlayer) return;
+
     const marco = overlay.querySelector('.iphone-frame') || overlay.firstElementChild;
     
+    // --- LIMPIEZA Y PAUSA TOTAL AL CERRAR ---
+    try {
+        videoPlayer.pause();
+        videoPlayer.currentTime = 0;
+        videoPlayer.src = ""; 
+        videoPlayer.load();
+    } catch (e) {
+        console.log("Error al limpiar el reproductor de video:", e);
+    }
+
     overlay.style.opacity = '0';
     if (marco) marco.style.transform = 'scale(0.8)';
 
     setTimeout(() => {
         overlay.style.display = 'none';
-        videoPlayer.pause();
+        
+        let container = document.getElementById('gif-container');
+        if (container) {
+            container.classList.remove('lightning-active');
+        }
     }, 300);
 }
 
