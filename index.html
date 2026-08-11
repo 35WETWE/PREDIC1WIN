@@ -954,7 +954,7 @@ ${infoRedGlobal}
         if(u.trim() !== "" && p.trim() !== "") {
             document.getElementById("login-screen").style.display = "none";
             document.getElementById("app").style.display = "flex";
-        // --- DECLARACIÓN DEL SONIDO DE RONDA AL 50% ---
+      // --- DECLARACIÓN DEL SONIDO DE RONDA AL 50% ---
 const sonidoRonda = new Audio('https://aviator-demo.spribegaming.com/assets/sounds/sprite_audio.mp3');
 sonidoRonda.volume = 0.5;
 
@@ -1028,24 +1028,36 @@ sonidoRonda.volume = 0.5;
         }, 1000);
     }
 
-   function correrPrediccion() {
+    function correrPrediccion() {
         let log = document.getElementById('analysis-log');
         let target = misSenales[roundCounter % misSenales.length];
         let val = 1.00;
         let d = document.getElementById('result-display');
+        let container = document.getElementById('gif-container'); // Referencia para quitar el fondo
+
         let loop = setInterval(() => {
             val += 0.08; 
             d.innerText = val.toFixed(2) + "x";
             d.className = val < 2.00 ? 'color-azul' : (val < 10.00 ? 'color-morado' : 'color-rosa');
+            
             if(val >= target) { 
                 d.innerText = target.toFixed(2) + "x";
                 log.innerText = target.toFixed(2) + "x se fue";
                 
-                // --- NUEVO SONIDO DIRECTO AL 50% AL TERMINAR LA RONDA ---
+                // --- QUITA EL FONDO AUTOMÁTICAMENTE EN TELÉFONO AL TERMINAR ---
+                container.classList.remove('lightning-active');
+
+                // --- AUDIO AL 50% QUE DURA EXACTAMENTE 4 SEGUNDOS ---
                 try {
                     let audioFinal = new Audio('https://aviator-demo.spribegaming.com/assets/sounds/sprite_audio.mp3');
                     audioFinal.volume = 0.5;
                     audioFinal.play().catch(err => console.log("Bloqueo de audio final:", err));
+                    
+                    // Se detiene automáticamente a los 4 segundos (4000 milisegundos)
+                    setTimeout(() => {
+                        audioFinal.pause();
+                        audioFinal.currentTime = 4;
+                    }, 4000);
                 } catch (e) {
                     console.log("Error al reproducir el sonido final:", e);
                 }
