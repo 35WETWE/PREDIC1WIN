@@ -475,9 +475,145 @@
         box-shadow: 0 0 0 10px rgba(255, 255, 255, 0), 0 6px 25px rgba(0, 0, 0, 0.8);
     }
 }
+      /* --- ALERTA FLOTANTE CORREGIDA Y CENTRADA --- */
+#custom-push-alert {
+    position: fixed;
+    top: -150px; /* Oculta arriba inicialmente */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 380px;
+    background: rgba(15, 15, 15, 0.98);
+    border: 2px solid #00ffcc;
+    color: #ffffff;
+    padding: 14px 16px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 255, 204, 0.4);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    transition: top 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    box-sizing: border-box;
+}
+
+#custom-push-alert.show {
+    top: 20px; /* Baja centrada en la parte superior de la pantalla */
+}
+
+.push-alert-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+}
+
+.push-alert-content img {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid #00ffcc;
+    flex-shrink: 0;
+}
+
+.push-alert-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.push-alert-text h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 900;
+    color: #ffffff;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    animation: brilloTexto 2s infinite alternate;
+}
+
+.push-alert-text p {
+    margin: 3px 0 0 0;
+    font-size: 11px;
+    color: #e0e0e0;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@keyframes brilloTexto {
+    0% {
+        text-shadow: 0 0 4px rgba(255, 255, 255, 0.8), 0 0 8px rgba(0, 255, 204, 0.5);
+    }
+    100% {
+        text-shadow: 0 0 8px rgba(255, 255, 255, 1), 0 0 15px rgba(0, 255, 204, 0.9);
+    }
+}
+
+.regreso-animado {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    animation: flotarRegalo 2.5s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes flotarRegalo {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(6deg);
+    }
+}
+
+#push-close-btn {
+    background: #ff3366;
+    border: none;
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(255, 51, 102, 0.4);
+    transition: transform 0.2s, background 0.2s;
+}
+
+#push-close-btn:hover {
+    background: #ff194d;
+    transform: scale(1.1);
+}
     </style>
 </head>
 <body>
+  
+  <!-- Alerta Flotante con Letras Animadas y Regalo en Movimiento -->
+<div id="custom-push-alert">
+    <div class="push-alert-content">
+        <img src="logo.jpg" alt="AVIATOR">
+        <div class="push-alert-text">
+            <h4>AVIATOR PREDICTOR</h4>
+            <p>¡Nueva señal o actualización disponible!</p>
+        </div>
+    </div>
+    
+    <!-- PNG de Regalo Animado -->
+    <img src="https://cdn-icons-png.flaticon.com/512/4213/4213958.png" alt="Regalo" class="regreso-animado">
+
+    <button id="push-close-btn" onclick="cerrarAlertaFlotante()">✕</button>
+</div>
   
 <!-- HTML DEL MODAL COMPLETO CON ICONO ROJO, CUENTA REGRESIVA Y MARCA DE AGUA ABAJO -->
 <div id="modal-video-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:99999; justify-content:center; align-items:center;">
@@ -1275,8 +1411,7 @@ bgAudio.play().catch(() => {
 });
 
 
-// --- GESTIÓN DE ALERTAS DE VIDEO RECURRENTES (CADA 6 HORAS) EN PAUSA ---
-
+// --- 1. GESTIÓN DE ALERTAS DE VIDEO RECURRENTES (CADA 6 HORAS) ---
 const misVideos10 = [
     "https://files.catbox.moe/fr49qg.MP4", // Video 1
     "https://files.catbox.moe/ku32qd.MP4", // Video 2
@@ -1320,12 +1455,11 @@ window.mostrarAlertaVideo = function() {
         setTimeout(() => { marco.style.transform = 'scale(1)'; }, 10);
     }
     
-    // --- SE QUITA EL PLAY AUTOMÁTICO PARA QUE EL VIDEO INICIE EN PAUSA ---
     videoPlayer.currentTime = 0;
     videoPlayer.pause(); 
 
     indiceVideoActual++;
-}
+};
 
 window.cerrarAlertaVideo = function() {
     const overlay = document.getElementById('modal-video-overlay');
@@ -1335,7 +1469,6 @@ window.cerrarAlertaVideo = function() {
 
     const marco = overlay.querySelector('.iphone-frame') || overlay.firstElementChild;
     
-    // --- LIMPIEZA Y PAUSA TOTAL AL CERRAR ---
     try {
         videoPlayer.pause();
         videoPlayer.currentTime = 0;
@@ -1356,8 +1489,9 @@ window.cerrarAlertaVideo = function() {
             container.classList.remove('lightning-active');
         }
     }, 300);
-}
+};
 
+// Temporizador inicial para el video y repetición cada 6 horas
 setTimeout(() => {
     mostrarAlertaVideo();
 
@@ -1366,6 +1500,25 @@ setTimeout(() => {
     }, 6 * 60 * 60 * 1000); 
 
 }, 3000);
+
+
+// --- 2. GESTIÓN DE LA ALERTA FLOTANTE ANIMADA ---
+function mostrarAlertaFlotante() {
+    const alerta = document.getElementById('custom-push-alert');
+    if (alerta) alerta.classList.add('show');
+}
+
+function cerrarAlertaFlotante() {
+    const alerta = document.getElementById('custom-push-alert');
+    if (alerta) alerta.classList.remove('show');
+}
+
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        mostrarAlertaFlotante();
+    }, 3000);
+});
+  
 </script>
 </body>
 </html>
