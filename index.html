@@ -563,7 +563,7 @@
     .vip-scroll-area {
         overflow-y: auto;
         flex-grow: 1;
-        max-height: 500px;
+        max-height: 550px;
         padding-right: 4px;
     }
 
@@ -581,8 +581,8 @@
 
   #vip-close-modal {
     position: absolute;
-    top:105px; /* <-- Aumentado de 10px a 25px (o 30px) para bajar la X */
-    right: 15px; /* Un pequeño ajuste para despegarlo ligeramente de la derecha si lo deseas */
+    top: 105px;
+    right: 15px; /* Va en la esquina superior derecha */
     background: #ff4d4d;
     color: white;
     border: none;
@@ -597,19 +597,20 @@
     justify-content: center;
 }
 
-    .btn-volver-planes {
-        background: #ffb6c1;
-        color: #fff;
-        border: none;
-        padding: 8px 8px;
-        border-radius: 8px;
-        cursor: pointer;
-        margin-bottom: 20px;
-        font-weight: bold;
-        width: 100%;
-        text-align: center;
-        font-size: 13px;
-    }
+.btn-volver-planes {
+    position: absolute;
+    top: 105px; /* Exactamente la misma altura que la X */
+    left: 15px;  /* Va en la esquina superior izquierda */
+    background: #ffb6c1;
+    color: #fff;
+    border: none;
+    padding: 6px 12px; /* Ajustado para que funcione bien como botón compacto */
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+    z-index: 10;
+}
 
     /* --- ALERTA FLOTANTE --- */
     #custom-push-alert {
@@ -675,7 +676,7 @@
         cursor: pointer;
         border-radius: 50%;
         width: 22px;
-        height: 22px;
+        height: 23px;
         display: flex;
         align-items: center;
         justify-content: center;
