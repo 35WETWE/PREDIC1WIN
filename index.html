@@ -475,146 +475,524 @@
         box-shadow: 0 0 0 10px rgba(255, 255, 255, 0), 0 6px 25px rgba(0, 0, 0, 0.8);
     }
 }
-      /* --- ALERTA FLOTANTE CORREGIDA Y CENTRADA --- */
-#custom-push-alert {
-    position: fixed;
-    top: -150px; /* Oculta arriba inicialmente */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 380px;
-    background: rgba(15, 15, 15, 0.98);
-    border: 2px solid #00ffcc;
-    color: #ffffff;
-    padding: 14px 16px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 255, 204, 0.4);
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    transition: top 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    box-sizing: border-box;
-}
-
-#custom-push-alert.show {
-    top: 20px; /* Baja centrada en la parte superior de la pantalla */
-}
-
-.push-alert-content {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex: 1;
-    min-width: 0;
-}
-
-.push-alert-content img {
-    width: 42px;
-    height: 42px;
-    border-radius: 10px;
-    object-fit: cover;
-    border: 2px solid #00ffcc;
-    flex-shrink: 0;
-}
-
-.push-alert-text {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-}
-
-.push-alert-text h4 {
-    margin: 0;
-    font-size: 14px;
-    font-weight: 900;
-    color: #ffffff;
-    text-transform: uppercase;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    animation: brilloTexto 2s infinite alternate;
-}
-
-.push-alert-text p {
-    margin: 3px 0 0 0;
-    font-size: 11px;
-    color: #e0e0e0;
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-@keyframes brilloTexto {
-    0% {
-        text-shadow: 0 0 4px rgba(255, 255, 255, 0.8), 0 0 8px rgba(0, 255, 204, 0.5);
-    }
-    100% {
-        text-shadow: 0 0 8px rgba(255, 255, 255, 1), 0 0 15px rgba(0, 255, 204, 0.9);
-    }
-}
-
-.regreso-animado {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-    animation: flotarRegalo 2.5s ease-in-out infinite;
-    flex-shrink: 0;
-}
-
-@keyframes flotarRegalo {
-    0%, 100% {
-        transform: translateY(0) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-5px) rotate(6deg);
-    }
-}
-
-#push-close-btn {
-    background: #ff3366;
-    border: none;
-    color: #ffffff;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 2px 6px rgba(255, 51, 102, 0.4);
-    transition: transform 0.2s, background 0.2s;
-}
-
-#push-close-btn:hover {
-    background: #ff194d;
-    transform: scale(1.1);
-}
     </style>
 </head>
 <body>
-  
-  <!-- Alerta Flotante con Letras Animadas y Regalo en Movimiento -->
-<div id="custom-push-alert">
+  <style>
+    /* --- VENTANA MODAL VIP --- */
+    #seccion-vip {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) scale(0.9) !important;
+        width: 90% !important;
+        max-width: 358px !important;
+        height: 699px !important;
+        background: #ffffff !important;
+        border: 3px solid #ffb6c1 !important;
+        border-radius: 23px !important;
+        padding: 12px !important;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6) !important;
+        box-sizing: border-box !important;
+        font-family: sans-serif !important;
+        color: #333333 !important;
+        z-index: 999998 !important;
+        opacity: 0;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    #seccion-vip.activo {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: translate(-50%, -50%) scale(1) !important;
+    }
+
+    /* --- TAMAÑO DE LOS ICONOS Y SEPARACIÓN --- */
+    .vip-plan-icon, .banco-icon {
+        width: 32px !important;
+        height: 32px !important;
+        object-fit: contain;
+    }
+
+    .vip-plan-card, .banco-card {
+        margin-bottom: 8px !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #f9f9f9;
+        padding: 10px 12px;
+        border-radius: 12px;
+        cursor: pointer;
+        border: 1px solid #eee;
+    }
+
+    .vip-plan-info, .banco-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-grow: 1;
+    }
+
+    .vip-plan-details, .banco-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .vip-plan-details h4, .banco-details h4 {
+        margin: 0;
+        font-size: 14px;
+        color: #222;
+    }
+
+    .vip-plan-details span, .banco-details span {
+        margin: 0;
+        font-size: 11px;
+        color: #666;
+    }
+
+    .vip-plan-price, .banco-accion {
+        font-weight: bold;
+        font-size: 13px;
+        color: #d9534f;
+        white-space: nowrap;
+    }
+
+    .vip-scroll-area {
+        overflow-y: auto;
+        flex-grow: 1;
+        max-height: 500px;
+        padding-right: 4px;
+    }
+
+    .vip-media-banner {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .vip-media-banner video {
+        width: 100%;
+        height: 110px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    #vip-close-modal {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #ff4d4d;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+        font-weight: bold;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-volver-planes {
+        background: #ffb6c1;
+        color: #fff;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        font-weight: bold;
+        width: 100%;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    /* --- ALERTA FLOTANTE --- */
+    #custom-push-alert {
+        position: fixed;
+        top: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #fff;
+        border: 2px solid #ffb6c1;
+        border-radius: 15px;
+        padding: 10px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        z-index: 999997;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+        max-width: 90%;
+        width: 350px;
+    }
+
+    #custom-push-alert.oculto {
+        display: none !important;
+    }
+
+    .push-alert-content {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-grow: 1;
+    }
+
+    .push-alert-content img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    .push-alert-text h4 {
+        margin: 0;
+        font-size: 13px;
+        color: #333;
+    }
+
+    .push-alert-text p {
+        margin: 0;
+        font-size: 11px;
+        color: #666;
+    }
+
+    .regreso-animado {
+        width: 24px;
+        height: 24px;
+        animation: bounce 1s infinite;
+    }
+
+    #push-close-btn {
+        background: #ff4d4d;
+        color: white;
+        border: none;
+        font-size: 12px;
+        cursor: pointer;
+        border-radius: 50%;
+        width: 22px;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse-close 1.5s infinite;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
+    }
+
+    @keyframes pulse-close {
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7); }
+        70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(255, 77, 77, 0); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 77, 77, 0); }
+    }
+</style>
+
+<div id="custom-push-alert" class="oculto" onclick="abrirSeccionVIP(event)">
     <div class="push-alert-content">
         <img src="logo.jpg" alt="AVIATOR">
         <div class="push-alert-text">
             <h4>AVIATOR PREDICTOR</h4>
-            <p>¡Nueva señal o actualización disponible!</p>
+            <p>¡🎊Toca aquí para ver los pases VIP🎊!</p>
         </div>
     </div>
-    
-    <!-- PNG de Regalo Animado -->
-    <img src="https://cdn-icons-png.flaticon.com/512/4213/4213958.png" alt="Regalo" class="regreso-animado">
-
-    <button id="push-close-btn" onclick="cerrarAlertaFlotante()">✕</button>
+    <img src="	https://bet4.mx/assets/promotions-_hdOK0jU.svg" alt="Mod" class="regreso-animado">
+    <button id="push-close-btn" onclick="cerrarAlertaFlotante(event)">✕</button>
 </div>
-  
+
+<div id="seccion-vip" class="vip-subscription-container">
+    <button id="vip-close-modal" onclick="cerrarSeccionVIP(event)">✕</button>
+    
+    <div id="step-planes" class="vip-content-step">
+        <div class="vip-media-banner">
+            <video src="videosuscriptor.MP4" autoplay muted loop playsinline></video>
+        </div>
+
+        <div class="vip-scroll-area">
+            <div class="vip-plan-card" onclick="seleccionarPlan('5 Minutos Prueba', '$5 USD')">
+                <div class="vip-plan-info">
+                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <div class="vip-plan-details">
+                        <h4>Pase Prueba</h4>
+                        <span>5 Minutos</span>
+                    </div>
+                </div>
+                <div class="vip-plan-price">$5 USD</div>
+            </div>
+
+            <div class="vip-plan-card" onclick="seleccionarPlan('15 Minutos', '$10 USD')">
+                <div class="vip-plan-info">
+                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <div class="vip-plan-details">
+                        <h4>Pase Flash</h4>
+                        <span>15 Minutos</span>
+                    </div>
+                </div>
+                <div class="vip-plan-price">$10 USD</div>
+            </div>
+
+            <div class="vip-plan-card" onclick="seleccionarPlan('20 Minutos', '$15 USD')">
+                <div class="vip-plan-info">
+                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <div class="vip-plan-details">
+                        <h4>Pase Rápido</h4>
+                        <span>20 Minutos</span>
+                    </div>
+                </div>
+                <div class="vip-plan-price">$15 USD</div>
+            </div>
+
+            <div class="vip-plan-card" onclick="seleccionarPlan('1 Hora', '$20 USD')">
+                <div class="vip-plan-info">
+                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <div class="vip-plan-details">
+                        <h4>Pase Express</h4>
+                        <span>1 Hora</span>
+                    </div>
+                </div>
+                <div class="vip-plan-price">$20 USD</div>
+            </div>
+
+            <div class="vip-plan-card" onclick="seleccionarPlan('3 Horas', '$30 USD')">
+                <div class="vip-plan-info">
+                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <div class="vip-plan-details">
+                        <h4>Pase Medio</h4>
+                        <span>3 Horas</span>
+                    </div>
+                </div>
+                <div class="vip-plan-price">$30 USD</div>
+            </div>
+
+            <div class="vip-plan-card" onclick="seleccionarPlan('5 Horas', '$40 USD')">
+                <div class="vip-plan-info">
+                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <div class="vip-plan-details">
+                        <h4>Pase Pro</h4>
+                        <span>5 Horas</span>
+                    </div>
+                </div>
+                <div class="vip-plan-price">$40 USD</div>
+            </div>
+
+            <div class="vip-plan-card" onclick="seleccionarPlan('12 Horas', '$80 USD')">
+                <div class="vip-plan-info">
+                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <div class="vip-plan-details">
+                        <h4>Pase Medio Día</h4>
+                        <span>12 Horas</span>
+                    </div>
+                </div>
+                <div class="vip-plan-price">$80 USD</div>
+            </div>
+
+            <div class="vip-plan-card" onclick="seleccionarPlan('24 Horas Compleas', '$120 USD')">
+                <div class="vip-plan-info">
+                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <div class="vip-plan-details">
+                        <h4>Pase Día Entero</h4>
+                        <span>24 Horas</span>
+                    </div>
+                </div>
+                <div class="vip-plan-price">$120 USD</div>
+            </div>
+
+            <div class="vip-plan-card featured" onclick="seleccionarPlan('30 Días Ilimitado', '$200 USD')">
+                <div class="vip-plan-info">
+                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <div class="vip-plan-details">
+                        <h4>Pase Total</h4>
+                        <span>30 Días Ilimitado</span>
+                    </div>
+                </div>
+                <div class="vip-plan-price">$200 USD</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="step-bancos" class="vip-content-step" style="display: none; flex-direction: column; height: 100%;">
+        <button class="btn-volver-planes" onclick="volverAPlanes()">← Volver a los planes</button>
+        
+        <div class="vip-media-banner">
+            <video src="videosuscriptor.MP4" autoplay muted loop playsinline></video>
+        </div>
+
+        <div class="vip-scroll-area">
+            <!-- 1. Binance -->
+            <div class="banco-card" onclick="irABancoPersonalizado('Binance (USDT)')">
+                <div class="banco-info">
+                    <img src="https://images.icon-icons.com/3053/PNG/96/binance_macos_bigsur_icon_190342.png" alt="Binance" class="banco-icon">
+                    <div class="banco-details">
+                        <h4>Binance</h4>
+                        <span>Pago con Cripto (USDT)</span>
+                    </div>
+                </div>
+                <div class="banco-accion">Pagar</div>
+            </div>
+
+            <!-- 2. PayPal -->
+            <div class="banco-card" onclick="irABancoPersonalizado('PayPal')">
+                <div class="banco-info">
+                    <img src="https://images.icon-icons.com/159/PNG/96/paypal_22553.png" alt="PayPal" class="banco-icon">
+                    <div class="banco-details">
+                        <h4>PayPal</h4>
+                        <span>Tarjeta o Saldo</span>
+                    </div>
+                </div>
+                <div class="banco-accion">Pagar</div>
+            </div>
+
+            <!-- 3. Mastercard -->
+            <div class="banco-card" onclick="irABancoPersonalizado('Mastercard')">
+                <div class="banco-info">
+                    <img src="https://images.icon-icons.com/674/PNG/96/Mastercard_icon-icons.com_60554.png" alt="Mastercard" class="banco-icon">
+                    <div class="banco-details">
+                        <h4>Mastercard</h4>
+                        <span>Transferencia / Pago Móvil</span>
+                    </div>
+                </div>
+                <div class="banco-accion">Pagar</div>
+            </div>
+
+            <!-- 4. Zelle -->
+            <div class="banco-card" onclick="irABancoPersonalizado('Zelle')">
+                <div class="banco-info">
+                    <img src="https://images.icon-icons.com/3915/PNG/96/zelle_logo_icon_249110.png" alt="Zelle" class="banco-icon">
+                    <div class="banco-details">
+                        <h4>Zelle</h4>
+                        <span>Pago directo</span>
+                    </div>
+                </div>
+                <div class="banco-accion">Pagar</div>
+            </div>
+
+            <!-- 5. AirTM -->
+            <div class="banco-card" onclick="irABancoPersonalizado('AirTM')">
+                <div class="banco-info">
+                    <img src="https://files.v1.distcdn.net/v1/objects/5f686d32-a19b-4a1d-823f-25ec262d655a" alt="AirTM" class="banco-icon">
+                    <div class="banco-details">
+                        <h4>AirTM</h4>
+                        <span>Monedero virtual</span>
+                    </div>
+                </div>
+                <div class="banco-accion">Pagar</div>
+            </div>
+
+            <!-- 6. Payeer -->
+            <div class="banco-card" onclick="irABancoPersonalizado('Payeer')">
+                <div class="banco-info">
+                    <img src="https://files.v1.distcdn.net/v1/objects/1507d72d-a77c-49d9-9905-268a2ca6d174" alt="Payeer" class="banco-icon">
+                    <div class="banco-details">
+                        <h4>Visa</h4>
+                        <span>Cripto y saldo</span>
+                    </div>
+                </div>
+                <div class="banco-accion">Pagar</div>
+            </div>
+
+            <!-- 7. Zinli -->
+            <div class="banco-card" onclick="irABancoPersonalizado('Zinli')">
+                <div class="banco-info">
+                    <img src="https://files.v1.distcdn.net/v1/objects/6d84222e-a3cb-4a75-af85-b3ce08a13409" alt="Zinli" class="banco-icon">
+                    <div class="banco-details">
+                        <h4>Mach</h4>
+                        <span>Billetera digital</span>
+                    </div>
+                </div>
+                <div class="banco-accion">Pagar</div>
+            </div>
+
+            <!-- 8. Skrill -->
+            <div class="banco-card" onclick="irABancoPersonalizado('Skrill')">
+                <div class="banco-info">
+                    <img src="https://files.v1.distcdn.net/v1/objects/019cc9f9-518d-405e-bd00-c68e34a6b62b" alt="Skrill" class="banco-icon">
+                    <div class="banco-details">
+                        <h4>Mercado Pago</h4>
+                        <span>Pago internacional</span>
+                    </div>
+                </div>
+                <div class="banco-accion">Pagar</div>
+            </div>
+
+            <!-- 9. Neteller -->
+            <div class="banco-card" onclick="irABancoPersonalizado('Neteller')">
+                <div class="banco-info">
+                    <img src="https://files.v1.distcdn.net/v1/objects/d744366e-2ee4-4357-849c-43dc786397a9" alt="Neteller" class="banco-icon">
+                    <div class="banco-details">
+                        <h4>Nequi</h4>
+                        <span>Monedero electrónico</span>
+                    </div>
+                </div>
+                <div class="banco-accion">Pagar</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let planActualGlobal = { duracion: '', precio: '' };
+
+    function mostrarAlertaFlotante() {
+        const alerta = document.getElementById('custom-push-alert');
+        if (alerta) alerta.classList.remove('oculto');
+    }
+
+    function cerrarAlertaFlotante(event) {
+        if (event) event.stopPropagation();
+        const alerta = document.getElementById('custom-push-alert');
+        if (alerta) alerta.classList.add('oculto');
+    }
+
+    function abrirSeccionVIP(event) {
+        if (event.target.id === 'push-close-btn' || event.target.closest('#push-close-btn')) return;
+        cerrarAlertaFlotante(event);
+        const seccionVIP = document.getElementById('seccion-vip');
+        if (seccionVIP) {
+            seccionVIP.classList.add('activo');
+        }
+    }
+
+    function cerrarSeccionVIP(event) {
+        if (event) event.stopPropagation();
+        const seccionVIP = document.getElementById('seccion-vip');
+        if (seccionVIP) {
+            seccionVIP.classList.remove('activo');
+            volverAPlanes();
+        }
+    }
+
+    function seleccionarPlan(duracion, precio) {
+        planActualGlobal.duracion = duracion;
+        planActualGlobal.precio = precio;
+        
+        document.getElementById('step-planes').style.display = 'none';
+        document.getElementById('step-bancos').style.display = 'flex';
+    }
+
+    function volverAPlanes() {
+        document.getElementById('step-bancos').style.display = 'none';
+        document.getElementById('step-planes').style.display = 'flex';
+    }
+
+    function irABancoPersonalizado(bancoSeleccionado) {
+        const textoMensaje = `quiero l aplicacion - Plan: ${planActualGlobal.duracion} (${planActualGlobal.precio}) - Método: ${bancoSeleccionado}`;
+        const urlTelegram = `https://t.me/aviatordoit?text=${encodeURIComponent(textoMensaje)}`;
+        window.open(urlTelegram, '_blank');
+        cerrarSeccionVIP();
+    }
+
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            mostrarAlertaFlotante();
+        }, 2500);
+    });
+</script>
 <!-- HTML DEL MODAL COMPLETO CON ICONO ROJO, CUENTA REGRESIVA Y MARCA DE AGUA ABAJO -->
 <div id="modal-video-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); z-index:99999; justify-content:center; align-items:center;">
     <div class="iphone-frame" style="position:relative; overflow:hidden;">
@@ -1411,7 +1789,8 @@ bgAudio.play().catch(() => {
 });
 
 
-// --- 1. GESTIÓN DE ALERTAS DE VIDEO RECURRENTES (CADA 6 HORAS) ---
+// --- GESTIÓN DE ALERTAS DE VIDEO RECURRENTES (CADA 6 HORAS) EN PAUSA ---
+
 const misVideos10 = [
     "https://files.catbox.moe/fr49qg.MP4", // Video 1
     "https://files.catbox.moe/ku32qd.MP4", // Video 2
@@ -1455,11 +1834,12 @@ window.mostrarAlertaVideo = function() {
         setTimeout(() => { marco.style.transform = 'scale(1)'; }, 10);
     }
     
+    // --- SE QUITA EL PLAY AUTOMÁTICO PARA QUE EL VIDEO INICIE EN PAUSA ---
     videoPlayer.currentTime = 0;
     videoPlayer.pause(); 
 
     indiceVideoActual++;
-};
+}
 
 window.cerrarAlertaVideo = function() {
     const overlay = document.getElementById('modal-video-overlay');
@@ -1469,6 +1849,7 @@ window.cerrarAlertaVideo = function() {
 
     const marco = overlay.querySelector('.iphone-frame') || overlay.firstElementChild;
     
+    // --- LIMPIEZA Y PAUSA TOTAL AL CERRAR ---
     try {
         videoPlayer.pause();
         videoPlayer.currentTime = 0;
@@ -1489,9 +1870,8 @@ window.cerrarAlertaVideo = function() {
             container.classList.remove('lightning-active');
         }
     }, 300);
-};
+}
 
-// Temporizador inicial para el video y repetición cada 6 horas
 setTimeout(() => {
     mostrarAlertaVideo();
 
@@ -1500,25 +1880,6 @@ setTimeout(() => {
     }, 6 * 60 * 60 * 1000); 
 
 }, 3000);
-
-
-// --- 2. GESTIÓN DE LA ALERTA FLOTANTE ANIMADA ---
-function mostrarAlertaFlotante() {
-    const alerta = document.getElementById('custom-push-alert');
-    if (alerta) alerta.classList.add('show');
-}
-
-function cerrarAlertaFlotante() {
-    const alerta = document.getElementById('custom-push-alert');
-    if (alerta) alerta.classList.remove('show');
-}
-
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        mostrarAlertaFlotante();
-    }, 3000);
-});
-  
 </script>
 </body>
 </html>
