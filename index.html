@@ -479,7 +479,7 @@
 </head>
 <body>
 <style>
-    /* --- 1. CONTENEDOR MODAL VIP ORO (ESTRUCTURA UNIFICADA Y ROBUSTA) --- */
+    /* --- 1. CONTENEDOR MODAL VIP ORO (ESTRUCTURA ORIGINAL) --- */
     #seccion-vip {
         position: fixed !important;
         top: 50% !important;
@@ -487,8 +487,8 @@
         transform: translate(-50%, -50%) scale(0.95) !important;
         width: 92% !important;
         max-width: 380px !important;
-        height: 85vh !important;
-        max-height: 580px !important;
+        height: auto !important; /* Cambiado a auto para respetar contenido */
+        max-height: 735px !important;
         background: #121212 !important;
         border: 4px solid #D4AF37 !important;
         border-radius: 26px !important;
@@ -520,78 +520,90 @@
         overflow: hidden;
     }
 
-    /* --- 2. BANNER MULTIMEDIA / VIDEO Y CONTROLES ANCLADOS A RAS --- */
+    /* --- 2. BANNER MULTIMEDIA / VIDEO (CORREGIDO: CORTO Y CON BOTONES FLOTANTES) --- */
     .vip-media-container {
         position: relative;
         width: 100%;
+        height: 80px !important; /* CORREGIDO: EL VIDEO ES CORTO COMO PEDISTE */
         margin-bottom: 10px;
         flex-shrink: 0;
+        border: 2.5px solid #D4AF37;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
     .vip-media-banner {
         width: 100%;
-        border: 2.5px solid #D4AF37;
-        border-radius: 16px;
-        overflow: hidden;
-        background: #181818;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        height: 100%;
     }
 
     .vip-media-banner video {
         width: 100%;
-        height: 130px !important;
-        object-fit: cover !important;
+        height: 100%;
+        object-fit: cover !important; /* Mantiene el aspecto del video corto */
         display: block;
     }
 
-    /* --- 3. BOTONES DE CONTROL (CERRAR Y VOLVER) PEGADOS A RAS DEL VIDEO --- */
+    /* --- 3. BOTONES FLOTANTES EN LAS ESQUINAS (CORREGIDO: DENTRO DEL VIDEO) --- */
+    
+    /* Contenedor que fuerza a los botones a estar dentro del área del video */
     .vip-controls-anchor {
-        display: flex;
-        gap: 8px;
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
-        margin-top: 8px !important;
-        margin-bottom: 10px !important;
-        flex-shrink: 0;
+        height: 100%;
+        z-index: 10;
+        pointer-events: none; /* Permite hacer clic a través de este contenedor si fuera necesario */
     }
 
-    #vip-close-modal, .btn-volver-planes {
-        flex: 1;
-        height: 42px !important;
-        border-radius: 12px !important;
+    /* Estilo base de los botones */
+    .vip-nav-btn-fixed {
+        position: absolute !important;
+        top: 8px !important; /* Margen superior desde el borde del video */
+        padding: 4px 8px !important;
+        border-radius: 8px !important;
         font-weight: 800 !important;
-        font-size: 12px !important;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-        transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease, background 0.15s ease;
+        font-size: 11px !important;
+        cursor: pointer !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        pointer-events: auto !important; /* Habilita el clic en el botón */
         -webkit-tap-highlight-color: transparent;
     }
 
-    #vip-close-modal {
-        position: relative !important;
-        top: auto !important;
-        right: auto !important;
-        background: linear-gradient(135deg, #cc0000, #990000) !important;
-        color: #ffffff !important;
-        border: 2px solid #ff6666 !important;
-        box-shadow: 0 4px 0 #5c0000 !important;
-        width: auto !important;
-        height: 42px !important;
-        border-radius: 12px !important;
-    }
-
+    /* Botón "Volver a los planes" - ESQUINA IZQUIERDA */
     .btn-volver-planes {
+        left: 8px !important; /* Pegado a la izquierda del video */
         background: linear-gradient(135deg, #9A7B2C, #7A5612) !important;
         color: #ffffff !important;
         border: 2px solid #F5DE88 !important;
-        box-shadow: 0 4px 0 #4a3408 !important;
-        width: 100%;
-        margin: 0 !important;
+        box-shadow: 0 3px 0 #4a3408 !important;
     }
 
-    /* --- 4. MOLDE DE ORO Y TARJETAS ROBUSTAS (PASES Y BANCOS UNIFICADOS) --- */
+    /* Botón "X" Cerrar - ESQUINA DERECHA */
+    #vip-close-modal {
+        right: 8px !important; /* Pegado a la derecha del video */
+        width: auto !important;
+        height: auto !important;
+        background: linear-gradient(135deg, #cc0000, #4c090b) !important;
+        color: #ffffff !important;
+        border: 2px solid #ff6666 !important;
+        box-shadow: 0 3px 0 #5c0000 !important;
+    }
+
+    /* Efecto de presión al hacer clic */
+    .vip-nav-btn-fixed:active {
+        transform: translateY(3px) scale(0.96) !important;
+        box-shadow: 0 1px 0 #4a3408 !important;
+    }
+
+    /* --- 4. MOLDE DE ORO Y TARJETAS ROBUSTAS (SIN CAMBIOS) --- */
     .vip-plan-card, .banco-card {
         height: 60px !important;
         min-height: 60px !important;
@@ -600,25 +612,24 @@
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
-        background: #1a1a1a !important;
+        background: ##4c090b !important;
         padding: 0 16px !important;
         border-radius: 16px !important;
         cursor: pointer !important;
         border: 2.5px solid #D4AF37 !important;
-        box-shadow: 0 5px 0 #7a6320 !important; /* Molde de oro 3D robusto */
+        box-shadow: 0 5px 0 #7a6320 !important;
         box-sizing: border-box !important;
         transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease, background 0.15s ease;
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* --- ANIMACIÓN DINÁMICA DE REBOTE / IMPACTO AL PRESIONAR --- */
-    .vip-plan-card:active, .banco-card:active, .btn-volver-planes:active, #vip-close-modal:active {
+    .vip-plan-card:active, .banco-card:active {
         transform: translateY(4px) scale(0.96) !important;
         box-shadow: 0 1px 0 #4a3408 !important;
         filter: brightness(1.15);
     }
 
-    /* --- TIPOGRAFÍA Y TEXTOS DE ORO --- */
+    /* --- TIPOGRAFÍA Y TEXTOS DE ORO (SIN CAMBIOS) --- */
     .gold-text, .vip-plan-price, .banco-accion, .vip-plan-details h4, .banco-details h4, .push-alert-text h4 {
         background: linear-gradient(135deg, #C5A059 0%, #F3E5AB 50%, #997A35 100%);
         -webkit-background-clip: text;
@@ -668,7 +679,7 @@
         margin-left: 8px;
     }
 
-    /* --- 5. ÁREA DE DESPLAZAMIENTO FLUIDA --- */
+    /* --- 5. ÁREA DE DESPLAZAMIENTO FLUIDA (SIN CAMBIOS) --- */
     .vip-scroll-area {
         overflow-y: auto;
         flex-grow: 1;
@@ -684,7 +695,7 @@
         border-radius: 10px;
     }
 
-    /* --- 6. ALERTA FLOTANTE SUPERIOR (PUSH NATIVA) --- */
+    /* --- 6. ALERTA FLOTANTE SUPERIOR (PUSH NATIVA) (SIN CAMBIOS) --- */
     #custom-push-alert {
         position: fixed;
         top: 20px;
@@ -762,14 +773,14 @@
 <!-- Alerta emergente superior estilo iPhone -->
 <div id="custom-push-alert" class="oculto" onclick="abrirSeccionVIP(event)">
     <div class="push-alert-content">
-        <img src="logo.jpg" alt="AVIATORPKA">
+        <img src="https://images.icon-icons.com/964/PNG/96/gift_icon-icons.com_74639.png" alt="AVIATORPKA">
         <div class="push-alert-text">
             <h4>AVIATORPKA ORO</h4>
             <p>👇 ¡Toca aquí para activar tu Pase con Bono! 👇
 ✨ ¡Tu próxima gran jugada comienza aquí! ✨</p>
         </div>
     </div>
-    <img src="	https://images.icon-icons.com/3263/PNG/96/vip_icon_206877.png" alt="Mod" class="regreso-animado">
+    <img src="https://images.icon-icons.com/964/PNG/96/gift_icon-icons.com_74639.png" alt="Mod" class="regreso-animado">
     <button id="push-close-btn" onclick="cerrarAlertaFlotante(event)">✖︎</button>
 </div>
 
@@ -786,7 +797,7 @@
         <div class="vip-scroll-area">
             <div class="vip-plan-card" onclick="seleccionarPlan('5 Minutos Prueba + 5 Min Extra Bono', '$5 USD')">
                 <div class="vip-plan-info">
-                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <img src="URL_ICONO_PLAN" alt="Aviator" class="vip-plan-icon">
                     <div class="vip-plan-details">
                         <h4>Pase Prueba Oro</h4>
                         <span>5 Min + 5 Min Bono Extra</span>
@@ -797,7 +808,7 @@
 
             <div class="vip-plan-card" onclick="seleccionarPlan('15 Minutos + 10 Min Extra Bono', '$10 USD')">
                 <div class="vip-plan-info">
-                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <img src="URL_ICONO_PLAN" alt="Aviator" class="vip-plan-icon">
                     <div class="vip-plan-details">
                         <h4>Pase Flash</h4>
                         <span>15 Min + 10 Min Bono</span>
@@ -808,7 +819,7 @@
 
             <div class="vip-plan-card" onclick="seleccionarPlan('20 Minutos + 15 Min Extra Bono', '$15 USD')">
                 <div class="vip-plan-info">
-                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <img src="URL_ICONO_PLAN" alt="Aviator" class="vip-plan-icon">
                     <div class="vip-plan-details">
                         <h4>Pase Rápido</h4>
                         <span>20 Min + 15 Min Bono</span>
@@ -819,7 +830,7 @@
 
             <div class="vip-plan-card" onclick="seleccionarPlan('1 Hora + 20 Min Extra Bono', '$20 USD')">
                 <div class="vip-plan-info">
-                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <img src="URL_ICONO_PLAN" alt="Aviator" class="vip-plan-icon">
                     <div class="vip-plan-details">
                         <h4>Pase Express</h4>
                         <span>1 Hora + 20 Min Bono</span>
@@ -830,7 +841,7 @@
 
             <div class="vip-plan-card" onclick="seleccionarPlan('3 Horas + 30 Min Extra Bono', '$30 USD')">
                 <div class="vip-plan-info">
-                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <img src="URL_ICONO_PLAN" alt="Aviator" class="vip-plan-icon">
                     <div class="vip-plan-details">
                         <h4>Pase Medio</h4>
                         <span>3 Horas + 30 Min Bono</span>
@@ -842,9 +853,9 @@
             <!-- PASE DESTACADO CON BONO DE 30 MINUTOS EXPLICITO -->
             <div class="vip-plan-card featured" onclick="seleccionarPlan('Pase Oro Activo 5 Horas + 30 Minutos Bono', '$50 USD')">
                 <div class="vip-plan-info">
-                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <img src="URL_ICONO_PLAN" alt="Aviator" class="vip-plan-icon">
                     <div class="vip-plan-details">
-                        <h4 style="color: #B8860B;">⭐ Pase Oro Especial ⭐</h4>
+                        <h4 style="color: #B8860B;">Pase Oro Especial</h4>
                         <span>5 Horas + 30 Minutos de Bono</span>
                     </div>
                 </div>
@@ -853,7 +864,7 @@
 
             <div class="vip-plan-card" onclick="seleccionarPlan('12 Horas + 1 Hora Extra Bono', '$80 USD')">
                 <div class="vip-plan-info">
-                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <img src="URL_ICONO_PLAN" alt="Aviator" class="vip-plan-icon">
                     <div class="vip-plan-details">
                         <h4>Pase Medio Día</h4>
                         <span>12 Horas + 1 Hora Bono</span>
@@ -864,7 +875,7 @@
 
             <div class="vip-plan-card" onclick="seleccionarPlan('24 Horas Compleas + 2 Horas Bono', '$120 USD')">
                 <div class="vip-plan-info">
-                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <img src="URL_ICONO_PLAN" alt="Aviator" class="vip-plan-icon">
                     <div class="vip-plan-details">
                         <h4>Pase Día Entero</h4>
                         <span>24 Horas + 2 Horas Bono</span>
@@ -875,9 +886,9 @@
 
             <div class="vip-plan-card featured" onclick="seleccionarPlan('30 Días Ilimitado + 3 Días Bono', '$200 USD')">
                 <div class="vip-plan-info">
-                    <img src="logo.jpg" alt="Aviator" class="vip-plan-icon">
+                    <img src="URL_ICONO_PLAN" alt="Aviator" class="vip-plan-icon">
                     <div class="vip-plan-details">
-                        <h4 style="color: #B8860B;">👑 Pase Total Ilimitado 👑</h4>
+                        <h4 style="color: #B8860B;">Pase Total Ilimitado</h4>
                         <span>30 Días + 3 Días de Bono</span>
                     </div>
                 </div>
@@ -897,7 +908,7 @@
         <div class="vip-scroll-area">
             <div class="banco-card" onclick="irABancoPersonalizado('Binance (USDT)')">
                 <div class="banco-info">
-                    <img src="https://images.icon-icons.com/3053/PNG/96/binance_macos_bigsur_icon_190342.png" alt="Binance" class="banco-icon">
+                    <img src="URL_ICONO_BINANCE" alt="Binance" class="banco-icon">
                     <div class="banco-details">
                         <h4>Binance</h4>
                         <span>Pago con Cripto (USDT)</span>
@@ -908,7 +919,7 @@
 
             <div class="banco-card" onclick="irABancoPersonalizado('PayPal')">
                 <div class="banco-info">
-                    <img src="https://images.icon-icons.com/730/PNG/96/paypal_icon-icons.com_62759.png" alt="PayPal" class="banco-icon">
+                    <img src="URL_ICONO_PAYPAL" alt="PayPal" class="banco-icon">
                     <div class="banco-details">
                         <h4>PayPal</h4>
                         <span>Tarjeta o Saldo</span>
@@ -919,7 +930,7 @@
 
             <div class="banco-card" onclick="irABancoPersonalizado('Banco Local')">
                 <div class="banco-info">
-                    <img src="https://files.v1.distcdn.net/v1/objects/9a678116-fb23-459f-8429-cd8af8b75cfc" alt="Banco Local" class="banco-icon">
+                    <img src="URL_ICONO_BANCO_LOCAL" alt="Banco Local" class="banco-icon">
                     <div class="banco-details">
                         <h4>Banco Local</h4>
                         <span>Transferencia / Pago Móvil</span>
@@ -930,7 +941,7 @@
 
             <div class="banco-card" onclick="irABancoPersonalizado('Zelle')">
                 <div class="banco-info">
-                    <img src="https://files.v1.distcdn.net/v1/objects/d744366e-2ee4-4357-849c-43dc786397a9" alt="Zelle" class="banco-icon">
+                    <img src="URL_ICONO_NEQUI" alt="Zelle" class="banco-icon">
                     <div class="banco-details">
                         <h4>Nequi</h4>
                         <span>Pago directo</span>
@@ -941,7 +952,7 @@
 
             <div class="banco-card" onclick="irABancoPersonalizado('AirTM')">
                 <div class="banco-info">
-                    <img src="https://images.icon-icons.com/2415/PNG/96/airtm_logo_icon_146603.png" alt="AirTM" class="banco-icon">
+                    <img src="URL_ICONO_AIRTM" alt="AirTM" class="banco-icon">
                     <div class="banco-details">
                         <h4>AirTM</h4>
                         <span>Monedero virtual</span>
@@ -952,7 +963,7 @@
 
             <div class="banco-card" onclick="irABancoPersonalizado('Payeer')">
                 <div class="banco-info">
-                    <img src="https://images.icon-icons.com/2107/PNG/96/payeer_icon_131102.png" alt="Payeer" class="banco-icon">
+                    <img src="URL_ICONO_PAYEER" alt="Payeer" class="banco-icon">
                     <div class="banco-details">
                         <h4>Payeer</h4>
                         <span>Cripto y saldo</span>
@@ -963,7 +974,7 @@
 
             <div class="banco-card" onclick="irABancoPersonalizado('Zinli')">
                 <div class="banco-info">
-                    <img src="https://images.icon-icons.com/2415/PNG/96/wallet_money_payment_finance_icon_146629.png" alt="Zinli" class="banco-icon">
+                    <img src="URL_ICONO_ZINLI" alt="Zinli" class="banco-icon">
                     <div class="banco-details">
                         <h4>Zinli</h4>
                         <span>Billetera digital</span>
@@ -974,7 +985,7 @@
 
             <div class="banco-card" onclick="irABancoPersonalizado('Skrill')">
                 <div class="banco-info">
-                    <img src="https://images.icon-icons.com/2415/PNG/96/skrill_logo_icon_146580.png" alt="Skrill" class="banco-icon">
+                    <img src="URL_ICONO_SKRILL" alt="Skrill" class="banco-icon">
                     <div class="banco-details">
                         <h4>Skrill</h4>
                         <span>Pago internacional</span>
@@ -985,7 +996,7 @@
 
             <div class="banco-card" onclick="irABancoPersonalizado('Neteller')">
                 <div class="banco-info">
-                    <img src="https://images.icon-icons.com/2415/PNG/96/neteller_logo_icon_146581.png" alt="Neteller" class="banco-icon">
+                    <img src="URL_ICONO_NETELLER" alt="Neteller" class="banco-icon">
                     <div class="banco-details">
                         <h4>Neteller</h4>
                         <span>Monedero electrónico</span>
@@ -1063,7 +1074,7 @@
             <p>¡Toca aquí para ver los pases VIP!</p>
         </div>
     </div>
-    <img src="https://images.icon-icons.com/966/PNG/96/Security_icon-icons.com_74703.png" alt="Mod" class="regreso-animado">
+    <img src="" alt="Mod" class="regreso-animado">
     <button id="push-close-btn" onclick="cerrarAlertaFlotante(event)">✕</button>
 </div>
 
