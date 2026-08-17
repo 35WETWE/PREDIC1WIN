@@ -741,13 +741,14 @@
         top: 50% !important;
         left: 50% !important;
         transform: translate(-50%, -50%) scale(0.9) !important;
-        width: 90% !important;
-        max-width: 380px !important;
-        height: 720px !important;
+        width: 92% !important;
+        max-width: 360px !important;
+        height: 82vh !important;
+        max-height: 520px !important;
         background: #ffffff !important;
         border: 3px solid #D4AF37 !important;
-        border-radius: 25px !important;
-        padding: 14px !important;
+        border-radius: 20px !important;
+        padding: 10px !important;
         box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15), 0 0 20px rgba(212, 175, 55, 0.3) !important;
         box-sizing: border-box !important;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
@@ -771,6 +772,7 @@
         flex-direction: column;
         height: 100%;
         width: 100%;
+        overflow: hidden;
     }
 
     /* --- ESTILO EFECTO MOLDE DE ORO ADAPTADO A FONDO CLARO --- */
@@ -789,23 +791,23 @@
 
     /* --- TAMAÑO DE LOS ICONOS Y TARJETAS --- */
     .vip-plan-icon, .banco-icon {
-        width: 34px !important;
-        height: 34px !important;
+        width: 30px !important;
+        height: 30px !important;
         object-fit: contain;
         filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.2));
     }
 
     .vip-plan-card, .banco-card {
-        margin-bottom: 9px !important;
+        margin-bottom: 6px !important;
         display: flex;
         justify-content: space-between;
         align-items: center;
         background: linear-gradient(145deg, #fdfdfd, #f0f0f0);
-        padding: 11px 14px;
-        border-radius: 14px;
+        padding: 8px 12px;
+        border-radius: 12px;
         cursor: pointer;
         border: 1px solid rgba(212, 175, 55, 0.4);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        box-shadow: 0 3px 8px rgba(0,0,0,0.04);
         transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
@@ -820,7 +822,7 @@
     .vip-plan-info, .banco-info {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
         flex-grow: 1;
     }
 
@@ -831,29 +833,29 @@
 
     .vip-plan-details h4, .banco-details h4 {
         margin: 0;
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .vip-plan-details span, .banco-details span {
         margin: 0;
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .vip-plan-price, .banco-accion {
-        font-size: 13px;
+        font-size: 12px;
         white-space: nowrap;
     }
 
     .vip-scroll-area {
         overflow-y: auto;
         flex-grow: 1;
-        max-height: 520px;
-        padding-right: 4px;
+        max-height: none;
+        padding-right: 3px;
     }
 
     /* Scrollbar personalizada estética */
     .vip-scroll-area::-webkit-scrollbar {
-        width: 5px;
+        width: 4px;
     }
     .vip-scroll-area::-webkit-scrollbar-thumb {
         background: #D4AF37;
@@ -862,30 +864,31 @@
 
     .vip-media-banner {
         text-align: center;
-        margin-bottom: 12px;
-        border: 2px solid #D4AF37;
-        border-radius: 12px;
+        margin-bottom: 8px;
+        border: 1.5px solid #D4AF37;
+        border-radius: 10px;
         overflow: hidden;
-        box-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        flex-shrink: 0;
     }
 
     .vip-media-banner video {
         width: 100%;
-        height: 110px;
+        height: 75px;
         object-fit: cover;
         display: block;
     }
 
     #vip-close-modal {
         position: absolute;
-        top: 12px;
-        right: 12px;
+        top: 8px;
+        right: 8px;
         background: linear-gradient(135deg, #ff4d4d, #b30000);
         color: white;
         border: 1px solid #ff9999;
         border-radius: 50%;
-        width: 30px;
-        height: 30px;
+        width: 26px;
+        height: 26px;
         cursor: pointer;
         font-weight: bold;
         z-index: 10;
@@ -893,21 +896,23 @@
         align-items: center;
         justify-content: center;
         box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        font-size: 12px;
     }
 
     .btn-volver-planes {
         background: linear-gradient(135deg, #9A7B2C, #7A5612);
         color: #fff;
         border: 1px solid #F5DE88;
-        padding: 9px 12px;
-        border-radius: 10px;
+        padding: 7px 10px;
+        border-radius: 8px;
         cursor: pointer;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         font-weight: bold;
         width: 100%;
         text-align: center;
-        font-size: 13px;
-        box-shadow: 0 4px 10px rgba(122, 86, 18, 0.3);
+        font-size: 12px;
+        box-shadow: 0 3px 8px rgba(122, 86, 18, 0.3);
+        flex-shrink: 0;
     }
 
     /* --- ALERTA FLOTANTE PARA IPHONE (FONDO CLARO) --- */
@@ -999,16 +1004,17 @@
         <img src="logo.jpg" alt="AVIATORPKA">
         <div class="push-alert-text">
             <h4>AVIATORPKA ORO</h4>
-            <p>¡Toca aquí para activar tu Pase con Bono!</p>
+            <p>👇 ¡Toca aquí para activar tu Pase con Bono! 👇
+✨ ¡Tu próxima gran jugada comienza aquí! ✨</p>
         </div>
     </div>
-    <img src="https://images.icon-icons.com/966/PNG/96/Security_icon-icons.com_74703.png" alt="Mod" class="regreso-animado">
-    <button id="push-close-btn" onclick="cerrarAlertaFlotante(event)">✕</button>
+    <img src="	https://images.icon-icons.com/3263/PNG/96/vip_icon_206877.png" alt="Mod" class="regreso-animado">
+    <button id="push-close-btn" onclick="cerrarAlertaFlotante(event)">✖︎</button>
 </div>
 
 <!-- Contenedor Principal Modal -->
 <div id="seccion-vip" class="vip-subscription-container">
-    <button id="vip-close-modal" onclick="cerrarSeccionVIP(event)">✕</button>
+    <button id="vip-close-modal" onclick="cerrarSeccionVIP(event)">✖︎</button>
     
     <!-- PASO 1: SELECCIÓN DE PLANES CON BONO DE ORO -->
     <div id="step-planes" class="vip-content-step">
@@ -1141,7 +1147,7 @@
 
             <div class="banco-card" onclick="irABancoPersonalizado('PayPal')">
                 <div class="banco-info">
-                    <img src="https://images.icon-icons.com/646/PNG/96/paypal_icon-icons.com_59876.png" alt="PayPal" class="banco-icon">
+                    <img src="https://images.icon-icons.com/730/PNG/96/paypal_icon-icons.com_62759.png" alt="PayPal" class="banco-icon">
                     <div class="banco-details">
                         <h4>PayPal</h4>
                         <span>Tarjeta o Saldo</span>
@@ -1152,7 +1158,7 @@
 
             <div class="banco-card" onclick="irABancoPersonalizado('Banco Local')">
                 <div class="banco-info">
-                    <img src="https://images.icon-icons.com/1381/PNG/96/bank_the_building_9837.png" alt="Banco Local" class="banco-icon">
+                    <img src="https://files.v1.distcdn.net/v1/objects/9a678116-fb23-459f-8429-cd8af8b75cfc" alt="Banco Local" class="banco-icon">
                     <div class="banco-details">
                         <h4>Banco Local</h4>
                         <span>Transferencia / Pago Móvil</span>
@@ -1163,9 +1169,9 @@
 
             <div class="banco-card" onclick="irABancoPersonalizado('Zelle')">
                 <div class="banco-info">
-                    <img src="https://images.icon-icons.com/2699/PNG/96/zelle_logo_icon_168060.png" alt="Zelle" class="banco-icon">
+                    <img src="https://files.v1.distcdn.net/v1/objects/d744366e-2ee4-4357-849c-43dc786397a9" alt="Zelle" class="banco-icon">
                     <div class="banco-details">
-                        <h4>Zelle</h4>
+                        <h4>Nequi</h4>
                         <span>Pago directo</span>
                     </div>
                 </div>
