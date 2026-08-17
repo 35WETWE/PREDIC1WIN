@@ -478,21 +478,22 @@
     </style>
 </head>
 <body>
- <style>
-    /* --- CONTENEDOR MODAL VIP ORO (DISEÑO LIMPIO, COMPATIBLE IPHONE Y ANDROID) --- */
+<style>
+    /* --- 1. CONTENEDOR MODAL VIP ORO (ESTRUCTURA UNIFICADA Y ROBUSTA) --- */
     #seccion-vip {
         position: fixed !important;
         top: 50% !important;
         left: 50% !important;
-        transform: translate(-50%, -50%) scale(0.9) !important;
-        width: 90% !important;
+        transform: translate(-50%, -50%) scale(0.95) !important;
+        width: 92% !important;
         max-width: 380px !important;
-        height: 720px !important;
+        height: 85vh !important;
+        max-height: 580px !important;
         background: #121212 !important;
-        border: 2.5px solid #D4AF37 !important;
-        border-radius: 24px !important;
-        padding: 14px !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+        border: 4px solid #D4AF37 !important;
+        border-radius: 26px !important;
+        padding: 16px !important;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 25px rgba(212, 175, 55, 0.25) !important;
         box-sizing: border-box !important;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
         color: #ffffff !important;
@@ -501,7 +502,8 @@
         pointer-events: none;
         display: flex;
         flex-direction: column;
-        transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        overflow: hidden;
     }
 
     #seccion-vip.activo {
@@ -515,10 +517,109 @@
         flex-direction: column;
         height: 100%;
         width: 100%;
+        overflow: hidden;
     }
 
-    /* --- MOLDE DE ORO ELEGANTE (SIN EFECTO NEÓN MOLESTO) --- */
-    .gold-text, .vip-plan-price, .banco-accion, .vip-plan-details h4, .push-alert-text h4 {
+    /* --- 2. BANNER MULTIMEDIA / VIDEO Y CONTROLES ANCLADOS A RAS --- */
+    .vip-media-container {
+        position: relative;
+        width: 100%;
+        margin-bottom: 10px;
+        flex-shrink: 0;
+    }
+
+    .vip-media-banner {
+        width: 100%;
+        border: 2.5px solid #D4AF37;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #181818;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .vip-media-banner video {
+        width: 100%;
+        height: 130px !important;
+        object-fit: cover !important;
+        display: block;
+    }
+
+    /* --- 3. BOTONES DE CONTROL (CERRAR Y VOLVER) PEGADOS A RAS DEL VIDEO --- */
+    .vip-controls-anchor {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+        margin-top: 8px !important;
+        margin-bottom: 10px !important;
+        flex-shrink: 0;
+    }
+
+    #vip-close-modal, .btn-volver-planes {
+        flex: 1;
+        height: 42px !important;
+        border-radius: 12px !important;
+        font-weight: 800 !important;
+        font-size: 12px !important;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease, background 0.15s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    #vip-close-modal {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        background: linear-gradient(135deg, #cc0000, #990000) !important;
+        color: #ffffff !important;
+        border: 2px solid #ff6666 !important;
+        box-shadow: 0 4px 0 #5c0000 !important;
+        width: auto !important;
+        height: 42px !important;
+        border-radius: 12px !important;
+    }
+
+    .btn-volver-planes {
+        background: linear-gradient(135deg, #9A7B2C, #7A5612) !important;
+        color: #ffffff !important;
+        border: 2px solid #F5DE88 !important;
+        box-shadow: 0 4px 0 #4a3408 !important;
+        width: 100%;
+        margin: 0 !important;
+    }
+
+    /* --- 4. MOLDE DE ORO Y TARJETAS ROBUSTAS (PASES Y BANCOS UNIFICADOS) --- */
+    .vip-plan-card, .banco-card {
+        height: 60px !important;
+        min-height: 60px !important;
+        max-height: 60px !important;
+        margin-bottom: 10px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        background: #1a1a1a !important;
+        padding: 0 16px !important;
+        border-radius: 16px !important;
+        cursor: pointer !important;
+        border: 2.5px solid #D4AF37 !important;
+        box-shadow: 0 5px 0 #7a6320 !important; /* Molde de oro 3D robusto */
+        box-sizing: border-box !important;
+        transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease, background 0.15s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* --- ANIMACIÓN DINÁMICA DE REBOTE / IMPACTO AL PRESIONAR --- */
+    .vip-plan-card:active, .banco-card:active, .btn-volver-planes:active, #vip-close-modal:active {
+        transform: translateY(4px) scale(0.96) !important;
+        box-shadow: 0 1px 0 #4a3408 !important;
+        filter: brightness(1.15);
+    }
+
+    /* --- TIPOGRAFÍA Y TEXTOS DE ORO --- */
+    .gold-text, .vip-plan-price, .banco-accion, .vip-plan-details h4, .banco-details h4, .push-alert-text h4 {
         background: linear-gradient(135deg, #C5A059 0%, #F3E5AB 50%, #997A35 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -528,35 +629,7 @@
     .vip-plan-details span, .banco-details span, .push-alert-text p {
         color: #b5b5b5 !important;
         font-weight: 500;
-        font-size: 11.5px;
-    }
-
-    /* --- ICONOS Y TARJETAS INTERACTIVAS --- */
-    .vip-plan-icon, .banco-icon {
-        width: 34px !important;
-        height: 34px !important;
-        object-fit: contain;
-    }
-
-    .vip-plan-card, .banco-card {
-        margin-bottom: 10px !important;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: #1a1a1a;
-        padding: 12px 14px;
-        border-radius: 14px;
-        cursor: pointer;
-        border: 1px solid rgba(212, 175, 55, 0.25);
-        transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    /* EFECTO INTERACTIVO AL PRESIONAR CADA BOTÓN (SUAVE Y PROFESIONAL) */
-    .vip-plan-card:active, .banco-card:active, .btn-volver-planes:active {
-        transform: scale(0.97) !important;
-        background: #262211 !important;
-        border-color: #D4AF37 !important;
+        font-size: 11px;
     }
 
     .vip-plan-info, .banco-info {
@@ -564,22 +637,41 @@
         align-items: center;
         gap: 12px;
         flex-grow: 1;
+        overflow: hidden;
+    }
+
+    .vip-plan-icon, .banco-icon {
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        object-fit: contain;
     }
 
     .vip-plan-details, .banco-details {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .vip-plan-details h4, .banco-details h4 {
+        margin: 0;
+        font-size: 14px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .vip-plan-price, .banco-accion {
-        font-size: 13.5px;
+        font-size: 13px !important;
         white-space: nowrap;
+        margin-left: 8px;
     }
 
+    /* --- 5. ÁREA DE DESPLAZAMIENTO FLUIDA --- */
     .vip-scroll-area {
         overflow-y: auto;
         flex-grow: 1;
-        max-height: 510px;
         padding-right: 4px;
         -webkit-overflow-scrolling: touch;
     }
@@ -592,92 +684,17 @@
         border-radius: 10px;
     }
 
-    /* BANNER CON LOGOTIPO FIJO (CERO ERRORES DE REPRODUCCIÓN) */
-    .vip-media-banner {
-        text-align: center;
-        margin-bottom: 12px;
-        border: 1.5px solid rgba(212, 175, 55, 0.4);
-        border-radius: 14px;
-        background: #181818;
-        padding: 10px;
-    }
-
-    .vip-media-banner img.banner-logo-gold {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        border: 2px solid #D4AF37;
-        object-fit: cover;
-    }
-
-    .vip-media-banner h3 {
-        margin: 6px 0 2px 0;
-        font-size: 14px;
-        letter-spacing: 0.5px;
-    }
-
-    .vip-media-banner p {
-        margin: 0;
-        font-size: 10px;
-        color: #D4AF37 !important;
-        font-weight: 600;
-        text-transform: uppercase;
-    }
-
-    #vip-close-modal {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        background: #2a2a2a;
-        color: #ffffff;
-        border: 1px solid #444;
-        border-radius: 50%;
-        width: 28px;
-        height: 28px;
-        cursor: pointer;
-        font-weight: bold;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    #vip-close-modal:active {
-        background: #444;
-    }
-
-    .btn-volver-planes {
-        background: #1a1a1a;
-        color: #D4AF37;
-        border: 1px solid #D4AF37;
-        padding: 10px 12px;
-        border-radius: 12px;
-        cursor: pointer;
-        margin-bottom: 12px;
-        font-weight: bold;
-        width: 100%;
-        text-align: center;
-        font-size: 13px;
-        -webkit-tap-highlight-color: transparent;
-        transition: background 0.15s ease;
-    }
-
-    .btn-volver-planes:active {
-        background: #262211;
-    }
-
-    /* --- ALERTA FLOTANTE SUPERIOR (ESTILO NOTIFICACIÓN NATIVA IPAD/ANDROID) --- */
+    /* --- 6. ALERTA FLOTANTE SUPERIOR (PUSH NATIVA) --- */
     #custom-push-alert {
         position: fixed;
         top: 20px;
         left: 50%;
         transform: translateX(-50%);
         background: #1a1a1a;
-        border: 1.5px solid #D4AF37;
+        border: 2px solid #D4AF37;
         border-radius: 16px;
         padding: 10px 14px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.2);
         display: flex;
         align-items: center;
         gap: 12px;
@@ -686,6 +703,7 @@
         max-width: 90%;
         width: 360px;
         -webkit-tap-highlight-color: transparent;
+        transition: opacity 0.3s ease;
     }
 
     #custom-push-alert.oculto {
@@ -700,15 +718,15 @@
     }
 
     .push-alert-content img {
-        width: 40px;
-        height: 40px;
+        width: 38px;
+        height: 38px;
         border-radius: 50%;
-        border: 1px solid #D4AF37;
+        border: 1.5px solid #D4AF37;
     }
 
     .push-alert-text h4 {
         margin: 0;
-        font-size: 13px;
+        font-size: 12.5px;
     }
 
     .push-alert-text p {
@@ -719,6 +737,7 @@
     .regreso-animado {
         width: 24px;
         height: 24px;
+        animation: bounce 1s infinite;
     }
 
     #push-close-btn {
@@ -734,287 +753,12 @@
         align-items: center;
         justify-content: center;
     }
-<style>
-    /* --- VENTANA MODAL VIP OPTIMIZADA PARA MÓVIL --- */
-    #seccion-vip {
-        position: fixed !important;
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) scale(0.9) !important;
-        width: 92% !important;
-        max-width: 350px !important;
-        height: 80vh !important;
-        max-height: 500px !important;
-        background: #ffffff !important;
-        border: 3px solid #D4AF37 !important;
-        border-radius: 20px !important;
-        padding: 12px !important;
-        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15), 0 0 20px rgba(212, 175, 55, 0.3) !important;
-        box-sizing: border-box !important;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-        color: #222222 !important;
-        z-index: 999998 !important;
-        opacity: 0;
-        pointer-events: none;
-        display: flex;
-        flex-direction: column;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    #seccion-vip.activo {
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        transform: translate(-50%, -50%) scale(1) !important;
-    }
-
-    .vip-content-step {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
-    }
-
-    /* --- ESTILO EFECTO MOLDE DE ORO --- */
-    .gold-text, .vip-plan-price, .banco-accion, .vip-plan-details h4, .push-alert-text h4 {
-        background: linear-gradient(135deg, #9A7B2C 0%, #E6C667 25%, #8C671E 50%, #F5DE88 75%, #7A5612 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 800 !important;
-        filter: drop-shadow(0px 1px 1px rgba(255, 255, 255, 0.8));
-    }
-
-    .vip-plan-details span, .banco-details span, .push-alert-text p {
-        color: #555555 !important;
-        font-weight: 600;
-    }
-
-    /* --- BANNER DE VIDEO ACOMODADO Y ABAJO --- */
-    .vip-media-banner {
-        text-align: center;
-        margin-top: 4px;
-        margin-bottom: 10px;
-        border: 1.5px solid #D4AF37;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
-        flex-shrink: 0;
-        background: #000;
-    }
-
-    .vip-media-banner video {
-        width: 100%;
-        height: 65px;
-        object-fit: cover;
-        display: block;
-    }
-
-    /* --- TAMAÑO UNIFICADO PARA TODOS LOS BOTONES (PASES Y BANCOS) --- */
-    .vip-plan-card, .banco-card {
-        height: 48px !important; /* Altura fija idéntica para todos */
-        min-height: 48px !important;
-        max-height: 48px !important;
-        margin-bottom: 8px !important;
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        background: linear-gradient(145deg, #fdfdfd, #f0f0f0) !important;
-        padding: 0 12px !important;
-        border-radius: 12px !important;
-        cursor: pointer !important;
-        border: 1px solid rgba(212, 175, 55, 0.4) !important;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.04) !important;
-        box-sizing: border-box !important;
-        transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .vip-plan-card:active, .banco-card:active, .btn-volver-planes:active {
-        transform: scale(0.96) !important;
-        border-color: #D4AF37 !important;
-        box-shadow: 0 0 15px rgba(212, 175, 55, 0.4), inset 0 0 10px rgba(212, 175, 55, 0.2) !important;
-        background: linear-gradient(145deg, #f9f4e3, #faebd7) !important;
-    }
-
-    .vip-plan-icon, .banco-icon {
-        width: 28px !important;
-        height: 28px !important;
-        min-width: 28px !important;
-        object-fit: contain;
-        filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.2));
-    }
-
-    .vip-plan-info, .banco-info {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-grow: 1;
-        overflow: hidden;
-    }
-
-    .vip-plan-details, .banco-details {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        overflow: hidden;
-    }
-
-    .vip-plan-details h4, .banco-details h4 {
-        margin: 0;
-        font-size: 12px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .vip-plan-details span, .banco-details span {
-        margin: 0;
-        font-size: 9.5px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .vip-plan-price, .banco-accion {
-        font-size: 11.5px;
-        white-space: nowrap;
-        margin-left: 8px;
-    }
-
-    /* --- ÁREA DE DESPLAZAMIENTO FLUIDA --- */
-    .vip-scroll-area {
-        overflow-y: auto;
-        flex-grow: 1;
-        padding-right: 3px;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .vip-scroll-area::-webkit-scrollbar {
-        width: 4px;
-    }
-    .vip-scroll-area::-webkit-scrollbar-thumb {
-        background: #D4AF37;
-        border-radius: 10px;
-    }
-
-    #vip-close-modal {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        background: linear-gradient(135deg, #ff4d4d, #b30000);
-        color: white;
-        border: 1px solid #ff9999;
-        border-radius: 50%;
-        width: 24px;
-        height: 24px;
-        cursor: pointer;
-        font-weight: bold;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        font-size: 11px;
-    }
-
-    .btn-volver-planes {
-        background: linear-gradient(135deg, #9A7B2C, #7A5612);
-        color: #fff;
-        border: 1px solid #F5DE88;
-        padding: 6px 10px;
-        border-radius: 8px;
-        cursor: pointer;
-        margin-bottom: 8px;
-        font-weight: bold;
-        width: 100%;
-        text-align: center;
-        font-size: 11px;
-        box-shadow: 0 3px 8px rgba(122, 86, 18, 0.3);
-        flex-shrink: 0;
-    }
-
-    /* --- ALERTA FLOTANTE SUPERIOR --- */
-    #custom-push-alert {
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(255, 255, 255, 0.95);
-        border: 2px solid #D4AF37;
-        border-radius: 16px;
-        padding: 8px 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15), 0 0 15px rgba(212, 175, 55, 0.2);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        z-index: 999997;
-        cursor: pointer;
-        transition: opacity 0.3s ease;
-        max-width: 90%;
-        width: 340px;
-        backdrop-filter: blur(10px);
-    }
-
-    #custom-push-alert.oculto {
-        display: none !important;
-    }
-
-    .push-alert-content {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        flex-grow: 1;
-    }
-
-    .push-alert-content img {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        border: 1.5px solid #D4AF37;
-    }
-
-    .push-alert-text h4 {
-        margin: 0;
-        font-size: 12px;
-    }
-
-    .push-alert-text p {
-        margin: 0;
-        font-size: 10px;
-    }
-
-    .regreso-animado {
-        width: 24px;
-        height: 24px;
-        animation: bounce 1s infinite;
-    }
-
-    #push-close-btn {
-        background: #ff4d4d;
-        color: white;
-        border: none;
-        font-size: 11px;
-        cursor: pointer;
-        border-radius: 50%;
-        width: 22px;
-        height: 22px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: pulse-close 1.5s infinite;
-    }
 
     @keyframes bounce {
         0%, 100% { transform: translateY(0); }
         50% { transform: translateY(-4px); }
     }
-
-    @keyframes pulse-close {
-        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7); }
-        70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(255, 77, 77, 0); }
-        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 77, 77, 0); }
-    }
 </style>
-
 <!-- Alerta emergente superior estilo iPhone -->
 <div id="custom-push-alert" class="oculto" onclick="abrirSeccionVIP(event)">
     <div class="push-alert-content">
