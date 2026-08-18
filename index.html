@@ -479,20 +479,20 @@
 </head>
 <body>
 <style>
-    /* --- 1. CONTENEDOR MODAL VIP ORO (ESTRUCTURA ORIGINAL) --- */
+    /* --- 1. CONTENEDOR MODAL VIP ORO (ADAPTABLE Y RESPONSIVO) --- */
     #seccion-vip {
         position: fixed !important;
         top: 50% !important;
         left: 50% !important;
         transform: translate(-50%, -50%) scale(0.95) !important;
-        width: 92% !important;
+        width: 94% !important;
         max-width: 380px !important;
-        height: auto !important; /* Cambiado a auto para respetar contenido */
-        max-height: 735px !important;
+        height: auto !important;
+        max-height: 88dvh !important; /* Adaptable real al alto de la pantalla móvil */
         background: #121212 !important;
         border: 4px solid #D4AF37 !important;
         border-radius: 26px !important;
-        padding: 16px !important;
+        padding: 14px !important;
         box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 25px rgba(212, 175, 55, 0.25) !important;
         box-sizing: border-box !important;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
@@ -520,15 +520,15 @@
         overflow: hidden;
     }
 
-    /* --- 2. BANNER MULTIMEDIA / VIDEO (CORREGIDO: CORTO Y CON BOTONES FLOTANTES) --- */
+    /* --- 2. BANNER MULTIMEDIA / VIDEO CORTO Y SEGURO --- */
     .vip-media-container {
         position: relative;
         width: 100%;
-        height: 80px !important; /* CORREGIDO: EL VIDEO ES CORTO COMO PEDISTE */
-        margin-bottom: 10px;
+        height: 72px !important; /* Altura compacta para garantizar espacio a los planes */
+        margin-bottom: 8px;
         flex-shrink: 0;
         border: 2.5px solid #D4AF37;
-        border-radius: 16px;
+        border-radius: 14px;
         overflow: hidden;
         background: #fff;
         box-shadow: 0 4px 12px rgba(0,0,0,0.3);
@@ -542,13 +542,11 @@
     .vip-media-banner video {
         width: 100%;
         height: 100%;
-        object-fit: cover !important; /* Mantiene el aspecto del video corto */
+        object-fit: cover !important;
         display: block;
     }
 
-    /* --- 3. BOTONES FLOTANTES EN LAS ESQUINAS (CORREGIDO: DENTRO DEL VIDEO) --- */
-    
-    /* Contenedor que fuerza a los botones a estar dentro del área del video */
+    /* --- 3. BOTONES FLOTANTES EN LAS ESQUINAS DEL VIDEO --- */
     .vip-controls-anchor {
         position: absolute;
         top: 0;
@@ -556,13 +554,12 @@
         width: 100%;
         height: 100%;
         z-index: 10;
-        pointer-events: none; /* Permite hacer clic a través de este contenedor si fuera necesario */
+        pointer-events: none;
     }
 
-    /* Estilo base de los botones */
     .vip-nav-btn-fixed {
         position: absolute !important;
-        top: 8px !important; /* Margen superior desde el borde del video */
+        top: 6px !important;
         padding: 4px 8px !important;
         border-radius: 8px !important;
         font-weight: 800 !important;
@@ -573,22 +570,20 @@
         justify-content: center !important;
         box-sizing: border-box !important;
         transition: transform 0.15s ease, box-shadow 0.15s ease;
-        pointer-events: auto !important; /* Habilita el clic en el botón */
+        pointer-events: auto !important;
         -webkit-tap-highlight-color: transparent;
     }
 
-    /* Botón "Volver a los planes" - ESQUINA IZQUIERDA */
     .btn-volver-planes {
-        left: 8px !important; /* Pegado a la izquierda del video */
+        left: 6px !important;
         background: linear-gradient(135deg, #9A7B2C, #7A5612) !important;
         color: #ffffff !important;
         border: 2px solid #F5DE88 !important;
         box-shadow: 0 3px 0 #4a3408 !important;
     }
 
-    /* Botón "X" Cerrar - ESQUINA DERECHA */
     #vip-close-modal {
-        right: 8px !important; /* Pegado a la derecha del video */
+        right: 6px !important;
         width: auto !important;
         height: auto !important;
         background: linear-gradient(135deg, #cc0000, #4c090b) !important;
@@ -597,28 +592,27 @@
         box-shadow: 0 3px 0 #5c0000 !important;
     }
 
-    /* Efecto de presión al hacer clic */
     .vip-nav-btn-fixed:active {
         transform: translateY(3px) scale(0.96) !important;
         box-shadow: 0 1px 0 #4a3408 !important;
     }
 
-    /* --- 4. MOLDE DE ORO Y TARJETAS ROBUSTAS (SIN CAMBIOS) --- */
+    /* --- 4. TARJETAS ROBUSTAS Y FLEXIBLES --- */
     .vip-plan-card, .banco-card {
-        height: 60px !important;
-        min-height: 60px !important;
-        max-height: 60px !important;
-        margin-bottom: 10px !important;
+        min-height: 54px !important;
+        height: auto !important;
+        margin-bottom: 8px !important;
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
-        background: ##4c090b !important;
-        padding: 0 16px !important;
-        border-radius: 16px !important;
+        background: #4c090b !important;
+        padding: 8px 14px !important;
+        border-radius: 14px !important;
         cursor: pointer !important;
         border: 2.5px solid #D4AF37 !important;
-        box-shadow: 0 5px 0 #7a6320 !important;
+        box-shadow: 0 4px 0 #7a6320 !important;
         box-sizing: border-box !important;
+        flex-shrink: 0;
         transition: transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.15s ease, background 0.15s ease;
         -webkit-tap-highlight-color: transparent;
     }
@@ -629,7 +623,7 @@
         filter: brightness(1.15);
     }
 
-    /* --- TIPOGRAFÍA Y TEXTOS DE ORO (SIN CAMBIOS) --- */
+    /* --- TIPOGRAFÍA Y TEXTOS DE ORO --- */
     .gold-text, .vip-plan-price, .banco-accion, .vip-plan-details h4, .banco-details h4, .push-alert-text h4 {
         background: linear-gradient(135deg, #C5A059 0%, #F3E5AB 50%, #997A35 100%);
         -webkit-background-clip: text;
@@ -646,15 +640,15 @@
     .vip-plan-info, .banco-info {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
         flex-grow: 1;
         overflow: hidden;
     }
 
     .vip-plan-icon, .banco-icon {
-        width: 36px !important;
-        height: 36px !important;
-        min-width: 36px !important;
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px !important;
         object-fit: contain;
     }
 
@@ -667,23 +661,23 @@
 
     .vip-plan-details h4, .banco-details h4 {
         margin: 0;
-        font-size: 14px !important;
+        font-size: 13.5px !important;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
     .vip-plan-price, .banco-accion {
-        font-size: 13px !important;
+        font-size: 12.5px !important;
         white-space: nowrap;
         margin-left: 8px;
     }
 
-    /* --- 5. ÁREA DE DESPLAZAMIENTO FLUIDA (SIN CAMBIOS) --- */
+    /* --- 5. ÁREA DE DESPLAZAMIENTO FLUIDA --- */
     .vip-scroll-area {
         overflow-y: auto;
         flex-grow: 1;
-        padding-right: 4px;
+        padding-right: 2px;
         -webkit-overflow-scrolling: touch;
     }
 
@@ -695,7 +689,7 @@
         border-radius: 10px;
     }
 
-    /* --- 6. ALERTA FLOTANTE SUPERIOR (PUSH NATIVA) (SIN CAMBIOS) --- */
+    /* --- 6. ALERTA FLOTANTE SUPERIOR (PUSH NATIVA) --- */
     #custom-push-alert {
         position: fixed;
         top: 20px;
