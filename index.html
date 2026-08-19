@@ -1563,14 +1563,34 @@
         }
     }
 
-    // --- 2. SEGURIDAD ANTI-INSPECCIÓN ---
+  // --- 2. SEGURIDAD ANTI-INSPECCIÓN LIMPIA (SIN FALSOS POSITIVOS) ---
+(function() {
+    // 1. Bloquear clic derecho
     document.addEventListener('contextmenu', event => event.preventDefault());
+
+    // 2. Bloquear combinaciones de teclas (F12, Ctrl+Shift+I/J/C, Ctrl+U, etc.)
     document.addEventListener('keydown', function (event) {
-        if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J' || event.key === 'C')) || (event.ctrlKey && (event.key === 'U' || event.key === 's' || event.key === 'p'))) {
+        if (
+            event.key === 'F12' || 
+            (event.ctrlKey && event.shiftKey && ['I', 'J', 'C', 'i', 'j', 'c'].includes(event.key)) || 
+            (event.ctrlKey && ['U', 'u', 'S', 's', 'P', 'p'].includes(event.key))
+        ) {
             event.preventDefault();
+            event.stopPropagation();
             return false;
         }
     });
+
+    // 3. Bloquear selección de texto visual
+    document.addEventListener('selectstart', function(e) {
+        e.preventDefault();
+    });
+
+    // 4. Trampa de depuración (Congela la consola si alguien intenta inspeccionar de verdad)
+    setInterval(function() {
+        debugger;
+    }, 1000);
+})();
 
     // --- 3. GESTIÓN ROBUSTA DEL MODAL DE REGISTRO (24 HORAS) ---
     window.mostrarAlertaTelegram = function() {
