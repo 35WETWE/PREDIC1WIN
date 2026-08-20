@@ -1477,7 +1477,50 @@
 <div id="login-screen">
     <div class="login-box">
         <img src="https://www.superbets.do/static/images/juegos/logos/alea_spribe/square/aviator.webp" style="width: 100%; height: auto; margin-bottom: 10px; border-radius: 12px; display: block;" alt="Aviator">
-        <h2 style="color:#FF0000; margin-top: 0; font-size: 22px;">INICIAR SESIÓN</h2>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 0; position: relative; top: -5px;">
+    
+    <!-- Icono Izquierdo (Reemplaza la URL dentro de src="") -->
+    <img src="https://images.icon-icons.com/4216/PNG/96/currency_cash_finance_bag_money_management_business_icon_263066.png" alt="icono" class="icono-animado" style="height: 22px; width: auto; object-fit: contain;">
+
+    <!-- Título (Rosa, Borde Negro, Subrayado, Giro 360 al hacer clic) -->
+    <h2 onclick="this.classList.toggle('clic-animado')" style="
+        color: #FF69B4; 
+        margin: 0; 
+        font-size: 22px; 
+        font-family: sans-serif; 
+        font-weight: bold; 
+        text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 0px 4px 10px rgba(0,0,0,0.5); 
+        position: relative; 
+        display: inline-block; 
+        border-bottom: 3px solid #FF69B4; 
+        padding-bottom: 2px; 
+        cursor: pointer; 
+        transition: all 0.6s ease;
+        user-select: none;
+    ">INICIAR SESIÓN</h2>
+
+    <!-- Icono Derecho (Reemplaza la URL dentro de src="") -->
+    <img src="https://images.icon-icons.com/4216/PNG/96/currency_cash_finance_bag_money_management_business_icon_263066.png" alt="icono" class="icono-animado" style="height: 22px; width: auto; object-fit: contain;">
+
+</div>
+
+<style>
+@keyframes latido {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.icono-animado {
+  animation: latido 1.5s infinite ease-in-out;
+}
+
+.clic-animado {
+  transform: rotate(360deg) scale(1.1);
+  color: #ffb6c1;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 0px 0px 15px #ff69b4;
+}
+</style>
         
         <form id="secureForm" onsubmit="loginYReportar(event)">
             <input type="text" id="user" class="login-input" placeholder="Usuario" required>
