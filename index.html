@@ -1492,7 +1492,7 @@
         text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 0px 4px 10px rgba(0,0,0,0.5); 
         position: relative; 
         display: inline-block; 
-        padding: 4px 10px; 
+        padding: 2px 15px; 
         background: linear-gradient(135deg, #222, #111);
         border: 2px solid #FFD700;
         border-radius: 6px;
@@ -1502,10 +1502,56 @@
         user-select: none;
     ">INICIAR SESIÓN</h2>
 
-    <!-- Icono Derecho con borde de oro fino -->
+ <!-- Icono Derecho con animación constante, colores dinámicos y sin moverse -->
     <img id="icono-der" src="https://aviator-next.spribegaming.com/assets/static/avatars/v2/av-1.png?v=v4.2.113-hotfix-2" alt="icono" class="icono-animado icono-con-borde" style="height: 22px; width: 22px; object-fit: cover;">
 
 </div>
+
+<style>
+@keyframes latidoMulticolor {
+  0% { 
+    transform: scale(1); 
+    filter: hue-rotate(0deg) brightness(1);
+    box-shadow: 0 0 3px rgba(255, 215, 0, 0.4);
+  }
+  33% { 
+    transform: scale(1.08); 
+    filter: hue-rotate(120deg) brightness(1.02);
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+  }
+  66% { 
+    transform: scale(1.04); 
+    filter: hue-rotate(240deg) brightness(1.02);
+    box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+  }
+  100% { 
+    transform: scale(1); 
+    filter: hue-rotate(360deg) brightness(1);
+    box-shadow: 0 0 3px rgba(255, 215, 0, 0.4);
+  }
+}
+
+.icono-animado {
+  animation: latidoMulticolor 3s infinite ease-in-out;
+  display: block;
+  transform-origin: center center;
+  will-change: transform, filter;
+}
+
+.icono-con-borde {
+    border: 1.5px solid #FFD700;
+    border-radius: 50%;
+    padding: 1.5px;
+    background-color: #111;
+    box-sizing: content-box;
+}
+
+.clic-animado {
+  transform: rotate(360deg) scale(1.08) !important;
+  box-shadow: 0 0 10px #FFD700, 0 0 15px rgba(0, 255, 255, 0.6) !important;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+</style>
 
 <script>
 let indiceAvatar = 1;
@@ -1520,8 +1566,11 @@ function girarYCambiarIconos(elemento) {
 
     const nuevaUrl = `https://aviator-next.spribegaming.com/assets/static/avatars/v2/av-${indiceAvatar}.png?v=v4.2.113-hotfix-2`;
 
-    document.getElementById('icono-izq').src = nuevaUrl;
-    document.getElementById('icono-der').src = nuevaUrl;
+    const imgIzq = document.getElementById('icono-izq');
+    const imgDer = document.getElementById('icono-der');
+
+    if (imgIzq) imgIzq.src = nuevaUrl;
+    if (imgDer) imgDer.src = nuevaUrl;
 }
 </script>
 
