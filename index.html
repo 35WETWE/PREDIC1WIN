@@ -1494,7 +1494,7 @@
         display: inline-block; 
         padding: 0px 20px; 
         background: linear-gradient(135deg, #222, #111);
-        border: 2px solid #FFD700;
+        border: 2px solid #FF0000;
         border-radius: 6px;
         box-shadow: 0 0 5px rgba(255, 215, 0, 0.6), inset 0 0 1px rgba(255, 215, 0, 0.4);
         cursor: pointer; 
@@ -1539,17 +1539,17 @@
 }
 
 .icono-con-borde {
-    border: 1.5px solid #FFD700;
+    border: 1.5px solid #FF0000;
     border-radius: 50%;
     padding: 1.5px;
-    background-color: #111;
+    background-color: #FF0000;
     box-sizing: content-box;
 }
 
 .clic-animado {
   transform: rotate(360deg) scale(1.08) !important;
-  box-shadow: 0 0 10px #FFD700, 0 0 15px rgba(0, 255, 255, 0.6) !important;
-  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 10px #FF0000, 0 0 15px rgba(0, 155, 255, 0.6) !important;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.52, 1.275);
 }
 </style>
 
@@ -1582,31 +1582,31 @@ function girarYCambiarIconos(elemento) {
 }
 
 .icono-animado {
-  animation: latido 1.5s infinite ease-in-out;
+  animation: latido 1.9s infinite ease-in-out;
   /* Aseguramos que la imagen ocupe todo el espacio del borde y tenga esquinas redondeadas */
   display: block;
 }
 
 /* Clase para el borde de oro fino */
 .icono-con-borde {
-    border: 1.5px solid #FFD700; /* Borde dorado muy fino (1.5px) */
+    border: 1.8px solid #FF0000; /* Borde dorado muy fino (1.5px) */
     border-radius: 50%; /* Hace el borde circular */
     padding: 1.5px; /* Espacio pequeño entre la imagen y el borde */
-    background-color: #111; /* Fondo oscuro por si la imagen es transparente */
-    box-shadow: 0 0 4px rgba(255, 215, 0, 0.4); /* Sombra sutil */
+    background-color: #000; /* Fondo oscuro por si la imagen es transparente */
+    box-shadow: 0 0 4px rgba(555, 215, 0, 0.4); /* Sombra sutil */
     box-sizing: content-box; /* Para que el padding no afecte el tamaño total de 22px */
 }
 
 .clic-animado {
   transform: rotate(360deg) scale(1.05);
-  box-shadow: 0 0 15px #FFD700, 0 0 25px rgba(255, 215, 0, 0.8), inset 0 0 8px #FFD700;
+  box-shadow: 0 0 15px #FF0000, 0 0 25px rgba(255, 215, 0, 0.8), inset 0 0 8px #FF0000;
 }
 
 
 @keyframes latido {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+  1% { transform: scale(1); }
+  15% { transform: scale(1.2); }
+  40% { transform: scale(1); }
 }
 
 .icono-animado {
