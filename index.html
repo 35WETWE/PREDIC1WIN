@@ -692,11 +692,11 @@
     /* --- 6. ALERTA FLOTANTE SUPERIOR (PUSH NATIVA) --- */
     #custom-push-alert {
         position: fixed;
-        top: 10px;
+        top: 20px;
         left: 50%;
         transform: translateX(-50%);
-        background: #000;
-        border: 2px solid #4a0000;
+        background: #1a1a1a;
+        border: 2px solid #D4AF37;
         border-radius: 16px;
         padding: 10px 14px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.2);
@@ -746,7 +746,7 @@
     }
 
     #push-close-btn {
-        background: #3033;
+        background: #333;
         color: #fff;
         border: none;
         font-size: 11px;
@@ -763,36 +763,6 @@
         0%, 100% { transform: translateY(0); }
         50% { transform: translateY(-4px); }
     }
-/* 1. Contenedor de inicio de sesión centrado y con su molde LED, sin afectar las alertas globales */
-.main-container, 
-#login-screen, 
-#login-modal, 
-.login-container, 
-.login-card, 
-.card {
-    background-color: #000000 !important;
-    border: 1px solid #4a0000 !important;
-    outline: 1px solid #ff1a1a !important;
-    outline-offset: -7px;
-    box-shadow: 0 0 25px rgba(139, 0, 0, 0.9), inset 0 0 20px rgba(139, 0, 0, 0.6) !important;
-    max-width: 370px !important;
-    width: 100% !important;
-    margin: 0px auto !important;
-    box-sizing: border-box !important;
-}
-
-/* 2. Forzar fondo negro en secciones internas para eliminar el rosa */
-.content, 
-.login-box, 
-.card-body {
-    background-color: #000000 !important;
-}
-
-/* 3. Mantener visible el GIF superior sin alteraciones */
-.gif-wrapper {
-    background: transparent !important;
-    border: none !important;
-}
 </style>
 <!-- Alerta emergente superior estilo iPhone -->
 <div id="custom-push-alert" class="oculto" onclick="abrirSeccionVIP(event)">
