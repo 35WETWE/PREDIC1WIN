@@ -1670,12 +1670,276 @@ function girarYCambiarIconos(elemento) {
             <div id="gif-container" class="gif-wrapper">
                 <img id="analysis-gif" src="https://media.tenor.com/JjBKuOxz-NAAAAAM/very-important-person-vip-vip-very-important-person.gif" alt="Analysis">
             </div>
-            <div id="analysis-log">P R E D I C T O R</div>
-            <button onclick="cerrarSesion()" class="btn-salir">CERRAR SESIÓN</button>
-        </div>
-    </div>
+   <div style="display: flex; flex-direction: column; gap: 12px; align-items: center;">
+
+  
+  <!-- Botón PREDICTOR -->
+  <div id="analysis-log" class="predictor-btn" onclick="mostrarPushAlert(event)">
+    <img src="https://images.icon-icons.com/77/PNG/96/coin_dollar_14945.png" alt="Icono Izquierda" class="btn-icon icon-left">
+    
+    <span class="btn-text">
+      <span class="letter" style="--i: 1;">P</span>
+      <span class="letter" style="--i: 2;">R</span>
+      <span class="letter" style="--i: 3;">E</span>
+      <span class="letter" style="--i: 4;">D</span>
+      <span class="letter" style="--i: 5;">I</span>
+      <span class="letter" style="--i: 6;">C</span>
+      <span class="letter" style="--i: 7;">T</span>
+      <span class="letter" style="--i: 8;">O</span>
+      <span class="letter" style="--i: 9;">R</span>
+    </span>
+
+    <img src="https://images.icon-icons.com/77/PNG/96/coin_dollar_14945.png" alt="Icono Derecha" class="btn-icon icon-right">
+  </div>
+
+  <!-- Botón CERRAR SESIÓN (Mismo tamaño exacto, pero modelo de MOD/Seguridad) -->
+  <button onclick="cerrarSesion()" class="predictor-btn mod-logout-btn">
+   
+    <span>CERRAR SESIÓN</span>
+    
+  </button>
+
 </div>
 
+<style>
+/* --- Estilo Base Unificado (Mantiene las dimensiones exactas en ambos) --- */
+.predictor-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  max-width: 470px;
+  padding: 16px 28px;
+  background: linear-gradient(135deg, #ffffff 0%, #fff3b0 50%, #ffe55c 100%);
+  font-weight: 900;
+  font-family: monospace;
+  font-size: 25px;
+  letter-spacing: 0px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(255, 0, 0, 0.25);
+  z-index: 1;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+/* --- Borde Rojo Sangre Animado para el Predictor --- */
+.predictor-btn::before {
+  content: '';
+  position: absolute;
+  inset: -3px; 
+  background: linear-gradient(45deg, #8B0000, #ff0000, #500000, #ff1a1a, #8B0000);
+  background-size: 400% 400%;
+  z-index: -2;
+  animation: bloodBorder 3s linear infinite;
+  border-radius: 14px;
+}
+
+.predictor-btn::after {
+  content: '';
+  position: absolute;
+  inset: 2px; 
+  background: linear-gradient(135deg, #ffffff 0%, #fff8d6 100%);
+  border-radius: 10px;
+  z-index: -1;
+}
+
+@keyframes bloodBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- Modelo Diferente para el Botón de Cerrar Sesión (Estilo MOD / Seguridad) --- */
+.mod-logout-btn {
+  background: linear-gradient(135deg, #111111 0%, #1f1f1f 50%, #2b2b2b 100%) !important;
+  color: #ff3333 !important;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+/* Borde metálico/seguridad para el botón de cerrar sesión */
+.mod-logout-btn::before {
+  background: linear-gradient(45deg, #333333, #666666, #ff0000, #333333) !important;
+  animation: bloodBorder 4s linear infinite !important;
+}
+
+.mod-logout-btn::after {
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%) !important;
+}
+
+/* --- Animación de Letras (Predictor) --- */
+.btn-text {
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+.letter {
+  display: inline-block;
+  animation: colorWave 25s linear infinite;
+  animation-delay: calc(-2.5s * var(--i));
+  text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+/* --- Tus 100 Colores Exactos --- */
+@keyframes colorWave {
+  0%   { color: #8B0000; }
+  1%   { color: #0047AB; }
+  2%   { color: #FF4500; }
+  3%   { color: #008000; }
+  4%   { color: #4B0082; }
+  5%   { color: #D4AF37; }
+  6%   { color: #C71585; }
+  7%   { color: #00CED1; }
+  8%   { color: #FF1493; }
+  9%   { color: #32CD32; }
+  10%  { color: #9400D3; }
+  11%  { color: #FF8C00; }
+  12%  { color: #1E90FF; }
+  13%  { color: #ADFF2F; }
+  14%  { color: #8B008B; }
+  15%  { color: #00FA9A; }
+  16%  { color: #FFD700; }
+  17%  { color: #483D8B; }
+  18%  { color: #DC143C; }
+  19%  { color: #00FFFF; }
+  20%  { color: #FF69B4; }
+  21%  { color: #228B22; }
+  22%  { color: #4169E1; }
+  23%  { color: #FF4500; }
+  24%  { color: #800080; }
+  25%  { color: #00FF7F; }
+  26%  { color: #B22222; }
+  27%  { color: #20B2AA; }
+  28%  { color: #DA70D6; }
+  29%  { color: #32CD32; }
+  30%  { color: #0000CD; }
+  31%  { color: #FFA500; }
+  32%  { color: #BA55D3; }
+  33%  { color: #008B8B; }
+  34%  { color: #FF6347; }
+  35%  { color: #6A5ACD; }
+  36%  { color: #556B2F; }
+  37%  { color: #FF00FF; }
+  38%  { color: #008080; }
+  39%  { color: #CD5C5C; }
+  40%  { color: #4682B4; }
+  41%  { color: #9ACD32; }
+  42%  { color: #8B0000; }
+  43%  { color: #00BFFF; }
+  44%  { color: #EE82EE; }
+  45%  { color: #2E8B57; }
+  46%  { color: #FF8C00; }
+  47%  { color: #48D1CC; }
+  48%  { color: #C71585; }
+  49%  { color: #7FFF00; }
+  50%  { color: #191970; }
+  51%  { color: #FF4500; }
+  52%  { color: #9370DB; }
+  53%  { color: #00FF00; }
+  54%  { color: #DC143C; }
+  55%  { color: #00CED1; }
+  56%  { color: #800000; }
+  57%  { color: #7B68EE; }
+  58%  { color: #FF1493; }
+  59%  { color: #228B22; }
+  60%  { color: #6495ED; }
+  61%  { color: #FFA07A; }
+  62%  { color: #9932CC; }
+  63%  { color: #00FA9A; }
+  64%  { color: #8B4513; }
+  65%  { color: #00FFFF; }
+  66%  { color: #DB7093; }
+  67%  { color: #32CD32; }
+  68%  { color: #4169E1; }
+  69%  { color: #FFD700; }
+  70%  { color: #4B0082; }
+  71%  { color: #ADFF2F; }
+  72%  { color: #B22222; }
+  73%  { color: #008B8B; }
+  74%  { color: #FF69B4; }
+  75%  { color: #556B2F; }
+  76%  { color: #000080; }
+  77%  { color: #FF6347; }
+  78%  { color: #BA55D3; }
+  79%  { color: #3CB371; }
+  80%  { color: #FF8C00; }
+  81%  { color: #1E90FF; }
+  82%  { color: #C71585; }
+  83%  { color: #9ACD32; }
+  84%  { color: #8B0000; }
+  85%  { color: #00BFFF; }
+  86%  { color: #DA70D6; }
+  87%  { color: #2E8B57; }
+  88%  { color: #FF4500; }
+  89%  { color: #7FFF00; }
+  90%  { color: #800080; }
+  91%  { color: #00CED1; }
+  92%  { color: #DC143C; }
+  93%  { color: #9370DB; }
+  94%  { color: #FFD700; }
+  95%  { color: #228B22; }
+  96%  { color: #4169E1; }
+  97%  { color: #FF1493; }
+  98%  { color: #008080; }
+  99%  { color: #FF4500; }
+  100% { color: #8B0000; }
+}
+
+/* --- Iconos animados elegantes coordinados --- */
+.btn-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: relative;
+  animation: iconElegantFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 2px 5px rgba(212, 175, 55, 0.4));
+  transition: filter 0.3s ease;
+}
+
+.icon-left {
+  animation-delay: 0s;
+}
+
+.icon-right {
+  animation-delay: 2s;
+}
+
+@keyframes iconElegantFloat {
+  0%, 100% { 
+    transform: translateY(0) scale(1) rotate(0deg); 
+    filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.3)) brightness(1);
+  }
+  50% { 
+    transform: translateY(-3px) scale(1.08) rotate(4deg); 
+    filter: drop-shadow(0 5px 8px rgba(255, 215, 0, 0.7)) brightness(1.15); 
+  }
+}
+
+/* --- Respuesta al toque en móvil --- */
+.predictor-btn:active {
+  transform: scale(0.96);
+  transition: transform 0.1s ease;
+}
+
+.oculto {
+  display: none !important;
+}
+</style>
+
+<script>
+function mostrarPushAlert(event) {
+  const pushAlert = document.getElementById('custom-push-alert');
+  if (pushAlert) {
+    pushAlert.classList.remove('oculto');
+  }
+}
+</script>
 <script>
     // --- 1. FUNCIÓN GLOBAL PARA ALERTAS GENERALES ---
     function mostrarAlertaPersonalizada(titulo, mensaje, icono = "🔔", textoBotonPrincipal = "Aceptar", callback = null) {
