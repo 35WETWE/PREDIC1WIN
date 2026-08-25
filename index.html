@@ -440,24 +440,24 @@
 /* Botón de cierre y cuenta regresiva superior (GRANDE, ROBUSTO Y ANIMADO) */
 .btn-cerrar-video {
     position: absolute;
-    top: 40px;
-    right: 20px;
+    top: 65px; /* Más abajo de la parte superior */
+    left: 20px; /* Pegado a la esquina izquierda */
     background: rgba(0, 0, 0, 0.75);
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     width: 52px; /* Más grande y cómodo */
     height: 52px; /* Más grande y cómodo */
     cursor: pointer;
-    z-index: 40;
+    z-index: 70;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 4px;
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-    animation: pulsoBtnCierre 2s infinite ease-in-out;
+    -webkit-backdrop-filter: blur(15px);
+    transition: background 0.1s ease, transform 0.1s ease, border-color 0.5s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    animation: pulsoBtnCierre 5s infinite ease-in-out;
 }
 
 .btn-cerrar-video:hover {
@@ -468,11 +468,11 @@
 
 /* Animación de pulso constante para llamar la atención */
 @keyframes pulsoBtnCierre {
-    0%, 100% {
+    0%, 16% {
         box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4), 0 6px 20px rgba(0, 0, 0, 0.6);
     }
-    50% {
-        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0), 0 6px 25px rgba(0, 0, 0, 0.8);
+    100% {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0), 0 40px 55px rgba(0, 0, 0, 0.8);
     }
 }
     </style>
@@ -1368,12 +1368,12 @@
         <!-- Botón de cierre grande, robusto y animado con el ícono rojo original -->
         <button id="btn-cerrar-video-timer" class="btn-cerrar-video" onclick="cerrarAlertaVideo()">
             <span id="contador-regresiva" style="font-size: 16px; font-weight: bold; color: white; display: none;">5</span>
-            <img id="icono-cerrar-img" src="https://images.icon-icons.com/249/PNG/96/Close_27011.png" alt="Cerrar" style="width: 28px; height: 28px; object-fit: contain; display: block;" />
+            <img id="icono-cerrar-img" src="https://images.icon-icons.com/249/PNG/96/Close_27011.png" alt="Cerrar" style="width: 35px; height: 30px; object-fit: contain; display: block;" />
         </button>
 
         <!-- MARCA DE AGUA FLOTANTE ABAJO Y CENTRADA -->
         <div class="marca-agua-vip">
-            <img src="https://www.bet4.pe/assets/bet4_promotion-CmJXRReZ.svg" alt="Logo" />
+            <img src="https://chido55.work/akoss/akakupload/e9224800c2784181972370cf1cef3cbc.gif" alt="Logo" />
             <span>WILLIAM ROBERT</span>
         </div>
 
