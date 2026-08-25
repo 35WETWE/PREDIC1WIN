@@ -402,29 +402,34 @@
     outline: none;
 }
 
-/* Marca de agua ABAJO y centrada horizontalmente */
+/* Botón superior derecho interactivo (Estilo marca VIP robusto y animado tipo canvas) */
 .marca-agua-vip {
     position: absolute;
-    bottom: 35px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(10, 10, 10, 0.65);
-    border: 1px solid rgba(245, 207, 39, 0.5);
-    padding: 8px 16px;
+    top: 15px;   /* En la misma línea superior, separado elegantemente del borde */
+    right: 15px; /* Ubicado en la esquina derecha */
+    background: rgba(10, 10, 10, 0.85);
+    border: 1.5px solid rgba(245, 207, 39, 0.7);
+    padding: 10px 18px;
     border-radius: 30px;
     display: flex;
     align-items: center;
     gap: 10px;
-    z-index: 30;
-    pointer-events: none;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    z-index: 70;
+    text-decoration: none; /* Remueve el subrayado por ser un enlace */
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(245, 207, 39, 0.2);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                background 0.3s ease, 
+                border-color 0.3s ease, 
+                box-shadow 0.3s ease;
+    animation: canvasPulseVIP 3.5s infinite ease-in-out;
 }
 
 .marca-agua-vip img {
-    width: 20px;
-    height: 16px;
+    width: 36px;
+    height: 30px;
     object-fit: contain;
 }
 
@@ -434,30 +439,129 @@
     font-weight: 800;
     letter-spacing: 1.5px;
     font-family: sans-serif;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Botón de cierre y cuenta regresiva superior (GRANDE, ROBUSTO Y ANIMADO) */
+/* Efecto hover interactivo, robusto y animado */
+.marca-agua-vip:hover {
+    transform: scale(1.08) translateY(-2px);
+    border-color: rgba(245, 207, 39, 1);
+    background: rgba(25, 25, 25, 0.95);
+    box-shadow: 0 0 25px rgba(245, 207, 39, 0.4), inset 0 0 15px rgba(245, 207, 39, 0.4);
+}
+
+.marca-agua-vip:active {
+    transform: scale(0.96);
+}
+
+/* Animación continua estilo render de canvas */
+@keyframes canvasPulseVIP {
+    0% {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(245, 207, 39, 0.4);
+    }
+    50% {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 8px rgba(245, 207, 39, 0);
+    }
+    100% {
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 0 rgba(245, 207, 39, 0);
+    }
+}
+
+/* Botón de cierre y cuenta regresiva superior (ROBUSTO Y CON ANIMACIÓN TIPO CANVAS) */
 .btn-cerrar-video {
     position: absolute;
-    top: 65px; /* Más abajo de la parte superior */
-    left: 20px; /* Pegado a la esquina izquierda */
-    background: rgba(0, 0, 0, 0.75);
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    top: 15px;   /* Separado elegantemente del borde superior */
+    left: 15px;  /* Separado elegantemente del borde izquierdo */
+    background: rgba(10, 10, 10, 0.85);
+    border: 2.5px solid rgba(255, 255, 255, 0.65);
     border-radius: 50%;
-    width: 52px; /* Más grande y cómodo */
-    height: 52px; /* Más grande y cómodo */
+    width: 58px; /* Más robusto y visualmente fuerte */
+    height: 58px; /* Más robusto y visualmente fuerte */
     cursor: pointer;
     z-index: 70;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 4px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(15px);
-    transition: background 0.1s ease, transform 0.1s ease, border-color 0.5s ease;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-    animation: pulsoBtnCierre 5s infinite ease-in-out;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), inset 0 0 12px rgba(255, 255, 255, 0.15);
+    transform: scale(1);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                background 0.3s ease, 
+                border-color 0.3s ease, 
+                box-shadow 0.3s ease;
+    animation: canvasPulse 3.5s infinite ease-in-out;
+}
+
+/* Efecto hover robusto y animado tipo canvas interactivo */
+.btn-cerrar-video:hover {
+    transform: scale(1.2) rotate(180deg);
+    border-color: rgba(255, 75, 75, 0.95);
+    background: rgba(180, 20, 20, 0.9);
+    box-shadow: 0 0 25px rgba(255, 50, 50, 0.7), inset 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.btn-cerrar-video:active {
+    transform: scale(0.92) rotate(180deg);
+}
+
+/* Animación continua estilo render de canvas */
+@keyframes canvasPulse {
+    0% {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    50% {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+/* Animación fluida de cierre/salida (añade esta clase con JS al cerrar) */
+.btn-cerrar-video.cerrando {
+    animation: canvasCloseEffect 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes canvasCloseEffect {
+    0% {
+        transform: scale(1.2) rotate(180deg);
+        opacity: 1;
+        filter: brightness(1.5);
+    }
+    100% {
+        transform: scale(0) rotate(-360deg);
+        opacity: 0;
+        filter: brightness(0.5);
+    }
+}
+
+/* Efecto al pasar el cursor */
+.btn-cerrar-video:hover {
+    transform: scale(1.15) rotate(90deg);
+    border-color: rgba(255, 255, 255, 1);
+    background: rgba(200, 0, 0, 0.85);
+}
+
+.btn-cerrar-video:active {
+    transform: scale(0.9) rotate(90deg);
+}
+
+/* Animación cuando ejecutas la acción de cerrar (agrégale esta clase con JS cuando se oculte) */
+.btn-cerrar-video.cerrando {
+    animation: animacionSalidaCierre 0.4s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+}
+
+@keyframes animacionSalidaCierre {
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0) rotate(-180deg); /* Se encoge y gira al desaparecer */
+        opacity: 0;
+    }
 }
 
 .btn-cerrar-video:hover {
@@ -1371,11 +1475,11 @@
             <img id="icono-cerrar-img" src="https://images.icon-icons.com/249/PNG/96/Close_27011.png" alt="Cerrar" style="width: 35px; height: 30px; object-fit: contain; display: block;" />
         </button>
 
-        <!-- MARCA DE AGUA FLOTANTE ABAJO Y CENTRADA -->
-        <div class="marca-agua-vip">
-            <img src="https://chido55.work/akoss/akakupload/e9224800c2784181972370cf1cef3cbc.gif" alt="Logo" />
-            <span>WILLIAM ROBERT</span>
-        </div>
+      <!-- ENLACE FLOTANTE SUPERIOR DERECHO (AVIATORPKA / WILLIAM ROBERT) -->
+    <a href="https://t.me/aviatorpka" target="_blank" class="marca-agua-vip" title="Canal de Telegram AVIATORPKA">
+        <img src="https://chido55.work/akoss/akakupload/e9224800c2784181972370cf1cef3cbc.gif" alt="Logo" />
+        <span>WILLIAM ROBERT</span>
+    </a>
 
         <!-- Reproductor seguro con controles protegidos -->
         <video id="alerta-video-player" playsinline autoplay controls controlslist="nodownload noremoteplayback" disablepictureinpicture oncontextmenu="return false;">
