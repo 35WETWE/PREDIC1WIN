@@ -1743,13 +1743,67 @@ function girarYCambiarIconos(elemento) {
         <a href="https://t.me/AVIATORDOIT" target="_blank" class="next-btn" style="background:#0088cc; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; max-width: 100%; border-radius: 12px;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="20" style="filter:invert(1);" alt="Telegram"> 𝗧𝗘𝗟𝗘𝗚𝗥𝗔𝗠
         </a>
-        <a href="https://wa.me/584162562478" target="_blank" class="next-btn" style="background:#FF0000; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%; border-radius: 12px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" style="filter:invert(1);" alt="WhatsApp"> 𝗪𝗛𝗔𝗧𝗦𝗔𝗣𝗣
-        </a>
+    
 
+   
+
+   <div class="container-whatsapp">
+    <!-- 1. Botón de WhatsApp (Intacto) -->
+    <a href="https://wa.me/584162562478" target="_blank" class="next-btn">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" class="whatsapp-svg" alt="WhatsApp"> 
+        <span>𝗪𝗛𝗔𝗧𝗦𝗔𝗣𝗣</span>
+    </a>
+
+    <!-- 2. Primer icono debajo del WhatsApp (Aviator) -->
+    <div class="icon-wrapper">
+        <img src="https://aviator.uadid.com/logo-icon.eaa752ca5b1bd8fb.svg" alt="Icono Aviator">
+    </div>
+
+    
+
+<style>
+    /* Contenedor general */
+    .container-whatsapp {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    /* Estilo para asegurar que ambos iconos se vean grandes y claros */
+    .icon-wrapper img {
+        width: 70px; /* Puedes ajustar el tamaño aquí si los quieres más grandes o pequeños */
+        height: auto;
+        object-fit: contain;
+        display: block;
+    }
+
+    /* Tu botón de WhatsApp original intacto */
+    .next-btn {
+        background: #FF0000; 
+        color: #fff; 
+        text-decoration: none; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        gap: 8px; 
+        width: 100%;
+        max-width: 100%; 
+        border-radius: 12px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+    }
+
+    /* Filtro del icono interno del botón */
+    .whatsapp-svg {
+        filter: invert(1);
+    }
+</style>
         <p id="login-msg" style="color:red; margin-top: 10px; font-weight: bold;"></p>
     </div>
-</div>
+
 
 <div class="main-container" id="app">
     <div class="app-header">𝐀 𝐏 𝐊 𝐏 𝐑 𝐄 𝐃 𝐈 𝐂 𝐓 𝐎 𝐑</div>
