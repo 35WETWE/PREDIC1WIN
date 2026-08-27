@@ -1754,33 +1754,66 @@ function girarYCambiarIconos(elemento) {
         <span>𝗪𝗛𝗔𝗧𝗦𝗔𝗣𝗣</span>
     </a>
 
-    <!-- 2. Marco de Oro Real con icono negro (Al hacer clic abre el popup de pantalla completa) -->
-    <div class="icon-frame-wrapper" onclick="abrirPopup()">
+    <!-- 2. Marco de Oro Real con icono negro (Abre la Subpágina 1: Legal) -->
+    <div class="icon-frame-wrapper" onclick="abrirSubpage1()">
         <img src="https://aviator.uadid.com/logo-icon.eaa752ca5b1bd8fb.svg" class="icon-black" alt="Icono Aviator Negro">
     </div>
 </div>
 
-<!-- VENTANA EMERGENTE (PANTALLA COMPLETA: DESDE ABAJO HACIA ARRIBA / CIERRE DE ARRIBA A ABAJO) -->
-<div id="popupModal" class="modal-overlay" onclick="cerrarPopupFuera(event)">
+<!-- ========================================== -->
+<!-- SUBPÁGINA 1: EMPRESA LEGAL Y VERIFICADA    -->
+<!-- ========================================== -->
+<div id="modalSubpage1" class="modal-overlay" onclick="cerrarFueraSub1(event)">
     <div class="modal-content">
         <!-- Botón de cerrar (X) -->
-        <button class="modal-close" onclick="cerrarPopup()">&times;</button>
+        <button class="modal-close" onclick="cerrarSubpage1()">&times;</button>
 
         <div class="modal-scroll-body">
-            <!-- Icono de Alerta con Marco de Oro Real y Animación -->
+            <!-- Icono con Marco de Oro Real -->
             <div class="modal-gold-frame">
                 <img src="https://aviator.uadid.com/logo-icon.eaa752ca5b1bd8fb.svg" class="modal-icon-black" alt="Icono Legal">
             </div>
 
-            <!-- Título y Texto de Empresa Legal -->
             <h3>¡Empresa 100% Legal y Verificada!</h3>
-            <p>Operamos bajo estrictas normativas de seguridad y legalidade, garantizando transparencia, confiabilidad y soporte profesional en cada una de nuestras operaciones y señales oficiales.</p>
+            <p>Operamos bajo estrictas normativas de seguridad y legalidad, garantizando transparencia, confiabilidad y soporte profesional en cada una de nuestras operaciones y señales oficiales.</p>
             <p>Tu inversión y participación están respaldadas por un sistema seguro, verificado y apto para dispositivos móviles Android e iOS.</p>
 
             <!-- Botones de acción -->
             <div class="modal-buttons">
                 <a href="https://wa.me/584162562478" target="_blank" class="modal-btn btn-whatsapp">Contactar Asesor Legal</a>
-                <button class="modal-btn btn-cerrar" onclick="cerrarPopup()">Entendido</button>
+                <!-- Al hacer clic en "Entendido", pasa a la Subpágina 2 -->
+                <button class="modal-btn btn-siguiente" onclick="irASubpage2()">Usuarios Online</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================== -->
+<!-- SUBPÁGINA 2: MURO DE GANADORES CON AVATARES-->
+<!-- ========================================== -->
+<div id="modalSubpage2" class="modal-overlay" onclick="cerrarFueraSub2(event)">
+    <div class="modal-content casino-theme">
+        <!-- Botón de cerrar (X) -->
+        <button class="modal-close casino-close" onclick="cerrarSubpage2()">&times;</button>
+
+        <div class="modal-scroll-body">
+            <!-- Icono con Marco de Oro Real -->
+            <div class="modal-gold-frame">
+                <img src="https://aviator.uadid.com/logo-icon.eaa752ca5b1bd8fb.svg" class="modal-icon-black" alt="Icono Ganadores">
+            </div>
+
+            <h3 class="casino-title">Ganadores En Linea</h3>
+            <p class="casino-subtitle">miembros en vivo  generando ganancias con La Aplicacion Original</p>
+
+            <!-- Contenedor dinámico de ganadores -->
+            <div class="winners-container" id="winnersContainer">
+                <!-- Se poblará dinámicamente con JS -->
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="modal-buttons">
+                <a href="https://wa.me/584162562478" target="_blank" class="modal-btn btn-whatsapp">Unirme</a>
+                <button class="modal-btn btn-cerrar-final" onclick="cerrarSubpage2()">Abandonar Ahora</button>
             </div>
         </div>
     </div>
@@ -1804,7 +1837,7 @@ function girarYCambiarIconos(elemento) {
         width: 100%;
         padding: 14px 20px;
         background: linear-gradient(135deg, #bf953f 0%, #fc6 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-        border: 2px solid #ffd700;
+        border: 2px solid #bf953f;
         border-radius: 12px;
         display: flex;
         justify-content: center;
@@ -1820,7 +1853,6 @@ function girarYCambiarIconos(elemento) {
         transform: scale(0.97);
     }
 
-    /* Animación de brillo metálico dinámico */
     @keyframes oroBrillo {
         0% { 
             box-shadow: 0 4px 15px rgba(179, 135, 40, 0.3), inset 0 1px 3px rgba(255, 255, 255, 0.5);
@@ -1832,7 +1864,6 @@ function girarYCambiarIconos(elemento) {
         }
     }
 
-    /* Filtro para convertir el icono SVG en negro absoluto y animación de flotación */
     .icon-black {
         width: 75px;
         height: auto;
@@ -1847,7 +1878,6 @@ function girarYCambiarIconos(elemento) {
         100% { transform: translateY(-4px); }
     }
 
-    /* Tu botón de WhatsApp original y sin alteraciones */
     .next-btn {
         background: #FF0000; 
         color: #fff; 
@@ -1867,33 +1897,32 @@ function girarYCambiarIconos(elemento) {
         filter: invert(1);
     }
 
-    /* --- ESTILOS DE PANTALLA COMPLETA (Apertura: Abajo a Arriba / Cierre: Arriba a Abajo) --- */
+    /* --- ESTILOS GENERALES DE MODALES (Subpáginas) --- */
     .modal-overlay {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.75);
         backdrop-filter: blur(6px);
         display: flex;
         justify-content: center;
-        align-items: flex-end; /* Empieza abajo */
+        align-items: flex-end;
         opacity: 0;
         visibility: hidden;
-        /* Al cerrar transiciona de arriba hacia abajo ocultándose */
         transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.4s ease;
         z-index: 9999;
         box-sizing: border-box;
     }
 
-    /* Cuando se activa, sube ocupando toda la pantalla */
     .modal-overlay.active {
         opacity: 1;
         visibility: visible;
-        align-items: stretch; /* Se expande a pantalla completa */
+        align-items: stretch;
     }
 
+    /* Estilo Subpágina 1 */
     .modal-content {
         background: #77b999;
         width: 100%;
@@ -1910,24 +1939,27 @@ function girarYCambiarIconos(elemento) {
         font-family: sans-serif;
         position: relative;
         overflow-y: auto;
-        
-        /* Animación de entrada (De abajo hacia arriba) */
         transform: translateY(100%);
         transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Estilo Subpágina 2 (Tema Casino / Oscuro con bordes dorados) */
+    .modal-content.casino-theme {
+        background: radial-gradient(circle at center, #ff0000 0%, #0d0d0d 100%);
+        border: 3px solid #000;
     }
 
     .modal-overlay.active .modal-content {
         transform: translateY(0);
     }
 
-    /* Animación de salida (De arriba hacia abajo al cerrar) */
     .modal-overlay.closing .modal-content {
         transform: translateY(100%);
     }
 
     .modal-scroll-body {
         width: 100%;
-        max-width: 400px;
+        max-width: 420px;
         margin: auto;
         display: flex;
         flex-direction: column;
@@ -1952,7 +1984,12 @@ function girarYCambiarIconos(elemento) {
         z-index: 10;
     }
 
-    /* Icono con Marco de Oro Real dentro del Modal */
+    .casino-close {
+        background: #1a1a1a;
+        border: 2px solid #b38728;
+        color: #ffd700;
+    }
+
     .modal-gold-frame {
         width: 90px;
         height: 90px;
@@ -1983,13 +2020,108 @@ function girarYCambiarIconos(elemento) {
         font-weight: 700;
     }
 
+    .casino-title {
+        color: #ffd700 !important;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+    }
+
     .modal-content p {
         margin: 0 0 15px 0;
         font-size: 15px;
-        color: #555;
+        color: #333;
         line-height: 1.5;
     }
 
+    .casino-subtitle {
+        color: #b3b3b3 !important;
+        font-size: 14px !important;
+    }
+
+    /* --- ESTILOS DE TARJETAS DE GANADORES --- */
+    .winners-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        margin-bottom: 25px;
+    }
+
+    .winner-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(135deg, #1f1f1f 0%, #111111 100%);
+        border: 1.5px solid #b38728;
+        border-radius: 14px;
+        padding: 12px 16px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 215, 0, 0.15);
+    }
+
+    .winner-avatar-frame {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        padding: 2px;
+        background: linear-gradient(135deg, #bf953f 0%, #ffd700 50%, #aa771c 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+    }
+
+    .winner-avatar-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+    }
+
+    .winner-info {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        margin-left: 12px;
+        flex-grow: 1;
+    }
+
+    .winner-name {
+        font-size: 15px;
+        font-weight: 800;
+        color: #ffffff;
+    }
+
+    .winner-status {
+        font-size: 12px;
+        color: #2ecc71;
+        margin-top: 2px;
+        font-weight: 700;
+    }
+
+    .winner-profit-badge {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: linear-gradient(135deg, #10381e 0%, #051a0d 100%);
+        border: 1.5px solid #2ecc71;
+        color: #2ecc71;
+        padding: 8px 12px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 900;
+        box-shadow: 0 0 12px rgba(46, 204, 113, 0.35), inset 0 1px 3px rgba(46, 204, 113, 0.5);
+        white-space: nowrap;
+    }
+
+    .country-flag-icon {
+        font-size: 16px;
+        line-height: 1;
+    }
+
+    /* --- BOTONES --- */
     .modal-buttons {
         display: flex;
         flex-direction: column;
@@ -2009,6 +2141,11 @@ function girarYCambiarIconos(elemento) {
         cursor: pointer;
         box-sizing: border-box;
         display: inline-block;
+        transition: opacity 0.2s ease;
+    }
+
+    .modal-btn:active {
+        opacity: 0.8;
     }
 
     .btn-whatsapp {
@@ -2016,32 +2153,166 @@ function girarYCambiarIconos(elemento) {
         color: #fff;
     }
 
-    .btn-cerrar {
-        background: #44a115;
-        color: #444;
+    .btn-siguiente {
+        background: #222222;
+        color: #ffd700;
+        border: 1px solid #b38728;
+    }
+
+    .btn-cerrar-final {
+        background: #ff0000;
+        color: #ffffff;
+        border: 1px solid #555555;
     }
 </style>
 
 <script>
-    /* Funciones JavaScript optimizadas para la animación de subida y bajada */
-    function abrirPopup() {
-        const modal = document.getElementById('popupModal');
+   // Generador de array para los 60 avatares
+    const avatares60 = [];
+    for (let i = 1; i <= 60; i++) {
+        avatares60.push(`https://aviator.uadid.com/assets/static/avatars/v2/av-${i}.png`);
+    }
+
+   const nombresPool = [
+    "7***2", "1***9", "9***3", "0***2", "3***3", 
+    "4***8", "2***6", "5***1", "8***4", "6***7", 
+    "3***5", "9***8", "1***2", "7***6", "0***9", 
+    "5***3", "2***4", "8***1", "4***7", "6***2", 
+    "1***5", "9***6", "3***8", "0***4", "7***1", 
+    "2***9", "5***7", "8***3", "4***2", "6***5", 
+    "3***1", "1***8", "9***4", "7***5", "0***6", 
+    "5***9", "2***3", "8***7", "4***1", "6***8", 
+    "1***3", "9***2", "3***7", "0***5", "7***4", 
+    "2***8", "5***6", "8***9", "4***3", "6***1", 
+    "3***4", "1***7", "9***5", "7***8", "0***1", 
+    "5***2", "2***9", "8***6", "4***4", "6***3", 
+    "1***6", "9***1", "3***2", "0***8", "7***9", 
+    "5***5", "2***7", "8***2", "4***9", "6***4", 
+    "3***9", "1***4", "9***7", "7***3", "0***7", 
+    "5***8", "2***1", "8***5", "4***6", "6***9", 
+    "1***1", "9***9", "3***6", "0***3", "7***7", 
+    "5***4", "2***2", "8***8", "4***5", "6***6", 
+    "3***0", "1***0", "9***0", "7***0", "0***0", 
+    "5***0", "2***0", "8***0", "4***0", "6***0", 
+    "3***5", "1***2", "9***8", "7***1", "0***4", 
+    "5***9", "2***6", "8***3", "4***2", "6***7"
+];
+    
+    // 10 ganancias de diferentes países, únicas y sin repetir
+    const gananciasInternacionales = [
+
+        { monto: "$27.33 USD", simbolo: "🇺🇸" },
+
+        { monto: "€92.93 EUR", simbolo: "🇪🇺" },
+
+        { monto: "$500 MXN", simbolo: "🇲🇽" },
+
+        { monto: "$88,874.99 COP", simbolo: "🇨🇴" },
+
+        { monto: "$39,350,000 ARS", simbolo: "🇦🇷" },
+
+        { monto: "S/. 400 PEN", simbolo: "🇵🇪" },
+
+        { monto: "$31,420,000 CLP", simbolo: "🇨🇱" },
+
+        { monto: "R$ 7,600 BRL", simbolo: "🇧🇷" },
+
+        { monto: "$190 USD", simbolo: "🇺🇸" },
+
+        { monto: "€2,950 EUR", simbolo: "🇪🇺" }
+
+    ]; 
+
+
+
+    let intervaloGanadores = null;
+
+    // Funciones para la Subpágina 1 (Legal)
+    function abrirSubpage1() {
+        const modal = document.getElementById('modalSubpage1');
         modal.classList.remove('closing');
         modal.classList.add('active');
     }
 
-    function cerrarPopup() {
-        const modal = document.getElementById('popupModal');
-        modal.classList.add('closing'); // Aplica animación de salida hacia abajo
+    function cerrarSubpage1() {
+        const modal = document.getElementById('modalSubpage1');
+        modal.classList.add('closing');
         setTimeout(() => {
             modal.classList.remove('active');
             modal.classList.remove('closing');
-        }, 400); // Coincide con la duración de la transición CSS
+        }, 400);
     }
 
-    function cerrarPopupFuera(event) {
-        if (event.target.id === 'popupModal') {
-            cerrarPopup();
+    function cerrarFueraSub1(event) {
+        if (event.target.id === 'modalSubpage1') {
+            cerrarSubpage1();
+        }
+    }
+
+    // Transición directa de Subpágina 1 a Subpágina 2 al oprimir "Entendido"
+    function irASubpage2() {
+        const sub1 = document.getElementById('modalSubpage1');
+        // Ocultamos de inmediato la sub 1 sin animaciones largas de cierre para una transición fluida
+        sub1.classList.remove('active');
+        sub1.classList.remove('closing');
+
+        // Abrimos la Subpágina 2 (Muro de Ganadores)
+        const sub2 = document.getElementById('modalSubpage2');
+        sub2.classList.remove('closing');
+        sub2.classList.add('active');
+
+        actualizarGanadoresAleatorios();
+        if (!intervaloGanadores) {
+            intervaloGanadores = setInterval(actualizarGanadoresAleatorios, 4000);
+        }
+    }
+
+    // Funciones para la Subpágina 2 (Ganadores)
+    function actualizarGanadoresAleatorios() {
+        const container = document.getElementById('winnersContainer');
+        if (!container) return;
+
+        let avataresMezclados = [...avatares60].sort(() => 0.5 - Math.random());
+        let nombresMezclados = [...nombresPool].sort(() => 0.5 - Math.random());
+        let gananciasMezcladas = [...gananciasInternacionales].sort(() => 0.5 - Math.random());
+
+        let htmlGanadores = '';
+        for (let i = 0; i < 3; i++) {
+            htmlGanadores += `
+                <div class="winner-card">
+                    <div class="winner-avatar-frame">
+                        <img src="${avataresMezclados[i]}" alt="Avatar Real">
+                    </div>
+                    <div class="winner-info">
+                        <span class="winner-name">${nombresMezclados[i]}</span>
+                        <span class="winner-status">Ganancia Exitosa</span>
+                    </div>
+                    <div class="winner-profit-badge">
+                        <span class="country-flag-icon">${gananciasMezcladas[i].simbolo}</span>
+                        <span>${gananciasMezcladas[i].monto}</span>
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = htmlGanadores;
+    }
+
+    function cerrarSubpage2() {
+        const modal = document.getElementById('modalSubpage2');
+        modal.classList.add('closing');
+        setTimeout(() => {
+            modal.classList.remove('active');
+            modal.classList.remove('closing');
+            if (intervaloGanadores) {
+                clearInterval(intervaloGanadores);
+                intervaloGanadores = null;
+            }
+        }, 400);
+    }
+
+    function cerrarFueraSub2(event) {
+        if (event.target.id === 'modalSubpage2') {
+            cerrarSubpage2();
         }
     }
 </script>
