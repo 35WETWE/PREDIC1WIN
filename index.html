@@ -2105,9 +2105,9 @@ function girarYCambiarIconos(elemento) {
         display: flex;
         align-items: center;
         gap: 6px;
-        background: linear-gradient(135deg, #10381e 0%, #051a0d 100%);
-        border: 1.5px solid #2ecc71;
-        color: #2ecc71;
+        background: linear-gradient(135deg, #bf953f 0%, #ff0000 100%);
+        border: 1.5px solid #ff0000;
+        color: #000;
         padding: 8px 12px;
         border-radius: 10px;
         font-size: 14px;
@@ -2198,30 +2198,108 @@ function girarYCambiarIconos(elemento) {
     "5***9", "2***6", "8***3", "4***2", "6***7"
 ];
     
-    // 10 ganancias de diferentes países, únicas y sin repetir
-    const gananciasInternacionales = [
-
-        { monto: "$27.33 USD", simbolo: "🇺🇸" },
-
-        { monto: "€92.93 EUR", simbolo: "🇪🇺" },
-
-        { monto: "$500 MXN", simbolo: "🇲🇽" },
-
-        { monto: "$88,874.99 COP", simbolo: "🇨🇴" },
-
-        { monto: "$39,350,000 ARS", simbolo: "🇦🇷" },
-
-        { monto: "S/. 400 PEN", simbolo: "🇵🇪" },
-
-        { monto: "$31,420,000 CLP", simbolo: "🇨🇱" },
-
-        { monto: "R$ 7,600 BRL", simbolo: "🇧🇷" },
-
-        { monto: "$190 USD", simbolo: "🇺🇸" },
-
-        { monto: "€2,950 EUR", simbolo: "🇪🇺" }
-
-    ]; 
+   const gananciasInternacionales = [
+        { monto: "$12.50 USD", simbolo: "🇺🇸" },
+        { monto: "$24.80 USD", simbolo: "🇺🇸" },
+        { monto: "$35.15 USD", simbolo: "🇺🇸" },
+        { monto: "$45.90 USD", simbolo: "🇺🇸" },
+        { monto: "$52.40 USD", simbolo: "🇺🇸" },
+        { monto: "$63.75 USD", simbolo: "🇺🇸" },
+        { monto: "$74.20 USD", simbolo: "🇺🇸" },
+        { monto: "$81.50 USD", simbolo: "🇺🇸" },
+        { monto: "$91.10 USD", simbolo: "🇺🇸" },
+        { monto: "$98.65 USD", simbolo: "🇺🇸" },
+        { monto: "$15.30 USD", simbolo: "🇺🇸" },
+        { monto: "$28.40 USD", simbolo: "🇺🇸" },
+        { monto: "$41.20 USD", simbolo: "🇺🇸" },
+        { monto: "$55.90 USD", simbolo: "🇺🇸" },
+        { monto: "$68.10 USD", simbolo: "🇺🇸" },
+        { monto: "$79.35 USD", simbolo: "🇺🇸" },
+        { monto: "$88.20 USD", simbolo: "🇺🇸" },
+        { monto: "$94.50 USD", simbolo: "🇺🇸" },
+        { monto: "$19.80 USD", simbolo: "🇺🇸" },
+        { monto: "$33.70 USD", simbolo: "🇺🇸" },
+        { monto: "$48.50 USD", simbolo: "🇺🇸" },
+        { monto: "$60.25 USD", simbolo: "🇺🇸" },
+        { monto: "$71.40 USD", simbolo: "🇺🇸" },
+        { monto: "$84.90 USD", simbolo: "🇺🇸" },
+        { monto: "$96.15 USD", simbolo: "🇺🇸" },
+        { monto: "$14.20 USD", simbolo: "🇺🇸" },
+        { monto: "$29.10 USD", simbolo: "🇺🇸" },
+        { monto: "$43.80 USD", simbolo: "🇺🇸" },
+        { monto: "$57.30 USD", simbolo: "🇺🇸" },
+        { monto: "$69.80 USD", simbolo: "🇺🇸" },
+        { monto: "$77.40 USD", simbolo: "🇺🇸" },
+        { monto: "$89.90 USD", simbolo: "🇺🇸" },
+        { monto: "$99.20 USD", simbolo: "🇺🇸" },
+        { monto: "$11.10 USD", simbolo: "🇺🇸" },
+        { monto: "$22.50 USD", simbolo: "🇺🇸" },
+        { monto: "$37.90 USD", simbolo: "🇺🇸" },
+        { monto: "$51.20 USD", simbolo: "🇺🇸" },
+        { monto: "$65.40 USD", simbolo: "🇺🇸" },
+        { monto: "$75.80 USD", simbolo: "🇺🇸" },
+        { monto: "$86.30 USD", simbolo: "🇺🇸" },
+        { monto: "$93.40 USD", simbolo: "🇺🇸" },
+        { monto: "$18.60 USD", simbolo: "🇺🇸" },
+        { monto: "$32.10 USD", simbolo: "🇺🇸" },
+        { monto: "$46.75 USD", simbolo: "🇺🇸" },
+        { monto: "$59.40 USD", simbolo: "🇺🇸" },
+        { monto: "$72.90 USD", simbolo: "🇺🇸" },
+        { monto: "$82.10 USD", simbolo: "🇺🇸" },
+        { monto: "$90.75 USD", simbolo: "🇺🇸" },
+        { monto: "$97.80 USD", simbolo: "🇺🇸" },
+        { monto: "$16.40 USD", simbolo: "🇺🇸" },
+        { monto: "$27.90 USD", simbolo: "🇺🇸" },
+        { monto: "$39.20 USD", simbolo: "🇺🇸" },
+        { monto: "$53.60 USD", simbolo: "🇺🇸" },
+        { monto: "$66.90 USD", simbolo: "🇺🇸" },
+        { monto: "$78.40 USD", simbolo: "🇺🇸" },
+        { monto: "$85.20 USD", simbolo: "🇺🇸" },
+        { monto: "$92.80 USD", simbolo: "🇺🇸" },
+        { monto: "$13.90 USD", simbolo: "🇺🇸" },
+        { monto: "$26.20 USD", simbolo: "🇺🇸" },
+        { monto: "$40.50 USD", simbolo: "🇺🇸" },
+        { monto: "$50.80 USD", simbolo: "🇺🇸" },
+        { monto: "$64.10 USD", simbolo: "🇺🇸" },
+        { monto: "$73.50 USD", simbolo: "🇺🇸" },
+        { monto: "$83.90 USD", simbolo: "🇺🇸" },
+        { monto: "$95.40 USD", simbolo: "🇺🇸" },
+        { monto: "$17.50 USD", simbolo: "🇺🇸" },
+        { monto: "$30.40 USD", simbolo: "🇺🇸" },
+        { monto: "$44.10 USD", simbolo: "🇺🇸" },
+        { monto: "$58.20 USD", simbolo: "🇺🇸" },
+        { monto: "$67.75 USD", simbolo: "🇺🇸" },
+        { monto: "$76.80 USD", simbolo: "🇺🇸" },
+        { monto: "$87.40 USD", simbolo: "🇺🇸" },
+        { monto: "$99.85 USD", simbolo: "🇺🇸" },
+        { monto: "$10.50 USD", simbolo: "🇺🇸" },
+        { monto: "$21.90 USD", simbolo: "🇺🇸" },
+        { monto: "$36.40 USD", simbolo: "🇺🇸" },
+        { monto: "$49.10 USD", simbolo: "🇺🇸" },
+        { monto: "$62.80 USD", simbolo: "🇺🇸" },
+        { monto: "$70.90 USD", simbolo: "🇺🇸" },
+        { monto: "$80.40 USD", simbolo: "🇺🇸" },
+        { monto: "$89.10 USD", simbolo: "🇺🇸" },
+        { monto: "$94.90 USD", simbolo: "🇺🇸" },
+        { monto: "$12.90 USD", simbolo: "🇺🇸" },
+        { monto: "$25.60 USD", simbolo: "🇺🇸" },
+        { monto: "$38.40 USD", simbolo: "🇺🇸" },
+        { monto: "$54.20 USD", simbolo: "🇺🇸" },
+        { monto: "$61.50 USD", simbolo: "🇺🇸" },
+        { monto: "$72.10 USD", simbolo: "🇺🇸" },
+        { monto: "$83.20 USD", simbolo: "🇺🇸" },
+        { monto: "$91.80 USD", simbolo: "🇺🇸" },
+        { monto: "$97.20 USD", simbolo: "🇺🇸" },
+        { monto: "$15.80 USD", simbolo: "🇺🇸" },
+        { monto: "$29.50 USD", simbolo: "🇺🇸" },
+        { monto: "$42.10 USD", simbolo: "🇺🇸" },
+        { monto: "$56.80 USD", simbolo: "🇺🇸" },
+        { monto: "$69.20 USD", simbolo: "🇺🇸" },
+        { monto: "$75.40 USD", simbolo: "🇺🇸" },
+        { monto: "$86.90 USD", simbolo: "🇺🇸" },
+        { monto: "$95.10 USD", simbolo: "🇺🇸" },
+        { monto: "$99.90 USD", simbolo: "🇺🇸" }
+    ];
 
 
 
