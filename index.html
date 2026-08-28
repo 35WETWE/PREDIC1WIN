@@ -1743,660 +1743,13 @@ function girarYCambiarIconos(elemento) {
         <a href="https://t.me/AVIATORDOIT" target="_blank" class="next-btn" style="background:#0088cc; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; max-width: 100%; border-radius: 12px;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" width="20" style="filter:invert(1);" alt="Telegram"> 𝗧𝗘𝗟𝗘𝗚𝗥𝗔𝗠
         </a>
-    
-
-   
-
-<div class="container-whatsapp">
-    <!-- 1. Botón de WhatsApp (Exactamente como lo pediste, sin tocar) -->
-    <a href="https://wa.me/584162562478" target="_blank" class="next-btn">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" class="whatsapp-svg" alt="WhatsApp"> 
-        <span>𝗪𝗛𝗔𝗧𝗦𝗔𝗣𝗣</span>
-    </a>
-
-    <!-- 2. Marco de Oro Real con icono negro (Abre la Subpágina 1: Legal) -->
-    <div class="icon-frame-wrapper" onclick="abrirSubpage1()">
-        <img src="https://aviator.uadid.com/logo-icon.eaa752ca5b1bd8fb.svg" class="icon-black" alt="Icono Aviator Negro">
-    </div>
-</div>
-
-<!-- ========================================== -->
-<!-- SUBPÁGINA 1: EMPRESA LEGAL Y VERIFICADA    -->
-<!-- ========================================== -->
-<div id="modalSubpage1" class="modal-overlay" onclick="cerrarFueraSub1(event)">
-    <div class="modal-content">
-        <!-- Botón de cerrar (X) -->
-        <button class="modal-close" onclick="cerrarSubpage1()">&times;</button>
-
-        <div class="modal-scroll-body">
-            <!-- Icono con Marco de Oro Real -->
-            <div class="modal-gold-frame">
-                <img src="https://aviator.uadid.com/logo-icon.eaa752ca5b1bd8fb.svg" class="modal-icon-black" alt="Icono Legal">
-            </div>
-
-            <h3>¡Empresa 100% Legal y Verificada!</h3>
-            <p>Operamos bajo estrictas normativas de seguridad y legalidad, garantizando transparencia, confiabilidad y soporte profesional en cada una de nuestras operaciones y señales oficiales.</p>
-            <p>Tu inversión y participación están respaldadas por un sistema seguro, verificado y apto para dispositivos móviles Android e iOS.</p>
-
-            <!-- Botones de acción -->
-            <div class="modal-buttons">
-                <a href="https://wa.me/584162562478" target="_blank" class="modal-btn btn-whatsapp">Contactar Asesor Legal</a>
-                <!-- Al hacer clic en "Entendido", pasa a la Subpágina 2 -->
-                <button class="modal-btn btn-siguiente" onclick="irASubpage2()">Usuarios Online</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ========================================== -->
-<!-- SUBPÁGINA 2: MURO DE GANADORES CON AVATARES-->
-<!-- ========================================== -->
-<div id="modalSubpage2" class="modal-overlay" onclick="cerrarFueraSub2(event)">
-    <div class="modal-content casino-theme">
-        <!-- Botón de cerrar (X) -->
-        <button class="modal-close casino-close" onclick="cerrarSubpage2()">&times;</button>
-
-        <div class="modal-scroll-body">
-            <!-- Icono con Marco de Oro Real -->
-            <div class="modal-gold-frame">
-                <img src="https://aviator.uadid.com/logo-icon.eaa752ca5b1bd8fb.svg" class="modal-icon-black" alt="Icono Ganadores">
-            </div>
-
-            <h3 class="casino-title">Ganadores En Linea</h3>
-            <p class="casino-subtitle">miembros en vivo  generando ganancias con La Aplicacion Original</p>
-
-            <!-- Contenedor dinámico de ganadores -->
-            <div class="winners-container" id="winnersContainer">
-                <!-- Se poblará dinámicamente con JS -->
-            </div>
-
-            <!-- Botones de acción -->
-            <div class="modal-buttons">
-                <a href="https://wa.me/584162562478" target="_blank" class="modal-btn btn-whatsapp">Unirme</a>
-                <button class="modal-btn btn-cerrar-final" onclick="cerrarSubpage2()">Abandonar Ahora</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-    /* Contenedor general adaptado al ancho completo */
-    .container-whatsapp {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-        box-sizing: border-box;
-    }
-
-    /* Marco de Oro Real profesional con animación y cursor de clic */
-    .icon-frame-wrapper {
-        width: 100%;
-        padding: 14px 20px;
-        background: linear-gradient(135deg, #bf953f 0%, #fc6 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-        border: 2px solid #bf953f;
-        border-radius: 12px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        box-shadow: 0 6px 20px rgba(179, 135, 40, 0.4), inset 0 1px 3px rgba(255, 255, 255, 0.6);
-        box-sizing: border-box;
-        cursor: pointer;
-        animation: oroBrillo 3s infinite alternate ease-in-out;
-        transition: transform 0.2s ease;
-    }
-
-    .icon-frame-wrapper:active {
-        transform: scale(0.97);
-    }
-
-    @keyframes oroBrillo {
-        0% { 
-            box-shadow: 0 4px 15px rgba(179, 135, 40, 0.3), inset 0 1px 3px rgba(255, 255, 255, 0.5);
-            filter: brightness(1);
-        }
-        100% { 
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6), inset 0 1px 6px rgba(255, 255, 255, 0.9);
-            filter: brightness(1.08);
-        }
-    }
-
-    .icon-black {
-        width: 75px;
-        height: auto;
-        object-fit: contain;
-        display: block;
-        filter: brightness(0) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
-        animation: flotarIcono 2.2s ease-in-out infinite alternate;
-    }
-
-    @keyframes flotarIcono {
-        0% { transform: translateY(0px); }
-        100% { transform: translateY(-4px); }
-    }
-
-    .next-btn {
-        background: #FF0000; 
-        color: #fff; 
-        text-decoration: none; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        gap: 8px; 
-        width: 100%;
-        max-width: 100%; 
-        border-radius: 12px;
-        padding: 12px 20px;
-        box-sizing: border-box;
-    }
-
-    .whatsapp-svg {
-        filter: invert(1);
-    }
-
-    /* --- ESTILOS GENERALES DE MODALES (Subpáginas) --- */
-    .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.75);
-        backdrop-filter: blur(6px);
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.4s ease;
-        z-index: 9999;
-        box-sizing: border-box;
-    }
-
-    .modal-overlay.active {
-        opacity: 1;
-        visibility: visible;
-        align-items: stretch;
-    }
-
-    /* Estilo Subpágina 1 */
-    .modal-content {
-        background: #77b999;
-        width: 100%;
-        height: 100%;
-        max-width: 100%;
-        border-radius: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 30px 20px;
-        box-sizing: border-box;
-        text-align: center;
-        font-family: sans-serif;
-        position: relative;
-        overflow-y: auto;
-        transform: translateY(100%);
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* Estilo Subpágina 2 (Tema Casino / Oscuro con bordes dorados) */
-    .modal-content.casino-theme {
-        background: radial-gradient(circle at center, #ff0000 0%, #0d0d0d 100%);
-        border: 3px solid #000;
-    }
-
-    .modal-overlay.active .modal-content {
-        transform: translateY(0);
-    }
-
-    .modal-overlay.closing .modal-content {
-        transform: translateY(100%);
-    }
-
-    .modal-scroll-body {
-        width: 100%;
-        max-width: 420px;
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .modal-close {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: #f1f1f1;
-        border: none;
-        font-size: 24px;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #000;
-        z-index: 10;
-    }
-
-    .casino-close {
-        background: #1a1a1a;
-        border: 2px solid #b38728;
-        color: #ffd700;
-    }
-
-    .modal-gold-frame {
-        width: 90px;
-        height: 90px;
-        margin: 0 auto 20px auto;
-        background: linear-gradient(135deg, #bf953f 0%, #fc6 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-        border: 2px solid #ffd700;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 15px;
-        box-sizing: border-box;
-        box-shadow: 0 6px 20px rgba(179, 135, 40, 0.4);
-        animation: oroBrillo 3s infinite alternate ease-in-out;
-    }
-
-    .modal-icon-black {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-        filter: brightness(0) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-    }
-
-    .modal-content h3 {
-        margin: 0 0 12px 0;
-        font-size: 22px;
-        color: #111;
-        font-weight: 700;
-    }
-
-    .casino-title {
-        color: #ffd700 !important;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
-    }
-
-    .modal-content p {
-        margin: 0 0 15px 0;
-        font-size: 15px;
-        color: #333;
-        line-height: 1.5;
-    }
-
-    .casino-subtitle {
-        color: #b3b3b3 !important;
-        font-size: 14px !important;
-    }
-
-    /* --- ESTILOS DE TARJETAS DE GANADORES --- */
-    .winners-container {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        width: 100%;
-        margin-bottom: 25px;
-    }
-
-    .winner-card {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: linear-gradient(135deg, #ff0000 0%, #000 100%);
-        border: 1.5px solid #000;
-        border-radius: 14px;
-        padding: 12px 16px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 215, 0, 0.15);
-    }
-
-    .winner-avatar-frame {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        padding: 2px;
-        background: linear-gradient(135deg, #000 0%, #000 50%, #aa771c 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-    }
-
-    .winner-avatar-frame img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-        display: block;
-    }
-
-    .winner-info {
-        display: flex;
-        flex-direction: column;
-        text-align: left;
-        margin-left: 12px;
-        flex-grow: 1;
-    }
-
-    .winner-name {
-        font-size: 15px;
-        font-weight: 800;
-        color: #ffffff;
-    }
-
-    .winner-status {
-        font-size: 12px;
-        color: #000;
-        margin-top: 2px;
-        font-weight: 700;
-    }
-
-    .winner-profit-badge {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        background: linear-gradient(135deg, #000 0%, #ff0000 100%);
-        border: 1.5px solid #ff0000;
-        color: #000;
-        padding: 8px 12px;
-        border-radius: 10px;
-        font-size: 14px;
-        font-weight: 900;
-        box-shadow: 0 0 12px rgba(46, 204, 113, 0.35), inset 0 1px 3px rgba(46, 204, 113, 0.5);
-        white-space: nowrap;
-    }
-
-    .country-flag-icon {
-        font-size: 16px;
-        line-height: 1;
-    }
-
-    /* --- BOTONES --- */
-    .modal-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        width: 100%;
-        margin-top: 10px;
-    }
-
-    .modal-btn {
-        width: 100%;
-        padding: 14px;
-        border-radius: 12px;
-        font-size: 16px;
-        font-weight: bold;
-        text-decoration: none;
-        border: none;
-        cursor: pointer;
-        box-sizing: border-box;
-        display: inline-block;
-        transition: opacity 0.2s ease;
-    }
-
-    .modal-btn:active {
-        opacity: 0.8;
-    }
-
-    .btn-whatsapp {
-        background: #25D366;
-        color: #fff;
-    }
-
-    .btn-siguiente {
-        background: #222222;
-        color: #ffd700;
-        border: 1px solid #b38728;
-    }
-
-    .btn-cerrar-final {
-        background: #ff0000;
-        color: #ffffff;
-        border: 1px solid #555555;
-    }
-</style>
-
-<script>
-   // Generador de array para los 60 avatares
-    const avatares60 = [];
-    for (let i = 1; i <= 60; i++) {
-        avatares60.push(`https://aviator.uadid.com/assets/static/avatars/v2/av-${i}.png`);
-    }
-
-   const nombresPool = [
-    "7***2", "1***9", "9***3", "0***2", "3***3", 
-    "4***8", "2***6", "5***1", "8***4", "6***7", 
-    "3***5", "9***8", "1***2", "7***6", "0***9", 
-    "5***3", "2***4", "8***1", "4***7", "6***2", 
-    "1***5", "9***6", "3***8", "0***4", "7***1", 
-    "2***9", "5***7", "8***3", "4***2", "6***5", 
-    "3***1", "1***8", "9***4", "7***5", "0***6", 
-    "5***9", "2***3", "8***7", "4***1", "6***8", 
-    "1***3", "9***2", "3***7", "0***5", "7***4", 
-    "2***8", "5***6", "8***9", "4***3", "6***1", 
-    "3***4", "1***7", "9***5", "7***8", "0***1", 
-    "5***2", "2***9", "8***6", "4***4", "6***3", 
-    "1***6", "9***1", "3***2", "0***8", "7***9", 
-    "5***5", "2***7", "8***2", "4***9", "6***4", 
-    "3***9", "1***4", "9***7", "7***3", "0***7", 
-    "5***8", "2***1", "8***5", "4***6", "6***9", 
-    "1***1", "9***9", "3***6", "0***3", "7***7", 
-    "5***4", "2***2", "8***8", "4***5", "6***6", 
-    "3***0", "1***0", "9***0", "7***0", "0***0", 
-    "5***0", "2***0", "8***0", "4***0", "6***0", 
-    "3***5", "1***2", "9***8", "7***1", "0***4", 
-    "5***9", "2***6", "8***3", "4***2", "6***7"
-];
-    
-   const gananciasInternacionales = [
-        { monto: "$12.50 USD", simbolo: "🇲🇽" },
-        { monto: "$24.80 USD", simbolo: "🇨🇴" },
-        { monto: "$35.15 USD", simbolo: "🇦🇷" },
-        { monto: "$45.90 USD", simbolo: "🇵🇪" },
-        { monto: "$52.40 USD", simbolo: "🇨🇱" },
-        { monto: "$63.75 USD", simbolo: "🇧🇷" },
-        { monto: "$74.20 USD", simbolo: "🇪🇨" },
-        { monto: "$81.50 USD", simbolo: "🇻🇪" },
-        { monto: "$91.10 USD", simbolo: "🇺🇾" },
-        { monto: "$98.65 USD", simbolo: "🇺🇸" },
-        { monto: "$15.30 USD", simbolo: "🇲🇽" },
-        { monto: "$28.40 USD", simbolo: "🇨🇴" },
-        { monto: "$41.20 USD", simbolo: "🇦🇷" },
-        { monto: "$55.90 USD", simbolo: "🇵🇪" },
-        { monto: "$68.10 USD", simbolo: "🇨🇱" },
-        { monto: "$79.35 USD", simbolo: "🇧🇷" },
-        { monto: "$88.20 USD", simbolo: "🇪🇨" },
-        { monto: "$94.50 USD", simbolo: "🇻🇪" },
-        { monto: "$19.80 USD", simbolo: "🇺🇾" },
-        { monto: "$33.70 USD", simbolo: "🇺🇸" },
-        { monto: "$48.50 USD", simbolo: "🇲🇽" },
-        { monto: "$60.25 USD", simbolo: "🇨🇴" },
-        { monto: "$71.40 USD", simbolo: "🇦🇷" },
-        { monto: "$84.90 USD", simbolo: "🇵🇪" },
-        { monto: "$96.15 USD", simbolo: "🇨🇱" },
-        { monto: "$14.20 USD", simbolo: "🇧🇷" },
-        { monto: "$29.10 USD", simbolo: "🇪🇨" },
-        { monto: "$43.80 USD", simbolo: "🇻🇪" },
-        { monto: "$57.30 USD", simbolo: "🇺🇾" },
-        { monto: "$69.80 USD", simbolo: "🇺🇸" },
-        { monto: "$77.40 USD", simbolo: "🇲🇽" },
-        { monto: "$89.90 USD", simbolo: "🇨🇴" },
-        { monto: "$99.20 USD", simbolo: "🇦🇷" },
-        { monto: "$11.10 USD", simbolo: "🇵🇪" },
-        { monto: "$22.50 USD", simbolo: "🇨🇱" },
-        { monto: "$37.90 USD", simbolo: "🇧🇷" },
-        { monto: "$51.20 USD", simbolo: "🇪🇨" },
-        { monto: "$65.40 USD", simbolo: "🇻🇪" },
-        { monto: "$75.80 USD", simbolo: "🇺🇾" },
-        { monto: "$86.30 USD", simbolo: "🇺🇸" },
-        { monto: "$93.40 USD", simbolo: "🇲🇽" },
-        { monto: "$18.60 USD", simbolo: "🇨🇴" },
-        { monto: "$32.10 USD", simbolo: "🇦🇷" },
-        { monto: "$46.75 USD", simbolo: "🇵🇪" },
-        { monto: "$59.40 USD", simbolo: "🇨🇱" },
-        { monto: "$72.90 USD", simbolo: "🇧🇷" },
-        { monto: "$82.10 USD", simbolo: "🇪🇨" },
-        { monto: "$90.75 USD", simbolo: "🇻🇪" },
-        { monto: "$97.80 USD", simbolo: "🇺🇾" },
-        { monto: "$16.40 USD", simbolo: "🇺🇸" },
-        { monto: "$27.90 USD", simbolo: "🇲🇽" },
-        { monto: "$39.20 USD", simbolo: "🇨🇴" },
-        { monto: "$53.60 USD", simbolo: "🇦🇷" },
-        { monto: "$66.90 USD", simbolo: "🇵🇪" },
-        { monto: "$78.40 USD", simbolo: "🇨🇱" },
-        { monto: "$85.20 USD", simbolo: "🇧🇷" },
-        { monto: "$92.80 USD", simbolo: "🇪🇨" },
-        { monto: "$13.90 USD", simbolo: "🇻🇪" },
-        { monto: "$26.20 USD", simbolo: "🇺🇾" },
-        { monto: "$40.50 USD", simbolo: "🇺🇸" },
-        { monto: "$50.80 USD", simbolo: "🇲🇽" },
-        { monto: "$64.10 USD", simbolo: "🇨🇴" },
-        { monto: "$73.50 USD", simbolo: "🇦🇷" },
-        { monto: "$83.90 USD", simbolo: "🇵🇪" },
-        { monto: "$95.40 USD", simbolo: "🇨🇱" },
-        { monto: "$17.50 USD", simbolo: "🇧🇷" },
-        { monto: "$30.40 USD", simbolo: "🇪🇨" },
-        { monto: "$44.10 USD", simbolo: "🇻🇪" },
-        { monto: "$58.20 USD", simbolo: "🇺🇾" },
-        { monto: "$67.75 USD", simbolo: "🇺🇸" },
-        { monto: "$76.80 USD", simbolo: "🇲🇽" },
-        { monto: "$87.40 USD", simbolo: "🇨🇴" },
-        { monto: "$99.85 USD", simbolo: "🇦🇷" },
-        { monto: "$10.50 USD", simbolo: "🇵🇪" },
-        { monto: "$21.90 USD", simbolo: "🇨🇱" },
-        { monto: "$36.40 USD", simbolo: "🇧🇷" },
-        { monto: "$49.10 USD", simbolo: "🇪🇨" },
-        { monto: "$62.80 USD", simbolo: "🇻🇪" },
-        { monto: "$70.90 USD", simbolo: "🇺🇾" },
-        { monto: "$80.40 USD", simbolo: "🇺🇸" },
-        { monto: "$89.10 USD", simbolo: "🇲🇽" },
-        { monto: "$94.90 USD", simbolo: "🇨🇴" },
-        { monto: "$12.90 USD", simbolo: "🇦🇷" },
-        { monto: "$25.60 USD", simbolo: "🇵🇪" },
-        { monto: "$38.40 USD", simbolo: "🇨🇱" },
-        { monto: "$54.20 USD", simbolo: "🇧🇷" },
-        { monto: "$61.50 USD", simbolo: "🇪🇨" },
-        { monto: "$72.10 USD", simbolo: "🇻🇪" },
-        { monto: "$83.20 USD", simbolo: "🇺🇾" },
-        { monto: "$91.80 USD", simbolo: "🇺🇸" },
-        { monto: "$97.20 USD", simbolo: "🇲🇽" },
-        { monto: "$15.80 USD", simbolo: "🇨🇴" },
-        { monto: "$29.50 USD", simbolo: "🇦🇷" },
-        { monto: "$42.10 USD", simbolo: "🇵🇪" },
-        { monto: "$56.80 USD", simbolo: "🇨🇱" },
-        { monto: "$69.20 USD", simbolo: "🇧🇷" },
-        { monto: "$75.40 USD", simbolo: "🇪🇨" },
-        { monto: "$86.90 USD", simbolo: "🇻🇪" },
-        { monto: "$95.10 USD", simbolo: "🇺🇾" },
-        { monto: "$99.90 USD", simbolo: "🇺🇸" }
-    ];
-
-
-
-    let intervaloGanadores = null;
-
-    // Funciones para la Subpágina 1 (Legal)
-    function abrirSubpage1() {
-        const modal = document.getElementById('modalSubpage1');
-        modal.classList.remove('closing');
-        modal.classList.add('active');
-    }
-
-    function cerrarSubpage1() {
-        const modal = document.getElementById('modalSubpage1');
-        modal.classList.add('closing');
-        setTimeout(() => {
-            modal.classList.remove('active');
-            modal.classList.remove('closing');
-        }, 400);
-    }
-
-    function cerrarFueraSub1(event) {
-        if (event.target.id === 'modalSubpage1') {
-            cerrarSubpage1();
-        }
-    }
-
-    // Transición directa de Subpágina 1 a Subpágina 2 al oprimir "Entendido"
-    function irASubpage2() {
-        const sub1 = document.getElementById('modalSubpage1');
-        // Ocultamos de inmediato la sub 1 sin animaciones largas de cierre para una transición fluida
-        sub1.classList.remove('active');
-        sub1.classList.remove('closing');
-
-        // Abrimos la Subpágina 2 (Muro de Ganadores)
-        const sub2 = document.getElementById('modalSubpage2');
-        sub2.classList.remove('closing');
-        sub2.classList.add('active');
-
-        actualizarGanadoresAleatorios();
-        if (!intervaloGanadores) {
-            intervaloGanadores = setInterval(actualizarGanadoresAleatorios, 2000);
-        }
-    }
-
-    // Funciones para la Subpágina 2 (Ganadores)
-    function actualizarGanadoresAleatorios() {
-        const container = document.getElementById('winnersContainer');
-        if (!container) return;
-
-        let avataresMezclados = [...avatares60].sort(() => 0.5 - Math.random());
-        let nombresMezclados = [...nombresPool].sort(() => 0.5 - Math.random());
-        let gananciasMezcladas = [...gananciasInternacionales].sort(() => 0.5 - Math.random());
-
-        let htmlGanadores = '';
-        for (let i = 0; i < 3; i++) {
-            htmlGanadores += `
-                <div class="winner-card">
-                    <div class="winner-avatar-frame">
-                        <img src="${avataresMezclados[i]}" alt="Avatar Real">
-                    </div>
-                    <div class="winner-info">
-                        <span class="winner-name">${nombresMezclados[i]}</span>
-                        <span class="winner-status">Ganancia Exitosa</span>
-                    </div>
-                    <div class="winner-profit-badge">
-                        <span class="country-flag-icon">${gananciasMezcladas[i].simbolo}</span>
-                        <span>${gananciasMezcladas[i].monto}</span>
-                    </div>
-                </div>
-            `;
-        }
-        container.innerHTML = htmlGanadores;
-    }
-
-    function cerrarSubpage2() {
-        const modal = document.getElementById('modalSubpage2');
-        modal.classList.add('closing');
-        setTimeout(() => {
-            modal.classList.remove('active');
-            modal.classList.remove('closing');
-            if (intervaloGanadores) {
-                clearInterval(intervaloGanadores);
-                intervaloGanadores = null;
-            }
-        }, 400);
-    }
-
-    function cerrarFueraSub2(event) {
-        if (event.target.id === 'modalSubpage2') {
-            cerrarSubpage2();
-        }
-    }
-</script>
+        <a href="https://wa.me/584162562478" target="_blank" class="next-btn" style="background:#FF0000; color:#fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%; border-radius: 12px;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" style="filter:invert(1);" alt="WhatsApp"> 𝗪𝗛𝗔𝗧𝗦𝗔𝗣𝗣
+        </a>
+<div id="contenedorBotonSub"></div>
         <p id="login-msg" style="color:red; margin-top: 10px; font-weight: bold;"></p>
     </div>
-
+</div>
 
 <div class="main-container" id="app">
     <div class="app-header">𝐀 𝐏 𝐊 𝐏 𝐑 𝐄 𝐃 𝐈 𝐂 𝐓 𝐎 𝐑</div>
@@ -3421,6 +2774,530 @@ setTimeout(() => {
     }, 6 * 60 * 60 * 1000); 
 
 }, 3000);
+</script>
+
+      <script>
+(function() {
+    // 1. Inyectar los estilos CSS de forma aislada en el documento
+    const styleEl = document.createElement('style');
+    styleEl.innerHTML = `
+        .container-whatsapp {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        .icon-frame-wrapper {
+            width: 100%;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, #bf953f 0%, #fc6 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            border: 2px solid #bf953f;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 6px 20px rgba(179, 135, 40, 0.4), inset 0 1px 3px rgba(255, 255, 255, 0.6);
+            box-sizing: border-box;
+            cursor: pointer;
+            animation: oroBrilloScript 3s infinite alternate ease-in-out;
+            transition: transform 0.2s ease;
+        }
+        .icon-frame-wrapper:active {
+            transform: scale(0.97);
+        }
+        @keyframes oroBrilloScript {
+            0% { box-shadow: 0 4px 15px rgba(179, 135, 40, 0.3), inset 0 1px 3px rgba(255, 255, 255, 0.5); filter: brightness(1); }
+            100% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6), inset 0 1px 6px rgba(255, 255, 255, 0.9); filter: brightness(1.08); }
+        }
+        .icon-black {
+            width: 75px;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            filter: brightness(0) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+            animation: flotarIconoScript 2.2s ease-in-out infinite alternate;
+        }
+        @keyframes flotarIconoScript {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-4px); }
+        }
+        .modal-overlay-script {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(6px);
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 9999;
+            box-sizing: border-box;
+        }
+        .modal-overlay-script.active {
+            opacity: 1;
+            visibility: visible;
+            align-items: stretch;
+        }
+        .modal-content-script {
+            background: #77b999;
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: sans-serif;
+            position: relative;
+            overflow-y: auto;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .modal-overlay-script.active .modal-content-script {
+            transform: translateY(0);
+        }
+        .modal-content-script.casino-theme {
+            background: radial-gradient(circle at center, #ff0000 0%, #0d0d0d 100%);
+            border: 3px solid #000;
+        }
+        .modal-scroll-body {
+            width: 100%;
+            max-width: 420px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .modal-close-script {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #f1f1f1;
+            border: none;
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            z-index: 10;
+        }
+        .casino-close {
+            background: #1a1a1a;
+            border: 2px solid #b38728;
+            color: #ffd700;
+        }
+        .modal-gold-frame {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px auto;
+            background: linear-gradient(135deg, #bf953f 0%, #fc6 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            border: 2px solid #ffd700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            box-sizing: border-box;
+            box-shadow: 0 6px 20px rgba(179, 135, 40, 0.4);
+            animation: oroBrilloScript 3s infinite alternate ease-in-out;
+        }
+        .modal-icon-black {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            filter: brightness(0) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+        .modal-content-script h3 {
+            margin: 0 0 12px 0;
+            font-size: 22px;
+            color: #111;
+            font-weight: 700;
+        }
+        .casino-title {
+            color: #ffd700 !important;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+        }
+        .modal-content-script p {
+            margin: 0 0 15px 0;
+            font-size: 15px;
+            color: #333;
+            line-height: 1.5;
+        }
+        .casino-subtitle {
+            color: #b3b3b3 !important;
+            font-size: 14px !important;
+        }
+        .winners-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            margin-bottom: 25px;
+        }
+        .winner-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #ff0000 0%, #000 100%);
+            border: 1.5px solid #000;
+            border-radius: 14px;
+            padding: 12px 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 215, 0, 0.15);
+        }
+        .winner-avatar-frame {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            padding: 2px;
+            background: linear-gradient(135deg, #000 0%, #000 50%, #aa771c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+        }
+        .winner-avatar-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+        .winner-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            margin-left: 12px;
+            flex-grow: 1;
+        }
+        .winner-name {
+            font-size: 15px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+        .winner-status {
+            font-size: 12px;
+            color: #ffd700;
+            margin-top: 2px;
+            font-weight: 700;
+        }
+        .winner-profit-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #000 0%, #ff0000 100%);
+            border: 1.5px solid #ff0000;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 900;
+            box-shadow: 0 0 12px rgba(255, 0, 0, 0.35);
+            white-space: nowrap;
+        }
+        .country-flag-icon {
+            font-size: 16px;
+            line-height: 1;
+        }
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .modal-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-sizing: border-box;
+            display: inline-block;
+        }
+        .btn-whatsapp { background: #25D366; color: #fff; }
+        .btn-siguiente { background: #222222; color: #ffd700; border: 1px solid #b38728; }
+        .btn-cerrar-final { background: #ff0000; color: #ffffff; border: 1px solid #555555; }
+    `;
+    document.head.appendChild(styleEl);
+
+    // 2. Inyectar las modales al final del body
+    const containerDiv = document.createElement('div');
+    containerDiv.innerHTML = `
+        <div id="modalSubpage1" class="modal-overlay-script">
+            <div class="modal-content-script">
+                <button class="modal-close-script" id="btnCloseSub1">&times;</button>
+                <div class="modal-scroll-body">
+                    <div class="modal-gold-frame">
+                        <img src="https://aviator.uadid.com/logo-icon.eaa752ca5b1bd8fb.svg" class="modal-icon-black" alt="Icono Legal">
+                    </div>
+                    <h3>¡Empresa 100% Legal y Verificada!</h3>
+                    <p>Operamos bajo estrictas normativas de seguridad y legalidad, garantizando transparencia, confiabilidad y soporte profesional en cada una de nuestras operaciones y señales oficiales.</p>
+                    <p>Tu inversión y participación están respaldadas por un sistema seguro, verificado y apto para dispositivos móviles Android e iOS.</p>
+                    <div class="modal-buttons">
+                        <a href="https://wa.me/aviatordoit" target="_blank" class="modal-btn btn-whatsapp">Contactar Asesor Legal</a>
+                        <button class="modal-btn btn-siguiente" id="btnIrSub2">Usuarios Online</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalSubpage2" class="modal-overlay-script">
+            <div class="modal-content-script casino-theme">
+                <button class="modal-close-script casino-close" id="btnCloseSub2">&times;</button>
+                <div class="modal-scroll-body">
+                    <div class="modal-gold-frame">
+                        <img src="https://aviator.uadid.com/logo-icon.eaa752ca5b1bd8fb.svg" class="modal-icon-black" alt="Icono Ganadores">
+                    </div>
+                    <h3 class="casino-title">Ganadores En Linea</h3>
+                    <p class="casino-subtitle">miembros en vivo generando ganancias con La Aplicacion Original</p>
+
+                    <!-- ID corregido para que coincida con el script -->
+                    <div class="winners-container" id="winnersContainerScript"></div>
+
+                    <div class="modal-buttons">
+                        <a href="https://wa.me/584162562478" target="_blank" class="modal-btn btn-whatsapp">Unirme</a>
+                        <button class="modal-btn btn-cerrar-final" id="btnCerrarFinal">Abandonar Ahora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(containerDiv);
+
+    // Arrays de datos
+    const avatares60 = [];
+    for (let i = 1; i <= 60; i++) {
+        avatares60.push(`https://aviator.uadid.com/assets/static/avatars/v2/av-${i}.png`);
+    }
+
+     const nombresPool = [
+    "7***2", "1***9", "9***3", "0***2", "3***3", 
+    "4***8", "2***6", "5***1", "8***4", "6***7", 
+    "3***5", "9***8", "1***2", "7***6", "0***9", 
+    "5***3", "2***4", "8***1", "4***7", "6***2", 
+    "1***5", "9***6", "3***8", "0***4", "7***1", 
+    "2***9", "5***7", "8***3", "4***2", "6***5", 
+    "3***1", "1***8", "9***4", "7***5", "0***6", 
+    "5***9", "2***3", "8***7", "4***1", "6***8", 
+    "1***3", "9***2", "3***7", "0***5", "7***4", 
+    "2***8", "5***6", "8***9", "4***3", "6***1", 
+    "3***4", "1***7", "9***5", "7***8", "0***1", 
+    "5***2", "2***9", "8***6", "4***4", "6***3", 
+    "1***6", "9***1", "3***2", "0***8", "7***9", 
+    "5***5", "2***7", "8***2", "4***9", "6***4", 
+    "3***9", "1***4", "9***7", "7***3", "0***7", 
+    "5***8", "2***1", "8***5", "4***6", "6***9", 
+    "1***1", "9***9", "3***6", "0***3", "7***7", 
+    "5***4", "2***2", "8***8", "4***5", "6***6", 
+    "3***0", "1***0", "9***0", "7***0", "0***0", 
+    "5***0", "2***0", "8***0", "4***0", "6***0", 
+    "3***5", "1***2", "9***8", "7***1", "0***4", 
+    "5***9", "2***6", "8***3", "4***2", "6***7"
+];
+    
+     const gananciasInternacionales = [
+        { monto: "$12.50 USD", simbolo: "🇲🇽" },
+        { monto: "$24.80 USD", simbolo: "🇨🇴" },
+        { monto: "$35.15 USD", simbolo: "🇦🇷" },
+        { monto: "$45.90 USD", simbolo: "🇵🇪" },
+        { monto: "$52.40 USD", simbolo: "🇨🇱" },
+        { monto: "$63.75 USD", simbolo: "🇧🇷" },
+        { monto: "$74.20 USD", simbolo: "🇪🇨" },
+        { monto: "$81.50 USD", simbolo: "🇻🇪" },
+        { monto: "$91.10 USD", simbolo: "🇺🇾" },
+        { monto: "$98.65 USD", simbolo: "🇺🇸" },
+        { monto: "$15.30 USD", simbolo: "🇲🇽" },
+        { monto: "$28.40 USD", simbolo: "🇨🇴" },
+        { monto: "$41.20 USD", simbolo: "🇦🇷" },
+        { monto: "$55.90 USD", simbolo: "🇵🇪" },
+        { monto: "$68.10 USD", simbolo: "🇨🇱" },
+        { monto: "$79.35 USD", simbolo: "🇧🇷" },
+        { monto: "$88.20 USD", simbolo: "🇪🇨" },
+        { monto: "$94.50 USD", simbolo: "🇻🇪" },
+        { monto: "$19.80 USD", simbolo: "🇺🇾" },
+        { monto: "$33.70 USD", simbolo: "🇺🇸" },
+        { monto: "$48.50 USD", simbolo: "🇲🇽" },
+        { monto: "$60.25 USD", simbolo: "🇨🇴" },
+        { monto: "$71.40 USD", simbolo: "🇦🇷" },
+        { monto: "$84.90 USD", simbolo: "🇵🇪" },
+        { monto: "$96.15 USD", simbolo: "🇨🇱" },
+        { monto: "$14.20 USD", simbolo: "🇧🇷" },
+        { monto: "$29.10 USD", simbolo: "🇪🇨" },
+        { monto: "$43.80 USD", simbolo: "🇻🇪" },
+        { monto: "$57.30 USD", simbolo: "🇺🇾" },
+        { monto: "$69.80 USD", simbolo: "🇺🇸" },
+        { monto: "$77.40 USD", simbolo: "🇲🇽" },
+        { monto: "$89.90 USD", simbolo: "🇨🇴" },
+        { monto: "$99.20 USD", simbolo: "🇦🇷" },
+        { monto: "$11.10 USD", simbolo: "🇵🇪" },
+        { monto: "$22.50 USD", simbolo: "🇨🇱" },
+        { monto: "$37.90 USD", simbolo: "🇧🇷" },
+        { monto: "$51.20 USD", simbolo: "🇪🇨" },
+        { monto: "$65.40 USD", simbolo: "🇻🇪" },
+        { monto: "$75.80 USD", simbolo: "🇺🇾" },
+        { monto: "$86.30 USD", simbolo: "🇺🇸" },
+        { monto: "$93.40 USD", simbolo: "🇲🇽" },
+        { monto: "$18.60 USD", simbolo: "🇨🇴" },
+        { monto: "$32.10 USD", simbolo: "🇦🇷" },
+        { monto: "$46.75 USD", simbolo: "🇵🇪" },
+        { monto: "$59.40 USD", simbolo: "🇨🇱" },
+        { monto: "$72.90 USD", simbolo: "🇧🇷" },
+        { monto: "$82.10 USD", simbolo: "🇪🇨" },
+        { monto: "$90.75 USD", simbolo: "🇻🇪" },
+        { monto: "$97.80 USD", simbolo: "🇺🇾" },
+        { monto: "$16.40 USD", simbolo: "🇺🇸" },
+        { monto: "$27.90 USD", simbolo: "🇲🇽" },
+        { monto: "$39.20 USD", simbolo: "🇨🇴" },
+        { monto: "$53.60 USD", simbolo: "🇦🇷" },
+        { monto: "$66.90 USD", simbolo: "🇵🇪" },
+        { monto: "$78.40 USD", simbolo: "🇨🇱" },
+        { monto: "$85.20 USD", simbolo: "🇧🇷" },
+        { monto: "$92.80 USD", simbolo: "🇪🇨" },
+        { monto: "$13.90 USD", simbolo: "🇻🇪" },
+        { monto: "$26.20 USD", simbolo: "🇺🇾" },
+        { monto: "$40.50 USD", simbolo: "🇺🇸" },
+        { monto: "$50.80 USD", simbolo: "🇲🇽" },
+        { monto: "$64.10 USD", simbolo: "🇨🇴" },
+        { monto: "$73.50 USD", simbolo: "🇦🇷" },
+        { monto: "$83.90 USD", simbolo: "🇵🇪" },
+        { monto: "$95.40 USD", simbolo: "🇨🇱" },
+        { monto: "$17.50 USD", simbolo: "🇧🇷" },
+        { monto: "$30.40 USD", simbolo: "🇪🇨" },
+        { monto: "$44.10 USD", simbolo: "🇻🇪" },
+        { monto: "$58.20 USD", simbolo: "🇺🇾" },
+        { monto: "$67.75 USD", simbolo: "🇺🇸" },
+        { monto: "$76.80 USD", simbolo: "🇲🇽" },
+        { monto: "$87.40 USD", simbolo: "🇨🇴" },
+        { monto: "$99.85 USD", simbolo: "🇦🇷" },
+        { monto: "$10.50 USD", simbolo: "🇵🇪" },
+        { monto: "$21.90 USD", simbolo: "🇨🇱" },
+        { monto: "$36.40 USD", simbolo: "🇧🇷" },
+        { monto: "$49.10 USD", simbolo: "🇪🇨" },
+        { monto: "$62.80 USD", simbolo: "🇻🇪" },
+        { monto: "$70.90 USD", simbolo: "🇺🇾" },
+        { monto: "$80.40 USD", simbolo: "🇺🇸" },
+        { monto: "$89.10 USD", simbolo: "🇲🇽" },
+        { monto: "$94.90 USD", simbolo: "🇨🇴" },
+        { monto: "$12.90 USD", simbolo: "🇦🇷" },
+        { monto: "$25.60 USD", simbolo: "🇵🇪" },
+        { monto: "$38.40 USD", simbolo: "🇨🇱" },
+        { monto: "$54.20 USD", simbolo: "🇧🇷" },
+        { monto: "$61.50 USD", simbolo: "🇪🇨" },
+        { monto: "$72.10 USD", simbolo: "🇻🇪" },
+        { monto: "$83.20 USD", simbolo: "🇺🇾" },
+        { monto: "$91.80 USD", simbolo: "🇺🇸" },
+        { monto: "$97.20 USD", simbolo: "🇲🇽" },
+        { monto: "$15.80 USD", simbolo: "🇨🇴" },
+        { monto: "$29.50 USD", simbolo: "🇦🇷" },
+        { monto: "$42.10 USD", simbolo: "🇵🇪" },
+        { monto: "$56.80 USD", simbolo: "🇨🇱" },
+        { monto: "$69.20 USD", simbolo: "🇧🇷" },
+        { monto: "$75.40 USD", simbolo: "🇪🇨" },
+        { monto: "$86.90 USD", simbolo: "🇻🇪" },
+        { monto: "$95.10 USD", simbolo: "🇺🇾" },
+        { monto: "$99.90 USD", simbolo: "🇺🇸" }
+    ];
+
+    let intervaloGanadores = null;
+
+    // Función para actualizar los ganadores de forma aleatoria
+    function cargarGanadores() {
+        const container = document.getElementById('winnersContainerScript');
+        if (!container) return;
+
+        let avataresMezclados = [...avatares60].sort(() => 0.5 - Math.random());
+        let nombresMezclados = [...nombresPool].sort(() => 0.5 - Math.random());
+        let gananciasMezcladas = [...gananciasInternacionales].sort(() => 0.5 - Math.random());
+
+        let htmlGanadores = '';
+        for (let i = 0; i < 3; i++) {
+            htmlGanadores += `
+                <div class="winner-card">
+                    <div class="winner-avatar-frame">
+                        <img src="${avataresMezclados[i]}" alt="Avatar Real">
+                    </div>
+                    <div class="winner-info">
+                        <span class="winner-name">${nombresMezclados[i]}</span>
+                        <span class="winner-status">Ganancia Exitosa</span>
+                    </div>
+                    <div class="winner-profit-badge">
+                        <span class="country-flag-icon">${gananciasMezcladas[i].simbolo}</span>
+                        <span>${gananciasMezcladas[i].monto}</span>
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = htmlGanadores;
+    }
+
+    // Ubicar el botón en el slot del HTML del usuario
+    const targetSlot = document.getElementById('contenedorBotonSub');
+    if (targetSlot) {
+        targetSlot.innerHTML = `
+            <div class="container-whatsapp" style="margin-top: 15px; margin-bottom: 15px;">
+                <div class="icon-frame-wrapper" id="btnAbrirSub1">
+                    <img src="https://aviator.uadid.com/logo-icon.eaa752ca5b1bd8fb.svg" class="icon-black" alt="Icono Aviator Negro">
+                </div>
+            </div>
+        `;
+    }
+
+    const modal1 = document.getElementById('modalSubpage1');
+    const modal2 = document.getElementById('modalSubpage2');
+
+    const btnAbrir = document.getElementById('btnAbrirSub1');
+    if (btnAbrir) {
+        btnAbrir.onclick = () => modal1.classList.add('active');
+    }
+    
+    document.getElementById('btnCloseSub1').onclick = () => modal1.classList.remove('active');
+    modal1.onclick = (e) => { if (e.target === modal1) modal1.classList.remove('active'); };
+
+    document.getElementById('btnIrSub2').onclick = () => {
+        modal1.classList.remove('active');
+        setTimeout(() => {
+            modal2.classList.add('active');
+            cargarGanadores();
+            if (!intervaloGanadores) {
+                intervaloGanadores = setInterval(cargarGanadores, 1000); // Actualiza cada 2 segundos
+            }
+        }, 300);
+    };
+
+    const cerrarModal2Accion = () => {
+        modal2.classList.remove('active');
+        if (intervaloGanadores) {
+            clearInterval(intervaloGanadores);
+            intervaloGanadores = null;
+        }
+    };
+
+    document.getElementById('btnCloseSub2').onclick = cerrarModal2Accion;
+    document.getElementById('btnCerrarFinal').onclick = cerrarModal2Accion;
+    modal2.onclick = (e) => { if (e.target === modal2) cerrarModal2Accion(); };
+})();
 </script>
 </body>
 </html>
