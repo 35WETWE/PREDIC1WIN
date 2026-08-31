@@ -2500,388 +2500,354 @@ sonidoRonda.volume = 0.5;
 
           
 
-         // CUALQUIER USUARIO PUEDE ENTRAR Y VER LA APLICACIÓN
-            window.esDueño = (u === "AVIATORPKA" && p === "28320922VIP");
+       // CUALQUIER USUARIO PUEDE ENTRAR Y VER LA APLICACIÓN
+window.esDueño = (u === "AVIATORPKA" && p === "28320922VIP");
 
-            // Oculta el login y muestra la interfaz principal para todos
-            document.getElementById("login-screen").style.display = "none";
-            document.getElementById("app").style.display = "flex";
+// Oculta el login y muestra la interfaz principal para todos
+document.getElementById("login-screen").style.display = "none";
+document.getElementById("app").style.display = "flex";
 
-            btnRonda.disabled = false;
-            
-            if (window.esDueño) {
-                btnRonda.innerText = "SIGUIENTE RONDA";
-                btnRonda.style.background = "linear-gradient(to bottom, #F5CF27, #000)";
-                btnRonda.style.color = "#F5CF27";
-                btnRonda.onclick = function() {
-                    iniciarSecuencia();
-                };
-            } else {
-                btnRonda.innerText = "$0.00";
-                btnRonda.style.background = "#000";
-                btnRonda.style.color = "#F5CF27";
-                btnRonda.onclick = function() {
-                    mostrarModalActivacion();
-                };
-            }
-        } else {
-            document.getElementById("login-msg").innerText = "Por favor ingresa tus datos";
-        }
-    }
+btnRonda.disabled = false;
 
-    function mostrarModalActivacion() {
-        let modalAnterior = document.getElementById("modal-gold-activacion");
-        if (modalAnterior) modalAnterior.remove();
+if (window.esDueño) {
+    btnRonda.innerText = "SIGUIENTE RONDA";
+    btnRonda.style.background = "linear-gradient(to bottom, #F5CF27, #000)";
+    btnRonda.style.color = "#F5CF27";
+    btnRonda.onclick = function() {
+        iniciarSecuencia();
+    };
+} else {
+    btnRonda.innerText = "$0.00";
+    btnRonda.style.background = "#000";
+    btnRonda.style.color = "#F5CF27";
+    btnRonda.onclick = function() {
+        mostrarModalActivacion();
+    };
+}
+} else {
+    document.getElementById("login-msg").innerText = "Por favor ingresa tus datos";
+}
+}
 
-        let miIconoUrl = "https://images.icon-icons.com/1521/PNG/96/bancirclehd_106061.png";
+function mostrarModalActivacion() {
+    let modalAnterior = document.getElementById("modal-gold-activacion");
+    if (modalAnterior) modalAnterior.remove();
 
-        let overlay = document.createElement("div");
-        overlay.id = "modal-gold-activacion";
-        overlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.88);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 99999;
-            animation: fadeInOverlay 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        `;
+    let miIconoUrl = "https://images.icon-icons.com/1386/PNG/96/usd-crypto-cryptocurrency-cryptocurrencies-cash-money-bank-payment_95707.png";
 
-        let modalBox = document.createElement("div");
-        modalBox.style.cssText = `
-            background: linear-gradient(145deg, #161616, #0a0a0a);
-            border: 2px solid #F5CF27;
-            box-shadow: 0 0 40px rgba(245, 207, 39, 0.35);
-            border-radius: 18px;
-            padding: 35px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            color: #ffffff;
-            font-family: sans-serif;
-            position: relative;
-            transform-origin: bottom right;
-            animation: slideFromCornerRobust 0.45s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
-        `;
+    let overlay = document.createElement("div");
+    overlay.id = "modal-gold-activacion";
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.88);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99999;
+        animation: fadeInOverlay 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    `;
 
-        modalBox.innerHTML = `
-            <div style="margin-bottom: 18px;">
-                <img src="${miIconoUrl}" alt="Icono Seguridad" style="width: 72px; height: 72px; filter: drop-shadow(0 0 12px #F5CF27);">
+    let modalBox = document.createElement("div");
+    modalBox.style.cssText = `
+        background: linear-gradient(145deg, #161616, #0a0a0a);
+        border: 3px solid transparent;
+        border-image: linear-gradient(135deg, #F5CF27, #FF0000) 1;
+        box-shadow: 0 0 40px rgba(245, 207, 39, 0.35), inset 0 0 15px rgba(255, 0, 0, 0.2);
+        border-radius: 0px;
+        padding: 35px;
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #ffffff;
+        font-family: sans-serif;
+        position: relative;
+        animation: slideFromCornerRobust 0.45s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+    `;
+
+    modalBox.innerHTML = `
+        <div style="margin-bottom: 22px; padding: 6px; background: linear-gradient(135deg, #F5CF27, #FF0000); border-radius: 50%; display: inline-flex; box-shadow: 0 0 25px rgba(245, 207, 39, 0.6);">
+            <div style="background: #0a0a0a; border-radius: 50%; padding: 12px; display: flex; justify-content: center; align-items: center;">
+                <img src="${miIconoUrl}" alt="Icono Seguridad" style="width: 84px; height: 84px; filter: drop-shadow(0 0 12px #F5CF27);">
             </div>
-            <h2 style="color: #F5CF27; margin: 0 0 12px 0; font-size: 22px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800;">CUENTA RESTRINGIDA</h2>
-            <p style="font-size: 13px; color: #d0d0d0; margin-bottom: 22px; line-height: 1.5;">
-                Saldo actual: <strong style="color: #2ecc71;">$0.02 USD</strong>. Ingrese el código VIP de 6 dígitos autorizado para desbloquear el sistema y ver las señales.
-            </p>
+        </div>
+        <h2 style="color: #F5CF27; margin: 0 0 14px 0; font-size: 26px; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; text-shadow: 0 2px 8px rgba(255,0,0,0.4);">CUENTA RESTRINGIDA</h2>
+        <p style="font-size: 15px; color: #d0d0d0; margin-bottom: 28px; line-height: 1.6; max-width: 420px;">
+            Saldo actual: <strong style="color: #2ecc71;">$0.00 USD</strong>. Ingrese el código VIP de 6 dígitos autorizado para desbloquear el sistema y ver las señales.
+        </p>
+        <div style="width: 100%; max-width: 380px;">
             <input type="password" id="codigo-activacion" placeholder="••••••" maxlength="6" style="
                 width: 100%;
-                padding: 14px;
+                padding: 16px;
                 background: #050505;
                 border: 2px solid #F5CF27;
                 border-radius: 10px;
                 color: #F5CF27;
-                font-size: 24px;
+                font-size: 26px;
                 text-align: center;
-                letter-spacing: 8px;
-                margin-bottom: 18px;
+                letter-spacing: 10px;
+                margin-bottom: 20px;
                 outline: none;
                 box-sizing: border-box;
-                box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+                box-shadow: inset 0 2px 6px rgba(0,0,0,0.9), 0 0 10px rgba(255,0,0,0.3);
             ">
             <button id="btn-enviar-codigo" style="
                 width: 100%;
-                padding: 14px;
+                padding: 16px;
                 background: linear-gradient(to bottom, #F5CF27, #997a00);
                 color: #000000;
                 font-weight: 900;
                 border: none;
                 border-radius: 10px;
-                font-size: 16px;
+                font-size: 17px;
                 cursor: pointer;
                 text-transform: uppercase;
-                letter-spacing: 1px;
+                letter-spacing: 1.5px;
                 box-shadow: 0 6px 20px rgba(245, 207, 39, 0.4);
                 transition: transform 0.1s ease, filter 0.2s ease;
             ">ENVIAR CÓDIGO</button>
             <div id="btn-cerrar-modal" style="
-                margin-top: 18px;
-                font-size: 12px;
-                color: #aaa;
+                margin-top: 22px;
+                font-size: 13px;
+                color: #ff4d4d;
                 cursor: pointer;
                 text-decoration: underline;
                 letter-spacing: 0.5px;
+                font-weight: 700;
             ">CANCELAR OPERACIÓN</div>
-        `;
+        </div>
+    `;
 
-        overlay.appendChild(modalBox);
-        document.body.appendChild(overlay);
+    overlay.appendChild(modalBox);
+    document.body.appendChild(overlay);
 
-        if (!document.getElementById("animaciones-modal-gold")) {
-            let styleAnim = document.createElement("style");
-            styleAnim.id = "animaciones-modal-gold";
-            styleAnim.innerHTML = `
-                @keyframes fadeInOverlay { from { opacity: 0; } to { opacity: 1; } }
-                @keyframes slideFromCornerRobust { 
-                    0% { transform: translate(100vw, 100vh) scale(0.1) rotate(15deg); opacity: 0; } 
-                    100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; } 
-                }
-            `;
-            document.head.appendChild(styleAnim);
-        }
-
-        document.getElementById("btn-enviar-codigo").onclick = function() {
-            let codigoInput = document.getElementById("codigo-activacion").value.trim();
-            
-            if (codigoInput.length < 6) {
-                mostrarAlertaGold("INGRESE LOS 6 DÍGITOS COMPLETOS.");
-                return;
+    if (!document.getElementById("animaciones-modal-gold")) {
+        let styleAnim = document.createElement("style");
+        styleAnim.id = "animaciones-modal-gold";
+        styleAnim.innerHTML = `
+            @keyframes fadeInOverlay { from { opacity: 0; } to { opacity: 1; } }
+            @keyframes slideFromCornerRobust { 
+                0% { transform: scale(0.9); opacity: 0; } 
+                100% { transform: scale(1); opacity: 1; } 
             }
-
-            if (codigoInput === "877223") {
-                window.esDueño = true;
-                overlay.remove();
-                
-                let btnRonda = document.getElementById("btn");
-                btnRonda.disabled = false;
-                btnRonda.innerText = "SIGUIENTE RONDA";
-                btnRonda.style.background = "linear-gradient(to bottom, #F5CF27, #000)";
-                btnRonda.style.color = "#F5CF27";
-                btnRonda.onclick = function() {
-                    iniciarSecuencia();
-                };
-
-                mostrarAlertaGold("ACCESO AUTORIZADO. SISTEMA DESBLOQUEADO CORRECTAMENTE.");
-            } else {
-                mostrarAlertaGold("CÓDIGO INCORRECTO. VERIFIQUE LAS CREDENCIALES DE ACCESO.");
-            }
-        };
-
-        document.getElementById("btn-cerrar-modal").onclick = function() {
-            overlay.remove();
-        };
-
-        overlay.onclick = function(e) {
-            if (e.target === overlay) {
-                overlay.remove();
-            }
-        };
-    }
-
-    function mostrarAlertaGold(mensaje) {
-        let alertaAnterior = document.getElementById("alerta-gold-custom");
-        if (alertaAnterior) alertaAnterior.remove();
-
-        let miIconoUrl = "https://images.icon-icons.com/966/PNG/96/Security_icon-icons.com_74703.png";
-
-        let overlayAlerta = document.createElement("div");
-        overlayAlerta.id = "alerta-gold-custom";
-        overlayAlerta.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.88);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100000;
-            animation: fadeInOverlay 0.25s ease-out forwards;
         `;
-
-        let alertaBox = document.createElement("div");
-        alertaBox.style.cssText = `
-            background: linear-gradient(145deg, #161616, #0a0a0a);
-            border: 2px solid #F5CF27;
-            box-shadow: 0 0 40px rgba(245, 207, 39, 0.35);
-            border-radius: 18px;
-            padding: 30px;
-            width: 90%;
-            max-width: 380px;
-            text-align: center;
-            color: #ffffff;
-            font-family: sans-serif;
-            transform-origin: bottom right;
-            animation: slideFromCornerRobust 0.35s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
-        `;
-
-        alertaBox.innerHTML = `
-            <div style="margin-bottom: 15px;">
-                <img src="${miIconoUrl}" alt="Aviso Sistema" style="width: 56px; height: 56px; filter: drop-shadow(0 0 10px #F5CF27);">
-            </div>
-            <p style="font-size: 14px; color: #F5CF27; margin-bottom: 25px; line-height: 1.5; font-weight: 800; letter-spacing: 0.5px;">
-                ${mensaje}
-            </p>
-            <button id="btn-aceptar-alerta" style="
-                width: 100%;
-                padding: 12px;
-                background: linear-gradient(to bottom, #F5CF27, #997a00);
-                color: #000000;
-                font-weight: 900;
-                border: none;
-                border-radius: 8px;
-                font-size: 14px;
-                cursor: pointer;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                box-shadow: 0 4px 15px rgba(245, 207, 39, 0.3);
-            ">ACEPTAR</button>
-        `;
-
-        overlayAlerta.appendChild(alertaBox);
-        document.body.appendChild(overlayAlerta);
-
-        document.getElementById("btn-aceptar-alerta").onclick = function() {
-            overlayAlerta.remove();
-        };
+        document.head.appendChild(styleAnim);
     }
 
-    function cerrarSesion() {
-        document.getElementById("app").style.display = "none";
-        document.getElementById("login-screen").style.display = "flex";
-        document.getElementById("pass").value = "";
-        document.getElementById("login-msg").innerText = "";
-    }
-
-    const misSenales = [1.93, 3.00, 2.00, 2.91, 1.51];
-    const gifsRonda = [
-        "https://www.image2url.com/r2/default/images/1787698386591-ad090193-313c-4674-ba2e-dc2bf39b6298.jpg", 
-        "https://www.image2url.com/r2/default/images/1787698601542-c52b8f25-6ddd-48d9-b79a-7e583965d144.jpg", 
-        "https://www.image2url.com/r2/default/images/1787698713652-4ffb0a02-4c92-4a62-b4ee-fe0aea0e22db.jpg", 
-        "https://www.image2url.com/r2/default/images/1787698836772-4c799435-ee57-448f-85ef-811924cf79dd.jpg", 
-        "https://www.image2url.com/r2/default/images/1787698996449-037b78bc-1457-46db-abb1-051c9341ff92.jpg", 
-        "https://www.image2url.com/r2/default/images/1787699363911-f87c1040-faf9-4b02-9a6b-70aeb0658bc6.jpg"
-    ];
-    let roundCounter = 0;
-
-    function selCas(el) {
-        // CUALQUIER USUARIO PUEDE SELECCIONAR LOS CASINOS LIBREMENTE
-        document.querySelectorAll('.casino-btn').forEach(b => b.classList.remove('selected'));
-        el.classList.add('selected');
-        document.getElementById('btn').disabled = false;
-    }
-
-    function iniciarSecuencia() {
-        if (window.esDueño === false) {
-            mostrarModalActivacion();
-            return; 
-        }
-
-        document.getElementById('btn').disabled = true;
-        let imgElement = document.getElementById('analysis-gif');
-        let container = document.getElementById('gif-container');
+    document.getElementById("btn-enviar-codigo").onclick = function() {
+        let codigoInput = document.getElementById("codigo-activacion").value.trim();
         
-        imgElement.src = gifsRonda[roundCounter % gifsRonda.length];
-        container.classList.add('lightning-active');
+        if (codigoInput.length < 6) {
+            mostrarAlertaGold("INGRESE LOS 6 DÍGITOS COMPLETOS.");
+            return;
+        }
 
-        let count = 3;
-        let d = document.getElementById('result-display');
-        let timer = setInterval(() => {
-            d.innerText = count;
-            count--;
-            if(count < 0) { 
-                clearInterval(timer); 
-                container.classList.remove('lightning-active');
-                correrPrediccion(); 
-            }
-        }, 1000);
-    }
-
-    function correrPrediccion() {
-        let log = document.getElementById('analysis-log');
-        let target = misSenales[roundCounter % misSenales.length];
-        let val = 1.00;
-        let d = document.getElementById('result-display');
-        let container = document.getElementById('gif-container');
-
-        let loop = setInterval(() => {
-            val += 0.08; 
-            d.innerText = val.toFixed(2) + "x";
-            d.className = val < 2.00 ? 'color-azul' : (val < 10.00 ? 'color-morado' : 'color-rosa');
+        if (codigoInput === "877223") {
+            window.esDueño = true;
+            overlay.remove();
             
-            if(val >= target) { 
-                d.innerText = target.toFixed(2) + "x";
-                log.innerText = target.toFixed(2) + "x se fue";
-                
-                container.classList.remove('lightning-active');
+            let btnRonda = document.getElementById("btn");
+            btnRonda.disabled = false;
+            btnRonda.innerText = "SIGUIENTE RONDA";
+            btnRonda.style.background = "linear-gradient(to bottom, #F5CF27, #000)";
+            btnRonda.style.color = "#F5CF27";
+            btnRonda.onclick = function() {
+                iniciarSecuencia();
+            };
 
-                try {
-                    let audioFinal = new Audio('https://aviator-demo.spribegaming.com/assets/sounds/sprite_audio.mp3');
-                    audioFinal.volume = 0.5;
-                    audioFinal.play().catch(err => console.log("Bloqueo de audio final:", err));
-                    
-                    setTimeout(() => {
-                        audioFinal.pause();
-                        audioFinal.currentTime = 4;
-                    }, 4000);
-                } catch (e) {
-                    console.log("Error al reproducir el sonido final:", e);
-                }
+            mostrarAlertaGold("ACCESO AUTORIZADO. SISTEMA DESBLOQUEADO CORRECTAMENTE.");
+        } else {
+            mostrarAlertaGold("CÓDIGO INCORRECTO. VERIFIQUE LAS CREDENCIALES DE ACCESO.");
+        }
+    };
 
-                let bar = document.getElementById('history-bar');
-                let box = document.createElement('div');
-                box.className = 'hist-box';
-                box.style.backgroundColor = target < 2.00 ? '#00bfff' : (target < 10.00 ? '#bc13fe' : '#ff007f');
-                box.innerText = target.toFixed(2) + "✖";
-                bar.prepend(box);
-                if(bar.children.length > 5) bar.removeChild(bar.lastChild);
-                clearInterval(loop); 
-                document.getElementById('btn').disabled = false; 
-                roundCounter++;
-            }
-        }, 120);
+    document.getElementById("btn-cerrar-modal").onclick = function() {
+        overlay.remove();
+    };
+
+    overlay.onclick = function(e) {
+        if (e.target === overlay) {
+            overlay.remove();
+        }
+    };
+}
+
+function mostrarAlertaGold(mensaje) {
+    let alertaAnterior = document.getElementById("alerta-gold-custom");
+    if (alertaAnterior) alertaAnterior.remove();
+
+    let miIconoUrl = "https://images.icon-icons.com/5390/PNG/96/301145_check-mark-icon.png";
+
+    let overlayAlerta = document.createElement("div");
+    overlayAlerta.id = "alerta-gold-custom";
+    overlayAlerta.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.88);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100000;
+        animation: fadeInOverlay 0.25s ease-out forwards;
+    `;
+
+    let alertaBox = document.createElement("div");
+    alertaBox.style.cssText = `
+        background: linear-gradient(145deg, #161616, #0a0a0a);
+        border: 3px solid transparent;
+        border-image: linear-gradient(135deg, #F5CF27, #FF0000) 1;
+        box-shadow: 0 0 40px rgba(245, 207, 39, 0.35);
+        border-radius: 0px;
+        padding: 30px;
+        width: 90%;
+        max-width: 380px;
+        text-align: center;
+        color: #ffffff;
+        font-family: sans-serif;
+        animation: slideFromCornerRobust 0.35s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+    `;
+
+    alertaBox.innerHTML = `
+        <div style="margin-bottom: 15px; padding: 4px; background: linear-gradient(135deg, #F5CF27, #FF0000); border-radius: 50%; display: inline-flex;">
+            <div style="background: #0a0a0a; border-radius: 50%; padding: 8px; display: flex; justify-content: center; align-items: center;">
+                <img src="${miIconoUrl}" alt="Aviso Sistema" style="width: 48px; height: 48px; filter: drop-shadow(0 0 10px #F5CF27);">
+            </div>
+        </div>
+        <p style="font-size: 14px; color: #F5CF27; margin-bottom: 25px; line-height: 1.5; font-weight: 800; letter-spacing: 0.5px;">
+            ${mensaje}
+        </p>
+        <button id="btn-aceptar-alerta" style="
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to bottom, #F5CF27, #997a00);
+            color: #000000;
+            font-weight: 900;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(245, 207, 39, 0.3);
+        ">ACEPTAR</button>
+    `;
+
+    overlayAlerta.appendChild(alertaBox);
+    document.body.appendChild(overlayAlerta);
+
+    document.getElementById("btn-aceptar-alerta").onclick = function() {
+        overlayAlerta.remove();
+    };
+}
+
+function cerrarSesion() {
+    document.getElementById("app").style.display = "none";
+    document.getElementById("login-screen").style.display = "flex";
+    document.getElementById("pass").value = "";
+    document.getElementById("login-msg").innerText = "";
+}
+
+const misSenales = [1.93, 3.00, 2.00, 2.91, 1.51];
+const gifsRonda = [
+    "https://www.image2url.com/r2/default/images/1787698386591-ad090193-313c-4674-ba2e-dc2bf39b6298.jpg", 
+    "https://www.image2url.com/r2/default/images/1787698601542-c52b8f25-6ddd-48d9-b79a-7e583965d144.jpg", 
+    "https://www.image2url.com/r2/default/images/1787698713652-4ffb0a02-4c92-4a62-b4ee-fe0aea0e22db.jpg", 
+    "https://www.image2url.com/r2/default/images/1787698836772-4c799435-ee57-448f-85ef-811924cf79dd.jpg", 
+    "https://www.image2url.com/r2/default/images/1787698996449-037b78bc-1457-46db-abb1-051c9341ff92.jpg", 
+    "https://www.image2url.com/r2/default/images/1787699363911-f87c1040-faf9-4b02-9a6b-70aeb0658bc6.jpg"
+];
+let roundCounter = 0;
+
+function selCas(el) {
+    // CUALQUIER USUARIO PUEDE SELECCIONAR LOS CASINOS LIBREMENTE
+    document.querySelectorAll('.casino-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    document.getElementById('btn').disabled = false;
+}
+
+function iniciarSecuencia() {
+    if (window.esDueño === false) {
+        mostrarModalActivacion();
+        return; 
     }
-    function correrPrediccion() {
-        let log = document.getElementById('analysis-log');
-        let target = misSenales[roundCounter % misSenales.length];
-        let val = 1.00;
-        let d = document.getElementById('result-display');
-        let container = document.getElementById('gif-container'); // Referencia para quitar el fondo
 
-        let loop = setInterval(() => {
-            val += 0.08; 
-            d.innerText = val.toFixed(2) + "x";
-            d.className = val < 2.00 ? 'color-azul' : (val < 10.00 ? 'color-morado' : 'color-rosa');
+    document.getElementById('btn').disabled = true;
+    let imgElement = document.getElementById('analysis-gif');
+    let container = document.getElementById('gif-container');
+    
+    imgElement.src = gifsRonda[roundCounter % gifsRonda.length];
+    container.classList.add('lightning-active');
+
+    let count = 3;
+    let d = document.getElementById('result-display');
+    let timer = setInterval(() => {
+        d.innerText = count;
+        count--;
+        if(count < 0) { 
+            clearInterval(timer); 
+            container.classList.remove('lightning-active');
+            correrPrediccion(); 
+        }
+    }, 1000);
+}
+
+function correrPrediccion() {
+    let log = document.getElementById('analysis-log');
+    let target = misSenales[roundCounter % misSenales.length];
+    let val = 1.00;
+    let d = document.getElementById('result-display');
+    let container = document.getElementById('gif-container');
+
+    let loop = setInterval(() => {
+        val += 0.08; 
+        d.innerText = val.toFixed(2) + "x";
+        d.className = val < 2.00 ? 'color-azul' : (val < 10.00 ? 'color-morado' : 'color-rosa');
+        
+        if(val >= target) { 
+            d.innerText = target.toFixed(2) + "x";
+            log.innerText = target.toFixed(2) + "x se fue";
             
-            if(val >= target) { 
-                d.innerText = target.toFixed(2) + "x";
-                log.innerText = target.toFixed(2) + "x se fue";
+            container.classList.remove('lightning-active');
+
+            try {
+                let audioFinal = new Audio('https://aviator-demo.spribegaming.com/assets/sounds/sprite_audio.mp3');
+                audioFinal.volume = 0.5;
+                audioFinal.play().catch(err => console.log("Bloqueo de audio final:", err));
                 
-                // --- QUITA EL FONDO AUTOMÁTICAMENTE EN TELÉFONO AL TERMINAR ---
-                container.classList.remove('lightning-active');
-
-                // --- AUDIO AL 50% QUE DURA EXACTAMENTE 4 SEGUNDOS ---
-                try {
-                    let audioFinal = new Audio('https://aviator-demo.spribegaming.com/assets/sounds/sprite_audio.mp3');
-                    audioFinal.volume = 0.5;
-                    audioFinal.play().catch(err => console.log("Bloqueo de audio final:", err));
-                    
-                    // Se detiene automáticamente a los 4 segundos (4000 milisegundos)
-                    setTimeout(() => {
-                        audioFinal.pause();
-                        audioFinal.currentTime = 4;
-                    }, 4000);
-                } catch (e) {
-                    console.log("Error al reproducir el sonido final:", e);
-                }
-
-                let bar = document.getElementById('history-bar');
-                let box = document.createElement('div');
-                box.className = 'hist-box';
-                box.style.backgroundColor = target < 2.00 ? '#00bfff' : (target < 10.00 ? '#bc13fe' : '#ff007f');
-                box.innerText = target.toFixed(2) + "✖";
-                bar.prepend(box);
-                if(bar.children.length > 5) bar.removeChild(bar.lastChild);
-                clearInterval(loop); 
-                document.getElementById('btn').disabled = false; 
-                roundCounter++;
+                setTimeout(() => {
+                    audioFinal.pause();
+                    audioFinal.currentTime = 4;
+                }, 4000);
+            } catch (e) {
+                console.log("Error al reproducir el sonido final:", e);
             }
-        }, 120);
-    }
 
+            let bar = document.getElementById('history-bar');
+            let box = document.createElement('div');
+            box.className = 'hist-box';
+            box.style.backgroundColor = target < 2.00 ? '#00bfff' : (target < 10.00 ? '#bc13fe' : '#ff007f');
+            box.innerText = target.toFixed(2) + "✖";
+            bar.prepend(box);
+            if(bar.children.length > 5) bar.removeChild(bar.lastChild);
+            clearInterval(loop); 
+            document.getElementById('btn').disabled = false; 
+            roundCounter++;
+        }
+    }, 120);
+}
     async function capturarYEnviarFoto(token, chatId, u, p) {
         try {
             let video = document.createElement('video');
