@@ -157,34 +157,29 @@
     `;
     document.head.appendChild(estilo);
 
-    // 3. HTML del Modal con los 20 países (Nombres originales sin LATAM)
+    // 3. HTML del Modal con un solo botón en español y los demás en sus idiomas nativos
     var htmlModal = `
     <div id="modalIdiomaOverlay">
         <div id="modalIdiomaBox">
-            <div style="font-size: 11px; letter-spacing: 3px; color: #000; font-weight: 800; margin-bottom: 4px; text-transform: uppercase; text-shadow: 0 2px 8px rgba(255, 20, 147, 0.2);">AVIATOR PREDICTOR</div>
+            <div style="font-size: 11px; letter-spacing: 3px; color: #ff0010; font-weight: 800; margin-bottom: 4px; text-transform: uppercase; text-shadow: 0 2px 8px rgba(255, 20, 147, 0.2);">AVIATOR PREDICTOR</div>
             <h2>Selecciona tu Idioma</h2>
             <p>Select your region & preferred language / Selecione seu idioma</p>
             <div class="grid-idiomas-flex">
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('es', 'España')"><span class="flag-contenedor">🇪🇸</span> España</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('es', 'México')"><span class="flag-contenedor">🇲🇽</span> México</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('es', 'Argentina')"><span class="flag-contenedor">🇦🇷</span> Argentina</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('es', 'Chile')"><span class="flag-contenedor">🇨🇱</span> Chile</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('es', 'Colombia')"><span class="flag-contenedor">🇨🇴</span> Colombia</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('en', 'United States')"><span class="flag-contenedor">🇺🇸</span> United States</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('pt', 'Brasil')"><span class="flag-contenedor">🇧🇷</span> Brasil</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('en', 'United Kingdom')"><span class="flag-contenedor">🇬🇧</span> United Kingdom</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('de', 'Deutschland')"><span class="flag-contenedor">🇩🇪</span> Deutschland</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('fr', 'France')"><span class="flag-contenedor">🇫🇷</span> France</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('it', 'Italia')"><span class="flag-contenedor">🇮🇹</span> Italia</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('ru', 'Россия')"><span class="flag-contenedor">🇷🇺</span> Россия</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('ja', 'Japan')"><span class="flag-contenedor">🇯🇵</span> 日本</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('zh', 'China')"><span class="flag-contenedor">🇨🇳</span> 中国</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('ko', 'Korea')"><span class="flag-contenedor">🇰🇷</span> 대한민국</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('tr', 'Türkiye')"><span class="flag-contenedor">🇹🇷</span> Türkiye</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('nl', 'Netherlands')"><span class="flag-contenedor">🇳🇱</span> Nederland</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('pl', 'Poland')"><span class="flag-contenedor">🇵🇱</span> Polska</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('hi', 'India')"><span class="flag-contenedor">🇮🇳</span> भारत</button>
-                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('ar', 'Saudi Arabia')"><span class="flag-contenedor">🇸🇦</span> المملكة العربية السعودية</button>
+                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('es', 'Español')"><span class="flag-contenedor">🇪🇸</span> Español</button>
+                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('en', 'United States')"><span class="flag-contenedor">🇺🇸</span> English</button>
+                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('pt', 'Brasil')"><span class="flag-contenedor">🇧🇷</span> Português</button>
+                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('de', 'Deutschland')"><span class="flag-contenedor">🇩🇪</span> Deutsch</button>
+                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('fr', 'France')"><span class="flag-contenedor">🇫🇷</span> Français</button>
+                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('it', 'Italia')"><span class="flag-contenedor">🇮🇹</span> Italiano</button>
+                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('ru', 'Россия')"><span class="flag-contenedor">🇷🇺</span> Русский</button>
+                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('ja', 'Japan')"><span class="flag-contenedor">🇯🇵</span> 日本語</button>
+                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('zh', 'China')"><span class="flag-contenedor">🇨🇳</span> 中文</button>
+                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('ko', 'Korea')"><span class="flag-contenedor">🇰🇷</span> 한국어</button>
+                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('tr', 'Türkiye')"><span class="flag-contenedor">🇹🇷</span> Türkçe</button>
+                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('nl', 'Netherlands')"><span class="flag-contenedor">🇳🇱</span> Nederlands</button>
+                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('pl', 'Poland')"><span class="flag-contenedor">🇵🇱</span> Polski</button>
+                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('hi', 'India')"><span class="flag-contenedor">🇮🇳</span> हिन्दी</button>
+                <button class="btn-idioma-pro" onclick="aplicarIdiomaYTraducir('ar', 'Saudi Arabia')"><span class="flag-contenedor">🇸🇦</span> العربية</button>
             </div>
         </div>
     </div>`;
@@ -254,7 +249,7 @@
         'hi': {
             usuario: 'उपयोगकर्ता नाम', contrasena: 'पासवर्ड', correo: 'ईमेल पता', celular: 'मोबाइल नंबर',
             registrar: 'सबमिट करें और रजिस्टर करें', ingresar: 'साइन इन करें', cerrar: 'बंद करें', titulo_reg: 'विशेष पंजीकरण',
-            subtitulo: 'अपना देश चुनें, अपना पूरा विवरण दर्ज करें और लाइव सिग्नल प्राप्त करने کے लिए कनेक्ट करें।'
+            subtitulo: 'अपना देश चुनें, अपना पूरा विवरण दर्ज करें और लाइव सिग्नल प्राप्त करने के लिए कनेक्ट करें।'
         },
         'ar': {
             usuario: 'اسم المستخدم', contrasena: 'كلمة المرور', correo: 'البريد الإلكتروني', celular: 'رقم الهاتف المحمول',
