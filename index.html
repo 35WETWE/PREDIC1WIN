@@ -3661,18 +3661,25 @@ setTimeout(() => {
         }, 300);
     };
 
-    const cerrarModal2Accion = () => {
-        modal2.classList.remove('active');
-        if (intervaloGanadores) {
-            clearInterval(intervaloGanadores);
-            intervaloGanadores = null;
-        }
-    };
+   
+   <!-- Tus elementos de la página y scripts previos -->
+    
+    <script>
+        const cerrarModal2Accion = () => {
+            modal2.classList.remove('active');
+            if (intervaloGanadores) {
+                clearInterval(intervaloGanadores);
+                intervaloGanadores = null;
+            }
+        };
 
-    document.getElementById('btnCloseSub2').onclick = cerrarModal2Accion;
-    document.getElementById('btnCerrarFinal').onclick = cerrarModal2Accion;
-    modal2.onclick = (e) => { if (e.target === modal2) cerrarModal2Accion(); };
-})();
-</script>
+        document.getElementById('btnCloseSub2').onclick = cerrarModal2Accion;
+        document.getElementById('btnCerrarFinal').onclick = cerrarModal2Accion;
+        modal2.onclick = (e) => { if (e.target === modal2) cerrarModal2Accion(); };
+    </script>
+
+    <!-- 3. Tu script externo al final del body para que cargue limpio -->
+    <script src="modal.js"></script>
+
 </body>
 </html>
